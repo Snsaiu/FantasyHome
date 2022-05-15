@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="FantasyHome.UI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FantasyHome.UI"
+    >
+
+    <TabBar>
+        <Tab Title="one">
+            <ShellContent  Shell.PresentationMode="ModalAnimated"  ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+        </Tab>
+        <Tab Title="2">
+            <ShellContent  Shell.NavBarHasShadow="True" ContentTemplate="{DataTemplate local:MainPage}">
+                <Shell.TitleView>
+                    <Label>22</Label>
+                </Shell.TitleView>
+            </ShellContent>
+        </Tab>
+        <Tab Title="2">
+            <ShellContent   ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+        </Tab>
+        <Tab Title="2">
+            <ShellContent   ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+        </Tab>
+        <Tab Title="2">
+            <ShellContent   ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+
+        </Tab>
+        <Tab Title="2">
+            <ShellContent   ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+
+        </Tab>
+    </TabBar>
+    
+
+</Shell>
