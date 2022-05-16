@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FantasyHome.UI.Views.MainPage"
@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="20"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label>Fantasy Home</Label>
-            <ImageButton Source=""></ImageButton>
+           <Image Source="notify.png"></Image>
         </Grid>
     </Shell.TitleView>
  
