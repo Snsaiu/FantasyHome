@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="20"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label>Fantasy Home</Label>
-            <ImageButton Grid.Column="1"  Source="/Images/bell.png"></ImageButton>
+            <ImageButton Grid.Column="1"  Source="bell.png"></ImageButton>
         </Grid>
     </Shell.TitleView>
  
