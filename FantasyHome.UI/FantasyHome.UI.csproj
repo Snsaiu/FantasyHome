@@ -52,6 +52,7 @@
 	  <MauiCss Remove="Components\**" />
 	  <MauiXaml Remove="Components\**" />
 	  <None Remove="Components\**" />
+	  <None Remove="Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -69,6 +70,7 @@
 
 	<ItemGroup>
 	  <Folder Include="ViewModels\ComponentModels\" />
+	  <Folder Include="Models\" />
 	</ItemGroup>
 
 	<ItemGroup>

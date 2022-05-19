@@ -49,6 +49,10 @@ public partial class NotifyComponent : ContentView
 
     #region commands
 
+    /// <summary>
+    ///点击小眼镜命令
+    /// 
+    /// </summary>
     public static readonly BindableProperty ShowDetailCommandProperty =
         BindableProperty.Create("ShowDetailCommand", typeof(ICommand), typeof(NotifyComponent));
 
@@ -56,6 +60,18 @@ public partial class NotifyComponent : ContentView
     {
         get { return (ICommand)GetValue(ShowDetailCommandProperty); }
         set   { SetValue(ShowDetailCommandProperty, value); }
+    }
+
+    /// <summary>
+    /// 点击关闭按钮事件
+    /// </summary>
+    public static readonly BindableProperty CloseCommandProperty =
+         BindableProperty.Create("CloseCommand", typeof(ICommand), typeof(NotifyComponent));
+
+    public ICommand CloseCommand
+    {
+        get { return (ICommand)GetValue(CloseCommandProperty); }
+        set { SetValue(CloseCommandProperty, value); }
     }
 
 

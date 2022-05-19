@@ -13,9 +13,7 @@
 
     <StackLayout>
 
-        <comp:NotifyComponent HeightRequest="50" Title="hello" BackgroundColor="Yellow" ShowDetailCommand="{Binding showWarngingLabelCommand}"></comp:NotifyComponent>
-  
-
+       
     </StackLayout>
  
 
