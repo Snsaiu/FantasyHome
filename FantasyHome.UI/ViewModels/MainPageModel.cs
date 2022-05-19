@@ -1,9 +1,14 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace FantasyHome.UI.ViewModels;
 
-public class MainPageModel 
+[INotifyPropertyChanged]
+public partial class MainPageModel 
 {
-	public MainPageModel()
+	public  MainPageModel()
 	{
-		
-	}
+
+    }
+
+
 }

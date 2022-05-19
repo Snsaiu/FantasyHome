@@ -8,13 +8,32 @@
 
     >
     <Shell.FlyoutIcon>
-       
-       <FontImageSource FontFamily="Typicons"
+
+        <FontImageSource FontFamily="typicons"
                                     Glyph="{Static res:IconFont.ThMenu}"
                                     Size="18"
                                     Color="white"/>
 
     </Shell.FlyoutIcon>
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label TextColor="white" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center">Fantasy Home</Label>
+            <Button Grid.Column="1" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" BorderWidth="0">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="typicons"
+                                     Glyph="{Static res:IconFont.Bell}"
+                                     Size="18"
+                                     Color="White"/>
+
+                </Button.ImageSource>
+
+            </Button>
+        </Grid>
+    </Shell.TitleView>
 
     <FlyoutItem Title="主页">
         <Tab>

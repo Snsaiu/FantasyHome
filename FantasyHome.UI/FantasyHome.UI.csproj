@@ -46,6 +46,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Components\**" />
+	  <Compile Remove="Components\**" />
+	  <EmbeddedResource Remove="Components\**" />
+	  <MauiCss Remove="Components\**" />
+	  <MauiXaml Remove="Components\**" />
+	  <None Remove="Components\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\Components\NotifyComponent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -54,7 +66,13 @@
 	<ItemGroup>
 	  <None Remove="Components\" />
 	</ItemGroup>
+
 	<ItemGroup>
-	  <Folder Include="Components\" />
+	  <Folder Include="ViewModels\ComponentModels\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0-rc3" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
 	</ItemGroup>
 </Project>

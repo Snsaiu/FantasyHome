@@ -11,7 +11,7 @@
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("typicon.ttf", "Typicon");
+                    fonts.AddFont("typicons.ttf", "typicons");
                 });
 
             return builder.Build();
