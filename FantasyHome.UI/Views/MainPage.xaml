@@ -4,18 +4,28 @@
              x:Class="FantasyHome.UI.Views.MainPage"
              xmlns:local="clr-namespace:FantasyHome.UI.ViewModels"
              x:DataType="local:MainPageModel"
-             Shell.NavBarHasShadow="True"
-             Shell.NavBarIsVisible="True"
-             Title="MainPage">
+             Shell.NavBarHasShadow="False"
+             xmlns:res="clr-namespace:FantasyHome.UI.Resources"
+             Shell.NavBarIsVisible="True"       
+            >
 
     <Shell.TitleView>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label>Fantasy Home</Label>
-            <ImageButton Grid.Column="1"  Source="bell.png"></ImageButton>
+            <Label TextColor="white" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center">Fantasy Home</Label>
+           <Button Grid.Column="1" WidthRequest="50" HeightRequest="50">
+               <Button.ImageSource>
+                   <FontImageSource FontFamily="Typicons"
+                                    Glyph="{Static res:IconFont.Bell}"
+                                    Size="18"
+                                    Color="white"/>
+
+               </Button.ImageSource>
+
+           </Button>
         </Grid>
     </Shell.TitleView>
  
