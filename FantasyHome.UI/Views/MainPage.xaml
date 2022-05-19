@@ -8,13 +8,12 @@
              xmlns:comp="clr-namespace:FantasyHome.UI.Views.Components"
              xmlns:res="clr-namespace:FantasyHome.UI.Resources"
              Shell.NavBarIsVisible="True"       
-           
             >
 
 
     <StackLayout>
 
-        <comp:NotifyComponent HeightRequest="50" Title="hello" BackgroundColor="Yellow" ShowDetailCommand="{Binding }"></comp:NotifyComponent>
+        <comp:NotifyComponent HeightRequest="50" Title="hello" BackgroundColor="Yellow" ShowDetailCommand="{Binding showWarngingLabelCommand}"></comp:NotifyComponent>
   
 
     </StackLayout>

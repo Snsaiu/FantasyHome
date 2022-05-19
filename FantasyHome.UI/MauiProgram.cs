@@ -13,6 +13,8 @@
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("typicons.ttf", "typicons");
                 });
+            builder.Services.AddTransient<Views.MainPage>();
+            builder.Services.AddTransient<ViewModels.MainPageModel>();
 
             return builder.Build();
         }
