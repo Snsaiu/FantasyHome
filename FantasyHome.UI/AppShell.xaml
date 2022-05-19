@@ -5,16 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FantasyHome.UI.Views"
         xmlns:res="clr-namespace:FantasyHome.UI.Resources"
-
     >
-    <Shell.FlyoutIcon>
-
-        <FontImageSource FontFamily="typicons"
-                                    Glyph="{Static res:IconFont.ThMenu}"
-                                    Size="18"
-                                    Color="white"/>
-
-    </Shell.FlyoutIcon>
     <Shell.TitleView>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -34,6 +25,14 @@
             </Button>
         </Grid>
     </Shell.TitleView>
+
+
+    <Shell.FlyoutIcon>
+        <FontImageSource FontFamily="typicons"
+                         Glyph="{Static res:IconFont.ThMenu}"
+                         Size="18"
+                         Color="white"/>
+    </Shell.FlyoutIcon>
 
     <FlyoutItem Title="主页">
         <Tab>

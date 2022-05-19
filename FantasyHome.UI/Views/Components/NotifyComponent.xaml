@@ -5,7 +5,7 @@
              x:Name="notifyComponent"
              x:Class="FantasyHome.UI.Views.Components.NotifyComponent">
 
-    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"  x:Name="bg">
+    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" x:Name="bg">
         <Image Aspect="Center" VerticalOptions="Center" Margin="5,0">
             <Image.Source>
                 <FontImageSource FontFamily="typicons"
@@ -17,7 +17,10 @@
         </Image>
         <Label x:Name="label" TextColor="Black"  Margin="5,0,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"></Label>
         <StackLayout Orientation="Horizontal" HorizontalOptions="End" Padding="5,0">
-            <ImageButton VerticalOptions="CenterAndExpand" HorizontalOptions="Start"  Command="{Binding Source={x:Reference notifyComponent}, Path=ShowDetailCommand}">
+            <ImageButton VerticalOptions="CenterAndExpand" HorizontalOptions="Start" 
+                         Command="{Binding Source={x:Reference notifyComponent}, Path=ShowDetailCommand}"
+                         CommandParameter="{Binding Source={x:Reference notifyComponent},Path=ShowDetailCommandParameter}"
+                         >
             <ImageButton.Source>
                 <FontImageSource FontFamily="typicons"
                                  Glyph="{Static res:IconFont.EyeOutline}"
@@ -25,9 +28,10 @@
                                  Color="Black"/>
             </ImageButton.Source>
         </ImageButton>
-        <ImageButton Margin="10,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+            <ImageButton Margin="10,0,0,0" Command="{Binding Source={x:Reference notifyComponent},Path= CloseCommand}" CommandParameter="{Binding Source={x:Reference notifyComponent},Path=CloseCommandParameter}" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
             <ImageButton.Source>
                 <FontImageSource FontFamily="typicons"
+                                 
                                  Glyph="{Static res:IconFont.TimesOutline}"
                                  Size="18"
                                  Color="Black"/>

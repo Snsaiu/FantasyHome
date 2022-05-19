@@ -29,11 +29,28 @@ namespace FantasyHome.UI.ViewModels;
 
     
    [ICommand]
-	private void  ShowWarngingLabel()
+	private void  ShowWarngingLabel(object param)
     {
 
-       App.Current.MainPage.DisplayAlert("hello", "info", "cancel");
+       App.Current.MainPage.DisplayAlert("详情", param.ToString(), "cancel");
     }
+
+    [ICommand]
+    private void CloseWarningLabel(object param)
+    {
+        string id = param.ToString();
+        var item = this.NotifyBarModels.FirstOrDefault(x => x.Id == id);
+        if (item != null)
+        {
+            this.NotifyBarModels.Remove(item);
+        }
+        else
+        {
+            throw new InvalidOperationException();
+        }
+    }
+
+
 
 
 }

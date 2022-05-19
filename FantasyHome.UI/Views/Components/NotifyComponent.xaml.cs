@@ -28,19 +28,19 @@ public partial class NotifyComponent : ContentView
     }
 
 
-    public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create("BackgroundColor",
-        typeof(Color), typeof(NotifyComponent),Colors.Orange,propertyChanged:BackgroundColorChanged);
+    public static readonly BindableProperty BarColorProperty = BindableProperty.Create("BarColor",
+        typeof(Color), typeof(NotifyComponent),Colors.Orange,propertyChanged: BarColorChanged);
 
-    private static void BackgroundColorChanged(BindableObject bindable, object oldvalue, object newvalue)
+    private static void BarColorChanged(BindableObject bindable, object oldvalue, object newvalue)
     {
         var root = bindable as NotifyComponent;
-        root.bg.BackgroundColor= (Color)newvalue;
+        root.bg.BackgroundColor = (Color)newvalue;
     }
 
-    public Color BackgroundColor
+    public Color BarColor
     {
-        get { return (Color)GetValue(BackgroundProperty); }
-        set { SetValue(BackgroundProperty, value); }
+        get { return (Color)GetValue(BarColorProperty); }
+        set { SetValue(BarColorProperty, value); }
     }
 
     #endregion
@@ -62,6 +62,14 @@ public partial class NotifyComponent : ContentView
         set   { SetValue(ShowDetailCommandProperty, value); }
     }
 
+    public static readonly BindableProperty ShowDetailCommandParameterProperty =
+        BindableProperty.Create("ShowDetailCommandParameter", typeof(object), typeof(NotifyComponent));
+
+    public object ShowDetailCommandParameter
+    {
+        get { return (object)GetValue(ShowDetailCommandParameterProperty); }
+        set { SetValue(ShowDetailCommandParameterProperty, value); }
+    }
     /// <summary>
     /// 点击关闭按钮事件
     /// </summary>
@@ -74,6 +82,15 @@ public partial class NotifyComponent : ContentView
         set { SetValue(CloseCommandProperty, value); }
     }
 
+
+    public static readonly BindableProperty CloseCommandParameterProperty =
+        BindableProperty.Create("CloseCommandParameter", typeof(object), typeof(NotifyComponent));
+
+    public object CloseCommandParameter
+    {
+        get { return (object)GetValue(CloseCommandParameterProperty); }
+        set { SetValue(CloseCommandParameterProperty, value); }
+    }
 
 
 

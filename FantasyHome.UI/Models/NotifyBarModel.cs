@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace FantasyHome.UI.Models
 {
-	public class NotifyBarModel:ObservableObject
+	public partial class NotifyBarModel:ObservableObject
 	{
 		public NotifyBarModel()
 		{

@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FantasyHome.UI.Views.MainPage"
              xmlns:local="clr-namespace:FantasyHome.UI.ViewModels"
-             x:DataType="local:MainPageModel"
-             Shell.NavBarHasShadow="False"
+
+          x:Name="mainpage"
+             Shell.NavBarHasShadow="True"
              xmlns:comp="clr-namespace:FantasyHome.UI.Views.Components"
              xmlns:res="clr-namespace:FantasyHome.UI.Resources"
              Shell.NavBarIsVisible="True"       
@@ -12,8 +13,18 @@
 
 
     <StackLayout>
-
-       
+        <CollectionView ItemsSource="{Binding NotifyBarModels}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <comp:NotifyComponent HeightRequest="30" Title="{Binding Title}" BackgroundColor="Orange"
+                                          CloseCommand="{Binding BindingContext.CloseWarningLabelCommand,Source={x:Reference mainpage}}"
+                                          CloseCommandParameter="{Binding Id}"
+                                          ShowDetailCommandParameter="{Binding Id}"
+                                        
+                                          ShowDetailCommand="{Binding BindingContext.ShowWarngingLabelCommand,Source={x:Reference mainpage} }" ></comp:NotifyComponent>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
  
 
