@@ -25,7 +25,25 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <comp:WeatherComponent Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="21" CurrentState="多云多云多云多云" CurrentTemperature="30℃">
+            <comp:WeatherComponent.CurrentDayIcon>
+                <FontImageSource  FontFamily="typicons"
+                                  Glyph="{Static res:IconFont.Bell}"
+                                  Size="60"
+                                  Color="White"/>
+            </comp:WeatherComponent.CurrentDayIcon>
+        </comp:WeatherComponent>
+        <comp:SwitchComponent Title="客厅灯" BarColor="Orange" WidthRequest="150">
+            <comp:SwitchComponent.Icon>
+                <FontImageSource  FontFamily="typicons"
+                                  Glyph="{Static res:IconFont.Bell}"
+                                  Size="40"
+                                  Color="White"/>
+            </comp:SwitchComponent.Icon>
+        </comp:SwitchComponent>
     </StackLayout>
- 
+
+   
 
 </ContentPage>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:FantasyHome.UI.Resources"
+             x:Name="weather"
+             x:Class="FantasyHome.UI.Views.Components.WeatherComponent">
+
+    <Frame CornerRadius="10" Padding="5,10,0,10" BackgroundColor="{Binding Source={x:Reference weather}, Path=BarColor}">
+
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition  Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                    <Image Margin="0,0,5,0" Aspect="Center" Source="{Binding Source={x:Reference weather},Path=CurrentDayIcon}">
+                       
+                    </Image>
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal">
+                            <Label>紫外线:</Label>
+                            <Label Text="{Binding Source={x:Reference weather},Path=CurrentRay}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label>温度:</Label>
+                            <Label Text="{Binding Source={x:Reference weather},Path=CurrentTemperature}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <Label Text="{Binding Source={x:Reference weather},Path=CurrentState}"></Label>
+            </StackLayout>
+            <CollectionView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" ItemsLayout="HorizontalList" ItemsSource="{Binding Source={x:Reference weather},Path=WeeksWeatherList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Image Aspect="Center" HorizontalOptions="CenterAndExpand" Source="{Binding Icon}">
+                               
+                            </Image>
+                            <Label Grid.Row="1"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Text="{Binding Date}"></Label>
+                        </Grid>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </Frame>
+</ContentView>

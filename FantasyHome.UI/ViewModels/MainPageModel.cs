@@ -12,13 +12,27 @@ namespace FantasyHome.UI.ViewModels;
     [ObservableProperty]
     private ObservableCollection<NotifyBarModel> notifyBarModels;
 
+    [ObservableProperty]
+    private ObservableCollection<WeekWeatherListModel> weekWeatherListModels;
+
 	public  MainPageModel()
 	{
 
         this.notifyBarModels = new ObservableCollection<NotifyBarModel>();
         this.getNotifyBarInfoList();
+        this.WeekWeatherListModels = new ObservableCollection<WeekWeatherListModel>();
+        this.getWeatherList();
     }
 
+    private void getWeatherList()
+    {
+        this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-2") );
+        this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-3") );
+        this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-4") );
+        this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-5") );
+        this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-6") );
+        this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-7") );
+    }
 
     private void getNotifyBarInfoList()
     {
