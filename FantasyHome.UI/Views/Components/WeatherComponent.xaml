@@ -10,7 +10,7 @@
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition  Width="*"/>
+                <ColumnDefinition  Width="auto"/>
             </Grid.ColumnDefinitions>
             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
                 <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
@@ -30,7 +30,7 @@
                 </StackLayout>
                 <Label Text="{Binding Source={x:Reference weather},Path=CurrentState}"></Label>
             </StackLayout>
-            <CollectionView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" ItemsLayout="HorizontalList" ItemsSource="{Binding Source={x:Reference weather},Path=WeeksWeatherList}">
+            <CollectionView Margin="10,0,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Grid.Column="1" ItemsLayout="HorizontalList" ItemsSource="{Binding Source={x:Reference weather},Path=WeeksWeatherList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5">

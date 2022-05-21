@@ -17,7 +17,10 @@ namespace FantasyHome.UI.WinUI
         public App()
         {
             this.InitializeComponent();
+           
+         
         }
+
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }

@@ -1,4 +1,13 @@
-﻿namespace FantasyHome.UI
+﻿using Microsoft.Maui.LifecycleEvents;
+
+
+#if WINDOWS
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Windows.Graphics;
+#endif
+
+namespace FantasyHome.UI
 {
     public static class MauiProgram
     {
@@ -13,6 +22,27 @@
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("typicons.ttf", "typicons");
                 });
+
+#if WINDOWS
+            builder.ConfigureLifecycleEvents(events =>
+            {
+                events.AddWindows(wndLifeCycleBuilder =>
+                {
+                    wndLifeCycleBuilder.OnWindowCreated(window =>
+                    {
+                        IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                        WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+                        AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
+
+                        const int width = 500;
+                        const int height = 900;
+                        //winuiAppWindow.MoveAndResize(new RectInt32(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height));
+                        winuiAppWindow.MoveAndResize(new RectInt32(0, 0, width, height));
+                    });
+                });
+            });
+
+#endif
             builder.Services.AddTransient<Views.MainPage>();
             builder.Services.AddTransient<ViewModels.MainPageModel>();
 

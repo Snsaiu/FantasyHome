@@ -21,6 +21,7 @@ namespace FantasyHome.UI.ViewModels;
 	public  MainPageModel()
 	{
 
+        this.KeTingLightState = true;
         this.notifyBarModels = new ObservableCollection<NotifyBarModel>();
         this.getNotifyBarInfoList();
         this.WeekWeatherListModels = new ObservableCollection<WeekWeatherListModel>();

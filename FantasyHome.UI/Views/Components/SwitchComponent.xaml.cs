@@ -14,9 +14,13 @@ public partial class SwitchComponent : ContentView
 
         this.Loaded += (s, e) =>
         {
+            this.icon.HorizontalOptions = LayoutOptions.Center;
+           
             if (this.State)
             {
+
                 this.bar.BackgroundColor = this.OnBarColor;
+                
                 this.icon.Source = this.OnIcon;
             }
             else
