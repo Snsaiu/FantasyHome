@@ -11,7 +11,6 @@
                 <FontImageSource FontFamily="typicons"
                                  Glyph="{Static res:IconFont.Message}"
                                  Size="18"
-                                 
                                  Color="Black"/>
             </Image.Source>
         </Image>

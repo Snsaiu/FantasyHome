@@ -3,30 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FantasyHome.UI.Views.MainPage"
              xmlns:local="clr-namespace:FantasyHome.UI.ViewModels"
-
-          x:Name="mainpage"
+             x:Name="mainpage"
              Shell.NavBarHasShadow="True"
              xmlns:comp="clr-namespace:FantasyHome.UI.Views.Components"
              xmlns:res="clr-namespace:FantasyHome.UI.Resources"
              Shell.NavBarIsVisible="True"       
             >
 
-
     <StackLayout>
-        <CollectionView ItemsSource="{Binding NotifyBarModels}">
+        <CollectionView IsVisible="{OnPlatform iOS=false}" ItemsSource="{Binding NotifyBarModels}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <comp:NotifyComponent HeightRequest="30" Title="{Binding Title}" BackgroundColor="Orange"
                                           CloseCommand="{Binding BindingContext.CloseWarningLabelCommand,Source={x:Reference mainpage}}"
                                           CloseCommandParameter="{Binding Id}"
                                           ShowDetailCommandParameter="{Binding Id}"
-                                        
                                           ShowDetailCommand="{Binding BindingContext.ShowWarngingLabelCommand,Source={x:Reference mainpage} }" ></comp:NotifyComponent>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <comp:WeatherComponent Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="21" CurrentState="多云多云多云多云" CurrentTemperature="30℃">
+        <comp:WeatherComponent Margin="0,5" BarColor="Grey" HeightRequest="100"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="21" CurrentState="多云多云多云多云" CurrentTemperature="30℃">
             <comp:WeatherComponent.CurrentDayIcon>
                 <FontImageSource  FontFamily="typicons"
                                   Glyph="{Static res:IconFont.Bell}"
@@ -34,13 +34,20 @@
                                   Color="White"/>
             </comp:WeatherComponent.CurrentDayIcon>
         </comp:WeatherComponent>
-        <comp:SwitchComponent Title="客厅灯" BarColor="Orange" WidthRequest="150">
-            <comp:SwitchComponent.Icon>
+
+        <comp:SwitchComponent TouchCommand="{Binding ReplaceKeTingLightCommand}" Title="客厅灯" State="{Binding KeTingLightState}" OffBarColor="Gray" OnBarColor="Orange" WidthRequest="150">
+            <comp:SwitchComponent.OnIcon>
                 <FontImageSource  FontFamily="typicons"
                                   Glyph="{Static res:IconFont.Bell}"
                                   Size="40"
                                   Color="White"/>
-            </comp:SwitchComponent.Icon>
+            </comp:SwitchComponent.OnIcon>
+            <comp:SwitchComponent.OffIcon>
+                <FontImageSource  FontFamily="typicons"
+                                  Glyph="{Static res:IconFont.Support}"
+                                  Size="40"
+                                  Color="White"/>
+            </comp:SwitchComponent.OffIcon>
         </comp:SwitchComponent>
     </StackLayout>
 

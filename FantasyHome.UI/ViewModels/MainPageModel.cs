@@ -15,6 +15,9 @@ namespace FantasyHome.UI.ViewModels;
     [ObservableProperty]
     private ObservableCollection<WeekWeatherListModel> weekWeatherListModels;
 
+    [ObservableProperty]
+    private bool keTingLightState=false;
+
 	public  MainPageModel()
 	{
 
@@ -38,7 +41,7 @@ namespace FantasyHome.UI.ViewModels;
     {
         this.notifyBarModels.Add(new NotifyBarModel { Id = "1", Title = "电风扇打开" });
         this.notifyBarModels.Add(new NotifyBarModel { Id = "2", Title = "电风扇打开1" });
-        this.notifyBarModels.Add(new NotifyBarModel { Id = "3", Title = "电风扇打开2" });
+        this.notifyBarModels.Add(new NotifyBarModel { Id = "3", Title = "电风扇打24242开2" });
     }
 
     
@@ -47,6 +50,12 @@ namespace FantasyHome.UI.ViewModels;
     {
 
        App.Current.MainPage.DisplayAlert("详情", param.ToString(), "cancel");
+    }
+
+    [ICommand]
+    private void ReplaceKeTingLight()
+    {
+        this.KeTingLightState = !this.KeTingLightState;
     }
 
     [ICommand]

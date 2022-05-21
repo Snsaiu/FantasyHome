@@ -4,14 +4,14 @@
             x:Name="sw"
              x:Class="FantasyHome.UI.Views.Components.SwitchComponent">
 
-    <Frame CornerRadius="10" BackgroundColor="{Binding Source={x:Reference sw},Path=BarColor}">
+    <Frame CornerRadius="10" x:Name="bar">
         <Frame.GestureRecognizers >
             <TapGestureRecognizer Command="{Binding Source={x:Reference sw},Path=TouchCommand}"></TapGestureRecognizer>
         </Frame.GestureRecognizers>
 
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-            <Image Source="{Binding Source={x:Reference sw},Path=Icon}"/>
+            <Image x:Name="icon"/>
             <Label HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Text="{Binding Source={x:Reference sw},Path=Title}"></Label>
         </StackLayout>
 
