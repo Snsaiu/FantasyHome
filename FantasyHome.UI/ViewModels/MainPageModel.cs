@@ -2,6 +2,8 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FantasyHome.UI.Models;
+using FantasyHome.UI.Utils;
+using FantasyResultModel;
 
 namespace FantasyHome.UI.ViewModels;
 
@@ -18,18 +20,82 @@ namespace FantasyHome.UI.ViewModels;
     [ObservableProperty]
     private bool keTingLightState=false;
 
-	public  MainPageModel()
-	{
+    [ObservableProperty]
+    private CurrentWeatherModel currentWeather = new CurrentWeatherModel();
 
+	public MainPageModel()
+	{
         this.KeTingLightState = true;
         this.notifyBarModels = new ObservableCollection<NotifyBarModel>();
         this.getNotifyBarInfoList();
         this.WeekWeatherListModels = new ObservableCollection<WeekWeatherListModel>();
-        this.getWeatherList();
+       
+        this.getCurrentWeather();
+        this.getMulitWeather();
+
+    }
+
+    private async Task getMulitWeather()
+    {
+        var currentLocationRes =await Tools.GetCurrentLocation();
+        if (currentLocationRes.Ok)
+        {
+            string url =
+                $"{Tools.MulitWeatherApi}location={currentLocationRes.Data.Longitude},{currentLocationRes.Data.Latitude}&key={Tools.WeatherKey}";
+            ResultBase<MulitWeatherModel> currentWeatherRes = HttpRequest<MulitWeatherModel>.GET(url);
+            if (currentWeatherRes.Ok)
+            {
+                if (currentWeatherRes.Data.daily!=null)
+                {
+                    currentWeatherRes.Data.daily.RemoveAt(0);
+                    
+                    foreach (var item in currentWeatherRes.Data.daily)
+                    {
+                        var d= Convert.ToDateTime(item.fxDate);
+                        string date = d.Month.ToString() + "-" + d.Day.ToString();
+                        this.WeekWeatherListModels.Add(new WeekWeatherListModel(item.iconDay, date));
+                    }
+                }
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
+            }
+        }
+        else
+        {
+            await Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
+        }
+    }
+
+    private async Task getCurrentWeather()
+    {
+        var currentLocationRes =await Tools.GetCurrentLocation();
+        if (currentLocationRes.Ok)
+        {
+            string url =
+                $"{Tools.CurrentWeatherApi}location={currentLocationRes.Data.Longitude},{currentLocationRes.Data.Latitude}&key={Tools.WeatherKey}";
+            ResultBase<CurrentWeatherModel> currentWeatherRes = HttpRequest<CurrentWeatherModel>.GET(url);
+            if (currentWeatherRes.Ok)
+            {
+                this.CurrentWeather = currentWeatherRes.Data;
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
+            }
+        }
+        else
+        {
+           await Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
+        }
     }
 
     private void getWeatherList()
     {
+        
+        
+        
         this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-2") );
         this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-3") );
         this.WeekWeatherListModels.Add(new WeekWeatherListModel("one","6-4") );
@@ -73,6 +139,7 @@ namespace FantasyHome.UI.ViewModels;
             throw new InvalidOperationException();
         }
     }
+
 
 
 

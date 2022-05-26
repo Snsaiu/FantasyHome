@@ -4,14 +4,22 @@
              x:Class="FantasyHome.UI.Views.MainPage"
              xmlns:local="clr-namespace:FantasyHome.UI.ViewModels"
              x:Name="mainpage"
+            
+             xmlns:converts="clr-namespace:FantasyHome.UI.Converters"
              Shell.NavBarHasShadow="True"
              xmlns:comp="clr-namespace:FantasyHome.UI.Views.Components"
              xmlns:res="clr-namespace:FantasyHome.UI.Resources"
              Shell.NavBarIsVisible="True"       
             >
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converts:WeatherIconConverter x:Key="WeatherIconConverter"></converts:WeatherIconConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    <StackLayout HorizontalOptions="Center">
-        <CollectionView IsVisible="{OnPlatform iOS=false}" ItemsSource="{Binding NotifyBarModels}">
+    <StackLayout HorizontalOptions="Center"  VerticalOptions="Start">
+        <CollectionView VerticalOptions="Start" IsVisible="{OnPlatform iOS=False}" ItemsSource="{Binding NotifyBarModels}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
             </CollectionView.ItemsLayout>
@@ -26,12 +34,14 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <comp:WeatherComponent Margin="0,5" BarColor="Grey" HeightRequest="100"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="21" CurrentState="多云多云多云多云" CurrentTemperature="30℃">
+        <comp:WeatherComponent  Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="{Binding CurrentWeather.now.windSpeed,StringFormat='{0}级'}" CurrentState="{Binding CurrentWeather.now.text}" CurrentTemperature="{Binding CurrentWeather.now.temp,StringFormat='{0}°C'}">
+    
             <comp:WeatherComponent.CurrentDayIcon>
-                <FontImageSource  FontFamily="typicons"
-                                  Glyph="{Static res:IconFont.Bell}"
-                                  Size="60"
-                                  Color="White"/>
+                <FontImageSource 
+                    FontFamily="weather"
+                    Size="50"
+                    Glyph="{Binding CurrentWeather.now.icon,Converter={StaticResource WeatherIconConverter}}"
+                                 ></FontImageSource>
             </comp:WeatherComponent.CurrentDayIcon>
         </comp:WeatherComponent>
 

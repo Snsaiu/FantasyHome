@@ -1,4 +1,6 @@
-﻿using Microsoft.Maui.LifecycleEvents;
+﻿using CommunityToolkit.Maui;
+using FantasyHome.UI.Utils;
+using Microsoft.Maui.LifecycleEvents;
 
 
 #if WINDOWS
@@ -16,11 +18,13 @@ namespace FantasyHome.UI
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("typicons.ttf", "typicons");
+                    fonts.AddFont("qweather-icons.ttf", "weather");
                 });
 
 #if WINDOWS
@@ -43,8 +47,10 @@ namespace FantasyHome.UI
             });
 
 #endif
+            
             builder.Services.AddTransient<Views.MainPage>();
             builder.Services.AddTransient<ViewModels.MainPageModel>();
+           
 
             return builder.Build();
         }

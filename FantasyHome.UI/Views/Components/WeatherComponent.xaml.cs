@@ -8,7 +8,7 @@ public partial class WeatherComponent : ContentView
 	{
 		InitializeComponent();
 	}
-    #region ÊôÐÔ
+    #region ï¿½ï¿½ï¿½ï¿½
     public static readonly BindableProperty WeeksWeatherListProperty = BindableProperty.Create("WeeksWeatherList",
         typeof(IEnumerable<WeekWeatherListModel>), typeof(WeatherComponent));
 
@@ -29,7 +29,7 @@ public partial class WeatherComponent : ContentView
     }
 
     /// <summary>
-    /// µ±ÌìÌìÆøÍ¼±ê
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
     /// </summary>
     public static readonly BindableProperty CurrentDayIconProperty = BindableProperty.Create("CurrentDayIcon",
         typeof(ImageSource), typeof(WeatherComponent));
@@ -41,7 +41,7 @@ public partial class WeatherComponent : ContentView
     }
 
     /// <summary>
-    /// µ±ÌìÎÂ¶È
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½
     /// </summary>
     public static readonly BindableProperty CurrentTemperatureProperty = BindableProperty.Create("CurrentTemperature",
         typeof(string), typeof(WeatherComponent));
@@ -54,7 +54,7 @@ public partial class WeatherComponent : ContentView
 
 
     /// <summary>
-    /// µ±ÌìÌìÆøÃèÊö
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public static readonly BindableProperty CurrentStateProperty = BindableProperty.Create("CurrentState",
         typeof(string), typeof(WeatherComponent));
@@ -66,7 +66,7 @@ public partial class WeatherComponent : ContentView
     }
 
     /// <summary>
-    /// µ±Ìì×ÏÍâÏß
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public static readonly BindableProperty CurrentRayProperty = BindableProperty.Create("CurrentRay",
         typeof(string), typeof(WeatherComponent));
