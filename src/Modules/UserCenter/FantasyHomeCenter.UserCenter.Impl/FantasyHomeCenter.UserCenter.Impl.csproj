@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\FantasyHomeCenter.Base\FantasyHomeCenter.Base.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.UserCenter\FantasyHomeCenter.UserCenter.csproj" />
+  </ItemGroup>
+
+</Project>

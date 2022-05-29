@@ -1,0 +1,34 @@
+﻿// -----------------------------------------------------------------------------
+// 园丁,是个很简单的管理系统
+//  gitee:https://gitee.com/hgflydream/FantasyHomeCenter 
+//  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
+// -----------------------------------------------------------------------------
+
+using System.Collections.Generic;
+
+namespace FantasyHomeCenter.Base
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public class PageRequest
+    {
+        /// <summary>
+        /// 页码
+        /// </summary>
+        public int PageIndex { get; set; } = 1;
+        /// <summary>
+        /// 每页大小
+        /// </summary>
+        public int PageSize { get; set; } = 10;
+        /// <summary>
+        /// 排序集合
+        /// </summary>
+        public List<ListSortDirection> OrderConditions { get; set; } = new List<ListSortDirection>();
+        /// <summary>
+        /// 查询条件组
+        /// </summary>
+        public List<FilterGroup> FilterGroups { get; set; } = new List<FilterGroup>() ;
+
+    }
+}

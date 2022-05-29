@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Furion.Extras.Logging.Serilog" Version="3.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Attachment\FantasyHomeCenter.Attachment.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Audit\FantasyHomeCenter.Audit.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Authentication\FantasyHomeCenter.Authentication.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Authorization\FantasyHomeCenter.Authorization.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Cache\FantasyHomeCenter.Cache.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.CodeGeneration\FantasyHomeCenter.CodeGeneration.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Email\FantasyHomeCenter.Email.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.EventBus\FantasyHomeCenter.EventBus.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.FileStore\FantasyHomeCenter.FileStore.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.NotificationSystem\FantasyHomeCenter.NotificationSystem.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Swagger\FantasyHomeCenter.Swagger.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.VerifyCode\FantasyHomeCenter.VerifyCode.csproj" />
+    <ProjectReference Include="..\..\Modules\SysTimer\Gardener.SysTimer.Impl\Gardener.SysTimer.Impl.csproj" />
+    <ProjectReference Include="..\..\Modules\UserCenter\Gardener.UserCenter.Impl\Gardener.UserCenter.Impl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Settings\dbsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Settings\exceptionmessagesettings.json" />
+    <Resource Include="Settings\imageverifycodesettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Settings\jwtsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Settings\localfilestoresettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Settings\serilogsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Settings\swaggersetting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Fonts\CONSOLA.TTF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\cachesettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\dbsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\exceptionmessagesettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\imageverifycodesettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\jwtsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\localfilestoresettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\serilogsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\signalrsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\swaggersetting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\verifycodesettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

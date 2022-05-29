@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.5" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Client\FantasyHomeCenter.Client.Base\FantasyHomeCenter.Client.Base.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.SysTimer\FantasyHomeCenter.SysTimer.csproj" />
+  </ItemGroup>
+
+</Project>

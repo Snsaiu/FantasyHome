@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.JSInterop" Version="6.0.5" />
+	<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Attachment.Client\FantasyHomeCenter.Attachment.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Audit.Client\FantasyHomeCenter.Audit.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Authentication.Client\FantasyHomeCenter.Authentication.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.CodeGeneration.Client\FantasyHomeCenter.CodeGeneration.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Email.Client\FantasyHomeCenter.Email.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.NotificationSystem.Client\FantasyHomeCenter.NotificationSystem.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Swagger.Client\FantasyHomeCenter.Swagger.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.VerifyCode.Client\FantasyHomeCenter.VerifyCode.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\SysTimer\Gardener.SysTimer.Client\Gardener.SysTimer.Client.csproj" />
+    <ProjectReference Include="..\..\Modules\UserCenter\Gardener.UserCenter.Client\Gardener.UserCenter.Client.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.Client.Base\FantasyHomeCenter.Client.Base.csproj" />
+  </ItemGroup>
+
+</Project>

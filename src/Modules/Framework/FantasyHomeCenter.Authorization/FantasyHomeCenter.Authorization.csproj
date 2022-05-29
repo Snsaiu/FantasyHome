@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<RootNamespace>Gardener.Authorization</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.18.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FantasyHomeCenter.Authentication\FantasyHomeCenter.Authentication.csproj" />
+    <ProjectReference Include="..\Gardener.Base\Gardener.Base.csproj" />
+  </ItemGroup>
+
+</Project>

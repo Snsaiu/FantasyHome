@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Client\FantasyHomeCenter.Client.Base\FantasyHomeCenter.Client.Base.csproj" />
+    <ProjectReference Include="..\..\..\Common\FantasyHomeCenter.Common\FantasyHomeCenter.Common.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.UserCenter\FantasyHomeCenter.UserCenter.csproj" />
+  </ItemGroup>
+
+</Project>
