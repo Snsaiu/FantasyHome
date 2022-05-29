@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Gardener.Client.Entry": {
+    "FantasyHomeCenter.Client.Entry": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

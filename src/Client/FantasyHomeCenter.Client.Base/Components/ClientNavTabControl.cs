@@ -6,7 +6,7 @@
 
 using AntDesign;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// Client导航标签控制器

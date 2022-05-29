@@ -5,12 +5,12 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.ClientView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.ClientView
 {
     public partial class ClientEdit : EditDrawerBase<ClientDto, Guid>
     {

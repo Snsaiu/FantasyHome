@@ -11,7 +11,7 @@ using Mapster;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     public static class QueryModelExtension
     {

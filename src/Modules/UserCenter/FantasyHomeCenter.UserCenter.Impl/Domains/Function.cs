@@ -6,7 +6,7 @@
 
 using Furion.DatabaseAccessor;
 using FantasyHomeCenter.Base;
-using Gardener.Enums;
+using FantasyHomeCenter.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -20,7 +20,7 @@ namespace FantasyHomeCenter.UserCenter.Impl.Domains
     /// 功能信息
     /// </summary>
     [Description("功能信息")]
-    public class Function : GardenerEntityBase<Guid>, IEntitySeedData<Function>, IEntityTypeBuilder<Function>
+    public class Function : FantasyHomeCenterEntityBase<Guid>, IEntitySeedData<Function>, IEntityTypeBuilder<Function>
     {
         /// <summary>
         /// 分组

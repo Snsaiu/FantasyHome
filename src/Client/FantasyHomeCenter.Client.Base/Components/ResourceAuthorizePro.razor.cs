@@ -8,7 +8,7 @@ using FantasyHomeCenter.Client.Base.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace Gardener.Client.Base.Components
+namespace FantasyHomeCenter.Client.Base.Components
 {
     /// <summary>
     /// 页面有任何渲染变化，都会重新触发验证

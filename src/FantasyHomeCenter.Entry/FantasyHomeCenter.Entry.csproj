@@ -38,8 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Api\Gardener.Api.Core\Gardener.Api.Core.csproj" />
-    <ProjectReference Include="..\Client\Gardener.Client.Entry\Gardener.Client.Entry.csproj" />
+    <ProjectReference Include="..\Api\FantasyHomeCenter.Api.Core\FantasyHomeCenter.Api.Core.csproj" />
+    <ProjectReference Include="..\Client\FantasyHomeCenter.Client.Entry\FantasyHomeCenter.Client.Entry.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -52,7 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="gardener.db">
+	  <None Update="FantasyHomeCenter.db">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

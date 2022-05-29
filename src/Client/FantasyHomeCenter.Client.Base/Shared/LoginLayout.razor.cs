@@ -9,7 +9,7 @@ using FantasyHomeCenter.Client.Base.Services;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Base.Shared
+namespace FantasyHomeCenter.Client.Base.Shared
 {
     public partial class LoginLayout
     {

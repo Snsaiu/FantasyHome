@@ -4,9 +4,9 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Authentication.Enums;
-using Gardener.Client.Base;
-using Gardener.EventBus;
+using FantasyHomeCenter.Authentication.Enums;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.EventBus;
 using FantasyHomeCenter.NotificationSystem.Dtos;
 using FantasyHomeCenter.NotificationSystem.Enums;
 

@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.Audit.Client.Pages
+namespace FantasyHomeCenter.Audit.Client.Pages
 {
     public partial class AuditOperation : TableBase<AuditOperationDto, Guid>
     {

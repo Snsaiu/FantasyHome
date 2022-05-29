@@ -8,13 +8,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Gardener.SysTimer.Domains
+namespace FantasyHomeCenter.SysTimer.Domains
 {
     /// <summary>
     /// 定时任务
     /// </summary>
     [Comment("定时任务表")][Table("SysTimer")]
-    public class SysTimerEntity : GardenerEntityBase, IEntityTypeConfiguration<SysTimerEntity>
+    public class SysTimerEntity : FantasyHomeCenterEntityBase, IEntityTypeConfiguration<SysTimerEntity>
     {
         /// <summary>
         /// 任务名称

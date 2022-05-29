@@ -7,7 +7,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     public static class RenderFragmentHelper
     {

@@ -23,7 +23,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 using System.Text;
 
-namespace Gardener
+namespace FantasyHomeCenter
 {
     /// <summary>
     /// 继承此类即可实现基础方法
@@ -78,14 +78,14 @@ namespace Gardener
         /// <returns></returns>
         public virtual async Task<TEntityDto> Insert(TEntityDto input)
         {
-            DateTimeOffset defaultValue = input.GetPropertyValue<TEntityDto, DateTimeOffset>(nameof(GardenerEntityBase.CreatedTime));
+            DateTimeOffset defaultValue = input.GetPropertyValue<TEntityDto, DateTimeOffset>(nameof(FantasyHomeCenterEntityBase.CreatedTime));
 
             if (defaultValue.Equals(default(DateTimeOffset)))
             {
-                input.SetPropertyValue(nameof(GardenerEntityBase.CreatedTime), DateTimeOffset.Now);
+                input.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.CreatedTime), DateTimeOffset.Now);
             }
             TEntity entity = input.Adapt<TEntity>();
-            if (entity is GardenerEntityBase<TKey> ge1)
+            if (entity is FantasyHomeCenterEntityBase<TKey> ge1)
             {
                 ge1.CreatorId = IdentityUtil.GetIdentityId();
                 ge1.CreatorIdentityType = IdentityUtil.GetIdentityType();
@@ -106,8 +106,8 @@ namespace Gardener
         /// <returns></returns>
         public virtual async Task<bool> Update(TEntityDto input)
         {
-            input.SetPropertyValue(nameof(GardenerEntityBase.UpdatedTime), DateTimeOffset.Now);
-            EntityEntry<TEntity> entityEntry= await _repository.UpdateExcludeAsync(input.Adapt<TEntity>(), new[] { nameof(GardenerEntityBase.CreatedTime),nameof(GardenerEntityBase.CreatorId),nameof(GardenerEntityBase.CreatorIdentityType) });
+            input.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.UpdatedTime), DateTimeOffset.Now);
+            EntityEntry<TEntity> entityEntry= await _repository.UpdateExcludeAsync(input.Adapt<TEntity>(), new[] { nameof(FantasyHomeCenterEntityBase.CreatedTime),nameof(FantasyHomeCenterEntityBase.CreatorId),nameof(FantasyHomeCenterEntityBase.CreatorIdentityType) });
             //发送通知
             await EntityEventNotityUtil.NotifyUpdateAsync(entityEntry.Entity);
             return true;
@@ -226,13 +226,13 @@ namespace Gardener
             System.Text.StringBuilder where = new StringBuilder();
             where.Append(" 1==1 ");
             //判断是否有IsDelete、IsLock
-            if (typeof(TEntity).ExistsProperty(nameof(GardenerEntityBase.IsDeleted))) 
+            if (typeof(TEntity).ExistsProperty(nameof(FantasyHomeCenterEntityBase.IsDeleted))) 
             {
-                where.Append($"and {nameof(GardenerEntityBase.IsDeleted)}==false ");
+                where.Append($"and {nameof(FantasyHomeCenterEntityBase.IsDeleted)}==false ");
             }
-            if (typeof(TEntity).ExistsProperty(nameof(GardenerEntityBase.IsLocked)))
+            if (typeof(TEntity).ExistsProperty(nameof(FantasyHomeCenterEntityBase.IsLocked)))
             {
-                where.Append($"and {nameof(GardenerEntityBase.IsLocked)}==false ");
+                where.Append($"and {nameof(FantasyHomeCenterEntityBase.IsLocked)}==false ");
             }
             var persons = GetReadableRepository().AsQueryable().Where(where.ToString()).Select(x => x.Adapt<TEntityDto>());
             return await persons.ToListAsync();
@@ -269,10 +269,10 @@ namespace Gardener
         public virtual async Task<bool> Lock([ApiSeat(ApiSeats.ActionStart)] TKey id, bool isLocked = true)
         {
             var entity = await _repository.FindAsync(id);
-            if (entity != null && entity.SetPropertyValue(nameof(GardenerEntityBase.IsLocked), isLocked))
+            if (entity != null && entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.IsLocked), isLocked))
             {
-                entity.SetPropertyValue(nameof(GardenerEntityBase.UpdatedTime), DateTimeOffset.Now);
-                await _repository.UpdateIncludeAsync(entity, new[] { nameof(GardenerEntityBase.IsLocked), nameof(GardenerEntityBase.UpdatedTime) });
+                entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.UpdatedTime), DateTimeOffset.Now);
+                await _repository.UpdateIncludeAsync(entity, new[] { nameof(FantasyHomeCenterEntityBase.IsLocked), nameof(FantasyHomeCenterEntityBase.UpdatedTime) });
                 await EntityEventNotityUtil.NotifyLockAsync(entity);
                 return true;
             }
@@ -291,10 +291,10 @@ namespace Gardener
         public virtual async Task<FantasyHomeCenter.Base.PagedList<TEntityDto>> Search(PageRequest request)
         {
             IDynamicFilterService filterService = App.GetService<IDynamicFilterService>();
-            if (typeof(TEntity).ExistsProperty(nameof(GardenerEntityBase.IsDeleted)))
+            if (typeof(TEntity).ExistsProperty(nameof(FantasyHomeCenterEntityBase.IsDeleted)))
             {
                 FilterGroup defaultFilterGroup = new FilterGroup();
-                defaultFilterGroup.AddRule(new FilterRule(nameof(GardenerEntityBase.IsDeleted), false,FilterOperate.Equal));
+                defaultFilterGroup.AddRule(new FilterRule(nameof(FantasyHomeCenterEntityBase.IsDeleted), false,FilterOperate.Equal));
                 request.FilterGroups.Add(defaultFilterGroup);
             }
             Expression<Func<TEntity, bool>> expression= filterService.GetExpression<TEntity>(request.FilterGroups);
@@ -367,7 +367,7 @@ namespace Gardener
                     }
                     else if (propertyType.Equals(typeof(DateTime)))
                     {
-                        if (propertyName.Equals(nameof(GardenerEntityBase.CreatedTime)))
+                        if (propertyName.Equals(nameof(FantasyHomeCenterEntityBase.CreatedTime)))
                         {
                             sb.Append($"{propertyName}=DateTime.Now");
                         }
@@ -379,7 +379,7 @@ namespace Gardener
                     }
                     else if (propertyType.Equals(typeof(DateTimeOffset)))
                     {
-                        if (propertyName.Equals(nameof(GardenerEntityBase.CreatedTime)))
+                        if (propertyName.Equals(nameof(FantasyHomeCenterEntityBase.CreatedTime)))
                         {
                             sb.Append($"{propertyName}=DateTimeOffset.Now");
                         }

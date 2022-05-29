@@ -22,7 +22,7 @@ namespace FantasyHomeCenter.EntityFramwork.Audit.Domains
     /// </summary>
     [Description("实体审计信息")]
     [IgnoreAudit]
-    public class AuditEntity : Entity<Guid, MasterDbContextLocator, GardenerAuditDbContextLocator>
+    public class AuditEntity : Entity<Guid, MasterDbContextLocator, FantasyHomeCenterAuditDbContextLocator>
     {
         /// <summary>
         /// 审计实体表

@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     public class TableSearchField
     {

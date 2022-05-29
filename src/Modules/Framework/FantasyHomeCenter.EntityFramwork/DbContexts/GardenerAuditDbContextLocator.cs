@@ -11,7 +11,7 @@ namespace FantasyHomeCenter.EntityFramwork.DbContexts
     /// <summary>
     /// 审计数据库定位器
     /// </summary>
-    public class GardenerAuditDbContextLocator: IDbContextLocator
+    public class FantasyHomeCenterAuditDbContextLocator: IDbContextLocator
     {
     }
 }

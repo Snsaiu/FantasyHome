@@ -4,14 +4,14 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Base;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Services
+namespace FantasyHomeCenter.UserCenter.Client.Services
 {
     [ScopedService]
     public class PositionService : ClientServiceBase<PositionDto, int>, IPositionService

@@ -7,7 +7,7 @@
 using FantasyHomeCenter.EventBus;
 using System.Net;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// 授权失败的api调用

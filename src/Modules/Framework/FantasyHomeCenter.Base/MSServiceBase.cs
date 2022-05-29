@@ -6,7 +6,7 @@
 
 using Furion.DatabaseAccessor;
 
-namespace Gardener
+namespace FantasyHomeCenter
 {
     /// <summary>
     /// 主从数据库操作基类

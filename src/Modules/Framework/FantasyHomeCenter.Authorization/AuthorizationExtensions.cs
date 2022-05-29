@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------
 
 using FantasyHomeCenter.Authentication.Core;
-using Gardener.Authorization.Core;
+using FantasyHomeCenter.Authorization.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddSingleton<IIdentityPermissionService, TIdentityPermissionService>();
 
             services.TryAddScoped<IIdentityService, IdentityService>();
-            services.TryAddScoped<Gardener.Authorization.Core.IAuthorizationService, AuthorizationService>();
+            services.TryAddScoped<FantasyHomeCenter.Authorization.Core.IAuthorizationService, AuthorizationService>();
             services.Configure<MvcOptions>(options =>
             {
                 // 添加策略需求

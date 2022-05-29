@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gardener.Base\Gardener.Base.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.Base\FantasyHomeCenter.Base.csproj" />
     <ProjectReference Include="..\FantasyHomeCenter\FantasyHomeCenter.csproj" />
   </ItemGroup>
 

@@ -4,7 +4,7 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// RESTful 风格结果集

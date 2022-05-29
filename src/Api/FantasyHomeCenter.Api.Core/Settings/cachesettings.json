@@ -6,7 +6,7 @@
       "InstanceName": "gradener:"
     },
     "SqlServer": {
-      "ConnectionString": "ConnectionStrings:GardenerSqlServerDbConnectionString",
+      "ConnectionString": "ConnectionStrings:FantasyHomeCenterSqlServerDbConnectionString",
       "SchemaName": "dbo",
       "TableName": "TestCache"
     }

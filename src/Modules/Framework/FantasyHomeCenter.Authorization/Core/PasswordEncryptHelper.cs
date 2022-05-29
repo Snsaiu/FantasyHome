@@ -6,7 +6,7 @@
 
 using Furion.DataEncryption;
 
-namespace Gardener.Authorization.Core
+namespace FantasyHomeCenter.Authorization.Core
 {
     /// <summary>
     /// 加密密码

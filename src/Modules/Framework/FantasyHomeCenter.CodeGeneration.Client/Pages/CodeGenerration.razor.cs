@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.CodeGeneration.Client.Pages
+namespace FantasyHomeCenter.CodeGeneration.Client.Pages
 {
     public partial class CodeGenerration
     {

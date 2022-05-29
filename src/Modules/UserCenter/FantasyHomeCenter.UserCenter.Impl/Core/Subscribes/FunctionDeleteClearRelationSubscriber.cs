@@ -8,7 +8,7 @@ using Furion.DatabaseAccessor;
 using Furion.DependencyInjection;
 using Furion.EventBus;
 using FantasyHomeCenter.Base;
-using Gardener.EventBus;
+using FantasyHomeCenter.EventBus;
 using FantasyHomeCenter.UserCenter.Impl.Domains;
 using System;
 using System.Collections.Generic;

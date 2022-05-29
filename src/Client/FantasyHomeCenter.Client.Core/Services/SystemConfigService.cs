@@ -5,8 +5,8 @@
 // -----------------------------------------------------------------------------
 
 using System;
-using Gardener.Client.Base;
-using Gardener.Client.Base.Services;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Client.Base.Services;
 
 namespace FantasyHomeCenter.Client.Core.Services
 {
@@ -34,9 +34,9 @@ namespace FantasyHomeCenter.Client.Core.Services
 
             return new SystemConfig {
             
-                Copyright= DateTime.Now.Year+ " 园丁",
-                SystemName= "园丁",
-                SystemDescription= "园丁,是个很简单的管理系统"
+                Copyright= DateTime.Now.Year+ " Fantasy Home",
+                SystemName= "Fantasy Home",
+                SystemDescription= ""
 
             };
         }

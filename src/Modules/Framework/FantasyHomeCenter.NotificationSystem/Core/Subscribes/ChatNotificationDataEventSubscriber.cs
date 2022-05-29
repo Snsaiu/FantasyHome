@@ -9,7 +9,7 @@ using Furion.DependencyInjection;
 using Furion.EventBus;
 using FantasyHomeCenter.Base;
 using FantasyHomeCenter.NotificationSystem.Services;
-using Gardener.EventBus;
+using FantasyHomeCenter.EventBus;
 using FantasyHomeCenter.NotificationSystem.Dtos;
 using FantasyHomeCenter.NotificationSystem.Dtos.Notification;
 using FantasyHomeCenter.NotificationSystem.Enums;

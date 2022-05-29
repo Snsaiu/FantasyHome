@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace Gardener.Client.Base.Components
+namespace FantasyHomeCenter.Client.Base.Components
 {
     /// <summary>
     /// This class is modify from the official AuthorizeRouteView.cs

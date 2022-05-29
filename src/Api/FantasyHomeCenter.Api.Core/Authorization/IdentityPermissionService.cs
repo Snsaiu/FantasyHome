@@ -9,15 +9,15 @@ using Furion.FriendlyException;
 using FantasyHomeCenter.Authentication.Domains;
 using FantasyHomeCenter.Authentication.Dtos;
 using FantasyHomeCenter.Authentication.Enums;
-using Gardener.Authorization.Dtos;
-using Gardener.Enums;
-using Gardener.UserCenter.Impl.Domains;
+using FantasyHomeCenter.Authorization.Dtos;
+using FantasyHomeCenter.Enums;
+using FantasyHomeCenter.UserCenter.Impl.Domains;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.Authorization.Core
+namespace FantasyHomeCenter.Authorization.Core
 {
     /// <summary>
     /// 

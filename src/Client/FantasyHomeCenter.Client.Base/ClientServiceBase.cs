@@ -8,7 +8,7 @@ using FantasyHomeCenter.Base;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// 客户端服务基类

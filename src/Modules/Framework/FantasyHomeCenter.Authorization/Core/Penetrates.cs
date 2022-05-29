@@ -1,4 +1,4 @@
-﻿namespace Gardener.Authorization.Core
+﻿namespace FantasyHomeCenter.Authorization.Core
 {
     /// <summary>
     /// 常量、公共方法配置类

@@ -4,8 +4,8 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
-using Gardener.EventBus;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.EventBus;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

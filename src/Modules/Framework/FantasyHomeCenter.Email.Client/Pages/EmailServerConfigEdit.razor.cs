@@ -4,13 +4,13 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.Email.Dtos;
 using FantasyHomeCenter.Email.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace Gardener.Email.Client.Pages
+namespace FantasyHomeCenter.Email.Client.Pages
 {
     public partial class EmailServerConfigEdit : EditDrawerBase<EmailServerConfigDto, Guid>
     {

@@ -4,10 +4,10 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 
-namespace Gardener.UserCenter.Client.Pages.PositionView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.PositionView
 {
     public partial class PositionEdit : EditDrawerBase<PositionDto,int>
     {

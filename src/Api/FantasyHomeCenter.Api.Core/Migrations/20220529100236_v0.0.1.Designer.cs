@@ -4,6 +4,7 @@ using FantasyHomeCenter.EntityFramwork.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FantasyHomeCenter.Api.Core.Migrations
 {
     [DbContext(typeof(FantasyHomeCenterDbContext))]
-    partial class FantasyHomeCenterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220529100236_v0.0.1")]
+    partial class v001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -331,7 +333,7 @@ namespace FantasyHomeCenter.Api.Core.Migrations
                             CreatedTime = new DateTimeOffset(new DateTime(2021, 11, 9, 3, 33, 54, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatorIdentityType = 0,
                             Example = "{\"Code\":123}",
-                            FromName = "园丁",
+                            FromName = "Fantasy Home",
                             IsDeleted = false,
                             IsHtml = true,
                             IsLocked = false,

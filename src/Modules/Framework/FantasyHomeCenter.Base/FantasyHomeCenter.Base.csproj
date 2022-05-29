@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gardener.EntityFramwork\Gardener.EntityFramwork.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.EntityFramwork\FantasyHomeCenter.EntityFramwork.csproj" />
     <ProjectReference Include="..\FantasyHomeCenter\FantasyHomeCenter.csproj" />
   </ItemGroup>
 

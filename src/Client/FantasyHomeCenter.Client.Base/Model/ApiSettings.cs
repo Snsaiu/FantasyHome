@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// api的配置

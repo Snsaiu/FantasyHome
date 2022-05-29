@@ -7,7 +7,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     public class ClientModuleContext
     {

@@ -4,12 +4,12 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.Email.Dtos;
 using FantasyHomeCenter.Email.Services;
 using System;
 
-namespace Gardener.Email.Client.Services
+namespace FantasyHomeCenter.Email.Client.Services
 {
     [ScopedService]
     public class EmailServerConfigService : ClientServiceBase<EmailServerConfigDto, Guid>, IEmailServerConfigService

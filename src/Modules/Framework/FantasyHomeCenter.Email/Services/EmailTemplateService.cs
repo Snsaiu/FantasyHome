@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using FantasyHomeCenter.Email.Domains;
-using Gardener;
+using FantasyHomeCenter;
 
 namespace FantasyHomeCenter.Email.Services
 {

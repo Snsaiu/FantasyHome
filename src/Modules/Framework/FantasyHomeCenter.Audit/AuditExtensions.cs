@@ -5,8 +5,8 @@
 // -----------------------------------------------------------------------------
 
 using FantasyHomeCenter.Audit.Core;
-using Gardener.EntityFramwork.Audit.Core;
-using Gardener.EntityFramwork.DbContexts;
+using FantasyHomeCenter.EntityFramwork.Audit.Core;
+using FantasyHomeCenter.EntityFramwork.DbContexts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -29,7 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.Filters.Add<AuditActionFilter>();
             });
             //数据管理
-            services.AddScoped<IOrmAuditService, EntityFramworkAuditService<GardenerAuditDbContextLocator>>();
+            services.AddScoped<IOrmAuditService, EntityFramworkAuditService<FantasyHomeCenterAuditDbContextLocator>>();
             return services;
         }
     }

@@ -5,11 +5,11 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.Clientt.Core
+namespace FantasyHomeCenter.Clientt.Core
 {
     [ScopedService]
     public class ClientNotifier : IClientNotifier

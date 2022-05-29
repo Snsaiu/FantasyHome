@@ -8,7 +8,8 @@ using FantasyHomeCenter.Attachment.Dtos;
 using FantasyHomeCenter.Client.Base.Components;
 using System;
 
-namespace Gardener.Attachment.Client.Pages
+
+namespace FantasyHomeCenter.Attachment.Client.Pages
 {
     public partial class Attachment : TableBase<AttachmentDto, Guid, AttachmentEdit>
     {

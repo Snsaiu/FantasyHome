@@ -11,7 +11,7 @@ namespace FantasyHomeCenter.EntityFramwork.Event
     /// <summary>
     /// 保存数据更改事件
     /// </summary>
-    public class GardenerDbContextSavedChangesEvent
+    public class FantasyHomeCenterDbContextSavedChangesEvent
     {
         /// <summary>
         /// 数据

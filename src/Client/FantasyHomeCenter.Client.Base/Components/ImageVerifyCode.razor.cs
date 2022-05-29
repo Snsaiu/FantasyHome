@@ -11,7 +11,7 @@ using FantasyHomeCenter.VerifyCode.Services;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Base.Components
+namespace FantasyHomeCenter.Client.Base.Components
 {
     public partial class ImageVerifyCode
     {

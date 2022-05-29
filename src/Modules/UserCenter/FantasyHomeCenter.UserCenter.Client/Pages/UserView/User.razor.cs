@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 using FantasyHomeCenter.Common;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
-using Gardener.Client.Base.Components;
-using Gardener.Base;
+using FantasyHomeCenter.Client.Base.Components;
+using FantasyHomeCenter.Base;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace Gardener.UserCenter.Client.Pages.UserView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.UserView
 {
     public partial class User : TableBase<UserDto, int, UserEdit>
     {

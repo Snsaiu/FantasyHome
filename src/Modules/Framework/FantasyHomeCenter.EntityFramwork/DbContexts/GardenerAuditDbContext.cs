@@ -16,13 +16,13 @@ namespace FantasyHomeCenter.EntityFramwork.DbContexts
     /// 审计数据库上下文
     /// </summary>
     [AppDbContext("Default")]
-    public class GardenerAuditDbContext : AppDbContext<GardenerAuditDbContext, GardenerAuditDbContextLocator>
+    public class FantasyHomeCenterAuditDbContext : AppDbContext<FantasyHomeCenterAuditDbContext, FantasyHomeCenterAuditDbContextLocator>
     {
         /// <summary>
         /// 初始化方法
         /// </summary>
         /// <param name="options"></param>
-        public GardenerAuditDbContext(DbContextOptions<GardenerAuditDbContext> options) : base(options)
+        public FantasyHomeCenterAuditDbContext(DbContextOptions<FantasyHomeCenterAuditDbContext> options) : base(options)
         {
         }
         /// <summary>

@@ -6,9 +6,9 @@
 
 using AntDesign;
 using AntDesign.ProLayout;
-using Gardener.Client.Base;
-using Gardener.Client.Base.Services;
-using Gardener.UserCenter.Dtos;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Client.Base.Services;
+using FantasyHomeCenter.UserCenter.Dtos;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using System;
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Entry.Shared
+namespace FantasyHomeCenter.Client.Entry.Shared
 {
     public partial class MainLayout
     {

@@ -11,7 +11,7 @@ using FantasyHomeCenter.Audit.Dtos;
 using FantasyHomeCenter.Audit.Services;
 using FantasyHomeCenter.Client.Base;
 
-namespace Gardener.Audit.Client.Services
+namespace FantasyHomeCenter.Audit.Client.Services
 {
     [ScopedService]
     public class AuditOperationService : ClientServiceBase<AuditOperationDto, Guid>, IAuditOperationService

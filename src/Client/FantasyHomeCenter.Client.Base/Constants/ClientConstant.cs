@@ -6,7 +6,7 @@
 
 using AntDesign.ProLayout;
 
-namespace Gardener.Client.Base.Constants
+namespace FantasyHomeCenter.Client.Base.Constants
 {
     public class ClientConstant
     {

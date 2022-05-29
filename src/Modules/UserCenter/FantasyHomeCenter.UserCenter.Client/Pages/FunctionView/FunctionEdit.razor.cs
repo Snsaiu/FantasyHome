@@ -4,13 +4,13 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
-using Gardener.Enums;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Enums;
 using FantasyHomeCenter.UserCenter.Dtos;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Gardener.UserCenter.Client.Pages.FunctionView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.FunctionView
 {
     public partial class FunctionEdit: EditDrawerBase<FunctionDto,Guid>
     {

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace Gardener.SysTimer
+namespace FantasyHomeCenter.SysTimer
 {
     /// <summary>
     /// 种子数据

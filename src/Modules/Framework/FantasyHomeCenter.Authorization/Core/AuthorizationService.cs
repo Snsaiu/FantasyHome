@@ -6,14 +6,14 @@
 
 using FantasyHomeCenter.Authentication.Core;
 using FantasyHomeCenter.Authentication.Dtos;
-using Gardener.Authorization.Dtos;
-using Gardener.Enums;
+using FantasyHomeCenter.Authorization.Dtos;
+using FantasyHomeCenter.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.Authorization.Core
+namespace FantasyHomeCenter.Authorization.Core
 {
     /// <summary>
     /// 当前请求的权限管理 

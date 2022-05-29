@@ -4,12 +4,12 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base.Components;
+using FantasyHomeCenter.Client.Base.Components;
 using FantasyHomeCenter.UserCenter.Dtos;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.ClientView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.ClientView
 {
     public partial class Client : TableBase<ClientDto, Guid, ClientEdit>
     {

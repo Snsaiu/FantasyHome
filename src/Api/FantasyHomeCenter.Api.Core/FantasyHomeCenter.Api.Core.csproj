@@ -24,8 +24,8 @@
     <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.NotificationSystem\FantasyHomeCenter.NotificationSystem.csproj" />
     <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.Swagger\FantasyHomeCenter.Swagger.csproj" />
     <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter.VerifyCode\FantasyHomeCenter.VerifyCode.csproj" />
-    <ProjectReference Include="..\..\Modules\SysTimer\Gardener.SysTimer.Impl\Gardener.SysTimer.Impl.csproj" />
-    <ProjectReference Include="..\..\Modules\UserCenter\Gardener.UserCenter.Impl\Gardener.UserCenter.Impl.csproj" />
+    <ProjectReference Include="..\..\Modules\SysTimer\FantasyHomeCenter.SysTimer.Impl\FantasyHomeCenter.SysTimer.Impl.csproj" />
+    <ProjectReference Include="..\..\Modules\UserCenter\FantasyHomeCenter.UserCenter.Impl\FantasyHomeCenter.UserCenter.Impl.csproj" />
   </ItemGroup>
 
   <ItemGroup>

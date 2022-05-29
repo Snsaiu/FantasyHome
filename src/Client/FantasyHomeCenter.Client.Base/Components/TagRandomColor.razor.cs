@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Gardener.Client.Base.Components
+namespace FantasyHomeCenter.Client.Base.Components
 {
     public partial class TagRandomColor : AntDomComponentBase
     {

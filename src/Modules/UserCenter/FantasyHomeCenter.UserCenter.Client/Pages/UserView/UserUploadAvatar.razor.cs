@@ -5,9 +5,9 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Attachment.Dtos;
-using Gardener.Attachment.Enums;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Attachment.Dtos;
+using FantasyHomeCenter.Attachment.Enums;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using Microsoft.AspNetCore.Components;
@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.UserView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.UserView
 {
     public partial class UserUploadAvatar : FeedbackComponent<UserUploadAvatarParams, string>
     {

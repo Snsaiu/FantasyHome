@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
 	<GenerateDocumentationFile>True</GenerateDocumentationFile>
-	<RootNamespace>Gardener.Authorization</RootNamespace>
+	<RootNamespace>FantasyHomeCenter.Authorization</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FantasyHomeCenter.Authentication\FantasyHomeCenter.Authentication.csproj" />
-    <ProjectReference Include="..\Gardener.Base\Gardener.Base.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.Base\FantasyHomeCenter.Base.csproj" />
   </ItemGroup>
 
 </Project>

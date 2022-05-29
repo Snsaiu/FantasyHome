@@ -8,7 +8,7 @@ using AntDesign.ProLayout;
 using System;
 using System.Collections.Generic;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// 客户端菜单缓存
@@ -30,7 +30,7 @@ namespace Gardener.Client.Base
             {
                 return;
             }
-            UriBuilder uriBuilder = new UriBuilder($"http://www.gardener.com{menu.Path}");
+            UriBuilder uriBuilder = new UriBuilder($"http://www.FantasyHomeCenter.com{menu.Path}");
             if (!pathMap.ContainsKey(uriBuilder.Path))
             {
                 pathMap.Add(uriBuilder.Path, menu);

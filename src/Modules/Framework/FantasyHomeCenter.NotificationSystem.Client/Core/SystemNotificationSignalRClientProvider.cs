@@ -4,8 +4,8 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
-using Gardener.EventBus;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.EventBus;
 using FantasyHomeCenter.NotificationSystem.Dtos;
 
 namespace FantasyHomeCenter.NotificationSystem.Client.Core

@@ -19,7 +19,7 @@ namespace FantasyHomeCenter.UserCenter.Impl.Domains
     /// 客户端信息
     /// </summary>
     [Description("客户端信息")]
-    public class Client : GardenerEntityBase<Guid>, IEntitySeedData<Client>, IEntityTypeBuilder<Client>
+    public class Client : FantasyHomeCenterEntityBase<Guid>, IEntitySeedData<Client>, IEntityTypeBuilder<Client>
     {
         /// <summary>
         /// 名称

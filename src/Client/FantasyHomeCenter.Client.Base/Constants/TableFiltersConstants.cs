@@ -11,7 +11,7 @@ using FantasyHomeCenter.Common;
 using FantasyHomeCenter.Enums;
 using System.Linq;
 
-namespace Gardener.Client.Base.Constants
+namespace FantasyHomeCenter.Client.Base.Constants
 {
     public class TableFiltersConstants
     {

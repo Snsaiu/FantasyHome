@@ -5,23 +5,23 @@
 // -----------------------------------------------------------------------------
 
 using Furion;
-using Gardener.Admin.JsonConverters;
+using FantasyHomeCenter.Admin.JsonConverters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Gardener.Authorization.Core;
+using FantasyHomeCenter.Authorization.Core;
 using Serilog;
 using Microsoft.AspNetCore.Http;
 using FantasyHomeCenter.NotificationSystem;
 
-namespace Gardener.Admin
+namespace FantasyHomeCenter.Admin
 {
     /// <summary>
     /// 启动类
     /// </summary>
     [AppStartup(600)]
-    public sealed class GardenerAdminStartup : AppStartup
+    public sealed class FantasyHomeCenterAdminStartup : AppStartup
     {
         /// <summary>
         /// 

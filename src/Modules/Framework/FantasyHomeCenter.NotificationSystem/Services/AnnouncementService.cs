@@ -6,7 +6,7 @@
 
 using FantasyHomeCenter.NotificationSystem.Domains;
 using Furion.DatabaseAccessor;
-using Gardener;
+using FantasyHomeCenter;
 using FantasyHomeCenter.NotificationSystem.Dtos;
 using Microsoft.AspNetCore.Mvc;
 

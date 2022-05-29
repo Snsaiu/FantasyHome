@@ -9,7 +9,7 @@ using FantasyHomeCenter.UserCenter.Impl.Domains;
 using FantasyHomeCenter.UserCenter.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using FantasyHomeCenter.UserCenter.Services;
-using Gardener;
+using FantasyHomeCenter;
 
 namespace FantasyHomeCenter.UserCenter.Impl.Services
 {

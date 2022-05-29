@@ -4,10 +4,10 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 
-namespace Gardener.UserCenter.Client.Pages.RoleView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.RoleView
 {
     public partial class RoleEdit : EditDrawerBase<RoleDto, int>
     {

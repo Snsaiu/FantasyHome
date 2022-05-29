@@ -7,7 +7,7 @@
 
 using FantasyHomeCenter.EventBus;
 
-namespace Gardener.Client.Base.EventBus.Events
+namespace FantasyHomeCenter.Client.Base.EventBus.Events
 {
     /// <summary>
     /// 登出成功事件

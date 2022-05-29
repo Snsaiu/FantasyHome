@@ -13,7 +13,7 @@
 using Furion.DependencyInjection;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Gardener.Authorization.Core
+namespace FantasyHomeCenter.Authorization.Core
 {
     /// <summary>
     /// 策略对应的需求

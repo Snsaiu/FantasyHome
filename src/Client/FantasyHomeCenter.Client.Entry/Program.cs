@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.Client.Core;
 using Microsoft.AspNetCore.Components.Authorization;
 using AntDesign.ProLayout;
@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Options;
 using FantasyHomeCenter.NotificationSystem.Client;
 
-namespace Gardener.Client.Entry
+namespace FantasyHomeCenter.Client.Entry
 {
     public class Program
     {

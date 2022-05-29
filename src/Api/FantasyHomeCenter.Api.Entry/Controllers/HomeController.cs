@@ -4,11 +4,11 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Attributes;
+using FantasyHomeCenter.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Gardener.Web.Entry.Controllers
+namespace FantasyHomeCenter.Web.Entry.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller

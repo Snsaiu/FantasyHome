@@ -4,7 +4,7 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Cache;
+using FantasyHomeCenter.Cache;
 using FantasyHomeCenter.VerifyCode.Core;
 using FantasyHomeCenter.VerifyCode.Enums;
 using System;

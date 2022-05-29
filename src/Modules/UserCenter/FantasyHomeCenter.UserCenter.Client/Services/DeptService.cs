@@ -6,11 +6,11 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 
-namespace Gardener.UserCenter.Client.Services
+namespace FantasyHomeCenter.UserCenter.Client.Services
 {
     /// <summary>
     /// 部门服务

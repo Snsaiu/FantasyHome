@@ -12,7 +12,7 @@ using FantasyHomeCenter.UserCenter.Dtos;
 using AntDesign.ProLayout;
 using FantasyHomeCenter.Client.Base.Constants;
 
-namespace Gardener.Client.Base.Components
+namespace FantasyHomeCenter.Client.Base.Components
 {
     public partial class RightContent
     {

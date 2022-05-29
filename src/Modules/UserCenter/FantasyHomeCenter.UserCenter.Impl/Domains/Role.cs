@@ -19,7 +19,7 @@ namespace FantasyHomeCenter.UserCenter.Impl.Domains
     /// 角色表
     /// </summary>
     [Description("角色信息")]
-    public class Role : GardenerEntityBase, IEntitySeedData<Role>, IEntityTypeBuilder<Role>
+    public class Role : FantasyHomeCenterEntityBase, IEntitySeedData<Role>, IEntityTypeBuilder<Role>
     {
         /// <summary>
         /// 角色名称

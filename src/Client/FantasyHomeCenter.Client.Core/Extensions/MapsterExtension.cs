@@ -5,12 +5,12 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign.TableModels;
-using Gardener.Base;
-using Gardener.Enums;
+using FantasyHomeCenter.Base;
+using FantasyHomeCenter.Enums;
 using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Gardener.Client
+namespace FantasyHomeCenter.Client
 {
     public static class MapsterExtension
     {

@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using FantasyHomeCenter.UserCenter.Services;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Enums;
-using Gardener.Authorization.Dtos;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Authorization.Dtos;
+using FantasyHomeCenter.Client.Base;
 
-namespace Gardener.UserCenter.Client.Services
+namespace FantasyHomeCenter.UserCenter.Client.Services
 {
     /// <summary>
     /// 

@@ -7,8 +7,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
-using Gardener.Authorization.Dtos;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Authorization.Dtos;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.Swagger.Dtos;
 using FantasyHomeCenter.Swagger.Services;
 

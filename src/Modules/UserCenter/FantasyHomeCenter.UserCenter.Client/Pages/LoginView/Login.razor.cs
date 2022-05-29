@@ -5,15 +5,15 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Authorization.Dtos;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Authorization.Dtos;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.LoginView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.LoginView
 {
     public partial class Login
     {
@@ -29,7 +29,7 @@ namespace Gardener.UserCenter.Client.Pages.LoginView
         [Inject]
         public IAuthenticationStateManager authenticationStateManager { get; set; }
 
-        private Gardener.Client.Base.Components.ImageVerifyCode _imageVerifyCode;
+        private FantasyHomeCenter.Client.Base.Components.ImageVerifyCode _imageVerifyCode;
 
         private string returnUrl;
 

@@ -6,7 +6,7 @@
 
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     public interface IWebStorage
     {

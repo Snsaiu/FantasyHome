@@ -10,7 +10,7 @@ using FantasyHomeCenter.Client.Base;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Gardener.Attachment.Client.Pages
+namespace FantasyHomeCenter.Attachment.Client.Pages
 {
     public partial class AttachmentEdit : EditDrawerBase<AttachmentDto, Guid>
     {

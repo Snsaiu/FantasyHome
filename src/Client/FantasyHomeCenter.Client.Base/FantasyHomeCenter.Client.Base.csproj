@@ -19,9 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Gardener.Common\Gardener.Common.csproj" />
+    <ProjectReference Include="..\..\Common\FantasyHomeCenter.Common\FantasyHomeCenter.Common.csproj" />
     <ProjectReference Include="..\..\Modules\Framework\FantasyHomeCenter\FantasyHomeCenter.csproj" />
-    <ProjectReference Include="..\..\Modules\UserCenter\Gardener.UserCenter\Gardener.UserCenter.csproj" />
+    <ProjectReference Include="..\..\Modules\UserCenter\FantasyHomeCenter.UserCenter\FantasyHomeCenter.UserCenter.csproj" />
   </ItemGroup>
 
 </Project>

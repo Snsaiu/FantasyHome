@@ -5,9 +5,9 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Client.Base;
-using Gardener.Swagger.Dtos;
-using Gardener.Swagger.Services;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Swagger.Dtos;
+using FantasyHomeCenter.Swagger.Services;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using Mapster;
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.FunctionView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.FunctionView
 {
     public partial class FunctionImport : FeedbackComponent<int, bool>
     {

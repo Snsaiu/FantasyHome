@@ -5,9 +5,9 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Client.Base;
-using Gardener.Client.Base.Components;
-using Gardener.Common;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Client.Base.Components;
+using FantasyHomeCenter.Common;
 using FantasyHomeCenter.SysTimer.Dtos;
 using FantasyHomeCenter.SysTimer.Enums;
 using FantasyHomeCenter.SysTimer.Services;
@@ -18,7 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gardener.SysTimer.Client.Pages
+namespace FantasyHomeCenter.SysTimer.Client.Pages
 {
     public partial class SysTimerConfig: TableBase<SysTimerDto, int, SysTimerEdit>
     {

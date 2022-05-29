@@ -13,7 +13,7 @@ namespace FantasyHomeCenter.Base
     /// <summary>
     /// 基类
     /// </summary>
-    public abstract class GardenerEntityBase<TKey, TDbContextLocator1, TDbContextLocator2> :
+    public abstract class FantasyHomeCenterEntityBase<TKey, TDbContextLocator1, TDbContextLocator2> :
         Entity<TKey, TDbContextLocator1, TDbContextLocator2> where TDbContextLocator1 : class, IDbContextLocator
         where TDbContextLocator2 : class, IDbContextLocator
     {
@@ -44,19 +44,19 @@ namespace FantasyHomeCenter.Base
     /// <summary>
     /// 基类
     /// </summary>
-    public abstract class GardenerEntityBase<TKey, TDbContextLocator1> :
-        GardenerEntityBase<TKey, TDbContextLocator1, MasterDbContextLocator> where TDbContextLocator1 : class, IDbContextLocator
+    public abstract class FantasyHomeCenterEntityBase<TKey, TDbContextLocator1> :
+        FantasyHomeCenterEntityBase<TKey, TDbContextLocator1, MasterDbContextLocator> where TDbContextLocator1 : class, IDbContextLocator
     {}
     /// <summary>
     /// 基类
     /// </summary>
-    public abstract class GardenerEntityBase<TKey> :
-        GardenerEntityBase<TKey, MasterDbContextLocator>
+    public abstract class FantasyHomeCenterEntityBase<TKey> :
+        FantasyHomeCenterEntityBase<TKey, MasterDbContextLocator>
     {}
     /// <summary>
     /// 基类
     /// </summary>
-    public abstract class GardenerEntityBase :
-        GardenerEntityBase<int>
+    public abstract class FantasyHomeCenterEntityBase :
+        FantasyHomeCenterEntityBase<int>
     { }
 }

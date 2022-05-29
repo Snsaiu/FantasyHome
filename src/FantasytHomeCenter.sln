@@ -11,91 +11,91 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{A0D0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{2170BD93-2350-414A-BA0F-BE1E71ABFF68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Api.Core", "Api\Gardener.Api.Core\Gardener.Api.Core.csproj", "{4206BB4D-29BA-45C0-BCE8-F7B1F6184989}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Api.Core", "Api\FantasyHomeCenter.Api.Core\FantasyHomeCenter.Api.Core.csproj", "{4206BB4D-29BA-45C0-BCE8-F7B1F6184989}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Api.Entry", "Api\Gardener.Api.Entry\Gardener.Api.Entry.csproj", "{55F4587F-152D-45C2-8F42-24AE7E88FFEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Api.Entry", "Api\FantasyHomeCenter.Api.Entry\FantasyHomeCenter.Api.Entry.csproj", "{55F4587F-152D-45C2-8F42-24AE7E88FFEB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener", "Modules\Framework\Gardener\Gardener.csproj", "{DE6C6BB3-63E4-4904-A353-F0E583F85C8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter", "Modules\Framework\FantasyHomeCenter\FantasyHomeCenter.csproj", "{DE6C6BB3-63E4-4904-A353-F0E583F85C8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Attachment", "Modules\Framework\Gardener.Attachment\Gardener.Attachment.csproj", "{E2FAE5BB-E1CC-4239-B24D-A49B44FD437F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Attachment", "Modules\Framework\FantasyHomeCenter.Attachment\FantasyHomeCenter.Attachment.csproj", "{E2FAE5BB-E1CC-4239-B24D-A49B44FD437F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Audit", "Modules\Framework\Gardener.Audit\Gardener.Audit.csproj", "{D4533C80-F32C-4FB1-9C00-0E0A59DFB89C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Audit", "Modules\Framework\FantasyHomeCenter.Audit\FantasyHomeCenter.Audit.csproj", "{D4533C80-F32C-4FB1-9C00-0E0A59DFB89C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Authorization", "Modules\Framework\Gardener.Authorization\Gardener.Authorization.csproj", "{AAFDA732-2E98-4609-909E-CACC8C08B39B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Authorization", "Modules\Framework\FantasyHomeCenter.Authorization\FantasyHomeCenter.Authorization.csproj", "{AAFDA732-2E98-4609-909E-CACC8C08B39B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Base", "Modules\Framework\Gardener.Base\Gardener.Base.csproj", "{F6876FD6-3B1B-42BD-BBBE-72A323AA8AC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Base", "Modules\Framework\FantasyHomeCenter.Base\FantasyHomeCenter.Base.csproj", "{F6876FD6-3B1B-42BD-BBBE-72A323AA8AC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.CodeGeneration", "Modules\Framework\Gardener.CodeGeneration\Gardener.CodeGeneration.csproj", "{B0650E6B-7E57-4F3B-A191-2DB96FD18CBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.CodeGeneration", "Modules\Framework\FantasyHomeCenter.CodeGeneration\FantasyHomeCenter.CodeGeneration.csproj", "{B0650E6B-7E57-4F3B-A191-2DB96FD18CBC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.EntityFramwork", "Modules\Framework\Gardener.EntityFramwork\Gardener.EntityFramwork.csproj", "{FB376C89-20B2-48DA-A1FA-0FB32A19C7A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.EntityFramwork", "Modules\Framework\FantasyHomeCenter.EntityFramwork\FantasyHomeCenter.EntityFramwork.csproj", "{FB376C89-20B2-48DA-A1FA-0FB32A19C7A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.FileStore", "Modules\Framework\Gardener.FileStore\Gardener.FileStore.csproj", "{E696D0DA-1912-4B16-8EAA-0630B6E68ED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.FileStore", "Modules\Framework\FantasyHomeCenter.FileStore\FantasyHomeCenter.FileStore.csproj", "{E696D0DA-1912-4B16-8EAA-0630B6E68ED1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Attributes", "Common\Gardener.Attributes\Gardener.Attributes.csproj", "{5B84DD62-897C-44BA-B77D-F6886AAE2287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Attributes", "Common\FantasyHomeCenter.Attributes\FantasyHomeCenter.Attributes.csproj", "{5B84DD62-897C-44BA-B77D-F6886AAE2287}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Common", "Common\Gardener.Common\Gardener.Common.csproj", "{AC87E521-246E-4728-B817-429ADEA26750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Common", "Common\FantasyHomeCenter.Common\FantasyHomeCenter.Common.csproj", "{AC87E521-246E-4728-B817-429ADEA26750}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Enums", "Common\Gardener.Enums\Gardener.Enums.csproj", "{AB33FC76-30D6-4643-B050-0DA4659A0FAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Enums", "Common\FantasyHomeCenter.Enums\FantasyHomeCenter.Enums.csproj", "{AB33FC76-30D6-4643-B050-0DA4659A0FAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Swagger", "Modules\Framework\Gardener.Swagger\Gardener.Swagger.csproj", "{D438EEE8-977F-43E7-AB25-D9DBC3CA9C1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Swagger", "Modules\Framework\FantasyHomeCenter.Swagger\FantasyHomeCenter.Swagger.csproj", "{D438EEE8-977F-43E7-AB25-D9DBC3CA9C1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Authentication", "Modules\Framework\Gardener.Authentication\Gardener.Authentication.csproj", "{F7D5063F-C475-4E04-86CF-6587011F5088}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Authentication", "Modules\Framework\FantasyHomeCenter.Authentication\FantasyHomeCenter.Authentication.csproj", "{F7D5063F-C475-4E04-86CF-6587011F5088}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserCenter", "UserCenter", "{C6D7D663-25AF-4100-89B2-EF744CC9D74F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.UserCenter", "Modules\UserCenter\Gardener.UserCenter\Gardener.UserCenter.csproj", "{408DEE35-1005-4801-AB93-92EC3B43B811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.UserCenter", "Modules\UserCenter\FantasyHomeCenter.UserCenter\FantasyHomeCenter.UserCenter.csproj", "{408DEE35-1005-4801-AB93-92EC3B43B811}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.UserCenter.Impl", "Modules\UserCenter\Gardener.UserCenter.Impl\Gardener.UserCenter.Impl.csproj", "{045DD284-A355-475C-A2E1-704343E5B655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.UserCenter.Impl", "Modules\UserCenter\FantasyHomeCenter.UserCenter.Impl\FantasyHomeCenter.UserCenter.Impl.csproj", "{045DD284-A355-475C-A2E1-704343E5B655}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{4FBB8EA4-A1F9-48AA-A693-382664D2C1E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Client.Core", "Client\Gardener.Client.Core\Gardener.Client.Core.csproj", "{299233AF-1D32-4F03-BD61-2CF239162775}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Client.Core", "Client\FantasyHomeCenter.Client.Core\FantasyHomeCenter.Client.Core.csproj", "{299233AF-1D32-4F03-BD61-2CF239162775}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Authentication.Client", "Modules\Framework\Gardener.Authentication.Client\Gardener.Authentication.Client.csproj", "{25FE8E17-075E-435A-B472-7B56890A1DE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Authentication.Client", "Modules\Framework\FantasyHomeCenter.Authentication.Client\FantasyHomeCenter.Authentication.Client.csproj", "{25FE8E17-075E-435A-B472-7B56890A1DE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Audit.Client", "Modules\Framework\Gardener.Audit.Client\Gardener.Audit.Client.csproj", "{3A26B12F-36D2-4821-A1CB-ABF9771F812A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Audit.Client", "Modules\Framework\FantasyHomeCenter.Audit.Client\FantasyHomeCenter.Audit.Client.csproj", "{3A26B12F-36D2-4821-A1CB-ABF9771F812A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Attachment.Client", "Modules\Framework\Gardener.Attachment.Client\Gardener.Attachment.Client.csproj", "{DC288F1F-D81E-4983-81EB-37F88F1630C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Attachment.Client", "Modules\Framework\FantasyHomeCenter.Attachment.Client\FantasyHomeCenter.Attachment.Client.csproj", "{DC288F1F-D81E-4983-81EB-37F88F1630C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.CodeGeneration.Client", "Modules\Framework\Gardener.CodeGeneration.Client\Gardener.CodeGeneration.Client.csproj", "{95560B01-3C65-4FEC-80E0-88C8A3EA7397}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.CodeGeneration.Client", "Modules\Framework\FantasyHomeCenter.CodeGeneration.Client\FantasyHomeCenter.CodeGeneration.Client.csproj", "{95560B01-3C65-4FEC-80E0-88C8A3EA7397}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.UserCenter.Client", "Modules\UserCenter\Gardener.UserCenter.Client\Gardener.UserCenter.Client.csproj", "{FA1ED94F-1935-4206-9F35-E4B519345A2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.UserCenter.Client", "Modules\UserCenter\FantasyHomeCenter.UserCenter.Client\FantasyHomeCenter.UserCenter.Client.csproj", "{FA1ED94F-1935-4206-9F35-E4B519345A2F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Swagger.Client", "Modules\Framework\Gardener.Swagger.Client\Gardener.Swagger.Client.csproj", "{11F9ABA5-F6FB-4F59-B9F7-808EF8E77F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Swagger.Client", "Modules\Framework\FantasyHomeCenter.Swagger.Client\FantasyHomeCenter.Swagger.Client.csproj", "{11F9ABA5-F6FB-4F59-B9F7-808EF8E77F08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Client.Base", "Client\Gardener.Client.Base\Gardener.Client.Base.csproj", "{94E50689-4D3B-4733-AA47-DA58F4BF93B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Client.Base", "Client\FantasyHomeCenter.Client.Base\FantasyHomeCenter.Client.Base.csproj", "{94E50689-4D3B-4733-AA47-DA58F4BF93B7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Client.Entry", "Client\Gardener.Client.Entry\Gardener.Client.Entry.csproj", "{2A079B52-D3CA-4D22-8E05-35304DBC6EBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Client.Entry", "Client\FantasyHomeCenter.Client.Entry\FantasyHomeCenter.Client.Entry.csproj", "{2A079B52-D3CA-4D22-8E05-35304DBC6EBD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Entry", "Gardener.Entry\Gardener.Entry.csproj", "{7C766D7C-876E-4513-9406-74B3A5CF2589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Entry", "FantasyHomeCenter.Entry\FantasyHomeCenter.Entry.csproj", "{7C766D7C-876E-4513-9406-74B3A5CF2589}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Cache", "Modules\Framework\Gardener.Cache\Gardener.Cache.csproj", "{A03468F2-A289-499E-A0F2-8B99AFBD2639}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Cache", "Modules\Framework\FantasyHomeCenter.Cache\FantasyHomeCenter.Cache.csproj", "{A03468F2-A289-499E-A0F2-8B99AFBD2639}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Email", "Modules\Framework\Gardener.Email\Gardener.Email.csproj", "{CE920F47-2562-40FA-B4AD-CA3ADCF28E1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Email", "Modules\Framework\FantasyHomeCenter.Email\FantasyHomeCenter.Email.csproj", "{CE920F47-2562-40FA-B4AD-CA3ADCF28E1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.Email.Client", "Modules\Framework\Gardener.Email.Client\Gardener.Email.Client.csproj", "{1C9657E7-A2D2-40BE-994E-BF73C9E88A3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Email.Client", "Modules\Framework\FantasyHomeCenter.Email.Client\FantasyHomeCenter.Email.Client.csproj", "{1C9657E7-A2D2-40BE-994E-BF73C9E88A3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.EventBus", "Modules\Framework\Gardener.EventBus\Gardener.EventBus.csproj", "{16248EAD-5645-4D40-A05B-1FBBC263050B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.EventBus", "Modules\Framework\FantasyHomeCenter.EventBus\FantasyHomeCenter.EventBus.csproj", "{16248EAD-5645-4D40-A05B-1FBBC263050B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.VerifyCode", "Modules\Framework\Gardener.VerifyCode\Gardener.VerifyCode.csproj", "{2C2FE858-8DD1-4519-9DBA-9AEFFA598A21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.VerifyCode", "Modules\Framework\FantasyHomeCenter.VerifyCode\FantasyHomeCenter.VerifyCode.csproj", "{2C2FE858-8DD1-4519-9DBA-9AEFFA598A21}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.VerifyCode.CacheStore", "Modules\Framework\Gardener.VerifyCode.CacheStore\Gardener.VerifyCode.CacheStore.csproj", "{35122A8E-B6BC-4811-9F72-4384DAF643FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.VerifyCode.CacheStore", "Modules\Framework\FantasyHomeCenter.VerifyCode.CacheStore\FantasyHomeCenter.VerifyCode.CacheStore.csproj", "{35122A8E-B6BC-4811-9F72-4384DAF643FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.VerifyCode.Client", "Modules\Framework\Gardener.VerifyCode.Client\Gardener.VerifyCode.Client.csproj", "{C35AE89A-4613-41CE-B7AB-4E5AF0ECE831}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.VerifyCode.Client", "Modules\Framework\FantasyHomeCenter.VerifyCode.Client\FantasyHomeCenter.VerifyCode.Client.csproj", "{C35AE89A-4613-41CE-B7AB-4E5AF0ECE831}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.VerifyCode.DbStore", "Modules\Framework\Gardener.VerifyCode.DbStore\Gardener.VerifyCode.DbStore.csproj", "{7EC041AF-220E-47B4-AB8C-A0BF51343D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.VerifyCode.DbStore", "Modules\Framework\FantasyHomeCenter.VerifyCode.DbStore\FantasyHomeCenter.VerifyCode.DbStore.csproj", "{7EC041AF-220E-47B4-AB8C-A0BF51343D7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.NotificationSystem", "Modules\Framework\Gardener.NotificationSystem\Gardener.NotificationSystem.csproj", "{BAE61D8A-C556-4496-A600-A21E06A9C726}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.NotificationSystem", "Modules\Framework\FantasyHomeCenter.NotificationSystem\FantasyHomeCenter.NotificationSystem.csproj", "{BAE61D8A-C556-4496-A600-A21E06A9C726}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.NotificationSystem.Client", "Modules\Framework\Gardener.NotificationSystem.Client\Gardener.NotificationSystem.Client.csproj", "{57897849-AE44-4CE2-820C-A71C3AEB4C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.NotificationSystem.Client", "Modules\Framework\FantasyHomeCenter.NotificationSystem.Client\FantasyHomeCenter.NotificationSystem.Client.csproj", "{57897849-AE44-4CE2-820C-A71C3AEB4C60}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SysTimer", "SysTimer", "{57BF47DA-3EAF-43CD-9BDD-23677707E9FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gardener.SysTimer", "Modules\SysTimer\Gardener.SysTimer\Gardener.SysTimer.csproj", "{DD3FB3B0-B65D-4AC7-8CC4-AE4EDF600877}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyHomeCenter.SysTimer", "Modules\SysTimer\FantasyHomeCenter.SysTimer\FantasyHomeCenter.SysTimer.csproj", "{DD3FB3B0-B65D-4AC7-8CC4-AE4EDF600877}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.SysTimer.Impl", "Modules\SysTimer\Gardener.SysTimer.Impl\Gardener.SysTimer.Impl.csproj", "{04142B49-2F7A-4E05-8A00-93092BE23A8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.SysTimer.Impl", "Modules\SysTimer\FantasyHomeCenter.SysTimer.Impl\FantasyHomeCenter.SysTimer.Impl.csproj", "{04142B49-2F7A-4E05-8A00-93092BE23A8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gardener.SysTimer.Client", "Modules\SysTimer\Gardener.SysTimer.Client\Gardener.SysTimer.Client.csproj", "{D9A3901F-838E-4643-87C6-4DCE455320E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.SysTimer.Client", "Modules\SysTimer\FantasyHomeCenter.SysTimer.Client\FantasyHomeCenter.SysTimer.Client.csproj", "{D9A3901F-838E-4643-87C6-4DCE455320E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

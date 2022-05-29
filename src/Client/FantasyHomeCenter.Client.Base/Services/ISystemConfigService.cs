@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------
 
 
-namespace Gardener.Client.Base.Services
+namespace FantasyHomeCenter.Client.Base.Services
 {
     public interface ISystemConfigService
     {

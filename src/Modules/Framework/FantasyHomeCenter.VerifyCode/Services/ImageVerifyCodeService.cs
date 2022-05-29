@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.ImageVerifyCode.Services
+namespace FantasyHomeCenter.ImageVerifyCode.Services
 {
     /// <summary>
     /// 图片验证码服务

@@ -9,7 +9,7 @@ using FantasyHomeCenter.Audit.Services;
 using FantasyHomeCenter.Client.Base;
 using System;
 
-namespace Gardener.Audit.Client.Services
+namespace FantasyHomeCenter.Audit.Client.Services
 {
     /// <summary>
     /// 审计数据服务

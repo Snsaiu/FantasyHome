@@ -7,7 +7,7 @@
 using Furion.DatabaseAccessor;
 using Furion.DataEncryption;
 using FantasyHomeCenter.Base;
-using Gardener.Enums;
+using FantasyHomeCenter.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -21,7 +21,7 @@ namespace FantasyHomeCenter.UserCenter.Impl.Domains
     /// 用户表
     /// </summary>
     [Description("用户信息")]
-    public class User : GardenerEntityBase, IEntitySeedData<User>, IEntityTypeBuilder<User>
+    public class User : FantasyHomeCenterEntityBase, IEntitySeedData<User>, IEntityTypeBuilder<User>
     {
         /// <summary>
         /// 用户名

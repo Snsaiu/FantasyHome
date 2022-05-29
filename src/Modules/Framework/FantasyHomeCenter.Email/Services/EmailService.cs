@@ -13,7 +13,7 @@ using Furion.FriendlyException;
 using Furion.ViewEngine;
 using FantasyHomeCenter.Email.Dtos;
 using FantasyHomeCenter.Email.Enums;
-using Gardener.Enums;
+using FantasyHomeCenter.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;

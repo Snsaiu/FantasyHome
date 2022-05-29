@@ -5,8 +5,8 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Client.Base.Components;
-using Gardener.Client.Base.Model;
+using FantasyHomeCenter.Client.Base.Components;
+using FantasyHomeCenter.Client.Base.Model;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using Microsoft.AspNetCore.Components;
@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.ResourceView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.ResourceView
 {
     public partial class Resource : TreeTableBase<ResourceDto,Guid,ResourceEdit>
     {

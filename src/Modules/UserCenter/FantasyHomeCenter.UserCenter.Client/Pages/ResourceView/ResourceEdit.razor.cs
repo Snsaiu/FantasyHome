@@ -4,7 +4,7 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.Common;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Enums;
@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.ResourceView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.ResourceView
 {
     public partial class ResourceEdit : EditDrawerBase<ResourceDto,Guid>
     {

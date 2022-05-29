@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gardener.Enums\Gardener.Enums.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.Enums\FantasyHomeCenter.Enums.csproj" />
   </ItemGroup>
 
 </Project>

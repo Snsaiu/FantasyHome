@@ -4,7 +4,7 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using System.Threading.Tasks;
 
 namespace FantasyHomeCenter.Client.Core.EventBus.Subscribes

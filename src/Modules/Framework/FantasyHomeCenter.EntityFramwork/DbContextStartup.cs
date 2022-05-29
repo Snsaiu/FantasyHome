@@ -41,8 +41,8 @@ namespace FantasyHomeCenter.EntityFramwork
             services.AddDatabaseAccessor(options =>
             {
                 //注入数据库上下文
-                options.AddDbPool<GardenerDbContext>(dbProvider);
-                options.AddDbPool<GardenerAuditDbContext, GardenerAuditDbContextLocator>(dbProvider);
+                options.AddDbPool<FantasyHomeCenterDbContext>(dbProvider);
+                options.AddDbPool<FantasyHomeCenterAuditDbContext, FantasyHomeCenterAuditDbContextLocator>(dbProvider);
             }, migrationAssemblyName);
         }
 
@@ -61,8 +61,8 @@ namespace FantasyHomeCenter.EntityFramwork
             {
                 Scoped.Create((_, scope) =>
                 {
-                    var defaultDbContext = scope.ServiceProvider.GetRequiredService<GardenerDbContext>();
-                    var auditDbContext = scope.ServiceProvider.GetRequiredService<GardenerAuditDbContext>();
+                    var defaultDbContext = scope.ServiceProvider.GetRequiredService<FantasyHomeCenterDbContext>();
+                    var auditDbContext = scope.ServiceProvider.GetRequiredService<FantasyHomeCenterAuditDbContext>();
                     if (initDb)
                     {
                         defaultDbContext.Database.EnsureCreated();

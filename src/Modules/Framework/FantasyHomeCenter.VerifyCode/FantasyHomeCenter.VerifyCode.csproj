@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FantasyHomeCenter.Base\FantasyHomeCenter.Base.csproj" />
-    <ProjectReference Include="..\Gardener.VerifyCode.CacheStore\Gardener.VerifyCode.CacheStore.csproj" />
-    <ProjectReference Include="..\Gardener.VerifyCode.DbStore\Gardener.VerifyCode.DbStore.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.VerifyCode.CacheStore\FantasyHomeCenter.VerifyCode.CacheStore.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.VerifyCode.DbStore\FantasyHomeCenter.VerifyCode.DbStore.csproj" />
     <ProjectReference Include="..\FantasyHomeCenter\FantasyHomeCenter.csproj" />
   </ItemGroup>
 

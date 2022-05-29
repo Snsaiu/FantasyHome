@@ -86,7 +86,7 @@ namespace FantasyHomeCenter.CodeGeneration.Services
                      .SelectMany(a => a.GetTypes().Where(t => 
                      (  t.GetInterfaces().Contains(typeof(IEntity))  || t.GetInterfaces().Contains(typeof(IPrivateEntity))) 
                      && !t.FullName.StartsWith("Furion.DatabaseAccessor") 
-                     && !t.FullName.StartsWith("FantasyHomeCenter.Core.Entites.GardenerEntityBase")))
+                     && !t.FullName.StartsWith("FantasyHomeCenter.Core.Entites.FantasyHomeCenterEntityBase")))
                      .ToList();
             foreach (Type type in types)
             {

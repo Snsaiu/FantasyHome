@@ -10,7 +10,7 @@ using FantasyHomeCenter.Client.Base;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Services
+namespace FantasyHomeCenter.Client.Services
 {
     /// <summary>
     /// 用户Token服务

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.Authorization.Core
+namespace FantasyHomeCenter.Authorization.Core
 {
     /// <summary>
     /// 授权策略提供器

@@ -4,8 +4,8 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Authorization.Dtos;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Authorization.Dtos;
+using FantasyHomeCenter.Client.Base;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;

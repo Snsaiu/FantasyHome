@@ -7,7 +7,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Framework\FantasyHomeCenter.Base\FantasyHomeCenter.Base.csproj" />
-	  <ProjectReference Include="..\..\UserCenter\Gardener.UserCenter.Impl\Gardener.UserCenter.Impl.csproj" />
+	  <ProjectReference Include="..\..\UserCenter\FantasyHomeCenter.UserCenter.Impl\FantasyHomeCenter.UserCenter.Impl.csproj" />
 	  <ProjectReference Include="..\FantasyHomeCenter.SysTimer\FantasyHomeCenter.SysTimer.csproj" />
 	</ItemGroup>
 

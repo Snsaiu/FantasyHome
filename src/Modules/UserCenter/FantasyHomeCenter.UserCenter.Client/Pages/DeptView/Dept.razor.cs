@@ -4,8 +4,8 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base.Components;
-using Gardener.Client.Base.Model;
+using FantasyHomeCenter.Client.Base.Components;
+using FantasyHomeCenter.Client.Base.Model;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using Microsoft.AspNetCore.Components;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.DeptView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.DeptView
 {
     public partial class Dept : TreeTableBase<DeptDto, int, DeptEdit>
     {

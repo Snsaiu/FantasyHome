@@ -1,4 +1,4 @@
-﻿# Rules in this file were initially inferred by Visual Studio IntelliCode from the E:\mycodes\gitee\PaiKe\src\services\Gardener codebase based on best match to current usage at 2020/10/15
+﻿# Rules in this file were initially inferred by Visual Studio IntelliCode from the E:\mycodes\gitee\PaiKe\src\services\FantasyHomeCenter codebase based on best match to current usage at 2020/10/15
 # You can modify the rules from these initially generated values to suit your own policies
 # You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
 [*.cs]
@@ -37,4 +37,4 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggest
 csharp_preferred_modifier_order = public,static:suggestion
 
 # Add file header
-file_header_template = -----------------------------------------------------------------------------\n园丁,是个很简单的管理系统\n gitee:https://gitee.com/hgflydream/Gardener \n issues:https://gitee.com/hgflydream/Gardener/issues \n-----------------------------------------------------------------------------
+file_header_template = -----------------------------------------------------------------------------\n园丁,是个很简单的管理系统\n gitee:https://gitee.com/hgflydream/FantasyHomeCenter \n issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues \n-----------------------------------------------------------------------------

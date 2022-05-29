@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
 using Furion.DatabaseAccessor;
-using Gardener.Cache;
+using FantasyHomeCenter.Cache;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Furion;
@@ -25,7 +25,7 @@ using Microsoft.AspNetCore.Authorization;
 using FantasyHomeCenter.SysTimer.Dtos;
 using FantasyHomeCenter.SysTimer.Domains;
 
-namespace Gardener.SysTimer.Services
+namespace FantasyHomeCenter.SysTimer.Services
 {
     /// <summary>
     /// 任务调度服务

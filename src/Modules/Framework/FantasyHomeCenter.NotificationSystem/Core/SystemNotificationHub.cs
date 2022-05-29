@@ -1,10 +1,10 @@
 ﻿using FantasyHomeCenter.NotificationSystem.Options;
 using Furion;
 using Furion.InstantMessaging;
-using Gardener.Authentication.Core;
-using Gardener.Authentication.Dtos;
-using Gardener.Authentication.Enums;
-using Gardener.EventBus;
+using FantasyHomeCenter.Authentication.Core;
+using FantasyHomeCenter.Authentication.Dtos;
+using FantasyHomeCenter.Authentication.Enums;
+using FantasyHomeCenter.EventBus;
 using FantasyHomeCenter.NotificationSystem.Dtos;
 using FantasyHomeCenter.NotificationSystem.Enums;
 using Microsoft.AspNetCore.Authorization;

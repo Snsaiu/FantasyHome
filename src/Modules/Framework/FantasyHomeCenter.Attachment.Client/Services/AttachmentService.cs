@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.Attachment.Client.Services
+namespace FantasyHomeCenter.Attachment.Client.Services
 {
     [ScopedService]
     public class AttachmentService : ClientServiceBase<AttachmentDto, Guid>, IAttachmentService

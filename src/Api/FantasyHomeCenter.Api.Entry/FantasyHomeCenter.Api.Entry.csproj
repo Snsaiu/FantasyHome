@@ -36,7 +36,7 @@
     <ProjectReference Include="..\FantasyHomeCenter.Api.Core\FantasyHomeCenter.Api.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="gardener.db">
+    <None Update="FantasyHomeCenter.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

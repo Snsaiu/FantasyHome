@@ -4,15 +4,15 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Enums;
+using FantasyHomeCenter.Enums;
 using System;
 using System.Threading.Tasks;
 using System.Web;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 
-namespace Gardener.UserCenter.Client.Services
+namespace FantasyHomeCenter.UserCenter.Client.Services
 {
     /// <summary>
     /// 

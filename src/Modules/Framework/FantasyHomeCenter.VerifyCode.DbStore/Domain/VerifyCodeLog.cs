@@ -17,7 +17,7 @@ namespace FantasyHomeCenter.VerifyCode.DbStore.Domain
     /// </summary>
     [Description("验证码")]
     [IgnoreAudit]
-    public class VerifyCodeLog : GardenerEntityBase<Guid>
+    public class VerifyCodeLog : FantasyHomeCenterEntityBase<Guid>
     {
         /// <summary>
         /// 验证码类型

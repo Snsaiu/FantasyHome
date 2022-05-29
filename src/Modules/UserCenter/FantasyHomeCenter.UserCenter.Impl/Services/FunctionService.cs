@@ -7,7 +7,7 @@
 using Furion.DatabaseAccessor;
 using FantasyHomeCenter.UserCenter.Impl.Domains;
 using FantasyHomeCenter.UserCenter.Dtos;
-using Gardener.Enums;
+using FantasyHomeCenter.Enums;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using FantasyHomeCenter.UserCenter.Services;
-using Gardener;
+using FantasyHomeCenter;
 
 namespace FantasyHomeCenter.UserCenter.Impl.Services
 {

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.ImageVerifyCode.Core
+namespace FantasyHomeCenter.ImageVerifyCode.Core
 {
     /// <summary>
     /// 图片验证码服务

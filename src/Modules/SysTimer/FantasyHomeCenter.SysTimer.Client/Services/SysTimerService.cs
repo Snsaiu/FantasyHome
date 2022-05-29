@@ -4,15 +4,15 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
-using Gardener.Email.Dtos;
-using Gardener.Email.Services;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Email.Dtos;
+using FantasyHomeCenter.Email.Services;
 using FantasyHomeCenter.SysTimer.Dtos;
 using FantasyHomeCenter.SysTimer.Services;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.SysTimer.Client.Services
+namespace FantasyHomeCenter.SysTimer.Client.Services
 {
     [ScopedService]
     public class SysTimerService : ClientServiceBase<SysTimerDto, int>, ISysTimerService

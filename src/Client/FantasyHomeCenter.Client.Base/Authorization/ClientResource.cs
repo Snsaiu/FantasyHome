@@ -4,7 +4,7 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-namespace Gardener.Client.Base.Authorization
+namespace FantasyHomeCenter.Client.Base.Authorization
 {
     public class ClientResource
     {

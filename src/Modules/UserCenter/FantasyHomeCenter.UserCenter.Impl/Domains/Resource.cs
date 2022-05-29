@@ -20,7 +20,7 @@ namespace FantasyHomeCenter.UserCenter.Impl.Domains
     /// 资源表
     /// </summary>
     [Description("资源信息")]
-    public class Resource : GardenerEntityBase<Guid>, IEntitySeedData<Resource>, IEntityTypeBuilder<Resource>
+    public class Resource : FantasyHomeCenterEntityBase<Guid>, IEntitySeedData<Resource>, IEntityTypeBuilder<Resource>
     {
         /// <summary>
         /// 资源名称

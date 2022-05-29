@@ -10,7 +10,7 @@ using FantasyHomeCenter.CodeGeneration.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.CodeGeneration.Client.Services
+namespace FantasyHomeCenter.CodeGeneration.Client.Services
 {
     /// <summary>
     /// 代码生成

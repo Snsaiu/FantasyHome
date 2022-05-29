@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.Email.Dtos;
 using FantasyHomeCenter.Email.Services;
 using Microsoft.AspNetCore.Components;
@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.Email.Client.Pages
+namespace FantasyHomeCenter.Email.Client.Pages
 {
     public partial class EmailServerConfigTest : FeedbackComponent<DrawerInput<Guid>, DrawerOutput<Guid>>
     {

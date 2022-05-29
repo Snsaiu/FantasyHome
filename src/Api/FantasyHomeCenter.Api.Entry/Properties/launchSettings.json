@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Gardener.Web.Entry": {
+    "FantasyHomeCenter.Web.Entry": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

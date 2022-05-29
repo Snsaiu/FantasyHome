@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Gardener.Enums;
+using FantasyHomeCenter.Enums;
 using Furion.FriendlyException;
 using System;
 using System.Text;
@@ -19,7 +19,7 @@ using FantasyHomeCenter.UserCenter.Impl.Domains;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Enums;
 using FantasyHomeCenter.UserCenter.Services;
-using Gardener;
+using FantasyHomeCenter;
 
 namespace FantasyHomeCenter.UserCenter.Impl.Services
 {

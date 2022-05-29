@@ -8,7 +8,7 @@ namespace FantasyHomeCenter.NotificationSystem.Domains
     /// 公告信息
     /// </summary>
     [Description("公告信息")]
-    public class Announcement : GardenerEntityBase
+    public class Announcement : FantasyHomeCenterEntityBase
     {
         /// <summary>
         /// 标题

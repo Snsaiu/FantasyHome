@@ -1,13 +1,13 @@
 using Furion.DatabaseAccessor;
 using Furion.TaskScheduler;
 using FantasyHomeCenter.SysTimer.Domains;
-using Gardener.UserCenter.Impl.Domains;
-using Gardener.UserCenter.Enums;
+using FantasyHomeCenter.UserCenter.Impl.Domains;
+using FantasyHomeCenter.UserCenter.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace Gardener.SysTimer
+namespace FantasyHomeCenter.SysTimer
 {
     /// <summary>
     /// 种子数据

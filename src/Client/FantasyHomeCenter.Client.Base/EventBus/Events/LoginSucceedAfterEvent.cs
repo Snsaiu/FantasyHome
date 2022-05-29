@@ -7,7 +7,7 @@
 using FantasyHomeCenter.Authorization.Dtos;
 using FantasyHomeCenter.EventBus;
 
-namespace Gardener.Client.Base.EventBus.Events
+namespace FantasyHomeCenter.Client.Base.EventBus.Events
 {
     /// <summary>
     /// 登录成功事件

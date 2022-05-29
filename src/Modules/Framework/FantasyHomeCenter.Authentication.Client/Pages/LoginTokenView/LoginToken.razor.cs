@@ -8,7 +8,7 @@ using FantasyHomeCenter.Authentication.Dtos;
 using FantasyHomeCenter.Client.Base.Components;
 using System;
 
-namespace Gardener.Authentication.Client.Pages.LoginTokenView
+namespace FantasyHomeCenter.Authentication.Client.Pages.LoginTokenView
 {
     public partial class LoginToken : TableBase<LoginTokenDto, Guid>
     {

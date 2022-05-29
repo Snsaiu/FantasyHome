@@ -25,10 +25,10 @@ namespace FantasyHomeCenter.Base
         /// <returns></returns>
         private static async Task FakeDeleteAsync<TEntity>(this IRepository<TEntity> repository, TEntity entity) where TEntity : class, IPrivateEntity, new()
         {
-            if (entity != null && entity.SetPropertyValue(nameof(GardenerEntityBase.IsDeleted), true))
+            if (entity != null && entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.IsDeleted), true))
             {
-                entity.SetPropertyValue(nameof(GardenerEntityBase.UpdatedTime), DateTimeOffset.Now);
-                await repository.UpdateIncludeAsync(entity, new[] { nameof(GardenerEntityBase.IsDeleted), nameof(GardenerEntityBase.UpdatedTime) });
+                entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.UpdatedTime), DateTimeOffset.Now);
+                await repository.UpdateIncludeAsync(entity, new[] { nameof(FantasyHomeCenterEntityBase.IsDeleted), nameof(FantasyHomeCenterEntityBase.UpdatedTime) });
             }
         }
         /// <summary>
@@ -40,10 +40,10 @@ namespace FantasyHomeCenter.Base
         /// <returns></returns>
         private static async Task FakeDeleteNowAsync<TEntity>(this IRepository<TEntity> repository, TEntity entity) where TEntity : class, IPrivateEntity, new()
         {
-            if (entity != null && entity.SetPropertyValue(nameof(GardenerEntityBase.IsDeleted), true))
+            if (entity != null && entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.IsDeleted), true))
             {
-                entity.SetPropertyValue(nameof(GardenerEntityBase.UpdatedTime), DateTimeOffset.Now);
-                await repository.UpdateIncludeNowAsync(entity, new[] { nameof(GardenerEntityBase.IsDeleted), nameof(GardenerEntityBase.UpdatedTime) });
+                entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.UpdatedTime), DateTimeOffset.Now);
+                await repository.UpdateIncludeNowAsync(entity, new[] { nameof(FantasyHomeCenterEntityBase.IsDeleted), nameof(FantasyHomeCenterEntityBase.UpdatedTime) });
             }
         }
 
@@ -57,10 +57,10 @@ namespace FantasyHomeCenter.Base
         /// <returns></returns>
         private static async Task FakeDeleteAsync<TEntity, TDbContextLocator>(this IRepository<TEntity, TDbContextLocator> repository, TEntity entity) where TEntity : class, IPrivateEntity, new() where TDbContextLocator : class, IDbContextLocator
         {
-            if (entity != null && entity.SetPropertyValue(nameof(GardenerEntityBase.IsDeleted), true))
+            if (entity != null && entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.IsDeleted), true))
             {
-                entity.SetPropertyValue(nameof(GardenerEntityBase.UpdatedTime), DateTimeOffset.Now);
-                await repository.UpdateIncludeAsync(entity, new[] { nameof(GardenerEntityBase.IsDeleted), nameof(GardenerEntityBase.UpdatedTime) });
+                entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.UpdatedTime), DateTimeOffset.Now);
+                await repository.UpdateIncludeAsync(entity, new[] { nameof(FantasyHomeCenterEntityBase.IsDeleted), nameof(FantasyHomeCenterEntityBase.UpdatedTime) });
             }
         }
         
@@ -74,10 +74,10 @@ namespace FantasyHomeCenter.Base
         /// <returns></returns>
         private static async Task FakeDeleteNowAsync<TEntity, TDbContextLocator>(this IRepository<TEntity, TDbContextLocator> repository, TEntity entity) where TEntity : class, IPrivateEntity, new() where TDbContextLocator : class, IDbContextLocator
         {
-            if (entity != null && entity.SetPropertyValue(nameof(GardenerEntityBase.IsDeleted), true))
+            if (entity != null && entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.IsDeleted), true))
             {
-                entity.SetPropertyValue(nameof(GardenerEntityBase.UpdatedTime), DateTimeOffset.Now);
-                await repository.UpdateIncludeNowAsync(entity, new[] { nameof(GardenerEntityBase.IsDeleted), nameof(GardenerEntityBase.UpdatedTime) });
+                entity.SetPropertyValue(nameof(FantasyHomeCenterEntityBase.UpdatedTime), DateTimeOffset.Now);
+                await repository.UpdateIncludeNowAsync(entity, new[] { nameof(FantasyHomeCenterEntityBase.IsDeleted), nameof(FantasyHomeCenterEntityBase.UpdatedTime) });
             }
         }
 

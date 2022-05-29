@@ -4,14 +4,14 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
-using Gardener.Client.Base.Components;
-using Gardener.Client.Base.Model;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Client.Base.Components;
+using FantasyHomeCenter.Client.Base.Model;
 using FantasyHomeCenter.Email.Dtos;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.Email.Client.Pages
+namespace FantasyHomeCenter.Email.Client.Pages
 {
     public partial class EmailTemplate : TableBase<EmailTemplateDto, Guid, EmailTemplateEdit>
     {

@@ -4,10 +4,10 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using Microsoft.AspNetCore.Components;
 
-namespace Gardener.Client.Entry
+namespace FantasyHomeCenter.Client.Entry
 {
     public partial class App
     {

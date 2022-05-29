@@ -7,7 +7,7 @@
 using AntDesign;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     public static class ConfirmServiceExtension
     {

@@ -9,7 +9,7 @@ using AntDesign.ProLayout;
 using FantasyHomeCenter.Common;
 using Microsoft.AspNetCore.Components;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// tab基类

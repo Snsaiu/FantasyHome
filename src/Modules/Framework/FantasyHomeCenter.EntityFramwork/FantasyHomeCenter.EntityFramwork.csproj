@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Gardener.Common\Gardener.Common.csproj" />
+    <ProjectReference Include="..\..\..\Common\FantasyHomeCenter.Common\FantasyHomeCenter.Common.csproj" />
     <ProjectReference Include="..\FantasyHomeCenter\FantasyHomeCenter.csproj" />
   </ItemGroup>
 

@@ -7,7 +7,7 @@
 
 using FantasyHomeCenter.EventBus;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// 刷新token失败事件

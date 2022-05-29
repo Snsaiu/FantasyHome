@@ -7,7 +7,7 @@
 using FantasyHomeCenter.EventBus;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Base
+namespace FantasyHomeCenter.Client.Base
 {
     /// <summary>
     /// 

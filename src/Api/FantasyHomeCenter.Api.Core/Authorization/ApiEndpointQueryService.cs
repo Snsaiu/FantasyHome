@@ -5,17 +5,17 @@
 // -----------------------------------------------------------------------------
 
 using Furion.DatabaseAccessor;
-using Gardener.Authorization.Dtos;
+using FantasyHomeCenter.Authorization.Dtos;
 using FantasyHomeCenter.Cache;
-using Gardener.Enums;
-using Gardener.UserCenter.Impl.Domains;
+using FantasyHomeCenter.Enums;
+using FantasyHomeCenter.UserCenter.Impl.Domains;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.Authorization.Core
+namespace FantasyHomeCenter.Authorization.Core
 {
     /// <summary>
     /// 接口查询服务

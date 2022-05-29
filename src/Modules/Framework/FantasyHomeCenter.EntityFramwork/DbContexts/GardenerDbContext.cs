@@ -19,13 +19,13 @@ namespace FantasyHomeCenter.EntityFramwork.DbContexts
     /// 数据库上下文
     /// </summary>
     [AppDbContext("Default")]
-    public class GardenerDbContext : AppDbContext<GardenerDbContext>
+    public class FantasyHomeCenterDbContext : AppDbContext<FantasyHomeCenterDbContext>
     {
         /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="options"></param>
-        public GardenerDbContext(DbContextOptions<GardenerDbContext> options) : base(options)
+        public FantasyHomeCenterDbContext(DbContextOptions<FantasyHomeCenterDbContext> options) : base(options)
         {
         }
         /// <summary>

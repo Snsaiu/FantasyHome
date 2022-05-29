@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------
 
 using AntDesign;
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using Microsoft.AspNetCore.Components;
@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.RoleView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.RoleView
 {
     public partial class RoleResourceEdit : FeedbackComponent<DrawerInput<int>, bool>
     {

@@ -7,15 +7,15 @@
 using AntDesign;
 using FantasyHomeCenter.Attachment.Dtos;
 using FantasyHomeCenter.Attachment.Enums;
-using Gardener.Client.Base;
-using Gardener.EventBus;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.EventBus;
 using FantasyHomeCenter.NotificationSystem;
 using FantasyHomeCenter.NotificationSystem.Client;
 using FantasyHomeCenter.NotificationSystem.Dtos;
 using FantasyHomeCenter.NotificationSystem.Dtos.Notification;
 using FantasyHomeCenter.NotificationSystem.Enums;
 using FantasyHomeCenter.NotificationSystem.Services;
-using Gardener.UserCenter.Dtos;
+using FantasyHomeCenter.UserCenter.Dtos;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Gardener.Client.Entry.Pages
+namespace FantasyHomeCenter.Client.Entry.Pages
 {
     public partial class Home : ReuseTabsPageBase
     {

@@ -4,14 +4,14 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
+using FantasyHomeCenter.Client.Base;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.DeptView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.DeptView
 {
     public partial class DeptEdit : EditDrawerBase<DeptDto, int>
     {

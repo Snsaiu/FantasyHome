@@ -4,13 +4,13 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base;
-using Gardener.Client.Base.Components;
+using FantasyHomeCenter.Client.Base;
+using FantasyHomeCenter.Client.Base.Components;
 using FantasyHomeCenter.UserCenter.Dtos;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.RoleView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.RoleView
 {
     public partial class Role : TableBase<RoleDto,int, RoleEdit>
     {

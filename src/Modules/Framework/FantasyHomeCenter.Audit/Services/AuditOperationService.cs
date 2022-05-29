@@ -6,7 +6,7 @@
 
 using Furion.DatabaseAccessor;
 using FantasyHomeCenter.Audit.Dtos;
-using Gardener.EntityFramwork.Audit.Domains;
+using FantasyHomeCenter.EntityFramwork.Audit.Domains;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Gardener;
+using FantasyHomeCenter;
 
 namespace FantasyHomeCenter.Audit.Services
 {

@@ -18,7 +18,7 @@ namespace FantasyHomeCenter.Email.Domains
     /// 邮件模板信息
     /// </summary>
     [Description("邮件模板信息")]
-    public class EmailTemplate : GardenerEntityBase<Guid>, IEntitySeedData<EmailTemplate>
+    public class EmailTemplate : FantasyHomeCenterEntityBase<Guid>, IEntitySeedData<EmailTemplate>
     {
         /// <summary>
         /// 名称

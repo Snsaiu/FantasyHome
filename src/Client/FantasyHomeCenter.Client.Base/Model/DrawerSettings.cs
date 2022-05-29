@@ -6,7 +6,7 @@
 
 using AntDesign;
 
-namespace Gardener.Client.Base.Model
+namespace FantasyHomeCenter.Client.Base.Model
 {
     /// <summary>
     /// 抽屉的设置

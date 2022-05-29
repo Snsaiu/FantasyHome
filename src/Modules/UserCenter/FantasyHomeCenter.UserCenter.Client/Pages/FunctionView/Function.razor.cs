@@ -4,14 +4,14 @@
 //  issues:https://gitee.com/hgflydream/FantasyHomeCenter/issues 
 // -----------------------------------------------------------------------------
 
-using Gardener.Client.Base.Components;
+using FantasyHomeCenter.Client.Base.Components;
 using FantasyHomeCenter.UserCenter.Dtos;
 using FantasyHomeCenter.UserCenter.Services;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
-namespace Gardener.UserCenter.Client.Pages.FunctionView
+namespace FantasyHomeCenter.UserCenter.Client.Pages.FunctionView
 {
     public partial class Function : TableBase<FunctionDto, Guid, FunctionEdit>
     {
