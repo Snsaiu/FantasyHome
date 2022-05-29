@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:FantasyHome.UI.Resources"
              x:Name="weather"
+            
              xmlns:converts="clr-namespace:FantasyHome.UI.Converters"
              x:Class="FantasyHome.UI.Views.Components.WeatherComponent">
     <ContentView.Resources>
@@ -11,6 +12,10 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Frame CornerRadius="10" Padding="5,10,0,10" BackgroundColor="{Binding Source={x:Reference weather}, Path=BarColor}">
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding Source={x:Reference weather},Path=TapCommand}"></TapGestureRecognizer>
+
+        </Frame.GestureRecognizers>
 
         <Grid >
             <Grid.ColumnDefinitions>
@@ -35,7 +40,7 @@
                 </StackLayout>
                 <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="5,5,5,2" Text="{Binding Source={x:Reference weather},Path=CurrentState}"></Label>
             </StackLayout>
-            <CollectionView Margin="10,0,0,0" HorizontalOptions="CenterAndExpand" Grid.Column="1" ItemsLayout="HorizontalList" ItemsSource="{Binding Source={x:Reference weather},Path=WeeksWeatherList}">
+            <CollectionView Margin="10,5,0,0" HorizontalOptions="CenterAndExpand" Grid.Column="1" ItemsLayout="HorizontalList" ItemsSource="{Binding Source={x:Reference weather},Path=WeeksWeatherList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="5">
@@ -43,10 +48,12 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Image Aspect="Center" HorizontalOptions="CenterAndExpand" >
+                            <Image Aspect="Center" WidthRequest="40" HeightRequest="40" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
                                <Image.Source>
                                    <FontImageSource
                                        FontFamily="weather"
+                                       Size="30"
+                                      
                                        Glyph="{Binding Icon,Converter={StaticResource WeatherIconConverter}}"
                                    ></FontImageSource>
                                </Image.Source>

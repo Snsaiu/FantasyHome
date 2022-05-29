@@ -1,3 +1,4 @@
+using System.Windows.Input;
 using FantasyHome.UI.Models;
 
 namespace FantasyHome.UI.Views.Components;
@@ -77,6 +78,15 @@ public partial class WeatherComponent : ContentView
         set { SetValue(CurrentRayProperty, value); }
     }
 
+
+    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create("TapCommand",
+        typeof(ICommand), typeof(WeatherComponent));
+
+    public ICommand TapCommand
+    {
+        get { return  (ICommand)GetValue(TapCommandProperty); }
+        set { SetValue(TapCommandProperty, value); }
+    }
     #endregion
 
 }

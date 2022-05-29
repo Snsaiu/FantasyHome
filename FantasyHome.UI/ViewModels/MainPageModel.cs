@@ -22,22 +22,40 @@ namespace FantasyHome.UI.ViewModels;
 
     [ObservableProperty]
     private CurrentWeatherModel currentWeather = new CurrentWeatherModel();
+    private readonly IConnectivity connectivity;
+    private readonly Tools tools;
 
-	public MainPageModel()
+    public MainPageModel(IConnectivity connectivity,Tools tools)
 	{
+        this.connectivity = connectivity;
+        this.tools = tools;
+        if (connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+             Shell.Current.DisplayAlert("No connectivity!",
+                $"Please check internet and try again.", "OK");
+            return;
+        }
+
         this.KeTingLightState = true;
         this.notifyBarModels = new ObservableCollection<NotifyBarModel>();
         this.getNotifyBarInfoList();
-        this.WeekWeatherListModels = new ObservableCollection<WeekWeatherListModel>();
        
         this.getCurrentWeather();
         this.getMulitWeather();
 
     }
+    [ICommand]
+    private async Task RefreshWeather()
+    {
+        await this.getCurrentWeather();
+        await this.getMulitWeather();
+    }
 
     private async Task getMulitWeather()
     {
-        var currentLocationRes =await Tools.GetCurrentLocation();
+        this.WeekWeatherListModels = new ObservableCollection<WeekWeatherListModel>();
+
+        var currentLocationRes =await this.tools.GetCurrentLocationAsync();
         if (currentLocationRes.Ok)
         {
             string url =
@@ -70,7 +88,7 @@ namespace FantasyHome.UI.ViewModels;
 
     private async Task getCurrentWeather()
     {
-        var currentLocationRes =await Tools.GetCurrentLocation();
+        var currentLocationRes =await this.tools.GetCurrentLocationAsync();
         if (currentLocationRes.Ok)
         {
             string url =

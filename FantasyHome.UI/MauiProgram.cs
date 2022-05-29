@@ -50,7 +50,10 @@ namespace FantasyHome.UI
             
             builder.Services.AddTransient<Views.MainPage>();
             builder.Services.AddTransient<ViewModels.MainPageModel>();
-           
+            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
+            builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
+            builder.Services.AddSingleton<Tools>();
+
 
             return builder.Build();
         }

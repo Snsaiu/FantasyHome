@@ -18,8 +18,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout HorizontalOptions="Center"  VerticalOptions="Start">
-        <CollectionView VerticalOptions="Start" IsVisible="{OnPlatform iOS=False}" ItemsSource="{Binding NotifyBarModels}">
+    <StackLayout HorizontalOptions="Fill"  VerticalOptions="Start">
+        <CollectionView VerticalOptions="Start" IsVisible="{OnPlatform iOS=False, MacCatalyst=False}" ItemsSource="{Binding NotifyBarModels}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
             </CollectionView.ItemsLayout>
@@ -34,7 +34,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <comp:WeatherComponent  Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="{Binding CurrentWeather.now.windSpeed,StringFormat='{0}级'}" CurrentState="{Binding CurrentWeather.now.text}" CurrentTemperature="{Binding CurrentWeather.now.temp,StringFormat='{0}°C'}">
+        <comp:WeatherComponent TapCommand="{Binding RefreshWeatherCommand}" Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="{Binding CurrentWeather.now.windSpeed,StringFormat='{0}级'}" CurrentState="{Binding CurrentWeather.now.text}" CurrentTemperature="{Binding CurrentWeather.now.temp,StringFormat='{0}°C'}">
     
             <comp:WeatherComponent.CurrentDayIcon>
                 <FontImageSource 

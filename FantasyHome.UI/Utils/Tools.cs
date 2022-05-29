@@ -12,16 +12,23 @@ public class Tools
     public static readonly string  CurrentWeatherApi="https://devapi.qweather.com/v7/weather/now?";
 
     public static readonly string MulitWeatherApi = "https://devapi.qweather.com/v7/weather/3d?";
-    
+    private readonly IGeolocation geolocation;
+
+    public Tools(IGeolocation geolocation)
+    {
+        this.geolocation = geolocation;
+    }
+
     /// <summary>
     /// 获得当前位置
     /// </summary>
     /// <returns></returns>
-    public static async Task<ResultBase<Location>> GetCurrentLocation()
+    public  async Task<ResultBase<Location>> GetCurrentLocationAsync()
     {
         try
         {
-            Location location = await Geolocation.Default.GetLastKnownLocationAsync();
+            Thread.Sleep(2000);
+            Location location = await this.geolocation.GetLastKnownLocationAsync();
             return location != null
                 ? new SuccessResultModel<Location>(location)
                 : new ErrorResultModel<Location>("未知原因无法获得位置信息");
