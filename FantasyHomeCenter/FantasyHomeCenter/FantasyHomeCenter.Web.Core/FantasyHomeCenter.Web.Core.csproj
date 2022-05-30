@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>FantasyHomeCenter.Web.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="FantasyHomeCenter.Web.Core.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FantasyHomeCenter.Application\FantasyHomeCenter.Application.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.Database.Migrations\FantasyHomeCenter.Database.Migrations.csproj" />
+  </ItemGroup>
+
+</Project>
