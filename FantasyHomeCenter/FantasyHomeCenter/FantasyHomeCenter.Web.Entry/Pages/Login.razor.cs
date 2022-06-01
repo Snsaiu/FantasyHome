@@ -64,6 +64,7 @@ public partial class Login
            if(this.isRemember)
                 await  this.LocalStorageService.SetAsync("token", res.Token);
            await this.authenticationStateProvider.GetAuthenticationStateAsync();
+      
             this.navigationManager.NavigateTo("/",replace:true);
        }
     }

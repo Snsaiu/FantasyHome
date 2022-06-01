@@ -13,40 +13,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbb88a28-1890-4147-8a56-b2991f1bc285" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/Dto/LoginUserInputcs.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/Dto/LoginUserOutput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/IUserService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/UserService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/JwtHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/LoginLayout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/RedirectLogin.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/DeviceOutput.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/UserSetting.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/ISystemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/ISystemService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/SystemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/SystemService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/FantasyHomeCenter.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/FantasyHomeCenter.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/App.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/FantasyHomeCenter.Web.Entry.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/FantasyHomeCenter.Web.Entry.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/_Host.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/_Host.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/MainLayout.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/RedirectLogin.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/wwwroot/images/logo.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6013a00a2c6540a3802338c4ba9030f11a200/74/a671c1c1/CookieAuthenticationDefaults.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/707cdd61b6fb4a29962376302621eee4bc00/6e/2978e8b2/AuthenticationOptions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/397c3884b16b36b0e8de3477fd5e7d19edc0b2cde3b733b61fde1943798f/ComponentState.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -154,6 +140,14 @@
       <option name="IS_PASS_PARENT_ENVS" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.FantasyHome.Api" />
+      <item itemvalue=".NET Launch Settings Profile.FantasyHome.Api: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.FantasyHomeCenter.Web.Entry" />
+      <item itemvalue=".NET Launch Settings Profile.FantasyHomeCenter.Web.Entry: IIS Express" />
+      <item itemvalue="Xamarin.Android.FantasyHome.UI" />
+      <item itemvalue="Xamarin.iOS.FantasyHome.UI" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -206,6 +200,23 @@
     <option name="LAST_COMMIT_MESSAGE" value="添加天气接口" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs</url>
+          <line>67</line>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\Pages\Login.razor.cs" initialLine="67" containingFunctionPresentation="method 'login'">
+            <startOffsets>
+              <option value="1707" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1759" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#System.Reflection.TypeInfo" memberName="DeclaredMembers" />

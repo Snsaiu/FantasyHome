@@ -1,33 +1,59 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.CodeAnalysis.CSharp.Syntax
+@inherits LayoutComponentBase
+@inject NavigationManager navigationManager
 @attribute [Authorize]
+<AuthorizeView >
+    <Authorized>
+        <Layout Style="min-height: 100vh; ">
+            <Sider Collapsible>
+                <div class="logo" style="text-align: center; padding: 10px;background:#00194b">
+                    <img Src="./Images/logo.png" height="100"/>
+                </div>
+                <NavMenu></NavMenu>
+            </Sider>
+            <Layout Class="site-layout">
+                <Header Class="site-layout-background" Style=" padding: 0 ;">
+                    <Row>
+                        <Col Span="23"></Col>
+                        <Col Span="1">
+                            <Popover  ContentTemplate="@pop" Placement="@Placement.Bottom" Trigger="@(new AntDesign.Trigger[] { AntDesign.Trigger.Click })">
+                                <div style="text-align: center">
+                                            <Avatar Icon="user"/>
+                                                                    <Text>@context.User.Identity.Name</Text>
+                                </div>
+                        
+                            </Popover>
 
-            Style="min-height: 100vh; ">
-    <Sider Collapsible Collapsed=@collapsed OnCollapse=@onCollapse>
-        <div class="logo" />
-      <NavMenu></NavMenu>
-    </Sider>
-    <Layout Class="site-layout" >
-        <Header Class="site-layout-background" Style=" padding: 0 ;">
-            hello
-        </Header>
-        <Content Style="margin:0 16px;" >
-    
-            @Body
-        </Content>
-        <Footer Style="text-align:center ">Ant Design ©2018 Created by Ant UED</Footer>
-    </Layout>
-</Layout>
+                        </Col>
+                    </Row>
+                </Header>
+                <Content Style="margin:0 16px;">
+                    @Body
+                </Content>
+                <Footer Style="text-align:center ">power by saiu</Footer>
+            </Layout>
+        </Layout>
+    </Authorized>
+    <NotAuthorized>
+        @{
 
+            @if (context.User.Identity.IsAuthenticated == false)
+            {
+                navigationManager.NavigateTo("/login", new NavigationOptions() { ReplaceHistoryEntry = true });
+            }
+        }
+    </NotAuthorized>
+</AuthorizeView>
 
-@code {
-    bool collapsed;
+@code
+{
+    [Inject]
+    private ProtectedLocalStorage localStorage { get; set; }
 
-   void onCollapse(bool collapsed) {
-        Console.WriteLine(collapsed);
-        this.collapsed =collapsed;
-    }
+    private RenderFragment pop = @<div><UserSetting></UserSetting></div>;
+
 }
-
 
 <style>
     #components-layout-demo-side .logo {

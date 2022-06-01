@@ -8,7 +8,7 @@
                     @{
                         @if(context.User.Identity.IsAuthenticated==false)
                         {
-                            navigationManager.NavigateTo("Login",new NavigationOptions(){ReplaceHistoryEntry = true});
+                            navigationManager.NavigateTo("/login",new NavigationOptions(){ReplaceHistoryEntry = true});
                         }
                     }
                 </NotAuthorized>

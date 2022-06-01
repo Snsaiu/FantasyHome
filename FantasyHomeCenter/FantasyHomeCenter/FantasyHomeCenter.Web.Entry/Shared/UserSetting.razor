@@ -1,0 +1,26 @@
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+
+<div style="text-align: center">
+
+    <Row>
+        <Button>用户设置</Button>
+    </Row>
+
+    <hr>
+    <Button @onclick="async () => await this.logout()">退出</Button>
+</div>
+
+@code
+{
+    [Inject]
+    private ProtectedLocalStorage storage { get; set; }
+
+    [Inject]
+    private NavigationManager navigationManager { get; set; }
+
+    private async Task logout()
+    {
+        await this.storage.DeleteAsync("token");
+        this.navigationManager.NavigateTo("/login");
+    }
+}

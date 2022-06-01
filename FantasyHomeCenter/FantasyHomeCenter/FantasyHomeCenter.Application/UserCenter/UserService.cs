@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using FantasyHomeCenter.Application.UserCenter.Dto;
 using Furion.DataEncryption;
 using Furion.DependencyInjection;
@@ -17,9 +18,9 @@ public class UserService:IDynamicApiController,IUserService,ITransient
         
         var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>()
         {
-            { "UserId", 1 },
-            { "UserName", "saiu" },
-            {"role","admin"}
+            { ClaimTypes.PrimarySid, 1 },
+            { ClaimTypes.Name, "saiu" },
+            {ClaimTypes.Role,"admin"}
         }, 100); // 过期时间 1分钟,用于测试
 
         return new LoginUserOutput() { Token = accessToken };
