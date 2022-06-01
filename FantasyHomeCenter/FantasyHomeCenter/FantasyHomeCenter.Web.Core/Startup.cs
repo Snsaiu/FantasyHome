@@ -1,4 +1,5 @@
 ﻿using Furion;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,16 @@ namespace FantasyHomeCenter.Web.Core
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            // JWT 和 Cookies 混合身份验证
+            services.AddJwt(options =>
+                {
+                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                {
+                    options.LoginPath = "/Login";
+                });
             services.AddControllers().AddInjectWithUnifyResult();
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -33,7 +44,8 @@ namespace FantasyHomeCenter.Web.Core
             app.UseRouting();
 
             app.UseInject();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

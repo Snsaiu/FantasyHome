@@ -10,14 +10,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FantasyHomeCenter.Web.Entry</title>
+    <title>FantasyHome</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="FantasyHomeCenter.Web.Entry.styles.css" rel="stylesheet" />
 </head>
 <body>
-    <component type="typeof(App)" render-mode="ServerPrerendered" />
+    <component type="typeof(App)" render-mode="Server" />
 
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
@@ -30,6 +31,7 @@
         <a class="dismiss">🗙</a>
     </div>
 
+<script src="_content/AntDesign/js/ant-design-blazor.js"></script>
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>

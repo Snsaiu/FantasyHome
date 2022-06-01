@@ -1,17 +1,42 @@
 ﻿@inherits LayoutComponentBase
+@attribute [Authorize]
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <div class="main">
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <div class="content px-4">
+            Style="min-height: 100vh; ">
+    <Sider Collapsible Collapsed=@collapsed OnCollapse=@onCollapse>
+        <div class="logo" />
+      <NavMenu></NavMenu>
+    </Sider>
+    <Layout Class="site-layout" >
+        <Header Class="site-layout-background" Style=" padding: 0 ;">
+            hello
+        </Header>
+        <Content Style="margin:0 16px;" >
+    
             @Body
-        </div>
-    </div>
-</div>
+        </Content>
+        <Footer Style="text-align:center ">Ant Design ©2018 Created by Ant UED</Footer>
+    </Layout>
+</Layout>
+
+
+@code {
+    bool collapsed;
+
+   void onCollapse(bool collapsed) {
+        Console.WriteLine(collapsed);
+        this.collapsed =collapsed;
+    }
+}
+
+
+<style>
+    #components-layout-demo-side .logo {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px;
+    }
+
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+</style>

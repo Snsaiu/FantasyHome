@@ -13,13 +13,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbb88a28-1890-4147-8a56-b2991f1bc285" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/Dto/LoginUserInputcs.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/Dto/LoginUserOutput.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/IUserService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/UserService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/JwtHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/LoginLayout.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/RedirectLogin.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHome.sln" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHome.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/ISystemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/ISystemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/SystemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/System/SystemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/FantasyHomeCenter.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/FantasyHomeCenter.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/App.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/FantasyHomeCenter.Web.Entry.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/FantasyHomeCenter.Web.Entry.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/_Host.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/_Host.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/_Imports.razor" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6013a00a2c6540a3802338c4ba9030f11a200/74/a671c1c1/CookieAuthenticationDefaults.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/707cdd61b6fb4a29962376302621eee4bc00/6e/2978e8b2/AuthenticationOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/397c3884b16b36b0e8de3477fd5e7d19edc0b2cde3b733b61fde1943798f/ComponentState.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -34,23 +61,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: FantasyHome.UI": "iPhone 11",
-    "DeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider": "Simulator",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "rider.run.widget.enabled.cache": "false",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: FantasyHome.UI&quot;: &quot;iPhone 11&quot;,
+    &quot;DeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider&quot;: &quot;Simulator&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Xamarin.iOS.FantasyHome.UI">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.FantasyHomeCenter.Web.Entry">
     <configuration name="FantasyHomeCenter.Web.Entry" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/FantasyHomeCenter.Web.Entry.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -139,6 +167,12 @@
       <workItem from="1653559525565" duration="12986000" />
       <workItem from="1653819574745" duration="176000" />
       <workItem from="1653923580476" duration="751000" />
+      <workItem from="1653962525653" duration="1983000" />
+      <workItem from="1653987333102" duration="4790000" />
+      <workItem from="1653992179768" duration="1122000" />
+      <workItem from="1654011958680" duration="747000" />
+      <workItem from="1654058852860" duration="12816000" />
+      <workItem from="1654082185233" duration="1397000" />
     </task>
     <task id="LOCAL-00001" summary="添加天气接口">
       <created>1653580563906</created>

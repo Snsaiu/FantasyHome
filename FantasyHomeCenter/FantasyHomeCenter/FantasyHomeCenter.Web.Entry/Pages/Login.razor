@@ -1,0 +1,31 @@
+@page "/Login"
+@layout LoginLayout
+
+<Row type="flex" justify="center" align="middle" Style="height: 100vh" >
+    <Form Loading="@loading" Model="@model" 
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="OnFinish" 
+          OnFinishFailed="OnFinishFailed">
+        <FormItem Label="用户名" >
+            <Input @bind-Value="@context.UserName"/>
+        </FormItem>
+        <FormItem Label="密码">
+            <InputPassword @bind-Value="@context.Pwd" />
+        </FormItem>
+        <FormItem WrapperColOffset="8" WrapperColSpan="16">
+            <Checkbox @bind-Value="isRemember">Remember me</Checkbox>
+        </FormItem>
+        <FormItem WrapperColOffset="8" WrapperColSpan="16">
+            <Button Type="@ButtonType.Primary" HtmlType="submit">
+                登陆
+            </Button>
+        </FormItem>
+    </Form>
+    @* <div style="margin-top: 16px"> *@
+    @*     Loading state： *@
+    @*     <Switch Checked=loading OnChange=toggle /> *@
+    @* </div> *@
+</Row>
+
+

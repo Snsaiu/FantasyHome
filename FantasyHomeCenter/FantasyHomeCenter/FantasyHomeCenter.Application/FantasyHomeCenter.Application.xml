@@ -4,5 +4,12 @@
         <name>FantasyHomeCenter.Application</name>
     </assembly>
     <members>
+        <member name="M:FantasyHomeCenter.Application.UserCenter.IUserService.Author(FantasyHomeCenter.Application.UserCenter.Dto.LoginUserInput)">
+            <summary>
+            用户授权
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
