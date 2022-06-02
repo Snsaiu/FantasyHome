@@ -14,4 +14,8 @@
     <ProjectReference Include="..\FantasyHomeCenter.Core\FantasyHomeCenter.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="FamilyCenter\Dto" />
+  </ItemGroup>
+
 </Project>
