@@ -12,23 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cbb88a28-1890-4147-8a56-b2991f1bc285" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/DeviceOutput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/UserSetting.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/UserCenter/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/App.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Index.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/MainLayout.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/NavMenu.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Shared/RedirectLogin.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/wwwroot/images/logo.png" beforeDir="false" />
-    </list>
+    <list default="true" id="cbb88a28-1890-4147-8a56-b2991f1bc285" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -175,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653580563906</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="添加ui">
+      <created>1654099352829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654099352829</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +188,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="添加天气接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加天气接口" />
+    <MESSAGE value="添加ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加ui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
