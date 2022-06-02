@@ -1,0 +1,45 @@
+@page "/device-types"
+
+
+<div>
+    <Row>
+        <Button @onclick="() => this.addDeviceTypeDialog = !this.addDeviceTypeDialog">创建设备类型</Button>
+    </Row>
+    <Row>
+
+
+        <Col Span="24">
+            <Table @ref="table" DataSource="@data" @bind-SelectedRows="selectedRows">
+                <Selection Key="@context.Id.ToString()"/>
+                <Column @bind-Field="@context.DeviceTypeName"/>
+                <ActionColumn Title="选项">
+
+                    <Space>
+                        <SpaceItem>
+                            <Button Danger>删除</Button>
+                        </SpaceItem>
+                    </Space>
+
+                </ActionColumn>
+            </Table>
+        </Col>
+    </Row>
+</div>
+
+<Modal Title="添加设备类型"
+       Visible="this.addDeviceTypeDialog"
+       OnOk="x => this.addDeviceTypeForm.Submit()"
+       OnCancel="() => this.addDeviceTypeDialog = false">
+    <Form Loading="this.addDeviceTypeLoading" Model="@this.addDeviceTypeInputModel"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="async (x) => await this.submitAddDeviceTypeHandle(x)"
+          OnFinishFailed="async x => await submitAddDeviceTypeFail(x)"
+          @ref="@addDeviceTypeForm">
+        <FormItem Label="设备名称">
+            <Input @bind-Value="@context.TypeName"/>
+        </FormItem>
+
+
+    </Form>
+</Modal>

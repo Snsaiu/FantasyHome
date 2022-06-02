@@ -1,19 +1,49 @@
-﻿
-    <Menu Theme="MenuTheme.Dark" DefaultSelectedKeys=@(new[]{"1"}) Mode="MenuMode.Inline">
-        <MenuItem Key="主页">
-           <NavLink  href="/">主页</NavLink>
+﻿<Menu Theme="MenuTheme.Dark" DefaultSelectedKeys=@(new[] { "1" }) Mode="MenuMode.Inline">
+    <MenuItem Key="主页">
+        <NavLink href="/">主页</NavLink>
+    </MenuItem>
+    <SubMenu Key="设备管理" Title="设备管理">
+        <MenuItem key="设备类型">
+            <NavLink href="/device-types">设备类型</NavLink>
         </MenuItem>
-      <SubMenu Key="设备"  Title="设备">
-          <MenuItem Key="设备列表">
-              <NavLink href="/devices">设备列表</NavLink>
-          </MenuItem>
-      </SubMenu>
-            <MenuItem Key="3">
-                <span>设置</span>
-            </MenuItem>
-    </Menu>
+        <MenuItem Key="设备列表">
+            <NavLink href="/devices">设备列表</NavLink>
+        </MenuItem>
+    </SubMenu>
+    <SubMenu key="家庭管理" Title="家庭管理">
+        <MenuItem key="房间">
+            <NavLink href="/rooms">房间</NavLink>
+        </MenuItem>
+        <MenuItem key="家人">
+            <NavLink href="/family">家人</NavLink>
+        </MenuItem>
+        <MenuItem key="交互设备类型">
+            <NavLink href="/uidevices">交互设备类型</NavLink>
+        </MenuItem>
+        <MenuItem key="交互设备">
+            <NavLink href="/uidevices">交互设备</NavLink>
+        </MenuItem>
+    </SubMenu>
+    <SubMenu key="用户管理" Title="用户管理">
+
+        <MenuItem key="用户">
+            <NavLink href="/users">用户</NavLink>
+        </MenuItem>
+        <MenuItem key="角色">
+            <NavLink href="/roles">角色</NavLink>
+        </MenuItem>
+
+    </SubMenu>
+
+    <MenuItem key="后台任务">
+        <NavLink href="/background-tasks">后台任务</NavLink>
+    </MenuItem>
+    <MenuItem Key="设置">
+        <NavLink href="/setting">设置</NavLink>
+    </MenuItem>
+</Menu>
 
 @code {
 
-    
+
 }

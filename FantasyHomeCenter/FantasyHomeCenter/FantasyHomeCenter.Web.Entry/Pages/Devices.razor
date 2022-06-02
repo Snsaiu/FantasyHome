@@ -1,79 +1,61 @@
 @page "/devices"
-@using System.ComponentModel.DataAnnotations
+
 
 <div>
     <Row>
-        <Button>创建设备</Button>
+        <Button @onclick="() => this.addDeviceDialog=!this.addDeviceDialog">创建设备</Button>
     </Row>
     <Row>
         
 
         <Col Span="24">
                     <Table @ref="table" DataSource="@data" @bind-SelectedRows="selectedRows">
-                               <Selection Key="@context.Name" Type="@selectionType"/>
-                            <Column @bind-Field="@context.Name">
-                                <a>@context.Name</a>
-                            </Column>
-                            <Column @bind-Field="@context.Age"/>
-                            <Column @bind-Field="@context.Address"/>
-                        </Table>
-               
-            
-        </Col>
+                               <Selection Key="@context.Id.ToString()" />
+                               <Column @bind-Field="@context.Name"/>
+                            <Column @bind-Field="@context.Type"/>
+                               <Column @bind-Field="@context.Address"/>
+                               <Column @bind-Field="@context.State"></Column>
+                               <Column @bind-Field="@context.Description"></Column>
+                                  <ActionColumn Title="选项">
+                                      <Space>
+                                          
+                                          <SpaceItem>
+                                              <Button Type="success">打开</Button>
+                                          </SpaceItem>
 
-        
-        
-    
+
+                                          <SpaceItem>
+                                              <Button Type="warning">修改</Button>
+                                          </SpaceItem>
+
+                                          <SpaceItem>
+                                              <Button Danger OnClick="() => deleteItem(context.Id)">删除设备</Button>
+                                          </SpaceItem>
+                                      </Space>
+                                   </ActionColumn>
+                        </Table>
+        </Col>
     </Row>
 </div>
-@code {
-        
-    ITable table;
-        
-    class Column
-    {
-        [Display(Name = "设备名称")]
-        public string Name { get; set; }
-        
-        public int Age { get; set; }
-        
-        public string Address { get; set; }
-    }
-        
-    Column[] data =
-    {
-        new Column()
-        {
-            Name = "John Brown",
-            Age = 32,
-            Address = "New York No. 1 Lake Park",
-        },
-        new Column()
-        {
-            Name = "Jim Green",
-            Age = 42,
-            Address = "London No. 1 Lake Park",
-        },
-        new Column()
-        {
-            Name = "Joe Black",
-            Age = 32,
-            Address = "Sidney No. 1 Lake Park",
-        },
-        new Column()
-        {
-            Name = "Disabled User",
-            Age = 99,
-            Address = "Sidney No. 1 Lake Park",
-        }
-    };
-        
-    IEnumerable<Column> selectedRows;
-    string selectionType = "checkbox";
-        
-    public void RemoveSelection(string key)
-    {
-        var selected = selectedRows.Where(x => x.Name != key).ToList();
-        table.SetSelection(selected.Select(x => x.Name).ToArray());
-    }
-}
+
+<Modal Title="添加设备"
+       Visible="this.addDeviceDialog"
+       OnOk="x=>this.addDeviceForm.Submit()"
+       OnCancel="()=>this.addDeviceDialog=false">
+    <Form Loading="this.addDeviceLoading" Model="@this.addDeviceInputModel"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="x=>this.submitAddDevicehandle(x)"
+          OnFinishFailed="x=>submitAddDeviceFail(x)"
+          @ref="@addDeviceForm">
+        <FormItem Label="设备名称">
+            <Input @bind-Value="@context.DeviceName" />
+        </FormItem>
+        <FormItem Label="设备地址">
+            <Input @bind-Value="@context.DeviceAddress" />
+        </FormItem>
+        <FormItem Label="设备描述">
+            <TextArea @bind-Value="@context.Description" AllowClear="true"></TextArea>
+        </FormItem>
+    </Form>
+</Modal>

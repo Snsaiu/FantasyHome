@@ -4,6 +4,13 @@
         <name>FantasyHomeCenter.Application</name>
     </assembly>
     <members>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.GetDevices(FantasyHomeCenter.Application.DeviceCenter.Dto.DeviceInput)">
+            <summary>
+            获得设备信息分页列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:FantasyHomeCenter.Application.UserCenter.IUserService.Author(FantasyHomeCenter.Application.UserCenter.Dto.LoginUserInput)">
             <summary>
             用户授权
