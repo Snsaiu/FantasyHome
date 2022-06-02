@@ -7,6 +7,7 @@ namespace FantasyHomeCenter.Core.Enums;
 public enum DeviceState
 {
     [Display(Name = "正在运行")]
+    [Description("正在运行")]
     Running,
     [Display(Name = "关闭")]
     Closed,

@@ -1,33 +1,35 @@
 @page "/devices"
+@using FantasyHomeCenter.Application.DeviceCenter.Dto
+@using FantasyHomeCenter.Application.RoomCenter.Dto
 
 
 <div>
     <Row>
-        <Button @onclick="() => this.addDeviceDialog=!this.addDeviceDialog">创建设备</Button>
+        <Button @onclick="async () =>await this.openAddDeviceDialog()">创建设备</Button>
     </Row>
     <Row>
-        
-
         <Col Span="24">
-                    <Table @ref="table" DataSource="@data" @bind-SelectedRows="selectedRows">
+            <Table @ref="table" TItem="DeviceOutput"
+                   DataSource="@data.Items" 
+                 Total="data.TotalCount"
+                   @bind-PageIndex="condition.PageIndex"
+                   @bind-PageSize="condition.PageSize"
+                   @bind-SelectedRows="selectedRows">
                                <Selection Key="@context.Id.ToString()" />
                                <Column @bind-Field="@context.Name"/>
-                            <Column @bind-Field="@context.Type"/>
+                               <Column @bind-Field="@context.Type"/>
+                               <Column @bind-Field="@context.RoomName"/>
                                <Column @bind-Field="@context.Address"/>
                                <Column @bind-Field="@context.State"></Column>
                                <Column @bind-Field="@context.Description"></Column>
                                   <ActionColumn Title="选项">
                                       <Space>
-                                          
                                           <SpaceItem>
-                                              <Button Type="success">打开</Button>
+                                              <Button >设置状态</Button>
                                           </SpaceItem>
-
-
                                           <SpaceItem>
-                                              <Button Type="warning">修改</Button>
+                                              <Button Type="warning">编辑元数据</Button>
                                           </SpaceItem>
-
                                           <SpaceItem>
                                               <Button Danger OnClick="() => deleteItem(context.Id)">删除设备</Button>
                                           </SpaceItem>
@@ -45,15 +47,39 @@
     <Form Loading="this.addDeviceLoading" Model="@this.addDeviceInputModel"
           LabelColSpan="8"
           WrapperColSpan="16"
-          OnFinish="x=>this.submitAddDevicehandle(x)"
+          OnFinish="async x=>await this.submitAddDeviceHandle(x)"
           OnFinishFailed="x=>submitAddDeviceFail(x)"
           @ref="@addDeviceForm">
         <FormItem Label="设备名称">
-            <Input @bind-Value="@context.DeviceName" />
+            <Input @bind-Value="@context.Name" />
         </FormItem>
         <FormItem Label="设备地址">
-            <Input @bind-Value="@context.DeviceAddress" />
+            <Input @bind-Value="@context.Address" />
         </FormItem>
+        <FormItem Label="房间名">
+            <Select DataSource="deviceTypesAndRoomsOutput.Rooms"
+                    TItemValue="int"
+                    TItem="RoomOutput"
+                    @bind-Value="@context.RoomId"
+                    DefaultValue="deviceTypesAndRoomsOutput.Rooms.First().Id"
+                    ValueName="@nameof(RoomOutput.Id)"
+                    LabelName="@nameof(RoomOutput.RoomName)"
+            >
+            </Select>
+        </FormItem>
+        
+        <FormItem Label="设备类型">
+                 <Select DataSource="deviceTypesAndRoomsOutput.DeviceTypes"
+                         TItemValue="int"
+                         TItem="DeviceTypeOutput"
+                         @bind-Value="@context.DeviceTypeId"
+                         DefaultValue="deviceTypesAndRoomsOutput.DeviceTypes.First().Id"
+                         ValueName="@nameof(DeviceTypeOutput.Id)"
+                 		LabelName="@nameof(DeviceTypeOutput.DeviceTypeName)"
+                 	>
+                 </Select>
+         </FormItem>
+        
         <FormItem Label="设备描述">
             <TextArea @bind-Value="@context.Description" AllowClear="true"></TextArea>
         </FormItem>

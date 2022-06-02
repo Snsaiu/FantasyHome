@@ -25,4 +25,7 @@ public class DeviceOutput
     
     [Display(Name = "当前状态")]
     public DeviceState State { get; set; }
+
+    [Display(Name = "所属房间")]
+    public string RoomName { get; set; }
 }

@@ -1,35 +1,36 @@
 using AntDesign;
-using FantasyHomeCenter.Application.DeviceCenter;
-using FantasyHomeCenter.Application.DeviceCenter.Dto;
+using AntDesign.Core.Helpers.MemberPath;
+using FantasyHomeCenter.Application.RoomCenter;
+using FantasyHomeCenter.Application.RoomCenter.Dto;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
 namespace FantasyHomeCenter.Web.Entry.Pages;
 
-public partial class DeviceTypes
+public partial class Rooms
 {
-
+    
     #region 属性字段
 
     /// <summary>
     /// 显示添加设备类型
     /// </summary>
-    private bool addDeviceTypeDialog = false;
+    private bool addRoomDialog = false;
 
     /// <summary>
     /// 设备类型列表
     /// </summary>
-    private Table<DeviceTypeOutput> table;
+    private Table<RoomOutput> table;
 
     /// <summary>
     /// 列表数据源头
     /// </summary>
-    private PagedList<DeviceTypeOutput> data = new PagedList<DeviceTypeOutput>();
+    private PagedList<RoomOutput> data = new PagedList<RoomOutput>();
 
     /// <summary>
     /// 被选中的设备类型集合
     /// </summary>
-    private IEnumerable<DeviceTypeOutput> selectedRows = new List<DeviceTypeOutput>();
+    private IEnumerable<RoomOutput> selectedRows = new List<RoomOutput>();
 
 
     /// <summary>
@@ -40,7 +41,7 @@ public partial class DeviceTypes
     /// <summary>
     /// 添加设备类型表单
     /// </summary>
-    private Form<AddDeviceTypeInput> addDeviceTypeForm;
+    private Form<AddRoomInput> addRoomForm;
     
     /// <summary>
     /// 路由管理器
@@ -51,9 +52,9 @@ public partial class DeviceTypes
     /// <summary>
     /// 添加新的设备类型模型
     /// </summary>
-    private AddDeviceTypeInput addDeviceTypeInputModel = new AddDeviceTypeInput();
+    private AddRoomInput addRoomInputModel = new AddRoomInput();
 
-    private DeviceTypeInput deviceTypeInputCondition = new DeviceTypeInput()
+    private RoomInput roomInputCondition = new RoomInput()
     {
         PageIndex = 1,
         PageSize = 10
@@ -64,11 +65,11 @@ public partial class DeviceTypes
     /// 设备类型服务
     /// </summary>
     [Inject]
-    private IDeviceTypeService deviceTypeService { get; set; }
+    private IRoomService roomService { get; set; }
     /// <summary>
     /// 添加新设备类型等待动画
     /// </summary>
-    private bool addDeviceTypeLoading = false;
+    private bool addRoomLoading = false;
     
     /// <summary>
     /// 消息弹框
@@ -90,14 +91,16 @@ public partial class DeviceTypes
     /// 提交添加新设备类型表单完成
     /// </summary>
     /// <param name="context"></param>
-    private async Task submitAddDeviceTypeHandle(EditContext context)
+    private async Task submitAddRoomHandle(EditContext context)
     {
-        var  add_res = await this.deviceTypeService.AddDeviceTypeAsync(this.addDeviceTypeInputModel);
+        this.addRoomLoading = true;
+        var  add_res = await this.roomService.AddNewRoomAsync(this.addRoomInputModel);
         if (add_res.Succeeded)
         {
+            this.addRoomLoading = false;
             await this.pageChanged();
             await this.messageService.Success("添加成功!");
-            this.addDeviceTypeDialog = false;
+            this.addRoomDialog = false;
           
         }
         else
@@ -110,7 +113,7 @@ public partial class DeviceTypes
     /// 提交添加新设备类型表达错误
     /// </summary>
     /// <param name="editContext"></param>
-    private async Task submitAddDeviceTypeFail(EditContext editContext)
+    private async Task submitAddRoomFail(EditContext editContext)
     {
     
     }
@@ -118,7 +121,7 @@ public partial class DeviceTypes
     private async Task pageChanged()
     {
         this.loadTableLoading = true;
-        var data_res= await this.deviceTypeService.GetListPageAsync(this.deviceTypeInputCondition);
+        var data_res= await this.roomService.GetRoomListPageAsync(this.roomInputCondition);
         if (data_res.Succeeded)
         {
             this.data = data_res.Data;
@@ -136,9 +139,9 @@ public partial class DeviceTypes
     /// 删除一条数据
     /// </summary>
     /// <param name="id"></param>
-    private async Task remoteDeviceTypeById(int id)
+    private async Task deleteRoomById(int id)
     {
-     var res_data=  await  this.deviceTypeService.DeleteDeviceTypeList(new List<int>() { id });
+     var res_data=  await  this.roomService.DeleteRoomListAsync(new List<int>() { id });
      if (res_data.Succeeded)
      {
         await this.messageService.Success("删除成功");
@@ -151,7 +154,6 @@ public partial class DeviceTypes
     }
 
     #endregion
-
 
 
 }

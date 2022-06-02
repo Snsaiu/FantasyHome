@@ -13,9 +13,9 @@ public class DeviceInput
         (PageIndex, PageSize, deviceType) = (pageIndex, pageSize, deviceId);
         
     }
-    public int PageSize { get; private set; }
-    public int  PageIndex { get;private set; }
+    public int PageSize { get;  set; }
+    public int  PageIndex { get; set; }
     
-    public int? deviceType { get;private set; }
+    public int? deviceType { get; set; }
     
 }

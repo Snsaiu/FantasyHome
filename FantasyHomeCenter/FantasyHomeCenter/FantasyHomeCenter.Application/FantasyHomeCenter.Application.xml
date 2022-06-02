@@ -11,6 +11,73 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.GetDeviceTypesAndRoomsAsync">
+            <summary>
+            获得所有的房间集合和设备类型集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.AddDeviceAsync(FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceInput)">
+            <summary>
+            添加新设备
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceTypeService.AddDeviceTypeAsync(FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceTypeInput)">
+            <summary>
+            添加新的设备类型
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceTypeService.GetListPageAsync(FantasyHomeCenter.Application.DeviceCenter.Dto.DeviceTypeInput)">
+            <summary>
+            获得设备类型分页
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceTypeService.DeleteDeviceTypeList(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            删除设备类型
+            </summary>
+            <param name="inputs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceTypeService.GetListAsync">
+            <summary>
+            获得所有的设备类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.RoomCenter.IRoomService.GetRoomListPageAsync(FantasyHomeCenter.Application.RoomCenter.Dto.RoomInput)">
+            <summary>
+            获得房间分页
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.RoomCenter.IRoomService.AddNewRoomAsync(FantasyHomeCenter.Application.RoomCenter.Dto.AddRoomInput)">
+            <summary>
+            添加新的房间
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.RoomCenter.IRoomService.DeleteRoomListAsync(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            批量删除房间
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.RoomCenter.IRoomService.GetListAsync">
+            <summary>
+            获得所有的房间名
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FantasyHomeCenter.Application.UserCenter.IUserService.Author(FantasyHomeCenter.Application.UserCenter.Dto.LoginUserInput)">
             <summary>
             用户授权

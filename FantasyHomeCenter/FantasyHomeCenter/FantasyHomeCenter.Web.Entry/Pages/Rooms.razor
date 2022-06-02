@@ -1,0 +1,54 @@
+@page "/rooms"
+@using FantasyHomeCenter.Application.RoomCenter.Dto
+
+
+<div>
+    <Row>
+        <Button @onclick="() => { this.addRoomDialog = !this.addRoomDialog ;this.addRoomInputModel=new AddRoomInput();}">创建设备类型</Button>
+    </Row>
+    <Row>
+
+
+        <Col Span="24">
+            <Table @ref="table"
+                   Loading="this.loadTableLoading"
+                   TItem="RoomOutput"
+                   DataSource="@data.Items"
+                   Total="data.TotalCount"
+                   @bind-PageIndex="roomInputCondition.PageIndex"
+                   @bind-PageSize="roomInputCondition.PageSize"
+                   @bind-SelectedRows="selectedRows">
+                <Selection Key="@context.Id.ToString()"/>
+                <Column @bind-Field="@context.RoomName"/>
+                <ActionColumn Title="选项">
+
+                    <Space>
+                        <SpaceItem>
+                            <Button Danger OnClick=" async ()=>await this.deleteRoomById(context.Id)">删除</Button>
+                        </SpaceItem>
+                    </Space>
+
+                </ActionColumn>
+            </Table>
+        </Col>
+    </Row>
+</div>
+
+<Modal Title="添加房间"
+       
+       Visible="this.addRoomDialog"
+       OnOk="x => this.addRoomForm.Submit()"
+       OnCancel="() => this.addRoomDialog = false">
+    <Form Loading="this.addRoomLoading" Model="@this.addRoomInputModel"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="async (x) => await this.submitAddRoomHandle(x)"
+          OnFinishFailed="async x => await submitAddRoomFail(x)"
+          @ref="@addRoomForm">
+        <FormItem Label="房间名称">
+            <Input @bind-Value="@context.RoomName"/>
+        </FormItem>
+
+
+    </Form>
+</Modal>

@@ -1,22 +1,30 @@
 @page "/device-types"
 
 
+
 <div>
     <Row>
-        <Button @onclick="() => this.addDeviceTypeDialog = !this.addDeviceTypeDialog">创建设备类型</Button>
+        <Button @onclick="() => { this.addDeviceTypeDialog = !this.addDeviceTypeDialog ;this.addDeviceTypeInputModel=new AddDeviceTypeInput();}">创建设备类型</Button>
     </Row>
     <Row>
 
 
         <Col Span="24">
-            <Table @ref="table" DataSource="@data" @bind-SelectedRows="selectedRows">
+            <Table @ref="table"
+                   Loading="this.loadTableLoading"
+                   TItem="DeviceTypeOutput"
+                   DataSource="@data.Items"
+                    Total="data.TotalCount"
+                          @bind-PageIndex="deviceTypeInputCondition.PageIndex"
+                          @bind-PageSize="deviceTypeInputCondition.PageSize"
+                   @bind-SelectedRows="selectedRows">
                 <Selection Key="@context.Id.ToString()"/>
                 <Column @bind-Field="@context.DeviceTypeName"/>
                 <ActionColumn Title="选项">
 
                     <Space>
                         <SpaceItem>
-                            <Button Danger>删除</Button>
+                            <Button Danger OnClick=" async ()=>await this.remoteDeviceTypeById(context.Id)">删除</Button>
                         </SpaceItem>
                     </Space>
 
@@ -37,7 +45,7 @@
           OnFinishFailed="async x => await submitAddDeviceTypeFail(x)"
           @ref="@addDeviceTypeForm">
         <FormItem Label="设备名称">
-            <Input @bind-Value="@context.TypeName"/>
+            <Input @bind-Value="@context.DeviceTypeName"/>
         </FormItem>
 
 
