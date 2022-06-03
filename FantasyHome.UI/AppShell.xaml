@@ -5,27 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FantasyHome.UI.Views"
     WidthRequest="500"
-        xmlns:res="clr-namespace:FantasyHome.UI.Resources"
+    xmlns:res="clr-namespace:FantasyHome.UI.Resources"
     >
-    <Shell.TitleView>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label TextColor="white" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center">Fantasy Home</Label>
-            <Button Grid.Column="1" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" BorderWidth="0">
-                <Button.ImageSource>
-                    <FontImageSource FontFamily="typicons"
-                                     Glyph="{Static res:IconFont.Bell}"
-                                     Size="18"
-                                     Color="White"/>
-
-                </Button.ImageSource>
-
-            </Button>
-        </Grid>
-    </Shell.TitleView>
+   
 
 
     <Shell.FlyoutIcon>
@@ -35,9 +17,12 @@
                          Color="white"/>
     </Shell.FlyoutIcon>
 
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="True">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"></ShellContent>
+    </ShellItem>
     <FlyoutItem Title="主页">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
+            <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}"/>
         </Tab>
     </FlyoutItem>
     <FlyoutItem Title="客厅">

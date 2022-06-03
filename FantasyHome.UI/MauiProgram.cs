@@ -1,6 +1,11 @@
 ﻿using CommunityToolkit.Maui;
 using FantasyHome.UI.Utils;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Devices.Sensors;
+using Microsoft.Maui.Hosting;
 using Microsoft.Maui.LifecycleEvents;
+using Microsoft.Maui.Networking;
 
 
 #if WINDOWS
@@ -47,9 +52,12 @@ namespace FantasyHome.UI
             });
 
 #endif
-            
+
+            builder.Services.AddTransient<Views.LoginPage>();
+            builder.Services.AddTransient<ViewModels.LoginPageModel>();
             builder.Services.AddTransient<Views.MainPage>();
             builder.Services.AddTransient<ViewModels.MainPageModel>();
+            
             builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
             builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
             builder.Services.AddSingleton<Tools>();

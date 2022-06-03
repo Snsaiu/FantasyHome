@@ -4,6 +4,7 @@
              x:Class="FantasyHome.UI.Views.MainPage"
              xmlns:local="clr-namespace:FantasyHome.UI.ViewModels"
              x:Name="mainpage"
+             
             
              xmlns:converts="clr-namespace:FantasyHome.UI.Converters"
              Shell.NavBarHasShadow="True"
@@ -17,8 +18,29 @@
             <converts:WeatherIconConverter x:Key="WeatherIconConverter"></converts:WeatherIconConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label TextColor="white" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center">Fantasy Home</Label>
+            <Button Grid.Column="1" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" BorderWidth="0">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="typicons"
+                                     Glyph="{Static res:IconFont.Bell}"
+                                     Size="18"
+                                     Color="White"/>
+
+                </Button.ImageSource>
+
+            </Button>
+        </Grid>
+    </Shell.TitleView>
 
     <StackLayout HorizontalOptions="Fill"  VerticalOptions="Start">
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"></ActivityIndicator>
         <CollectionView VerticalOptions="Start" IsVisible="{OnPlatform iOS=False, MacCatalyst=False}" ItemsSource="{Binding NotifyBarModels}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
@@ -45,6 +67,9 @@
             </comp:WeatherComponent.CurrentDayIcon>
         </comp:WeatherComponent>
 
+        
+        <comp:HomeGridComponent Margin="1,5" HorizontalOptions="Fill" VerticalOptions="Start"></comp:HomeGridComponent>
+        
         <comp:SwitchComponent WidthRequest="120" HorizontalOptions="Start" TouchCommand="{Binding ReplaceKeTingLightCommand}" Title="客厅灯" State="{Binding KeTingLightState}" OffBarColor="Gray" OnBarColor="Orange">
             <comp:SwitchComponent.OnIcon>
                 <FontImageSource  FontFamily="typicons"

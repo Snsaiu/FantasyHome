@@ -1,13 +1,17 @@
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FantasyHome.UI.Models;
 using FantasyHome.UI.Utils;
 using FantasyResultModel;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Networking;
 
 namespace FantasyHome.UI.ViewModels;
 
-  public partial class MainPageModel :ObservableObject
+  public partial class MainPageModel :ViewModelBase
 {
 
 
@@ -39,11 +43,25 @@ namespace FantasyHome.UI.ViewModels;
         this.KeTingLightState = true;
         this.notifyBarModels = new ObservableCollection<NotifyBarModel>();
         this.getNotifyBarInfoList();
-       
-        this.getCurrentWeather();
-        this.getMulitWeather();
+       this.init();
+      
 
     }
+
+    private void init()
+    {
+        Task.Run(async () =>
+        {
+            IsBusy = true;
+           await this.getCurrentWeather();
+           await this.getMulitWeather();
+        }).GetAwaiter().OnCompleted(() =>
+        {
+            IsBusy = false;
+        });
+    }
+    
+    
     [ICommand]
     private async Task RefreshWeather()
     {
