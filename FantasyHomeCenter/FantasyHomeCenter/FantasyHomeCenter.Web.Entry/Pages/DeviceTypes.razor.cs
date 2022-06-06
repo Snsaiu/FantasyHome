@@ -1,8 +1,10 @@
 using AntDesign;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
+using Furion.UnifyResult;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Newtonsoft.Json;
 
 namespace FantasyHomeCenter.Web.Entry.Pages;
 
@@ -30,6 +32,12 @@ public partial class DeviceTypes
     /// 被选中的设备类型集合
     /// </summary>
     private IEnumerable<DeviceTypeOutput> selectedRows = new List<DeviceTypeOutput>();
+    
+    /// <summary>
+    /// 配置管理器
+    /// </summary>
+    [Inject]
+    private IConfiguration configuration { get; set; }
 
 
     /// <summary>
@@ -41,6 +49,14 @@ public partial class DeviceTypes
     /// 添加设备类型表单
     /// </summary>
     private Form<AddDeviceTypeInput> addDeviceTypeForm;
+
+    private Upload upload;
+
+    /// <summary>
+    /// 是否可以提交添加新设备
+    /// </summary>
+    private bool canSubmitAddDeviceType = false;
+        
     
     /// <summary>
     /// 路由管理器
@@ -69,6 +85,12 @@ public partial class DeviceTypes
     /// 添加新设备类型等待动画
     /// </summary>
     private bool addDeviceTypeLoading = false;
+
+    /// <summary>
+    /// 上传地址
+    /// </summary>
+    private string uploadPath = "";
+    
     
     /// <summary>
     /// 消息弹框
@@ -82,6 +104,7 @@ public partial class DeviceTypes
 
     protected async override Task OnInitializedAsync()
     {
+        this.uploadPath = this.configuration["PluginRootUrl"] + "api/device-type/upload-plugin";
         await this.pageChanged();
     }
     
@@ -92,6 +115,13 @@ public partial class DeviceTypes
     /// <param name="context"></param>
     private async Task submitAddDeviceTypeHandle(EditContext context)
     {
+
+        if (this.canSubmitAddDeviceType == false)
+        {
+            await this.messageService.Error("请上传插件包，只有解析成功才能提交");
+            return;
+        }
+      
         var  add_res = await this.deviceTypeService.AddDeviceTypeAsync(this.addDeviceTypeInputModel);
         if (add_res.Succeeded)
         {
@@ -138,6 +168,7 @@ public partial class DeviceTypes
     /// <param name="id"></param>
     private async Task remoteDeviceTypeById(int id)
     {
+        
      var res_data=  await  this.deviceTypeService.DeleteDeviceTypeList(new List<int>() { id });
      if (res_data.Succeeded)
      {
@@ -148,6 +179,51 @@ public partial class DeviceTypes
      {
         await this.messageService.Error("删除失败");
      }
+    }
+
+    private void uploadChanged(UploadInfo item)
+    {
+       
+    }
+
+    private bool beforeUploadDevicePlugin(UploadFileItem item)
+    {
+        if (string.IsNullOrWhiteSpace(this.addDeviceTypeInputModel.DeviceTypeName))
+        {
+            this.messageService.Error("请先填写设备设备类型名称");
+            return false;
+        }
+
+        if (item.Ext != ".zip")
+        {
+            this.messageService.Error("插件是以zip包存储，请导入zip后缀的文件");
+            return false;
+        }
+        // this.upload.FileList = new List<UploadFileItem>() { item };
+        // this.upload.ShowUploadList = true;
+        // this.upload.FileList.Clear();
+        // this.upload.FileList.Add(item);
+        return true;
+    }
+    private void upLoadSuccess(UploadInfo model)
+    {
+        var res= JsonConvert.DeserializeObject<RESTfulResult<AddDevicePluginOutput>>(model.File.Response);
+        if (res.Succeeded)
+        {
+             var data = res.Data;
+             this.addDeviceTypeInputModel.Author = data.Author;
+             this.addDeviceTypeInputModel.PluginPath = data.Path;
+             this.addDeviceTypeInputModel.PluginDescription = data.Description;
+             this.addDeviceTypeInputModel.PluginName = data.PluginName;
+             this.addDeviceTypeInputModel.Version = data.Version;
+             this.addDeviceTypeInputModel.Key = data.Key;
+            canSubmitAddDeviceType = true;
+        }
+        else
+        {
+            canSubmitAddDeviceType = false;
+            this.messageService.Error(res.Errors.ToString());
+        }
     }
 
     #endregion

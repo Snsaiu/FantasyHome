@@ -4,6 +4,11 @@
         <name>FantasyHomeCenter.Application</name>
     </assembly>
     <members>
+        <member name="P:FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceTypeInput.PluginPath">
+            <summary>
+            插件路径
+            </summary>
+        </member>
         <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.GetDevices(FantasyHomeCenter.Application.DeviceCenter.Dto.DeviceInput)">
             <summary>
             获得设备信息分页列表
@@ -49,6 +54,13 @@
             <summary>
             获得所有的设备类型
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceTypeService.GetDeviceControllerByKey(System.String)">
+            <summary>
+            根据key获得插件控制器
+            </summary>
+            <param name="key"></param>
             <returns></returns>
         </member>
         <member name="M:FantasyHomeCenter.Application.RoomCenter.IRoomService.GetRoomListPageAsync(FantasyHomeCenter.Application.RoomCenter.Dto.RoomInput)">

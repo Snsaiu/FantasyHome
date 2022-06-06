@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DevicePluginsImpls\MideaAirControlV3LocalControl\MideaAirControlV3LocalControl.csproj" />
     <ProjectReference Include="..\..\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj" />
+    <ProjectReference Include="..\..\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.EntityFramework.Core\FantasyHomeCenter.EntityFramework.Core.csproj" />
   </ItemGroup>
 
 </Project>

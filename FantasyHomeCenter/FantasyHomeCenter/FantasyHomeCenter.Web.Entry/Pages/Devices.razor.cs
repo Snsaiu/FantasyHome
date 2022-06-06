@@ -104,6 +104,19 @@ public partial class Devices
         if (res.Succeeded)
         {
             this.deviceTypesAndRoomsOutput = res.Data;
+            if (this.deviceTypesAndRoomsOutput.DeviceTypes.Count == 0)
+            {
+               await this.messageService.Error("当前没有设备类型可用，您需要先到设备类型页面添加设备类型！");
+               return;
+            }
+
+            if (this.deviceTypesAndRoomsOutput.Rooms.Count == 0)
+            {
+                await this.messageService.Error("当前没有房间可用，您需要先到房间页面添加房间！");
+                return;
+            }
+
+            this.deviceTypeSelectChangedHandle(this.deviceTypesAndRoomsOutput.DeviceTypes.First());
             this.addDeviceDialog = true;
         }
         else
@@ -113,6 +126,42 @@ public partial class Devices
         
       
         
+    }
+
+    /// <summary>
+    /// 添加新设备 设备类型选择框选择改变处理
+    /// </summary>
+    /// <param name="devieType"></param>
+    public  async void  deviceTypeSelectChangedHandle(DeviceTypeOutput deviceType)
+    {
+        this.addDeviceInputModel.Parameters = new List<DeviceConstCommandParamsOutput>();
+        string key = deviceType.Key;
+        var controllerRes=await this.deviceTypeService.GetDeviceControllerByKey(key);
+        if (controllerRes.Succeeded)
+        {
+            var controller= controllerRes.Data;
+            var initList= controller.CreateInitInputParameters();
+            foreach (var item in initList)
+            {
+                if (item.ConstValue)
+                {
+
+                    var p = new DeviceConstCommandParamsOutput();
+                    p.Name = item.Name;
+                    p.Value = item.Value;
+                    if (item.ValueHasEnums)
+                    {
+                        p.List = item.ValueEnums;
+                        p.IsList = true;
+                    }
+                    this.addDeviceInputModel.Parameters.Add(p);
+                }
+            }
+        }
+        else
+        {
+           await this.messageService.Error(controllerRes.Errors.ToString());
+        }
     }
 
     /// <summary>

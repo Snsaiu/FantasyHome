@@ -1,0 +1,37 @@
+﻿@page "/"
+@using McMaster.NETCore.Plugins
+@using FantasyHomeCenter.DevicePluginInterface
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@code  {
+
+
+    //PluginService ps = new PluginService();
+
+    //protected override void OnInitialized()
+    //{
+    //    base.OnInitialized();
+    //    string path = @"G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\bin\Debug\net6.0\plugins\cefb84";
+    //    string name = "MideaAirControlV3LocalControl.dll";
+    //    var loader= PluginLoader.CreateFromAssemblyFile(
+    //        assemblyFile: Path.Combine(path,name),
+    //        sharedTypes: new[] { typeof(IDeviceController), typeof(IServiceCollection), typeof(ILogger) },
+    //        isUnloadable: true);
+    //   var find=  loader.LoadDefaultAssembly().GetTypes().Where(t => typeof(IDeviceController).IsAssignableFrom(t) && !t.IsAbstract).First();
+    //   var controller= (IDeviceController)Activator.CreateInstance(find);
+    //    string nn = controller.Author;
+    //   loader.
+
+    //}
+
+
+
+}

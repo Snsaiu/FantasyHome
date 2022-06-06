@@ -9,11 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="McMaster.NETCore.Plugins" Version="1.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FantasyHomeCenter.Core\FantasyHomeCenter.Core.csproj" />
+    <ProjectReference Include="..\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,8 +8,9 @@ namespace MideaAirControlV3LocalControl
     {
      
 
-        public string DeviceType { get=>"美的空调"; }
+        public string DeviceType { get=> "MideaControlV3Controller"; }
         public string DeviceTypeVersion { get=>"v3"; }
+        public string Key { get=> "8E3BB04A-A0AF-454C-805A-E05AC067F9EA"; }
         public string Author { get=>"Saiu";  }
         public string Description { get=>"美的空调局域网控制器";  }
 

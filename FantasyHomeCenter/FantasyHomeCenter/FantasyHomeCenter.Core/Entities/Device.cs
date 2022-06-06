@@ -1,5 +1,3 @@
-
-
 using FantasyHomeCenter.Core.Enums;
 
 namespace FantasyHomeCenter.Core.Entities;
@@ -11,7 +9,6 @@ public class Device:Entity
     public Device()
     {
         this.CreatedTime=DateTimeOffset.Now;
-        
     }
 
     [Description("设备描述")]
@@ -37,4 +34,6 @@ public class Device:Entity
     
     [Description("设备所在房间")]
     public Room Room { get; set; }
+
+    public virtual ICollection<CommandConstParams> ConstCommandParams { get; set; }
 }

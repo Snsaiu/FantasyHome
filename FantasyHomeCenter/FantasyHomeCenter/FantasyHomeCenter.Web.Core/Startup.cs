@@ -1,4 +1,6 @@
-﻿using Furion;
+﻿using FantasyHomeCenter.Core.Entities;
+using Furion;
+using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +26,7 @@ namespace FantasyHomeCenter.Web.Core
             services.AddControllers().AddInjectWithUnifyResult();
             services.AddRazorPages();
             services.AddServerSideBlazor();
+         
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -16,8 +16,4 @@
     <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="3.3.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>

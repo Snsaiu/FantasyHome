@@ -38,8 +38,8 @@ namespace DevicePluginTest
             p.Add(new DeviceInputParameter("actoken", "CF15CCA3D5EDC796BFDBB694D3EC6EAD860FFFADBADA112DBAEFCB348F3AA54761CBCBA49CED1836F6D8014748A6EE5494523D61941DBF686EE9F8880C340090"));
             p.Add(new DeviceInputParameter("提示音", "1"));
             p.Add(new DeviceInputParameter("空调状态", "1"));
-            p.Add(new DeviceInputParameter("温度", "18"));
-            p.Add(new DeviceInputParameter("模式", "2"));
+            p.Add(new DeviceInputParameter("温度", "25"));
+            p.Add(new DeviceInputParameter("模式", "1"));
 
            var res=  await this.controller.SetDeviceStateAsync(p);
         }

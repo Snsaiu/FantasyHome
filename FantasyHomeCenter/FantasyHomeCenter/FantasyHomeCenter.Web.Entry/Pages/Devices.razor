@@ -69,16 +69,31 @@
         </FormItem>
         
         <FormItem Label="设备类型">
-                 <Select DataSource="deviceTypesAndRoomsOutput.DeviceTypes"
-                         TItemValue="int"
-                         TItem="DeviceTypeOutput"
-                         @bind-Value="@context.DeviceTypeId"
-                         DefaultValue="deviceTypesAndRoomsOutput.DeviceTypes.First().Id"
-                         ValueName="@nameof(DeviceTypeOutput.Id)"
-                 		LabelName="@nameof(DeviceTypeOutput.DeviceTypeName)"
-                 	>
-                 </Select>
-         </FormItem>
+            <Select DataSource="deviceTypesAndRoomsOutput.DeviceTypes"
+                    TItemValue="int"
+                    OnSelectedItemChanged="deviceTypeSelectChangedHandle"
+                    TItem="DeviceTypeOutput"
+                    @bind-Value="@context.DeviceTypeId"
+                    DefaultValue="deviceTypesAndRoomsOutput.DeviceTypes.First().Id"
+                    ValueName="@nameof(DeviceTypeOutput.Id)"
+                    LabelName="@nameof(DeviceTypeOutput.DeviceTypeName)"
+            >
+            </Select>
+        </FormItem>
+      @if (context.Parameters.Count!=0)
+      {
+          foreach (DeviceConstCommandParamsOutput item in context.Parameters)
+          {
+              if (item.IsList==false)
+              {
+                  <FormItem Label="@item.Name">
+                     
+                  </FormItem>
+              }
+          }
+      }
+        
+
         
         <FormItem Label="设备描述">
             <TextArea @bind-Value="@context.Description" AllowClear="true"></TextArea>

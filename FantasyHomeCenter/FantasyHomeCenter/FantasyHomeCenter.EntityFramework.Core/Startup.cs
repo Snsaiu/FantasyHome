@@ -12,6 +12,8 @@ namespace FantasyHomeCenter.EntityFramework.Core
             {
                 options.AddDbPool<DefaultDbContext>(DbProvider.SqlServer);
             }, "FantasyHomeCenter.Database.Migrations");
+            
         }
+
     }
 }

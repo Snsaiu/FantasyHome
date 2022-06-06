@@ -1,9 +1,14 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FantasyHomeCenter.Application.DeviceCenter.Dto;
 
 public class AddDeviceInput
 {
+    public AddDeviceInput()
+    {
+        Parameters = new List<DeviceConstCommandParamsOutput>();
+    }
 
     [Display(Name = "设备描述")]
     public string Description { get; set; }
@@ -20,5 +25,11 @@ public class AddDeviceInput
     public int DeviceTypeId { get; set; }
     
     public int RoomId { get; set; }
- 
+
+    [Display(Name ="命令常量参数")]
+    public List<DeviceConstCommandParamsOutput> Parameters { get; set; }
+
+
+
+
 }

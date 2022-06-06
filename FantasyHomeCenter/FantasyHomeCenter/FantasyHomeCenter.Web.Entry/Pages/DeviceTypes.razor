@@ -1,4 +1,5 @@
 @page "/device-types"
+@using Microsoft.CodeAnalysis.CSharp.Syntax
 
 
 
@@ -20,6 +21,10 @@
                    @bind-SelectedRows="selectedRows">
                 <Selection Key="@context.Id.ToString()"/>
                 <Column @bind-Field="@context.DeviceTypeName"/>
+                <Column @bind-Field="@context.Key"/>
+                <Column @bind-Field="@context.Author"/>
+                <Column @bind-Field="@context.Version"/>
+                <Column @bind-Field="@context.PluginDescription"/>
                 <ActionColumn Title="选项">
 
                     <Space>
@@ -46,6 +51,37 @@
           @ref="@addDeviceTypeForm">
         <FormItem Label="设备名称">
             <Input @bind-Value="@context.DeviceTypeName"/>
+        </FormItem>
+        <FormItem Label="作者">
+            <Input ReadOnly @bind-Value="@context.Author"/>
+        </FormItem>
+        <FormItem Label="Key">
+            <Input ReadOnly @bind-Value="@context.Key"/>
+        </FormItem>
+        <FormItem Label="版本">
+            <Input ReadOnly @bind-Value="@context.Version"/>
+        </FormItem>
+        <FormItem Label="描述">
+        <TextArea ReadOnly @bind-Value="@context.PluginDescription"></TextArea>
+        </FormItem>
+        <FormItem Label="添加插件包">
+            <Upload Action="@this.uploadPath"
+                    @ref="@this.upload"
+                    Drag
+                  Name="files"
+                    Method="Post"
+                    OnChange="this.uploadChanged"
+                    BeforeUpload="this.beforeUploadDevicePlugin"
+                    Multiple="false"
+                    OnSingleCompleted="upLoadSuccess">        
+                <p class="ant-upload-drag-icon">
+                    <Icon Type="inbox" />
+                </p>
+                <p class="ant-upload-text">添加插件包</p>
+                <p class="ant-upload-hint">
+                   请添加插件包，添加插件包后请在 设备 中添加具体设备
+                </p>
+            </Upload>
         </FormItem>
 
 

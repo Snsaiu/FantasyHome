@@ -22,6 +22,50 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("CommandConstParamsDevice", b =>
+                {
+                    b.Property<int>("ConstCommandParamsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DevicesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ConstCommandParamsId", "DevicesId");
+
+                    b.HasIndex("DevicesId");
+
+                    b.ToTable("CommandConstParamsDevice");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.CommandConstParams", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset?>("UpdatedTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CommandConstParams");
+                });
+
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Device", b =>
                 {
                     b.Property<int>("Id")
@@ -74,6 +118,9 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetimeoffset");
 
@@ -81,8 +128,23 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PluginDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PluginName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PluginPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTimeOffset?>("UpdatedTime")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Version")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -272,6 +334,21 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("RoleUser");
+                });
+
+            modelBuilder.Entity("CommandConstParamsDevice", b =>
+                {
+                    b.HasOne("FantasyHomeCenter.Core.Entities.CommandConstParams", null)
+                        .WithMany()
+                        .HasForeignKey("ConstCommandParamsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FantasyHomeCenter.Core.Entities.Device", null)
+                        .WithMany()
+                        .HasForeignKey("DevicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Device", b =>

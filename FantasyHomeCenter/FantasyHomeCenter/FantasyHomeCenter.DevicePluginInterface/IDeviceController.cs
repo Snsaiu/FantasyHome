@@ -12,6 +12,9 @@ public interface IDeviceController
     /// <returns></returns>
    List<DeviceInputParameter> CreateInitInputParameters();
 
+
+
+
     /// <summary>
     /// 创建设置设备状态的命令参数
     /// </summary>
@@ -35,6 +38,10 @@ public interface IDeviceController
     /// </summary>
     string  DeviceTypeVersion{ get; }
 
+    /// <summary>
+    /// 该设备插件的唯一key
+    /// </summary>
+    string Key{ get; }
 
     /// <summary>
     /// 作者

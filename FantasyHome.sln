@@ -23,15 +23,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Web.Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.Web.Entry", "FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\FantasyHomeCenter.Web.Entry.csproj", "{5E956D04-63A9-4202-BCD9-0822A4264DCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyHomeCenter.DevicePluginInterface", "FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj", "{94481B0D-02ED-4F2E-A854-2E5AEECD1271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyHomeCenter.DevicePluginInterface", "FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj", "{94481B0D-02ED-4F2E-A854-2E5AEECD1271}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevicePluginsImpls", "DevicePluginsImpls", "{A9A9F833-78C0-4E15-A59F-B981D3D49871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MideaAirControlV3LocalControl", "DevicePluginsImpls\MideaAirControlV3LocalControl\MideaAirControlV3LocalControl.csproj", "{9E7DF32C-A3AD-49B8-807E-70550D91D8F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MideaAirControlV3LocalControl", "DevicePluginsImpls\MideaAirControlV3LocalControl\MideaAirControlV3LocalControl.csproj", "{9E7DF32C-A3AD-49B8-807E-70550D91D8F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicePluginTest", "Test\DevicePluginTest\DevicePluginTest.csproj", "{1E36C3FB-8436-4DDE-9D35-B13C30D77E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevicePluginTest", "Test\DevicePluginTest\DevicePluginTest.csproj", "{1E36C3FB-8436-4DDE-9D35-B13C30D77E91}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F4044661-FF28-4F16-AB93-CC51E6726029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{B0E8889B-08BB-4428-A86C-3542CF90BF41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -297,6 +299,26 @@ Global
 		{1E36C3FB-8436-4DDE-9D35-B13C30D77E91}.Release|x64.Build.0 = Release|Any CPU
 		{1E36C3FB-8436-4DDE-9D35-B13C30D77E91}.Release|x86.ActiveCfg = Release|Any CPU
 		{1E36C3FB-8436-4DDE-9D35-B13C30D77E91}.Release|x86.Build.0 = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|ARM.Build.0 = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|x64.Build.0 = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Debug|x86.Build.0 = Debug|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|ARM.Build.0 = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|ARM64.Build.0 = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|x64.ActiveCfg = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|x64.Build.0 = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|x86.ActiveCfg = Release|Any CPU
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -311,6 +333,7 @@ Global
 		{94481B0D-02ED-4F2E-A854-2E5AEECD1271} = {260827B9-B63E-42A2-8569-626658B36F3D}
 		{9E7DF32C-A3AD-49B8-807E-70550D91D8F3} = {A9A9F833-78C0-4E15-A59F-B981D3D49871}
 		{1E36C3FB-8436-4DDE-9D35-B13C30D77E91} = {F4044661-FF28-4F16-AB93-CC51E6726029}
+		{B0E8889B-08BB-4428-A86C-3542CF90BF41} = {F4044661-FF28-4F16-AB93-CC51E6726029}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89901F63-0ACF-405A-905D-EF3EB6FEC538}
