@@ -8,6 +8,9 @@ public class AddDeviceInput
     public AddDeviceInput()
     {
         Parameters = new List<DeviceConstCommandParamsOutput>();
+        this.InitCommandParams = new();
+        this.SetCommandParams = new ();
+        this.GetCommandParams = new ();
     }
 
     [Display(Name = "设备描述")]
@@ -28,6 +31,10 @@ public class AddDeviceInput
 
     [Display(Name ="命令常量参数")]
     public List<DeviceConstCommandParamsOutput> Parameters { get; set; }
+
+    public List<KeyValue<string,string>> InitCommandParams { get; set; }
+    public List<KeyValue<string,string>> SetCommandParams { get; set; }
+    public List<KeyValue<string,string>> GetCommandParams { get; set; }
 
 
 

@@ -1,6 +1,11 @@
 @page "/devices"
 @using FantasyHomeCenter.Application.DeviceCenter.Dto
 @using FantasyHomeCenter.Application.RoomCenter.Dto
+@using FantasyHomeCenter.Core.Enums
+@using Mapster
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Mvc.Filters
+@using Microsoft.AspNetCore.Razor.Language
 
 
 <div>
@@ -82,13 +87,86 @@
         </FormItem>
       @if (context.Parameters.Count!=0)
       {
-          foreach (DeviceConstCommandParamsOutput item in context.Parameters)
+          
+          var initList= context.Parameters.Where(x => x.Type == CommandParameterType.Init).ToList();
+          if (initList.Count != 0)
           {
-              if (item.IsList==false)
+              <Text>初始化常量参数</Text>
+              foreach (DeviceConstCommandParamsOutput item in initList)
               {
-                  <FormItem Label="@item.Name">
-                     
-                  </FormItem>
+                  if (item.IsList==false)
+                  {
+                      <FormItem Label="@item.Name">
+                          <Input  @bind-Value="context.InitCommandParams.First(x=>x.Key==item.Name).Value"></Input>
+                      </FormItem>
+                  }
+                  else
+                  {
+                      <FormItem Label="@item.Name">
+                           <Select DataSource="item.List"
+                                             TItemValue="string"
+                                             TItem="KeyValue<string,string>"
+                                             @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"
+                                             ValueName="@nameof(KeyValue<string,string>.Key)"
+                                             LabelName="@nameof(KeyValue<string,string>.Value)"
+                                     >
+                                     </Select>
+                      </FormItem>
+                  }
+              }
+          }
+          var setList= context.Parameters.Where(x => x.Type == CommandParameterType.Set).ToList();
+          if (setList.Count != 0)
+          {
+              <Text>设置设备状态常量参数</Text>
+              foreach (DeviceConstCommandParamsOutput item in setList)
+              {
+                  if (item.IsList==false)
+                  {
+                      <FormItem Label="@item.Name">
+                           <Input  @bind-Value="context.SetCommandParams.First(x=>x.Key==item.Name).Value"></Input>
+                      </FormItem>
+                  }
+                  else
+                  {
+                      <FormItem Label="@item.Name">
+                          <Select DataSource="item.List"
+                                  TItemValue="string"
+                                  TItem="KeyValue<string,string>"
+                                  @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"
+                                  ValueName="@nameof(KeyValue<string,string>.Key)"
+                                  LabelName="@nameof(KeyValue<string,string>.Value)"
+                          >
+                          </Select>
+                      </FormItem>
+                  }
+              }
+          }
+          var getList= context.Parameters.Where(x => x.Type == CommandParameterType.Get).ToList();
+          if (getList.Count != 0)
+          {
+              <Text>获得设备状态常量参数</Text>
+              foreach (DeviceConstCommandParamsOutput item in getList)
+              {
+                  if (item.IsList==false)
+                  {
+                      <FormItem Label="@item.Name">
+                          <Input  @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"></Input>
+                      </FormItem>
+                  }
+                  else
+                  {
+                      <FormItem Label="@item.Name">
+                          <Select DataSource="item.List"
+                                  TItemValue="string"
+                                  TItem="KeyValue<string,string>"
+                                  @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"
+                                  ValueName="@nameof(KeyValue<string,string>.Key)"
+                                  LabelName="@nameof(KeyValue<string,string>.Value)"
+                          >
+                          </Select>
+                      </FormItem>
+                  }
               }
           }
       }

@@ -8,6 +8,10 @@ namespace FantasyHomeCenter.Application.DeviceCenter.Dto;
 
 public class DeviceConstCommandParamsOutput
 {
+    public DeviceConstCommandParamsOutput()
+    {
+        this.List = new List<KeyValue<string, string>>();
+    }
     [Required]
     [Display(Name ="键")]
     public string Name { get; set; }
@@ -23,5 +27,13 @@ public class DeviceConstCommandParamsOutput
     public bool IsList { get; set; }
 
     [Description("若键值对是列表，该属性存放列表中的具体元素")]
-    public Dictionary<string,string> List { get; set; }
+    public List<KeyValue<string,string>> List { get; set; }
+}
+
+public class KeyValue<K,T>
+{
+    [Required(ErrorMessage = "必填")]
+    public K Key { get; set; }
+    [Required(ErrorMessage = "必填")]
+    public T Value { get; set; }
 }

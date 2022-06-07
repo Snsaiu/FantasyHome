@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
 using FantasyHomeCenter.Application.RoomCenter.Dto;
 using FantasyHomeCenter.Core.Entities;
+using FantasyHomeCenter.Core.Enums;
 using Furion.DatabaseAccessor;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
@@ -67,6 +68,33 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
         Device entity= input.Adapt<Device>();
         entity.Room = room;
         entity.Type = type;
+        foreach (var item in input.InitCommandParams)
+        {
+            CommandConstParams cp = new CommandConstParams();
+            cp.Device = entity;
+            cp.Name = item.Key;
+            cp.Value = item.Value;
+            cp.Type = CommandParameterType.Init;
+            entity.ConstCommandParams.Add(cp);
+        }
+        foreach (var item in input.SetCommandParams)
+        {
+            CommandConstParams cp = new CommandConstParams();
+            cp.Device = entity;
+            cp.Name = item.Key;
+            cp.Value = item.Value;
+            cp.Type = CommandParameterType.Set;
+            entity.ConstCommandParams.Add(cp);
+        }
+        foreach (var item in input.GetCommandParams)
+        {
+            CommandConstParams cp = new CommandConstParams();
+            cp.Device = entity;
+            cp.Name = item.Key;
+            cp.Value = item.Value;
+            cp.Type = CommandParameterType.Get;
+            entity.ConstCommandParams.Add(cp);
+        }
          var entityRes= await  this.repository.InsertNowAsync(entity);
          return new RESTfulResult<int>() { Succeeded = true };
       

@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using McMaster.NETCore.Plugins
 @using FantasyHomeCenter.DevicePluginInterface
+@using FantasyHomeCenter.EntityFramework.Core.PluginContext
 
 <PageTitle>Index</PageTitle>
 
@@ -13,24 +14,18 @@ Welcome to your new app.
 
 @code  {
 
-
+    [Inject]
+    private IPluginService ps { get; set; }
+    
+    
     //PluginService ps = new PluginService();
 
-    //protected override void OnInitialized()
-    //{
-    //    base.OnInitialized();
-    //    string path = @"G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\bin\Debug\net6.0\plugins\cefb84";
-    //    string name = "MideaAirControlV3LocalControl.dll";
-    //    var loader= PluginLoader.CreateFromAssemblyFile(
-    //        assemblyFile: Path.Combine(path,name),
-    //        sharedTypes: new[] { typeof(IDeviceController), typeof(IServiceCollection), typeof(ILogger) },
-    //        isUnloadable: true);
-    //   var find=  loader.LoadDefaultAssembly().GetTypes().Where(t => typeof(IDeviceController).IsAssignableFrom(t) && !t.IsAbstract).First();
-    //   var controller= (IDeviceController)Activator.CreateInstance(find);
-    //    string nn = controller.Author;
-    //   loader.
+    protected override void OnInitialized()
+    {
 
-    //}
+        this.ps.AddPluginAsync(@"G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\plugins\cbecf1", "MideaAirControlV3LocalControl");
+
+    }
 
 
 

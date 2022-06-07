@@ -9,6 +9,7 @@ public class Device:Entity
     public Device()
     {
         this.CreatedTime=DateTimeOffset.Now;
+        this.ConstCommandParams = new List<CommandConstParams>();
     }
 
     [Description("设备描述")]

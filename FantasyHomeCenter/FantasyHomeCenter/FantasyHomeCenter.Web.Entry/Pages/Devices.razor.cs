@@ -3,6 +3,7 @@ using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
 using FantasyHomeCenter.Application.RoomCenter;
 using FantasyHomeCenter.Application.RoomCenter.Dto;
+using FantasyHomeCenter.Core.Enums;
 using Furion.UnifyResult;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -135,6 +136,9 @@ public partial class Devices
     public  async void  deviceTypeSelectChangedHandle(DeviceTypeOutput deviceType)
     {
         this.addDeviceInputModel.Parameters = new List<DeviceConstCommandParamsOutput>();
+        this.addDeviceInputModel.InitCommandParams =new ();
+        this.addDeviceInputModel.SetCommandParams =new ();
+        this.addDeviceInputModel.GetCommandParams =new ();
         string key = deviceType.Key;
         var controllerRes=await this.deviceTypeService.GetDeviceControllerByKey(key);
         if (controllerRes.Succeeded)
@@ -149,11 +153,69 @@ public partial class Devices
                     var p = new DeviceConstCommandParamsOutput();
                     p.Name = item.Name;
                     p.Value = item.Value;
+                    p.Type = CommandParameterType.Init;
                     if (item.ValueHasEnums)
                     {
-                        p.List = item.ValueEnums;
+                        p.List =  item.ValueEnums.Select(x => new KeyValue<string, string>()
+                        {
+                            Key = x.Key,
+                            Value = x.Value
+
+                        }).ToList();
+                     
                         p.IsList = true;
                     }
+                    this.addDeviceInputModel.InitCommandParams.Add(new KeyValue<string, string>(){Key = p.Name});
+                    this.addDeviceInputModel.Parameters.Add(p);
+                }
+            }
+
+            var setList = controller.CreateSetDeviceParameters();
+            foreach (var item in setList)
+            {
+                if (item.ConstValue)
+                {
+
+                    var p = new DeviceConstCommandParamsOutput();
+                    p.Type = CommandParameterType.Set;
+                    p.Name = item.Name;
+                    p.Value = item.Value;
+                    if (item.ValueHasEnums)
+                    {
+                        p.List =  item.ValueEnums.Select(x => new KeyValue<string, string>()
+                        {
+                            Key = x.Key,
+                            Value = x.Value
+
+                        }).ToList();
+                        p.IsList = true;
+                    }
+                    this.addDeviceInputModel.SetCommandParams.Add(new KeyValue<string, string>(){Key = p.Name});
+                    this.addDeviceInputModel.Parameters.Add(p);
+                }
+            }
+            var getList = controller.CreateGetDeviceParameters();
+            foreach (var item in getList)
+            {
+                if (item.ConstValue)
+                {
+
+                    var p = new DeviceConstCommandParamsOutput();
+                    p.Type = CommandParameterType.Get;
+                    p.Name = item.Name;
+                    p.Value = item.Value;
+                    if (item.ValueHasEnums)
+                    {
+                        p.List =  item.ValueEnums.Select(x => new KeyValue<string, string>()
+                        {
+                            Key = x.Key,
+                            Value = x.Value
+
+                        }).ToList();
+                      
+                        p.IsList = true;
+                    }
+                    this.addDeviceInputModel.GetCommandParams.Add(new KeyValue<string, string>(){Key = p.Name});;
                     this.addDeviceInputModel.Parameters.Add(p);
                 }
             }
@@ -176,6 +238,7 @@ public partial class Devices
        this.addDeviceLoading = false;
        if (res.Succeeded)
        {
+           this.addDeviceInputModel = new AddDeviceInput();
           await pageChanged(null);
           await this.messageService.Success("创建设备完成!");
        }

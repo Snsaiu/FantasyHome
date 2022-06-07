@@ -72,8 +72,17 @@ public class PluginService : IPluginService, ISingleton
 
     public Task<RESTfulResult<IDeviceController>> AddPluginAsync(string path,string name)
     {
-        try
+        if (this.pluginModels.Any(x=>x.PluginPath==path))
         {
+            return Task.FromResult(new RESTfulResult<IDeviceController>()
+            {
+                Succeeded = true,
+               Data = this.pluginModels.First(x=>x.PluginPath==path).Controller
+            });
+        }
+
+     
+            
         PluginModel pm = new PluginModel();
   
         var loader = PluginLoader.CreateFromAssemblyFile(
@@ -96,12 +105,7 @@ public class PluginService : IPluginService, ISingleton
         }
         return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false, Errors = $"插件{name}读取出错" });
             
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
         
+       
     }
 }

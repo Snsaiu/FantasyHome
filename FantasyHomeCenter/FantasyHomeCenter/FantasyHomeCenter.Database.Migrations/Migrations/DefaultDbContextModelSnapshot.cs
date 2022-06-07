@@ -22,21 +22,6 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("CommandConstParamsDevice", b =>
-                {
-                    b.Property<int>("ConstCommandParamsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DevicesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ConstCommandParamsId", "DevicesId");
-
-                    b.HasIndex("DevicesId");
-
-                    b.ToTable("CommandConstParamsDevice");
-                });
-
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.CommandConstParams", b =>
                 {
                     b.Property<int>("Id")
@@ -47,6 +32,9 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
 
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<int?>("DeviceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -62,6 +50,8 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DeviceId");
 
                     b.ToTable("CommandConstParams");
                 });
@@ -336,19 +326,13 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                     b.ToTable("RoleUser");
                 });
 
-            modelBuilder.Entity("CommandConstParamsDevice", b =>
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.CommandConstParams", b =>
                 {
-                    b.HasOne("FantasyHomeCenter.Core.Entities.CommandConstParams", null)
-                        .WithMany()
-                        .HasForeignKey("ConstCommandParamsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("FantasyHomeCenter.Core.Entities.Device", "Device")
+                        .WithMany("ConstCommandParams")
+                        .HasForeignKey("DeviceId");
 
-                    b.HasOne("FantasyHomeCenter.Core.Entities.Device", null)
-                        .WithMany()
-                        .HasForeignKey("DevicesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Device");
                 });
 
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Device", b =>
@@ -404,6 +388,11 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Device", b =>
+                {
+                    b.Navigation("ConstCommandParams");
                 });
 
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.DeviceType", b =>

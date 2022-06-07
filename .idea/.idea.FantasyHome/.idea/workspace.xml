@@ -17,33 +17,18 @@
     <list default="true" id="cbb88a28-1890-4147-8a56-b2991f1bc285" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources/0b320759-4a5f-421e-b071-b3aaa464f425.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources/0b320759-4a5f-421e-b071-b3aaa464f425.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevicePluginsImpls/MideaAirControlV3LocalControl/MideaAirControlV3LocalControl.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DevicePluginsImpls/MideaAirControlV3LocalControl/MideaAirControlV3LocalControl.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DevicePluginsImpls/MideaAirControlV3LocalControl/MideaControlV3Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevicePluginsImpls/MideaAirControlV3LocalControl/MideaControlV3Controller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHome.sln" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHome.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceTypeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceTypeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDevicePluginOutput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDevicePluginOutput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDeviceTypeInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDeviceTypeInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/IDeviceTypeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/IDeviceTypeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorApp1/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorApp1/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorApp1/PluginService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorApp1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorApp1/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDeviceInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDeviceInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/DeviceConstCommandParamsOutput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/DeviceConstCommandParamsOutput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/CommandConstParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/CommandConstParams.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/Device.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/Device.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/DeviceType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/DeviceType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/FantasyHomeCenter.Database.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/FantasyHomeCenter.Database.Migrations.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/20220530153202_v1.0.0.0.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/20220530153202_v1.0.0.0.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/20220602125555_v1.0.0.1.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/20220602125555_v1.0.0.1.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/DefaultDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/DefaultDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/FantasyHomeCenter.DevicePluginInterface.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/FantasyHomeCenter.DevicePluginInterface.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/IDeviceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/IDeviceController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/FantasyHomeCenter.EntityFramework.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/FantasyHomeCenter.EntityFramework.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Core/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/DeviceTypes.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/DeviceTypes.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/DeviceTypes.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/DeviceTypes.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/DevicePluginTest/DevicePluginTest.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Test/DevicePluginTest/DevicePluginTest.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/DevicePluginTest/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Test/DevicePluginTest/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/PluginContext/PluginService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/PluginContext/PluginService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +187,7 @@
       <item itemvalue=".NET Launch Settings Profile.FantasyHome.Api: IIS Express" />
       <item itemvalue=".NET Launch Settings Profile.FantasyHomeCenter.Web.Entry" />
       <item itemvalue=".NET Launch Settings Profile.FantasyHomeCenter.Web.Entry: IIS Express" />
+      <item itemvalue="Xamarin.Android.FantasyHome.UI" />
       <item itemvalue="Xamarin.iOS.FantasyHome.UI" />
     </list>
   </component>
@@ -227,6 +213,8 @@
       <workItem from="1654176481510" duration="10987000" />
       <workItem from="1654348182778" duration="12455000" />
       <workItem from="1654520269389" duration="477000" />
+      <workItem from="1654605737042" duration="317000" />
+      <workItem from="1654607296658" duration="6977000" />
     </task>
     <task id="LOCAL-00001" summary="添加天气接口">
       <created>1653580563906</created>
@@ -355,6 +343,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/PluginContext/PluginService.cs</url>
+          <line>76</line>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.EntityFramework.Core\PluginContext\PluginService.cs" initialLine="76" containingFunctionPresentation="method 'AddPluginAsync'">
+            <startOffsets>
+              <option value="2252" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2287" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceService.cs</url>
+          <line>97</line>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Application\DeviceCenter\DeviceService.cs" initialLine="97" containingFunctionPresentation="method 'AddDeviceAsync'">
+            <startOffsets>
+              <option value="3705" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3766" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

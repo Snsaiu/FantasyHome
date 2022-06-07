@@ -19,5 +19,5 @@ public class CommandConstParams : Entity
     [Required]
     public CommandParameterType Type { get; set; }
 
-    public virtual ICollection<Device> Devices{ get; set; }
+    public Device Device{ get; set; }
 }
