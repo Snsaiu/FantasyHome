@@ -15,20 +15,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbb88a28-1890-4147-8a56-b2991f1bc285" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources/0b320759-4a5f-421e-b071-b3aaa464f425.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources/0b320759-4a5f-421e-b071-b3aaa464f425.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/SetDeviceStateInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorApp1/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorApp1/Pages/Index.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorApp1/PluginService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorApp1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorApp1/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DevicePluginsImpls/MideaAirControlV3LocalControl/MideaControlV3Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DevicePluginsImpls/MideaAirControlV3LocalControl/MideaControlV3Controller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDeviceInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/AddDeviceInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/DeviceConstCommandParamsOutput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/Dto/DeviceConstCommandParamsOutput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/CommandConstParams.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/CommandConstParams.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/Device.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Core/Entities/Device.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/DefaultDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Database.Migrations/Migrations/DefaultDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/PluginContext/PluginService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/PluginContext/PluginService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceTypeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceTypeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/IDeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/IDeviceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/IDeviceTypeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/IDeviceTypeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/FantasyHomeCenter.Application.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/DeviceInputParameter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/DeviceInputParameter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/IDeviceController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/IDeviceController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Devices.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/plugins/cbecf1/MideaAirControlV3LocalControl.dll" beforeDir="false" afterPath="$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/plugins/cbecf1/MideaAirControlV3LocalControl.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +213,8 @@
       <workItem from="1654348182778" duration="12455000" />
       <workItem from="1654520269389" duration="477000" />
       <workItem from="1654605737042" duration="317000" />
-      <workItem from="1654607296658" duration="6977000" />
+      <workItem from="1654607296658" duration="7027000" />
+      <workItem from="1654690478696" duration="10628000" />
     </task>
     <task id="LOCAL-00001" summary="添加天气接口">
       <created>1653580563906</created>
@@ -237,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654187595083</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="完成添加设备页面，下面尽快完成操控">
+      <created>1654614661038</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654614661038</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +268,8 @@
     <MESSAGE value="添加天气接口" />
     <MESSAGE value="添加ui" />
     <MESSAGE value="添加页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加页面" />
+    <MESSAGE value="完成添加设备页面，下面尽快完成操控" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成添加设备页面，下面尽快完成操控" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -359,13 +367,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceService.cs</url>
-          <line>97</line>
+          <line>106</line>
           <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Application\DeviceCenter\DeviceService.cs" initialLine="97" containingFunctionPresentation="method 'AddDeviceAsync'">
             <startOffsets>
-              <option value="3705" />
+              <option value="4143" />
             </startOffsets>
             <endOffsets>
-              <option value="3766" />
+              <option value="4204" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="29" />

@@ -10,56 +10,56 @@
 
 <div>
     <Row>
-        <Button @onclick="async () =>await this.openAddDeviceDialog()">创建设备</Button>
+        <Button @onclick="async () => await this.openAddDeviceDialog()">创建设备</Button>
     </Row>
     <Row>
         <Col Span="24">
             <Table @ref="table" TItem="DeviceOutput"
-                   DataSource="@data.Items" 
-                 Total="data.TotalCount"
+                   DataSource="@data.Items"
+                   Total="data.TotalCount"
                    @bind-PageIndex="condition.PageIndex"
                    @bind-PageSize="condition.PageSize"
                    @bind-SelectedRows="selectedRows">
-                               <Selection Key="@context.Id.ToString()" />
-                               <Column @bind-Field="@context.Name"/>
-                               <Column @bind-Field="@context.Type"/>
-                               <Column @bind-Field="@context.RoomName"/>
-                               <Column @bind-Field="@context.Address"/>
-                               <Column @bind-Field="@context.State"></Column>
-                               <Column @bind-Field="@context.Description"></Column>
-                                  <ActionColumn Title="选项">
-                                      <Space>
-                                          <SpaceItem>
-                                              <Button >设置状态</Button>
-                                          </SpaceItem>
-                                          <SpaceItem>
-                                              <Button Type="warning">编辑元数据</Button>
-                                          </SpaceItem>
-                                          <SpaceItem>
-                                              <Button Danger OnClick="() => deleteItem(context.Id)">删除设备</Button>
-                                          </SpaceItem>
-                                      </Space>
-                                   </ActionColumn>
-                        </Table>
+                <Selection Key="@context.Id.ToString()"/>
+                <Column @bind-Field="@context.Name"/>
+                <Column @bind-Field="@context.Type"/>
+                <Column @bind-Field="@context.RoomName"/>
+                <Column @bind-Field="@context.Address"/>
+                <Column @bind-Field="@context.State"></Column>
+                <Column @bind-Field="@context.Description"></Column>
+                <ActionColumn Title="选项">
+                    <Space>
+                        <SpaceItem>
+                            <Button OnClick="() => setState(context.Id, context.DeviceTypeId, context.Name, context.RoomName)">状态</Button>
+                        </SpaceItem>
+                        <SpaceItem>
+                            <Button Type="warning">编辑元数据</Button>
+                        </SpaceItem>
+                        <SpaceItem>
+                            <Button Danger OnClick="() => deleteItem(context.Id)">删除设备</Button>
+                        </SpaceItem>
+                    </Space>
+                </ActionColumn>
+            </Table>
         </Col>
     </Row>
 </div>
 
 <Modal Title="添加设备"
        Visible="this.addDeviceDialog"
-       OnOk="x=>this.addDeviceForm.Submit()"
-       OnCancel="()=>this.addDeviceDialog=false">
+       OnOk="x => this.addDeviceForm.Submit()"
+       OnCancel="() => this.addDeviceDialog = false">
     <Form Loading="this.addDeviceLoading" Model="@this.addDeviceInputModel"
           LabelColSpan="8"
           WrapperColSpan="16"
-          OnFinish="async x=>await this.submitAddDeviceHandle(x)"
-          OnFinishFailed="x=>submitAddDeviceFail(x)"
+          OnFinish="async x => await this.submitAddDeviceHandle(x)"
+          OnFinishFailed="x => submitAddDeviceFail(x)"
           @ref="@addDeviceForm">
         <FormItem Label="设备名称">
-            <Input @bind-Value="@context.Name" />
+            <Input @bind-Value="@context.Name"/>
         </FormItem>
         <FormItem Label="设备地址">
-            <Input @bind-Value="@context.Address" />
+            <Input @bind-Value="@context.Address"/>
         </FormItem>
         <FormItem Label="房间名">
             <Select DataSource="deviceTypesAndRoomsOutput.Rooms"
@@ -68,11 +68,10 @@
                     @bind-Value="@context.RoomId"
                     DefaultValue="deviceTypesAndRoomsOutput.Rooms.First().Id"
                     ValueName="@nameof(RoomOutput.Id)"
-                    LabelName="@nameof(RoomOutput.RoomName)"
-            >
+                    LabelName="@nameof(RoomOutput.RoomName)">
             </Select>
         </FormItem>
-        
+
         <FormItem Label="设备类型">
             <Select DataSource="deviceTypesAndRoomsOutput.DeviceTypes"
                     TItemValue="int"
@@ -81,100 +80,147 @@
                     @bind-Value="@context.DeviceTypeId"
                     DefaultValue="deviceTypesAndRoomsOutput.DeviceTypes.First().Id"
                     ValueName="@nameof(DeviceTypeOutput.Id)"
-                    LabelName="@nameof(DeviceTypeOutput.DeviceTypeName)"
-            >
+                    LabelName="@nameof(DeviceTypeOutput.DeviceTypeName)">
             </Select>
         </FormItem>
-      @if (context.Parameters.Count!=0)
-      {
-          
-          var initList= context.Parameters.Where(x => x.Type == CommandParameterType.Init).ToList();
-          if (initList.Count != 0)
-          {
-              <Text>初始化常量参数</Text>
-              foreach (DeviceConstCommandParamsOutput item in initList)
-              {
-                  if (item.IsList==false)
-                  {
-                      <FormItem Label="@item.Name">
-                          <Input  @bind-Value="context.InitCommandParams.First(x=>x.Key==item.Name).Value"></Input>
-                      </FormItem>
-                  }
-                  else
-                  {
-                      <FormItem Label="@item.Name">
-                           <Select DataSource="item.List"
-                                             TItemValue="string"
-                                             TItem="KeyValue<string,string>"
-                                             @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"
-                                             ValueName="@nameof(KeyValue<string,string>.Key)"
-                                             LabelName="@nameof(KeyValue<string,string>.Value)"
-                                     >
-                                     </Select>
-                      </FormItem>
-                  }
-              }
-          }
-          var setList= context.Parameters.Where(x => x.Type == CommandParameterType.Set).ToList();
-          if (setList.Count != 0)
-          {
-              <Text>设置设备状态常量参数</Text>
-              foreach (DeviceConstCommandParamsOutput item in setList)
-              {
-                  if (item.IsList==false)
-                  {
-                      <FormItem Label="@item.Name">
-                           <Input  @bind-Value="context.SetCommandParams.First(x=>x.Key==item.Name).Value"></Input>
-                      </FormItem>
-                  }
-                  else
-                  {
-                      <FormItem Label="@item.Name">
-                          <Select DataSource="item.List"
-                                  TItemValue="string"
-                                  TItem="KeyValue<string,string>"
-                                  @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"
-                                  ValueName="@nameof(KeyValue<string,string>.Key)"
-                                  LabelName="@nameof(KeyValue<string,string>.Value)"
-                          >
-                          </Select>
-                      </FormItem>
-                  }
-              }
-          }
-          var getList= context.Parameters.Where(x => x.Type == CommandParameterType.Get).ToList();
-          if (getList.Count != 0)
-          {
-              <Text>获得设备状态常量参数</Text>
-              foreach (DeviceConstCommandParamsOutput item in getList)
-              {
-                  if (item.IsList==false)
-                  {
-                      <FormItem Label="@item.Name">
-                          <Input  @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"></Input>
-                      </FormItem>
-                  }
-                  else
-                  {
-                      <FormItem Label="@item.Name">
-                          <Select DataSource="item.List"
-                                  TItemValue="string"
-                                  TItem="KeyValue<string,string>"
-                                  @bind-Value="context.GetCommandParams.First(x=>x.Key==item.Name).Value"
-                                  ValueName="@nameof(KeyValue<string,string>.Key)"
-                                  LabelName="@nameof(KeyValue<string,string>.Value)"
-                          >
-                          </Select>
-                      </FormItem>
-                  }
-              }
-          }
-      }
-        
+        @if (context.Parameters.Count != 0)
+        {
+            var initList = context.Parameters.Where(x => x.Type == CommandParameterType.Init).ToList();
+            if (initList.Count != 0)
+            {
+                <Text>初始化常量参数</Text>
+                foreach (DeviceConstCommandParamsOutput item in initList)
+                {
+                    if (item.IsList == false)
+                    {
+                        <FormItem Label="@item.Name">
+                            <Input @bind-Value="context.InitCommandParams.First(x => x.Key == item.Name).Value"></Input>
+                        </FormItem>
+                    }
+                    else
+                    {
+                        <FormItem Label="@item.Name">
+                            <Select DataSource="item.List"
+                                    TItemValue="string"
+                                    TItem="KeyValue<string, string>"
+                                    @bind-Value="context.GetCommandParams.First(x => x.Key == item.Name).Value"
+                                    ValueName="@nameof(KeyValue<string, string>.Value)"
+                                    LabelName="@nameof(KeyValue<string, string>.Key)">
+                            </Select>
+                        </FormItem>
+                    }
+                }
+            }
+            var setList = context.Parameters.Where(x => x.Type == CommandParameterType.Set).ToList();
+            if (setList.Count != 0)
+            {
+                <Text>设置设备状态常量参数</Text>
+                foreach (DeviceConstCommandParamsOutput item in setList)
+                {
+                    if (item.IsList == false)
+                    {
+                        <FormItem Label="@item.Name">
+                            <Input @bind-Value="context.SetCommandParams.First(x => x.Key == item.Name).Value"></Input>
+                        </FormItem>
+                    }
+                    else
+                    {
+                        <FormItem Label="@item.Name">
+                            <Select DataSource="item.List"
+                                    TItemValue="string"
+                                    TItem="KeyValue<string, string>"
+                                    @bind-Value="context.GetCommandParams.First(x => x.Key == item.Name).Value"
+                                    ValueName="@nameof(KeyValue<string, string>.Value)"
+                                    LabelName="@nameof(KeyValue<string, string>.Key)">
+                            </Select>
+                        </FormItem>
+                    }
+                }
+            }
+            var getList = context.Parameters.Where(x => x.Type == CommandParameterType.Get).ToList();
+            if (getList.Count != 0)
+            {
+                <Text>获得设备状态常量参数</Text>
+                foreach (DeviceConstCommandParamsOutput item in getList)
+                {
+                    if (item.IsList == false)
+                    {
+                        <FormItem Label="@item.Name">
+                            <Input @bind-Value="context.GetCommandParams.First(x => x.Key == item.Name).Value"></Input>
+                        </FormItem>
+                    }
+                    else
+                    {
+                        <FormItem Label="@item.Name">
+                            <Select DataSource="item.List"
+                                    TItemValue="string"
+                                    TItem="KeyValue<string, string>"
+                                    @bind-Value="context.GetCommandParams.First(x => x.Key == item.Name).Value"
+                                    ValueName="@nameof(KeyValue<string, string>.Value)"
+                                    LabelName="@nameof(KeyValue<string, string>.Key)">
+                            </Select>
+                        </FormItem>
+                    }
+                }
+            }
+        }
 
-        
+
         <FormItem Label="设备描述">
             <TextArea @bind-Value="@context.Description" AllowClear="true"></TextArea>
         </FormItem>
+    </Form>
+</Modal>
+<Modal Title="状态"
+       Visible="this.setStateVisible"
+       OnOk="x => this.setStateForm.Submit()"
+       OnCancel="() => this.setStateVisible = false">
+    <Form Loading="this.setStateLoading"
+          Model="@this.setDeviceStateInputModel"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="async x => await this.submitSetDeviceState(x)"
+          
+          @ref="@setStateForm">
+        <FormItem Label="设备名称">
+            <Input readonly @bind-Value="@context.DeviceName"/>
+        </FormItem>
+        <FormItem Label="房间">
+            <Input readonly @bind-Value="@context.Room"/>
+        </FormItem>
+            <Descriptions Title="设备状态" Bordered Size="DescriptionsSize.Small" Layout="@DescriptionsLayout.Vertical">
+            @if (context.CurrentStates.Count != 0)
+            {
+                foreach (var item in context.CurrentStates)
+                {
+                    <DescriptionsItem Title="@item.Key">@item.Value</DescriptionsItem>
+                }
+            }
+        </Descriptions>
+        @if (context.Values.Count != 0)
+        {
+            <Text>设置设备状态常量参数</Text>
+            foreach (DeviceConstCommandParamsOutput item in context.Values)
+            {
+                if (item.IsList == false)
+                {
+                    <FormItem Label="@item.Name">
+                        <Input @bind-Value="context.Values.First(x => x.Name == item.Name).Value"></Input>
+                    </FormItem>
+                }
+                else
+                {
+                    <FormItem Label="@item.Name">
+                        <Select DataSource="item.List"
+                                TItemValue="string"
+                                TItem="KeyValue<string, string>"
+                                @bind-Value="context.Values.First(x => x.Name == item.Name).Value"
+                                ValueName="@nameof(KeyValue<string, string>.Value)"
+                                LabelName="@nameof(KeyValue<string, string>.Key)">
+                        </Select>
+                    </FormItem>
+                }
+            }
+        }
     </Form>
 </Modal>

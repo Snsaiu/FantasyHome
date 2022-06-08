@@ -27,4 +27,20 @@ public interface IDeviceService
     /// <param name="input"></param>
     /// <returns></returns>
     Task<RESTfulResult<int>> AddDeviceAsync(AddDeviceInput input);
+
+    /// <summary>
+    /// 根据id获得 获得命令参数
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<RESTfulResult<Dictionary<string, string>>> GetGetDeviceCommandParamsbyDeviceId(int id);
+
+    /// <summary>
+    /// 根据id获得设置命令参数
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<RESTfulResult<Dictionary<string, string>>> GetSetDeviceCommandParamsByDeviceId(int id);
+
+
 }

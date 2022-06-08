@@ -176,6 +176,15 @@ public class DeviceTypeService:IDynamicApiController,ITransient,IDeviceTypeServi
        
     }
 
+    public async Task<RESTfulResult<IDeviceController>> GetDeviceControllerById(int id)
+    {
+        var entity= this.repository.AsEnumerable().FirstOrDefault(x => x.Id == id);
+        if (entity == null)
+            return await Task.FromResult(new RESTfulResult<IDeviceController>() { Errors = "未发现设备类型", Succeeded = false });
+
+        return await this.GetDeviceControllerByKey(entity.Key);
+    }
+
     public async Task<RESTfulResult<IDeviceController>> GetDeviceControllerByKey(string key)
     {
      
@@ -199,5 +208,10 @@ public class DeviceTypeService:IDynamicApiController,ITransient,IDeviceTypeServi
             return getRes;
         }
 
+    }
+
+    public async Task<RESTfulResult<string>> GetDeviceTypePluginPathById(int id)
+    {
+        return await Task.FromResult( new RESTfulResult<string>(){Succeeded=true, Data= this.repository.First(x => x.Id == id).PluginPath});
     }
 }

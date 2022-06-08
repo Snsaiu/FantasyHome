@@ -33,7 +33,7 @@ namespace MideaAirControlV3LocalControl
                 {"关闭","0"},
             }));
 
-            p.Add(new DeviceInputParameter("温度", false, "设置空调温度"));
+            p.Add(new DeviceInputParameter("温度", false, "设置空调温度") { Value = "26" });
             p.Add(new DeviceInputParameter("模式", false, "设置空调工作模式","1",new Dictionary<string,string>
             {
                 {"自动","1"},
@@ -67,7 +67,7 @@ namespace MideaAirControlV3LocalControl
                 {"关闭","0"},
             }));
 
-            p.Add(new DeviceInputParameter("温度", false, "设置空调温度"));
+            p.Add(new DeviceInputParameter("温度", false, "设置空调温度"){Value="26"});
             p.Add(new DeviceInputParameter("模式", false, "设置空调工作模式", "1", new Dictionary<string, string>
             {
                 {"自动","1"},
@@ -100,7 +100,7 @@ namespace MideaAirControlV3LocalControl
                 {"关闭","0"},
             }));
 
-            p.Add(new DeviceInputParameter("温度", false, "设置空调温度"));
+            p.Add(new DeviceInputParameter("温度", false, "设置空调温度") { Value = "26" });
             p.Add(new DeviceInputParameter("模式", false, "设置空调工作模式", "1", new Dictionary<string, string>
             {
                 {"自动","1"},
@@ -114,7 +114,7 @@ namespace MideaAirControlV3LocalControl
             return p;
         }
 
-        public async Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input)
+        public async Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input,string pluginPath)
         {
 
             foreach (DeviceInputParameter p in input)
@@ -128,7 +128,7 @@ namespace MideaAirControlV3LocalControl
             string param =
                 $"0 {input.First(x => x.Name == "acip").Value} {input.First(x => x.Name == "acid").Value} {input.First(x => x.Name == "ack1").Value} {input.First(x => x.Name == "actoken").Value}";
 
-            ProcessStartInfo startinfo = new ProcessStartInfo("./mideaair.exe",param);
+            ProcessStartInfo startinfo = new ProcessStartInfo(Path.Combine(pluginPath ,"mideaair.exe"),param);
             startinfo.CreateNoWindow = true;
             startinfo.RedirectStandardOutput = true;
             startinfo.RedirectStandardError = true;
@@ -143,8 +143,8 @@ namespace MideaAirControlV3LocalControl
                Dictionary<string, string> res = new Dictionary<string, string>
                {
                    { "空调状态", model.power_state },
-                   { "提示音状态", model.prompt_tone },
-                   { "设定温度", model.target_temperature },
+                   { "提示音", model.prompt_tone },
+                   { "温度", model.target_temperature },
                    { "模式", model.operational_mode },
                    { "风速", model.fan_speed },
                    { "扫风模式", model.swing_mode },
@@ -161,7 +161,7 @@ namespace MideaAirControlV3LocalControl
 
         }
 
-        public async Task<CommandResult> InitAsync(List<DeviceInputParameter> input)
+        public async Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath)
         {
             foreach (DeviceInputParameter p in input)
             {
@@ -174,7 +174,7 @@ namespace MideaAirControlV3LocalControl
             string param =
                 $"0 {input.First(x => x.Name == "acip").Value} {input.First(x => x.Name == "acid").Value} {input.First(x => x.Name == "ack1").Value} {input.First(x => x.Name == "actoken").Value}";
 
-            ProcessStartInfo startinfo = new ProcessStartInfo("./mideaair.exe", param);
+            ProcessStartInfo startinfo = new ProcessStartInfo(Path.Combine(pluginPath, "mideaair.exe"), param);
             startinfo.CreateNoWindow = true;
             startinfo.RedirectStandardOutput = true;
             startinfo.RedirectStandardError = true;
@@ -189,8 +189,8 @@ namespace MideaAirControlV3LocalControl
                 Dictionary<string, string> res = new Dictionary<string, string>
                 {
                     { "空调状态", model.power_state },
-                    { "提示音状态", model.prompt_tone },
-                    { "设定温度", model.target_temperature },
+                    { "提示音", model.prompt_tone },
+                    { "温度", model.target_temperature },
                     { "模式", model.operational_mode },
                     { "风速", model.fan_speed },
                     { "扫风模式", model.swing_mode },
@@ -207,7 +207,7 @@ namespace MideaAirControlV3LocalControl
 
         }
 
-        public async Task<CommandResult> SetDeviceStateAsync(List<DeviceInputParameter> input)
+        public async Task<CommandResult> SetDeviceStateAsync(List<DeviceInputParameter> input, string pluginPath)
         {
             foreach (DeviceInputParameter p in input)
             {
@@ -227,7 +227,7 @@ namespace MideaAirControlV3LocalControl
                 $"{input.First(x => x.Name == "温度").Value} "+
                 $"{input.First(x => x.Name == "模式").Value} ";
 
-            ProcessStartInfo startinfo = new ProcessStartInfo("./mideaair.exe", param);
+            ProcessStartInfo startinfo = new ProcessStartInfo(Path.Combine(pluginPath, "mideaair.exe"), param);
             startinfo.CreateNoWindow = true;
             startinfo.RedirectStandardOutput = true;
             startinfo.RedirectStandardError = true;
@@ -242,8 +242,8 @@ namespace MideaAirControlV3LocalControl
                 Dictionary<string, string> res = new Dictionary<string, string>
                 {
                     { "空调状态", model.power_state },
-                    { "提示音状态", model.prompt_tone },
-                    { "设定温度", model.target_temperature },
+                    { "提示音", model.prompt_tone },
+                    { "温度", model.target_temperature },
                     { "模式", model.operational_mode },
                     { "风速", model.fan_speed },
                     { "扫风模式", model.swing_mode },

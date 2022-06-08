@@ -57,18 +57,18 @@ public interface IDeviceController
     /// 启动或者初始化调用
     /// </summary>
     /// <returns></returns>
-    Task<CommandResult> InitAsync(List<DeviceInputParameter> input);
+    Task<CommandResult> InitAsync(List<DeviceInputParameter> input,string pluginPath);
 
     /// <summary>
     /// 设置设备状态
     /// </summary>
     /// <returns></returns>
-    Task<CommandResult> SetDeviceStateAsync(List<DeviceInputParameter> input);
+    Task<CommandResult> SetDeviceStateAsync(List<DeviceInputParameter> input,string pluginPath);
     /// <summary>
     /// 获得用户状态
     /// </summary>
     /// <returns></returns>
-    Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input);
+    Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input,string pluginPath);
 
 
 }

@@ -40,9 +40,23 @@ public interface IDeviceTypeService
     Task<RESTfulResult<AddDevicePluginOutput>> UploadFileAsync(List<IFormFile> files);
 
     /// <summary>
+    /// 根据主键获得控制器
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<RESTfulResult<IDeviceController>> GetDeviceControllerById(int id);
+
+    /// <summary>
     /// 根据key获得插件控制器
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
     Task<RESTfulResult<IDeviceController>> GetDeviceControllerByKey(string key);
+
+    /// <summary>
+    /// 根据主键获得插件目录
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<RESTfulResult<string>> GetDeviceTypePluginPathById(int id);
 }

@@ -42,6 +42,8 @@ public sealed class DeviceInputParameter
         (Name, ConstValue, Description) = (name, constValue, description);
       
     }
+
+
     public DeviceInputParameter(string name, bool constValue, string description,Dictionary<string,string>? valueEnums)
     {
         if (valueEnums != null && valueEnums.Count != 0)
