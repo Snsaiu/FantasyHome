@@ -175,8 +175,7 @@ namespace FantasyHome.UI.ViewModels;
             throw new InvalidOperationException();
         }
     }
-
-
+    
 
 
 

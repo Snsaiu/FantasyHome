@@ -5,11 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FantasyHome.UI.Views"
     WidthRequest="500"
+    x:Name="Shell"
     xmlns:res="clr-namespace:FantasyHome.UI.Resources"
     >
-   
-
-
     <Shell.FlyoutIcon>
         <FontImageSource FontFamily="typicons"
                          Glyph="{Static res:IconFont.ThMenu}"
@@ -17,7 +15,7 @@
                          Color="white"/>
     </Shell.FlyoutIcon>
 
-    <ShellItem Route="LoginPage" FlyoutItemIsVisible="True">
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="false">
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"></ShellContent>
     </ShellItem>
     <FlyoutItem Title="主页">
@@ -30,6 +28,30 @@
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
         </Tab>
     </FlyoutItem>
-    
+
+      <FlyoutItem Title="次卧">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+          <FlyoutItem Title="主卧">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+              <FlyoutItem Title="厨房">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+                <FlyoutItem Title="卫生间">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+        </Tab>
+    </FlyoutItem>
+
 
 </Shell>

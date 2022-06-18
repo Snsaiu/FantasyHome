@@ -328,6 +328,9 @@
 	  <MauiXaml Update="Views\LoginPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\AirControlComponent.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -345,5 +348,9 @@
 	  <PackageReference Include="FantasyResultModel" Version="1.0.0" />
 	  <PackageReference Include="RestClient" Version="3.860.28084" />
 	  <PackageReference Include="RestSharp" Version="106.12.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\FantasyHome.Application\FantasyHome.Application.csproj" />
 	</ItemGroup>
 </Project>

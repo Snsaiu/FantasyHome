@@ -70,6 +70,9 @@
         
         <comp:HomeGridComponent Margin="1,5" HorizontalOptions="Fill" VerticalOptions="Start"></comp:HomeGridComponent>
         
+        <!-- 空调 -->
+        <comp:AirControlComponent></comp:AirControlComponent>
+        
         <comp:SwitchComponent WidthRequest="120" HorizontalOptions="Start" TouchCommand="{Binding ReplaceKeTingLightCommand}" Title="客厅灯" State="{Binding KeTingLightState}" OffBarColor="Gray" OnBarColor="Orange">
             <comp:SwitchComponent.OnIcon>
                 <FontImageSource  FontFamily="typicons"
