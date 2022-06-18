@@ -1,10 +1,20 @@
-﻿namespace FantasyHome.UI
+﻿using FantasyHome.Application;
+
+namespace FantasyHome.UI
 {
     public partial class AppShell : Shell
     {
-        public AppShell()
+
+     //   public ObservableCollection<dynamic> FlyoutItems { get; set; }
+        public AppShell(AppShellModel appShellModel)
         {
+           
             InitializeComponent();
+            this.BindingContext = appShellModel;
+ 
+
         }
+
+       
     }
 }

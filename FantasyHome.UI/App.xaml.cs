@@ -1,12 +1,12 @@
 ﻿namespace FantasyHome.UI
 {
-    public partial class App : Application
+    public partial class App : Microsoft.Maui.Controls.Application
     {
-        public App()
+        public App(AppShell shell)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = shell; //new AppShell();
         }
     }
 }

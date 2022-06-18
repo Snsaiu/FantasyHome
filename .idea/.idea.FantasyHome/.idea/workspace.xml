@@ -15,6 +15,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbb88a28-1890-4147-8a56-b2991f1bc285" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/FantasyHome.Application/Dto/RoomOutput.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHome.Application/IRoomApplication.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHome.Application/Impls/RoomApplication.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHome.Application/ResultBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHome.UI/AppShellModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FantasyHome.UI/Resources/Fonts/iconfont.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources/0b320759-4a5f-421e-b071-b3aaa464f425.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FantasyHome/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -22,6 +30,14 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/FantasyHome.Application/Dto/RoomOutput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FantasyHome.UI/AppShell.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FantasyHome.UI/AppShellModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FantasyHome.UI/ViewModels/LoginPageModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FantasyHome.UI/Views/LoginPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FantasyHome.UI/Views/MainPage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -42,6 +58,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: FantasyHome.UI&quot;: &quot;iPhone 11&quot;,
+    &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: FantasyHome.UI.ios&quot;: &quot;iPhone 11&quot;,
     &quot;DeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider&quot;: &quot;Simulator&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -53,7 +70,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderCppFileTemplatesSettingsId&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -62,6 +79,7 @@
     ]
   }
 }</component>
+  <component name="RunManager" selected="Xamarin.iOS.FantasyHome.UI.ios">
   <component name="RunManager" selected="Xamarin.Android.FantasyHome.UI">
     <configuration name="BlazorApp1" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/BlazorApp1/BlazorApp1.csproj" />
@@ -153,16 +171,16 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="FantasyHome.UI" type="XamarinAndroidProject" factoryName="Xamarin.Android">
+    <configuration name="FantasyHome.UI.android" type="XamarinAndroidProject" factoryName="Xamarin.Android">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/FantasyHome.UI/FantasyHome.UI.csproj" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="DEPLOY_BEHAVIOUR_NAME" value="Default" />
       <method v="2">
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="FantasyHome.UI" type="XamarinIOSProject" factoryName="Xamarin.iOS">
+    <configuration name="FantasyHome.UI.ios" type="XamarinIOSProject" factoryName="Xamarin.iOS">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/FantasyHome.UI/FantasyHome.UI.csproj" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="IS_PASS_PARENT_ENVS" value="false" />
@@ -175,8 +193,8 @@
       <item itemvalue=".NET Launch Settings Profile.FantasyHome.Api: IIS Express" />
       <item itemvalue=".NET Launch Settings Profile.FantasyHomeCenter.Web.Entry" />
       <item itemvalue=".NET Launch Settings Profile.FantasyHomeCenter.Web.Entry: IIS Express" />
-      <item itemvalue="Xamarin.Android.FantasyHome.UI" />
-      <item itemvalue="Xamarin.iOS.FantasyHome.UI" />
+      <item itemvalue="Xamarin.Android.FantasyHome.UI.android" />
+      <item itemvalue="Xamarin.iOS.FantasyHome.UI.ios" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -203,6 +221,14 @@
       <workItem from="1654520269389" duration="477000" />
       <workItem from="1654605737042" duration="317000" />
       <workItem from="1654607296658" duration="7027000" />
+      <workItem from="1654690478696" duration="10628000" />
+      <workItem from="1654768591705" duration="504000" />
+      <workItem from="1654769261492" duration="5672000" />
+      <workItem from="1654852927185" duration="598000" />
+      <workItem from="1655304553504" duration="503000" />
+      <workItem from="1655453210335" duration="470000" />
+      <workItem from="1655456505705" duration="674000" />
+      <workItem from="1655530640906" duration="9600000" />
       <workItem from="1654690478696" duration="10859000" />
       <workItem from="1654909099417" duration="2299000" />
       <workItem from="1654941231891" duration="620000" />
@@ -276,105 +302,49 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/Login.razor.cs</url>
           <line>67</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\Pages\Login.razor.cs" initialLine="67" containingFunctionPresentation="method 'login'">
-            <startOffsets>
-              <option value="1707" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1759" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\Pages\Login.razor.cs" initialLine="67" containingFunctionPresentation="method 'login'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/DeviceTypes.razor.cs</url>
           <line>208</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\Pages\DeviceTypes.razor.cs" initialLine="183" containingFunctionPresentation="method 'upLoadSuccess'">
-            <startOffsets>
-              <option value="4903" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4904" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\Pages\DeviceTypes.razor.cs" initialLine="183" containingFunctionPresentation="method 'upLoadSuccess'" />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Web.Entry/Pages/DeviceTypes.razor.cs</url>
           <line>117</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\Pages\DeviceTypes.razor.cs" initialLine="109" containingFunctionPresentation="method 'submitAddDeviceTypeHandle'">
-            <startOffsets>
-              <option value="2437" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2459" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\Pages\DeviceTypes.razor.cs" initialLine="109" containingFunctionPresentation="method 'submitAddDeviceTypeHandle'" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceTypeService.cs</url>
           <line>77</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Application\DeviceCenter\DeviceTypeService.cs" initialLine="77" containingFunctionPresentation="method 'UploadFileAsync'">
-            <startOffsets>
-              <option value="3193" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3250" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Application\DeviceCenter\DeviceTypeService.cs" initialLine="77" containingFunctionPresentation="method 'UploadFileAsync'" />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Test/DevicePluginTest/PluginContextTest.cs</url>
           <line>26</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\Test\DevicePluginTest\PluginContextTest.cs" initialLine="13" containingFunctionPresentation="method 'loadPluinContext'">
-            <startOffsets>
-              <option value="675" />
-            </startOffsets>
-            <endOffsets>
-              <option value="853" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\Test\DevicePluginTest\PluginContextTest.cs" initialLine="13" containingFunctionPresentation="method 'loadPluinContext'" />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Test/DevicePluginTest/PluginContextTest.cs</url>
           <line>20</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\Test\DevicePluginTest\PluginContextTest.cs" initialLine="18" containingFunctionPresentation="method 'test'">
-            <startOffsets>
-              <option value="566" />
-            </startOffsets>
-            <endOffsets>
-              <option value="603" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\Test\DevicePluginTest\PluginContextTest.cs" initialLine="18" containingFunctionPresentation="method 'test'" />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.EntityFramework.Core/PluginContext/PluginService.cs</url>
           <line>76</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.EntityFramework.Core\PluginContext\PluginService.cs" initialLine="76" containingFunctionPresentation="method 'AddPluginAsync'">
-            <startOffsets>
-              <option value="2252" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2287" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.EntityFramework.Core\PluginContext\PluginService.cs" initialLine="76" containingFunctionPresentation="method 'AddPluginAsync'" />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/DeviceCenter/DeviceService.cs</url>
           <line>106</line>
-          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Application\DeviceCenter\DeviceService.cs" initialLine="97" containingFunctionPresentation="method 'AddDeviceAsync'">
-            <startOffsets>
-              <option value="4143" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4204" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="G:\PROJECT\VS\FantasyHome\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Application\DeviceCenter\DeviceService.cs" initialLine="97" containingFunctionPresentation="method 'AddDeviceAsync'" />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
@@ -395,5 +365,9 @@
         <watch expression="name" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

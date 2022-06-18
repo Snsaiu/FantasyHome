@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using FantasyHome.Application;
+using FantasyHome.Application.Impls;
 using FantasyHome.UI.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Controls.Hosting;
@@ -30,6 +32,7 @@ namespace FantasyHome.UI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("typicons.ttf", "typicons");
                     fonts.AddFont("qweather-icons.ttf", "weather");
+                    fonts.AddFont("iconfont.ttf", "iconfont");
                 });
 
 #if WINDOWS
@@ -53,6 +56,8 @@ namespace FantasyHome.UI
 
 #endif
 
+            builder.Services.AddTransient<AppShell>();
+            builder.Services.AddTransient<AppShellModel>();
             builder.Services.AddTransient<Views.LoginPage>();
             builder.Services.AddTransient<ViewModels.LoginPageModel>();
             builder.Services.AddTransient<Views.MainPage>();
@@ -61,6 +66,7 @@ namespace FantasyHome.UI
             builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
             builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
             builder.Services.AddSingleton<Tools>();
+            builder.Services.AddTransient<IRoomApplication, RoomApplication>();
 
 
             return builder.Build();
