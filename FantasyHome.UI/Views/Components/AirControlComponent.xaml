@@ -24,7 +24,7 @@
                             <TapGestureRecognizer Tapped="PowerLevel_OnTapped"></TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
-                    <comp:SwitchComponent Grid.Column="3" WidthRequest="50" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" State="False" OnBarColor="Orange" OffBarColor="white">
+                    <comp:SwitchComponent Grid.Column="3" x:Name="p"  TouchCommand="{Binding SetAirStateCommand}" TouchCommandParameter="{x:Reference p}" WidthRequest="50" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" State="{Binding Source={x:Reference air},Path=AirSwitch}" OnBarColor="Orange" OffBarColor="white">
                         <comp:SwitchComponent.OnIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe768;"

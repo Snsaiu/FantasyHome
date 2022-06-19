@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:FantasyHome.UI.ViewModels"
              x:Name="mainpage"
              
-            
+            BackgroundColor="#E1E1E1"
              xmlns:converts="clr-namespace:FantasyHome.UI.Converters"
              Shell.NavBarHasShadow="True"
              xmlns:comp="clr-namespace:FantasyHome.UI.Views.Components"
@@ -51,8 +51,8 @@
         </Grid>
     </Shell.TitleView>
     <!-- <RefreshView  IsRefreshing="{Binding IsBusy}" Command="{Binding LoadCommand}"> -->
-        <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always">
-            <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" >
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <StackLayout>
                <ActivityIndicator  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" >
                
                </ActivityIndicator>
@@ -85,12 +85,11 @@
                 <comp:HomeGridComponent Margin="1,5" HorizontalOptions="Fill" VerticalOptions="Start"></comp:HomeGridComponent>
 
                 <!-- 空调 -->
-                <comp:AirControlComponent  Margin="1,5"></comp:AirControlComponent>
-                <comp:AirControlComponent  Margin="1,5"></comp:AirControlComponent>
-                <comp:AirControlComponent  Margin="1,5"></comp:AirControlComponent>
-         
-
-                <comp:SwitchComponent WidthRequest="120" HorizontalOptions="Start" TouchCommand="{Binding ReplaceKeTingLightCommand}" Title="客厅灯" State="{Binding KeTingLightState}" OffBarColor="Gray" OnBarColor="Orange">
+                <comp:AirControlComponent DisplayName="客厅" Margin="1,1"></comp:AirControlComponent>
+                <comp:AirControlComponent DisplayName="主卧" Margin="1,1"></comp:AirControlComponent>
+                <comp:AirControlComponent DisplayName="次卧" Margin="1,1"></comp:AirControlComponent>
+            
+                <comp:SwitchComponent WidthRequest="120" HorizontalOptions="Start" VerticalOptions="Start" TouchCommand="{Binding ReplaceKeTingLightCommand}" Title="客厅灯" State="{Binding KeTingLightState}" OffBarColor="Gray" OnBarColor="Orange">
                     <comp:SwitchComponent.OnIcon>
                         <FontImageSource  FontFamily="typicons"
                                   Glyph="{Static res:IconFont.Bell}"

@@ -37,16 +37,16 @@ public partial class AirControlComponent : ContentView
 	/// <summary>
 	/// 开关状态
 	/// </summary>
-	public static readonly BindableProperty SwitchProperty = BindableProperty.Create(
-		"Switch",
+	public static readonly BindableProperty AirSwitchProperty = BindableProperty.Create(
+		"AirSwitch",
 		typeof(bool),
 		typeof(AirControlComponent),
 		false);
 
-	public bool Switch
+	public bool AirSwitch
 	{
-		get { return (bool)GetValue(SwitchProperty); }
-		set{SetValue(SwitchProperty,value);}
+		get { return (bool)GetValue(AirSwitchProperty); }
+		set{SetValue(AirSwitchProperty,value);}
 	}
 	
 	/// <summary>
@@ -192,7 +192,10 @@ public partial class AirControlComponent : ContentView
 			"100", "auto");
 	if (string.IsNullOrEmpty(data) == false)
 	{
-		this.WindSpeed = data;
+		if (data == "取消")
+			return;
+		if(data!="确定")
+			this.WindSpeed = data;
 	}
 	}
 
@@ -207,7 +210,10 @@ public partial class AirControlComponent : ContentView
 		string data=	await Shell.Current.DisplayActionSheet("设置能耗模式", "取消", "确定","节能","强劲","无");
 		if (string.IsNullOrEmpty(data) == false)
 		{
-			this.PowerLevel = data;
+			if (data == "取消")
+				return;
+			if(data!="确定")
+				this.PowerLevel = data;
 		}
 	}
 
@@ -223,6 +229,12 @@ public partial class AirControlComponent : ContentView
 	    this.switchComponents.First(x => x.Title == item.Title).State = true;
 
 
+    }
+
+    [ICommand]
+    private void SetAirState(object obj)
+    {
+	    this.AirSwitch = !this.AirSwitch;
     }
 
 }
