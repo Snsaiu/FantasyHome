@@ -29,9 +29,9 @@ namespace FantasyHome.UI.ViewModels;
     private readonly IConnectivity connectivity;
     private readonly Tools tools;
 
-    protected override void Loading()
+    protected override async Task Loading()
     {
-        this.init();
+      await  this.init();
     }
 
     public MainPageModel(IConnectivity connectivity,Tools tools)
@@ -53,11 +53,11 @@ namespace FantasyHome.UI.ViewModels;
 
     }
 
-    private   void init()
+    private  async Task init()
     {
      
-            this.getCurrentWeather();
-        this.getMulitWeather();
+           await this.getCurrentWeather();
+       await this.getMulitWeather();
        
     }
     
@@ -75,30 +75,43 @@ namespace FantasyHome.UI.ViewModels;
             ResultBase<MulitWeatherModel> currentWeatherRes = HttpRequest<MulitWeatherModel>.GET(url);
             if (currentWeatherRes.Ok)
             {
-                if (currentWeatherRes.Data.daily!=null)
+                Shell.Current.Dispatcher.Dispatch(() =>
                 {
-                    currentWeatherRes.Data.daily.RemoveAt(0);
-                    
-                    foreach (var item in currentWeatherRes.Data.daily)
+                    if (currentWeatherRes.Data.daily!=null)
                     {
-                        var d= Convert.ToDateTime(item.fxDate);
-                        string date = d.Month.ToString() + "-" + d.Day.ToString();
-                        this.WeekWeatherListModels.Add(new WeekWeatherListModel(item.iconDay, date));
+                        currentWeatherRes.Data.daily.RemoveAt(0);
+                    
+                        foreach (var item in currentWeatherRes.Data.daily)
+                        {
+                            var d= Convert.ToDateTime(item.fxDate);
+                            string date = d.Month.ToString() + "-" + d.Day.ToString();
+                            this.WeekWeatherListModels.Add(new WeekWeatherListModel(item.iconDay, date));
+
+                        }
                     }
-                }
+
+                });
+              
             }
             else
             {
-                await Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
+               
+                   await  Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
+              
+
             }
         }
         else
         {
-            await Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
+           
+              await  Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
+
+           
+           
         }
     }
 
-    private async void getCurrentWeather()
+    private async Task getCurrentWeather()
     {
         var currentLocationRes =await this.tools.GetCurrentLocationAsync();
         if (currentLocationRes.Ok)
@@ -108,25 +121,26 @@ namespace FantasyHome.UI.ViewModels;
             ResultBase<CurrentWeatherModel> currentWeatherRes = HttpRequest<CurrentWeatherModel>.GET(url);
             if (currentWeatherRes.Ok)
             {
-                this.CurrentWeather = currentWeatherRes.Data;
+                Shell.Current.Dispatcher.Dispatch(() =>
+                {
+                    this.CurrentWeather = currentWeatherRes.Data;
+                });
+             
             }
             else
             {
-                Shell.Current.Dispatcher.Dispatch(() =>
-                {
-                    Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
+                
+                  await  Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
 
-                });
+     
                
             }
         }
         else
         {
-            Shell.Current.Dispatcher.Dispatch(() =>
-            {
-                Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
-            });
-          
+         
+               await Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
+           
         }
     }
 

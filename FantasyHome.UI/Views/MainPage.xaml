@@ -24,9 +24,20 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label TextColor="white" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center">Fantasy Home</Label>
             <Button Grid.Column="1" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" BorderWidth="0">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="typicons"
+                                     Glyph="{Static res:IconFont.RefreshOutline}"
+                                     Size="18"
+                                     Color="White"/>
+
+                </Button.ImageSource>
+
+            </Button>
+            <Button Command="{Binding LoadCommand}" Grid.Column="2" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" BorderWidth="0">
                 <Button.ImageSource>
                     <FontImageSource FontFamily="typicons"
                                      Glyph="{Static res:IconFont.Bell}"
@@ -36,11 +47,15 @@
                 </Button.ImageSource>
 
             </Button>
+          
         </Grid>
     </Shell.TitleView>
-    <RefreshView  IsRefreshing="{Binding IsBusy}" Command="{Binding LoadCommand}">
-        <ScrollView Orientation="Vertical">
-            <StackLayout  HorizontalOptions="Fill"  VerticalOptions="Start">
+    <!-- <RefreshView  IsRefreshing="{Binding IsBusy}" Command="{Binding LoadCommand}"> -->
+        <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always">
+            <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" >
+               <ActivityIndicator  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" >
+               
+               </ActivityIndicator>
                 <!--<CollectionView VerticalOptions="Start" IsVisible="{OnPlatform iOS=False, MacCatalyst=False}" ItemsSource="{Binding NotifyBarModels}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
@@ -55,7 +70,6 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>-->
-
                 <comp:WeatherComponent TapCommand="{Binding RefreshWeatherCommand}" Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="{Binding CurrentWeather.now.windSpeed,StringFormat='{0}级'}" CurrentState="{Binding CurrentWeather.now.text}" CurrentTemperature="{Binding CurrentWeather.now.temp,StringFormat='{0}°C'}">
 
                     <comp:WeatherComponent.CurrentDayIcon>
@@ -71,6 +85,8 @@
                 <comp:HomeGridComponent Margin="1,5" HorizontalOptions="Fill" VerticalOptions="Start"></comp:HomeGridComponent>
 
                 <!-- 空调 -->
+                <comp:AirControlComponent  Margin="1,5"></comp:AirControlComponent>
+                <comp:AirControlComponent  Margin="1,5"></comp:AirControlComponent>
                 <comp:AirControlComponent  Margin="1,5"></comp:AirControlComponent>
          
 
@@ -90,5 +106,5 @@
                 </comp:SwitchComponent>
             </StackLayout>
         </ScrollView>
-    </RefreshView>
+    <!-- </RefreshView> -->
 </ContentPage>

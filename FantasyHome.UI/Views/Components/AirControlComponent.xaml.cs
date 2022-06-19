@@ -4,10 +4,18 @@ namespace FantasyHome.UI.Views.Components;
 
 public partial class AirControlComponent : ContentView
 {
+
+	private List<SwitchComponent> switchComponents;
 	public AirControlComponent()
 	{
 		InitializeComponent();
 		this.BindingContext = this;
+		this.switchComponents = new List<SwitchComponent>();
+		this.switchComponents.Add(this.auto);
+		this.switchComponents.Add(this.zhileng);
+		this.switchComponents.Add(this.zhire);
+		this.switchComponents.Add(this.songfeng);
+		this.switchComponents.Add(this.choushi);
 	}
 
 	#region 属性
@@ -204,11 +212,16 @@ public partial class AirControlComponent : ContentView
 	}
 
 
+
 	[ICommand]
     private void ChangeMethod(object obj)
     {
-		
-       
+
+	    var item = obj as SwitchComponent;
+	   
+	    this.switchComponents.ForEach(x=>x.State=false);
+	    this.switchComponents.First(x => x.Title == item.Title).State = true;
+
 
     }
 

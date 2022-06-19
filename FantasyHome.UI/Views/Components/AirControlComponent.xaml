@@ -55,7 +55,7 @@
                 </StackLayout>
           
                 <Grid ColumnDefinitions="*,*,*,*,*" Row="3">
-                    <comp:SwitchComponent  Title ="自动" WidthRequest="50" x:Name="auto"  TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference auto}" HorizontalOptions="Center" VerticalOptions="Center" State="True" OnBarColor="#0A84FF" OffBarColor="LightGray">
+                    <comp:SwitchComponent  Title ="自动" WidthRequest="50" x:Name="auto"  TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference auto}" HorizontalOptions="Center" VerticalOptions="Center" State="true" OnBarColor="#0A84FF" OffBarColor="LightGray">
                       <comp:SwitchComponent.OnIcon>
                           <FontImageSource FontFamily="iconfont"
                                            Glyph="&#xe64d;"
@@ -71,7 +71,7 @@
                      
                   </comp:SwitchComponent>
 
-                    <comp:SwitchComponent Title="制冷" Grid.Column="1" x:Name="zhileng" WidthRequest="50" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference zhileng}" HorizontalOptions="Center" VerticalOptions="Center" State="True" OnBarColor="#0A84FF" OffBarColor="LightGray">
+                    <comp:SwitchComponent Title="制冷" Grid.Column="1" x:Name="zhileng" WidthRequest="50" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference zhileng}" HorizontalOptions="Center" VerticalOptions="Center" State="False" OnBarColor="#0A84FF" OffBarColor="LightGray">
                         <comp:SwitchComponent.OnIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe62f;"
@@ -86,7 +86,7 @@
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
-                    <comp:SwitchComponent Title="抽湿" Grid.Column="2" x:Name="choushi" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference choushi}" WidthRequest="50"  HorizontalOptions="Center" VerticalOptions="Center" State="True" OnBarColor="#0A84FF" OffBarColor="LightGray">
+                    <comp:SwitchComponent Title="抽湿" Grid.Column="2" x:Name="choushi" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference choushi}" WidthRequest="50"  HorizontalOptions="Center" VerticalOptions="Center" State="false" OnBarColor="#0A84FF" OffBarColor="LightGray">
                         <comp:SwitchComponent.OnIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe64b;"
@@ -101,7 +101,7 @@
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
-                    <comp:SwitchComponent Title="制热" Grid.Column="3" x:Name="zhire" WidthRequest="50" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference zhire}"  HorizontalOptions="Center" VerticalOptions="Center" State="True" OnBarColor="#0A84FF" OffBarColor="LightGray">
+                    <comp:SwitchComponent Title="制热" Grid.Column="3" x:Name="zhire" WidthRequest="50" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference zhire}"  HorizontalOptions="Center" VerticalOptions="Center" State="false" OnBarColor="#0A84FF" OffBarColor="LightGray">
                         <comp:SwitchComponent.OnIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe63b;"
@@ -116,7 +116,7 @@
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
-                    <comp:SwitchComponent Title="送风" Grid.Column="4" x:Name="songfeng" WidthRequest="50" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference songfeng}" HorizontalOptions="Center" VerticalOptions="Center" State="False" OnBarColor="#0A84FF" OffBarColor="LightGray">
+                    <comp:SwitchComponent Title="送风" Grid.Column="4" x:Name="songfeng" WidthRequest="50" TouchCommand="{Binding ChangeMethodCommand}" TouchCommandParameter="{x:Reference songfeng}" HorizontalOptions="Center" VerticalOptions="Center" State="false" OnBarColor="#0A84FF" OffBarColor="LightGray">
                         <comp:SwitchComponent.OnIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe639;"

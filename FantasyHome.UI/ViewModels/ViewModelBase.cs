@@ -9,20 +9,29 @@ public partial class ViewModelBase:ObservableObject
     protected bool BusyState = false;
 
     [ICommand]
-    private void Load()
+    private async Task Load()
     {
      
         if(BusyState)
             return;
         this.BusyState = true;
-        Task.Run(() => this.Loading()).GetAwaiter().OnCompleted(() =>
+        this.IsBusy = true;
+        // this.Loading();
+        // this.BusyState = false;
+        // this.IsBusy = false;
+
+        Task.Run(this.Loading).ConfigureAwait(false).GetAwaiter().OnCompleted(() =>
         {
             this.BusyState = false;
             this.IsBusy = false;
+            
         });
+      
+        
+    
     }
 
-    protected virtual void Loading()
+    protected virtual async Task Loading()
     {
 
     }

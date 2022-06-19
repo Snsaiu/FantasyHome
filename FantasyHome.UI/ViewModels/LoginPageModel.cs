@@ -20,7 +20,7 @@ namespace FantasyHome.UI.ViewModels
 		{
 			this.IsBusy = true;
 
-			await Task.Delay(2000);
+			await Task.Delay(500);
 			this.IsBusy = false;
 			await Shell.Current.GoToAsync($"//{nameof(Views.MainPage)}");
 			
