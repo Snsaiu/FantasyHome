@@ -131,5 +131,14 @@ public partial class SwitchComponent : ContentView
     }
 
 
+    public static readonly BindableProperty TouchCommandParameterProperty =
+        BindableProperty.Create("TouchCommandParameter", typeof(object), typeof(SwitchComponent));
+
+    public object TouchCommandParameter
+    {
+        get { return (object)GetValue(TouchCommandParameterProperty); }
+        set { SetValue(TouchCommandParameterProperty, value); }
+    }
+
 
 }

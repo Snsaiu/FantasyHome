@@ -54,6 +54,7 @@ public partial class WeatherComponent : ContentView
     }
 
 
+
     /// <summary>
     /// ������������
     /// </summary>

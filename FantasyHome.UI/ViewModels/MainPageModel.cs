@@ -29,6 +29,11 @@ namespace FantasyHome.UI.ViewModels;
     private readonly IConnectivity connectivity;
     private readonly Tools tools;
 
+    protected override void Loading()
+    {
+        this.init();
+    }
+
     public MainPageModel(IConnectivity connectivity,Tools tools)
 	{
         this.connectivity = connectivity;
@@ -43,31 +48,20 @@ namespace FantasyHome.UI.ViewModels;
         this.KeTingLightState = true;
         this.notifyBarModels = new ObservableCollection<NotifyBarModel>();
         this.getNotifyBarInfoList();
-       this.init();
-      
+
+        this.LoadCommand.Execute(null);
 
     }
 
-    private void init()
+    private   void init()
     {
-        Task.Run(async () =>
-        {
-            IsBusy = true;
-           await this.getCurrentWeather();
-           await this.getMulitWeather();
-        }).GetAwaiter().OnCompleted(() =>
-        {
-            IsBusy = false;
-        });
+     
+            this.getCurrentWeather();
+        this.getMulitWeather();
+       
     }
     
     
-    [ICommand]
-    private async Task RefreshWeather()
-    {
-        await this.getCurrentWeather();
-        await this.getMulitWeather();
-    }
 
     private async Task getMulitWeather()
     {
@@ -104,7 +98,7 @@ namespace FantasyHome.UI.ViewModels;
         }
     }
 
-    private async Task getCurrentWeather()
+    private async void getCurrentWeather()
     {
         var currentLocationRes =await this.tools.GetCurrentLocationAsync();
         if (currentLocationRes.Ok)
@@ -118,12 +112,21 @@ namespace FantasyHome.UI.ViewModels;
             }
             else
             {
-                await Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
+                Shell.Current.Dispatcher.Dispatch(() =>
+                {
+                    Shell.Current.DisplayAlert("警告", currentWeatherRes.ErrorMsg, "确定");
+
+                });
+               
             }
         }
         else
         {
-           await Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
+            Shell.Current.Dispatcher.Dispatch(() =>
+            {
+                Shell.Current.DisplayAlert("警告", currentLocationRes.ErrorMsg, "确定");
+            });
+          
         }
     }
 

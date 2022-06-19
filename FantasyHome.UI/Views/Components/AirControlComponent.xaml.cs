@@ -7,6 +7,7 @@ public partial class AirControlComponent : ContentView
 	public AirControlComponent()
 	{
 		InitializeComponent();
+		this.BindingContext = this;
 	}
 
 	#region 属性
@@ -179,7 +180,7 @@ public partial class AirControlComponent : ContentView
 	/// <exception cref="NotImplementedException"></exception>
 	private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 	{
-	string data=	await Shell.Current.DisplayActionSheet("设置风速", "取消", this.WindSpeed, "10", "20", "30", "40", "50", "60", "70", "80", "90",
+	string data=	await Shell.Current.DisplayActionSheet("设置风速", "取消", "确定", "10", "20", "30", "40", "50", "60", "70", "80", "90",
 			"100", "auto");
 	if (string.IsNullOrEmpty(data) == false)
 	{
@@ -195,12 +196,22 @@ public partial class AirControlComponent : ContentView
 	/// <exception cref="NotImplementedException"></exception>
 	private async void PowerLevel_OnTapped(object sender, EventArgs e)
 	{
-		string data=	await Shell.Current.DisplayActionSheet("设置能耗模式", "取消", this.PowerLevel,"节能","强劲","无");
+		string data=	await Shell.Current.DisplayActionSheet("设置能耗模式", "取消", "确定","节能","强劲","无");
 		if (string.IsNullOrEmpty(data) == false)
 		{
 			this.PowerLevel = data;
 		}
 	}
+
+
+	[ICommand]
+    private void ChangeMethod(object obj)
+    {
+		
+       
+
+    }
+
 }
 
 public enum WorkModeEnum

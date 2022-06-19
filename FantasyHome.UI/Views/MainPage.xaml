@@ -12,13 +12,13 @@
              xmlns:res="clr-namespace:FantasyHome.UI.Resources"
              Shell.NavBarIsVisible="True"       
             >
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converts:WeatherIconConverter x:Key="WeatherIconConverter"></converts:WeatherIconConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Shell.TitleView>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -38,57 +38,57 @@
             </Button>
         </Grid>
     </Shell.TitleView>
-
-    <StackLayout HorizontalOptions="Fill"  VerticalOptions="Start">
-        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"></ActivityIndicator>
-        <CollectionView VerticalOptions="Start" IsVisible="{OnPlatform iOS=False, MacCatalyst=False}" ItemsSource="{Binding NotifyBarModels}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <comp:NotifyComponent HeightRequest="30" Title="{Binding Title}" BackgroundColor="Orange"
+    <RefreshView  IsRefreshing="{Binding IsBusy}" Command="{Binding LoadCommand}">
+        <ScrollView Orientation="Vertical">
+            <StackLayout  HorizontalOptions="Fill"  VerticalOptions="Start">
+                <!--<CollectionView VerticalOptions="Start" IsVisible="{OnPlatform iOS=False, MacCatalyst=False}" ItemsSource="{Binding NotifyBarModels}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <comp:NotifyComponent HeightRequest="30" Title="{Binding Title}" BackgroundColor="Orange"
                                           CloseCommand="{Binding BindingContext.CloseWarningLabelCommand,Source={x:Reference mainpage}}"
                                           CloseCommandParameter="{Binding Id}"
                                           ShowDetailCommandParameter="{Binding Id}"
                                           ShowDetailCommand="{Binding BindingContext.ShowWarngingLabelCommand,Source={x:Reference mainpage} }" ></comp:NotifyComponent>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>-->
 
-        <comp:WeatherComponent TapCommand="{Binding RefreshWeatherCommand}" Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="{Binding CurrentWeather.now.windSpeed,StringFormat='{0}级'}" CurrentState="{Binding CurrentWeather.now.text}" CurrentTemperature="{Binding CurrentWeather.now.temp,StringFormat='{0}°C'}">
-    
-            <comp:WeatherComponent.CurrentDayIcon>
-                <FontImageSource 
+                <comp:WeatherComponent TapCommand="{Binding RefreshWeatherCommand}" Margin="0,5" BarColor="Grey"  WeeksWeatherList="{Binding WeekWeatherListModels}" CurrentRay="{Binding CurrentWeather.now.windSpeed,StringFormat='{0}级'}" CurrentState="{Binding CurrentWeather.now.text}" CurrentTemperature="{Binding CurrentWeather.now.temp,StringFormat='{0}°C'}">
+
+                    <comp:WeatherComponent.CurrentDayIcon>
+                        <FontImageSource 
                     FontFamily="weather"
                     Size="50"
                     Glyph="{Binding CurrentWeather.now.icon,Converter={StaticResource WeatherIconConverter}}"
                                  ></FontImageSource>
-            </comp:WeatherComponent.CurrentDayIcon>
-        </comp:WeatherComponent>
+                    </comp:WeatherComponent.CurrentDayIcon>
+                </comp:WeatherComponent>
 
-        
-        <comp:HomeGridComponent Margin="1,5" HorizontalOptions="Fill" VerticalOptions="Start"></comp:HomeGridComponent>
-        
-        <!-- 空调 -->
-        <comp:AirControlComponent></comp:AirControlComponent>
-        
-        <comp:SwitchComponent WidthRequest="120" HorizontalOptions="Start" TouchCommand="{Binding ReplaceKeTingLightCommand}" Title="客厅灯" State="{Binding KeTingLightState}" OffBarColor="Gray" OnBarColor="Orange">
-            <comp:SwitchComponent.OnIcon>
-                <FontImageSource  FontFamily="typicons"
+
+                <comp:HomeGridComponent Margin="1,5" HorizontalOptions="Fill" VerticalOptions="Start"></comp:HomeGridComponent>
+
+                <!-- 空调 -->
+                <comp:AirControlComponent  Margin="1,5"></comp:AirControlComponent>
+         
+
+                <comp:SwitchComponent WidthRequest="120" HorizontalOptions="Start" TouchCommand="{Binding ReplaceKeTingLightCommand}" Title="客厅灯" State="{Binding KeTingLightState}" OffBarColor="Gray" OnBarColor="Orange">
+                    <comp:SwitchComponent.OnIcon>
+                        <FontImageSource  FontFamily="typicons"
                                   Glyph="{Static res:IconFont.Bell}"
                                  Size="40"
                                   Color="White"/>
-            </comp:SwitchComponent.OnIcon>
-            <comp:SwitchComponent.OffIcon>
-                <FontImageSource  FontFamily="typicons"
+                    </comp:SwitchComponent.OnIcon>
+                    <comp:SwitchComponent.OffIcon>
+                        <FontImageSource  FontFamily="typicons"
                                   Glyph="{Static res:IconFont.Support}"
                                  Size="40"
                                   Color="White"/>
-            </comp:SwitchComponent.OffIcon>
-        </comp:SwitchComponent>
-    </StackLayout>
-
-   
-
+                    </comp:SwitchComponent.OffIcon>
+                </comp:SwitchComponent>
+            </StackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

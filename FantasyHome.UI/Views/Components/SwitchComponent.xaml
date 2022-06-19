@@ -7,7 +7,7 @@
 
     <Frame Padding="0,10" VerticalOptions="CenterAndExpand" CornerRadius="10" x:Name="bar">
         <Frame.GestureRecognizers >
-            <TapGestureRecognizer Command="{Binding Source={x:Reference sw},Path=TouchCommand}"></TapGestureRecognizer>
+            <TapGestureRecognizer Command="{Binding Source={x:Reference sw},Path=TouchCommand}" CommandParameter="{Binding Source={x:Reference sw},Path=TouchCommandParameter}"></TapGestureRecognizer>
         </Frame.GestureRecognizers>
 
         <StackLayout>
