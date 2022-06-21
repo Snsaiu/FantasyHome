@@ -25,19 +25,19 @@
     </FlyoutItem>
     <FlyoutItem Title="客厅">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+            <ShellContent Route="LiveRoomPage" ContentTemplate="{DataTemplate local:LiveRoomPage}"></ShellContent>
         </Tab>
     </FlyoutItem>
 
       <FlyoutItem Title="次卧">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+            <ShellContent Route="ClientBedRoomPage" ContentTemplate="{DataTemplate local:ClientBedRoomPage}"></ShellContent>
         </Tab>
     </FlyoutItem>
 
           <FlyoutItem Title="主卧">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"></ShellContent>
+            <ShellContent Route="MasterBedRoomPage" ContentTemplate="{DataTemplate local:MasterBedRoomPage}"></ShellContent>
         </Tab>
     </FlyoutItem>
 

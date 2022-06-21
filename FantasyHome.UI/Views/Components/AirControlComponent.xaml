@@ -49,7 +49,7 @@
                         <Label HorizontalTextAlignment="Start" VerticalOptions="Center" Text="-" FontSize="12"></Label>
                         <Label Text="{Binding Source={x:Reference air},Path= Value}" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="20" VerticalOptions="Center" ></Label>
                         <Label Grid.Column="2" Text="+" HorizontalTextAlignment="End" FontSize="12" VerticalOptions="Center"></Label>
-                        <Slider Maximum="60" Value="{Binding Source={x:Reference air}, Path=Value}" Minimum="10" Grid.Row="1" Grid.ColumnSpan="3"></Slider>
+                        <Slider Maximum="60" DragCompletedCommand="{Binding Source={x:Reference air},Path=ValueChangeCommand}" Value="{Binding Source={x:Reference air}, Path=Value}" Minimum="10" Grid.Row="1" Grid.ColumnSpan="3"></Slider>
                     </Grid>
                   
                 </StackLayout>
