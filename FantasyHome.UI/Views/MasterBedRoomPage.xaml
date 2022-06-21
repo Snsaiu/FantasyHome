@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FantasyHome.UI.Views.MasterBedRoomPage"
+             Shell.NavBarIsVisible="True"
+             Shell.NavBarHasShadow="True"
+             xmlns:res="clr-namespace:FantasyHome.UI.Resources"
+             >
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label TextColor="white" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center">主卧</Label>
+            <Button Grid.Column="1" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" BorderWidth="0">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="typicons"
+                                     Glyph="{Static res:IconFont.RefreshOutline}"
+                                     Size="18"
+                                     Color="White"/>
+
+                </Button.ImageSource>
+
+            </Button>
+            <Button Command="{Binding LoadCommand}" Grid.Column="2" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent" BorderWidth="0">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="typicons"
+                                     Glyph="{Static res:IconFont.Bell}"
+                                     Size="18"
+                                     Color="White"/>
+
+                </Button.ImageSource>
+
+            </Button>
+          
+        </Grid>
+    </Shell.TitleView>
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

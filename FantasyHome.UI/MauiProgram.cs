@@ -62,6 +62,13 @@ namespace FantasyHome.UI
             builder.Services.AddTransient<ViewModels.LoginPageModel>();
             builder.Services.AddTransient<Views.MainPage>();
             builder.Services.AddTransient<ViewModels.MainPageModel>();
+            builder.Services.AddTransient<Views.LiveRoomPage>();
+            builder.Services.AddTransient<ViewModels.LiveRoomPageModel>();
+            builder.Services.AddTransient<Views.MasterBedRoomPage>();
+            builder.Services.AddTransient<ViewModels.MasterBedRoomPageModel>();
+            builder.Services.AddTransient<Views.ClientBedRoomPage>();
+            builder.Services.AddTransient<ViewModels.ClientBedRoomPageModel>();
+            
             
             builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
             builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
