@@ -14,7 +14,14 @@ const WifiInfo ConfigManager::GetWifiInformation()
     return info;
 }
 
-bool ConfigManager::SaveWifiInfomation(const WifiInfo info)
+
+
+const char *ConfigManager::GetGuid() const
 {
-    return true;
+    return this->guid;
+}
+
+bool ConfigManager::SaveConfig(const ConfigInfo &config)
+{
+    return false;
 }
