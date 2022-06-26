@@ -4,12 +4,14 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include "config.h"
-
+#include "wifiConnector.h"
 // wifi仓储类
 ConfigManager configManager;
 
 // http内容
 HttpContent httpnContent(configManager);
+
+WifiConnector wifiConnector;
 
 //开启ap模式
 void startAp()
@@ -45,8 +47,21 @@ void setup()
     //获得wifi信息并尝试连接
     const Config config = configManager.GetConfig();
 
-    Serial.println("get wifi name:");
-    Serial.println(config.wifiName);
+    wifiConnector.Init(config);
+
+    bool connectResult = wifiConnector.StartConnect();
+    if (connectResult)
+    {
+      
+    }
+    else
+    {
+
+      Serial.println("connect wifi " + String(config.wifiName) + " error");
+      return;
+    }
+    // 尝试连接wifi
+
     // bool connectResult = connectWifi(wifiInfo);
     // if (connectResult)
     // {

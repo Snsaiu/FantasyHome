@@ -81,3 +81,7 @@ void HttpContent::HttpServerHandleClient()
 {
     this->httpServer.handleClient();
 }
+
+void HttpContent::HealthCheck()
+{
+}

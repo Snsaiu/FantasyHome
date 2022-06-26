@@ -33,4 +33,9 @@ public:
     开启http服务监听
     */
     void HttpServerHandleClient();
+
+    /*
+    健康检查
+    */
+    void HealthCheck();
 };
