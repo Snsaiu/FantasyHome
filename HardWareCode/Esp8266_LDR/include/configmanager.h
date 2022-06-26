@@ -1,33 +1,14 @@
+#ifndef CONFIGMANAGER_H
+#define CONFIGMANAGER_H
+
 #include <FS.h>
-#include "ArduinoJson.hpp"
-
-struct WifiInfo
-{
-    // wifi名称
-    const char *name;
-    // wifi密码
-    const char *pwd;
-};
-
-// 配置信息模型
-struct ConfigInfo
-{
-    // wifi 名称
-    const char *wifiName;
-    // wifi 密码
-    const char *wifiPwd;
-    // 服务器地址
-    const char *serviceHost;
-
-    //当前设备昵称
-    const char *myName;
-};
+#include "config.h"
 
 class ConfigManager
 {
 
 private:
-    const char *wifiFileName = "/wifi.json";
+    const char *configFile = "/config.json";
     // 唯一的编号
     const char *guid = "B5A97CB8-59C6-2F14-C2B4-C60E49E82E4A";
 
@@ -40,17 +21,18 @@ public:
     bool Exist();
 
     /*
-    获得wifi信息
+     获得配置信息
     */
-    const WifiInfo GetWifiInformation();
-
+    const Config GetConfig();
     /*
     获得guid
     */
     const char *GetGuid() const;
 
     // 保存配置信息
-    bool SaveConfig(const ConfigInfo &config);
+    bool SaveConfig(const Config &config);
 };
 
 // wifi结构体
+
+#endif // !CONFIGMANAGER_H

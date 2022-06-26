@@ -7,24 +7,30 @@ class HttpContent
 private:
     // http服务
     ESP8266WebServer httpServer;
+    ConfigManager configManager;
     /*
 进入配置页面
 */
-    const char *GetContent();
+    const char *getContent();
     /*
     配置成功页面
     */
-    const char *ConfigOkContent();
+    const char *configOkContent();
 
     /*
     配置错误页面
     */
-    const char *ConfigErrorContent();
-
-public:
-    HttpContent();
-    ~HttpContent();
+    const char *configErrorContent();
 
     // 验证表单结果并保存
-    bool ValidateFormAndSave(ESP8266WebServer &server, ConfigManager &configManager);
+    bool validateFormAndSave();
+
+public:
+    HttpContent(ConfigManager &configManager);
+    ~HttpContent();
+
+    /*
+    开启http服务监听
+    */
+    void HttpServerHandleClient();
 };
