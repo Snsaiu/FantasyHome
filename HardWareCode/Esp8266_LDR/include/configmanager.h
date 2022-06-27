@@ -31,6 +31,8 @@ public:
 
     // 保存配置信息
     bool SaveConfig(const Config &config);
+
+    void Clear();
 };
 
 // wifi结构体

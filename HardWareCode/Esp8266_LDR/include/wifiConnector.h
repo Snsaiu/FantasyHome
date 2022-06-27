@@ -2,13 +2,18 @@
 #define WIFICONNECTOR_H
 #include "config.h"
 #include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <WiFiClient.h>
+#include <ArduinoJson.h>
 
 class WifiConnector
 {
 private:
     Config config;
     bool connectedSuccessfully = false;
-    /* data */
+    WiFiClient client;
+    HTTPClient http;
+
 public:
     WifiConnector(const Config &config);
 
@@ -71,7 +76,24 @@ void WifiConnector::Init(const Config &config)
 
 void WifiConnector::HealthCheck()
 {
-    
+    if (WiFi.status() == WL_CONNECTED)
+    {
+        String router = "http://" + String(this->config.serviceHost) + "/health";
+        this->http.begin(client, router);
+        StaticJsonDocument<200> doc;
+        doc["guid"] = this->config.guid;
+        doc["ip"] = client.localIP().toString();
+        doc["name"] = this->config.myName;
+        String json;
+        serializeJson(doc, json);
+        http.addHeader("Content-Type", "application/json");
+        int httpResponseCode = http.POST(json);
+        Serial.println(httpResponseCode);
+    }
+    else
+    {
+        Serial.println("can not connect wifi! please check you wifi work statues!");
+    }
 }
 
 #endif // !WIFICONNECTOR_H

@@ -43,12 +43,14 @@ const Config ConfigManager::GetConfig()
     const char *wifiPwd = doc["wifiPwd"];
     const char *service = doc["serviceHost"];
     const char *myName = doc["myName"];
-    Config info{wifiName, wifiPwd, service, myName};
+    const char *guid = doc["guid"];
+    Config info{wifiName, wifiPwd, service, myName, guid};
     Serial.println("print config infomation:");
     Serial.println(info.myName);
     Serial.println(info.wifiName);
     Serial.println(info.wifiPwd);
     Serial.println(info.serviceHost);
+    Serial.println(info.guid);
     file.close();
     return info;
 }
@@ -75,6 +77,7 @@ bool ConfigManager::SaveConfig(const Config &config)
     doc["wifiPwd"] = config.wifiPwd;
     doc["serviceHost"] = config.serviceHost;
     doc["myName"] = config.myName;
+    doc["guid"] = this->guid;
 
     Serial.println("will be save");
 
@@ -85,4 +88,13 @@ bool ConfigManager::SaveConfig(const Config &config)
     return true;
 }
 
+void ConfigManager::Clear()
+{
+    if (SPIFFS.exists(this->configFile))
+    {
+        Serial.println("find config file ,need delete");
 
+        SPIFFS.remove(this->configFile);
+        Serial.println("config file delete successfully");
+    }
+}

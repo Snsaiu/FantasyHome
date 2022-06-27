@@ -13,6 +13,8 @@ struct Config
 
     //当前设备昵称
     const char *myName;
+
+    const char *guid;
 };
 
 #endif // !CONFIG_H

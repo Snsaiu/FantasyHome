@@ -52,12 +52,15 @@ void setup()
     bool connectResult = wifiConnector.StartConnect();
     if (connectResult)
     {
-      
     }
     else
     {
 
       Serial.println("connect wifi " + String(config.wifiName) + " error");
+      Serial.println("try to clear config and make user reset config");
+      configManager.Clear();
+      //尝试重启
+      ESP.restart();
       return;
     }
     // 尝试连接wifi
