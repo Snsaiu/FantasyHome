@@ -10,6 +10,8 @@ struct Config
     const char *wifiPwd;
     // 服务器地址
     const char *serviceHost;
+    //服务器端口
+    const char *servicePort;
 
     //当前设备昵称
     const char *myName;

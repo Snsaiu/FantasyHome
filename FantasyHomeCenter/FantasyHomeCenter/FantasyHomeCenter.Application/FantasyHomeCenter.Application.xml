@@ -118,6 +118,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FantasyHomeCenter.Application.SensorDeviceCenter.ISensorDeviceService.CheckHealth(FantasyHomeCenter.Application.SensorDeviceCenter.Dto.HealthInputDto)">
+            <summary>
+            健康检查
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.SensorDeviceCenter.SensorDeviceService.CheckHealth(FantasyHomeCenter.Application.SensorDeviceCenter.Dto.HealthInputDto)">
+            <summary>
+            健康检查
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:FantasyHomeCenter.Application.UserCenter.IUserService.Author(FantasyHomeCenter.Application.UserCenter.Dto.LoginUserInput)">
             <summary>
             用户授权

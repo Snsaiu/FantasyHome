@@ -82,6 +82,17 @@ void loop()
 
   // 开启http服务监听
   httpnContent.HttpServerHandleClient();
+  //开始健康检查
+  bool checkRes = wifiConnector.HealthCheck(1000);
+  if (checkRes)
+  {
+    Serial.println("health check ok!!!");
+  }
+  else
+  {
+    Serial.println("health check error!!!");
+    //健康检查失败
+  }
 
   // put your main code here, to run repeatedly:
 }

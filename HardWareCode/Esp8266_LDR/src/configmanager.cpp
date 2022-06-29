@@ -42,14 +42,16 @@ const Config ConfigManager::GetConfig()
     const char *wifiName = doc["wifiName"];
     const char *wifiPwd = doc["wifiPwd"];
     const char *service = doc["serviceHost"];
+    const char *servicePort = doc["servicePort"];
     const char *myName = doc["myName"];
     const char *guid = doc["guid"];
-    Config info{wifiName, wifiPwd, service, myName, guid};
+    Config info{wifiName, wifiPwd, service, servicePort, myName, guid};
     Serial.println("print config infomation:");
     Serial.println(info.myName);
     Serial.println(info.wifiName);
     Serial.println(info.wifiPwd);
     Serial.println(info.serviceHost);
+    Serial.println(info.servicePort);
     Serial.println(info.guid);
     file.close();
     return info;
@@ -76,6 +78,7 @@ bool ConfigManager::SaveConfig(const Config &config)
     doc["wifiName"] = config.wifiName;
     doc["wifiPwd"] = config.wifiPwd;
     doc["serviceHost"] = config.serviceHost;
+    doc["servicePort"] = config.servicePort;
     doc["myName"] = config.myName;
     doc["guid"] = this->guid;
 

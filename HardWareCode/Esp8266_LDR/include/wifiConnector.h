@@ -30,9 +30,9 @@ public:
     void Init(const Config &config);
 
     /*
-     健康检查
+     健康检查,millionSecond：多少秒进行健康检查
     */
-    void HealthCheck();
+    bool HealthCheck(long millionSecond);
 };
 
 WifiConnector::WifiConnector(const Config &config)
@@ -74,11 +74,11 @@ void WifiConnector::Init(const Config &config)
     this->config = config;
 }
 
-void WifiConnector::HealthCheck()
+bool WifiConnector::HealthCheck(long millionSecond)
 {
     if (WiFi.status() == WL_CONNECTED)
     {
-        String router = "http://" + String(this->config.serviceHost) + "/health";
+        String router = "https://" + String(this->config.serviceHost) + ":" + String(this->config.servicePort) + "/api/sensor-device/check-health";
         this->http.begin(client, router);
         StaticJsonDocument<200> doc;
         doc["guid"] = this->config.guid;
@@ -89,10 +89,13 @@ void WifiConnector::HealthCheck()
         http.addHeader("Content-Type", "application/json");
         int httpResponseCode = http.POST(json);
         Serial.println(httpResponseCode);
+        delay(millionSecond);
+        return true;
     }
     else
     {
         Serial.println("can not connect wifi! please check you wifi work statues!");
+        return false;
     }
 }
 
