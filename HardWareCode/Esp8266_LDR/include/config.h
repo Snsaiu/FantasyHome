@@ -5,18 +5,18 @@
 struct Config
 {
     // wifi 名称
-    const char *wifiName;
+    String wifiName;
     // wifi 密码
-    const char *wifiPwd;
+    String wifiPwd;
     // 服务器地址
-    const char *serviceHost;
+    String serviceHost;
     //服务器端口
-    const char *servicePort;
+    String servicePort;
 
     //当前设备昵称
-    const char *myName;
+    String myName;
 
-    const char *guid;
+    String guid;
 };
 
 #endif // !CONFIG_H

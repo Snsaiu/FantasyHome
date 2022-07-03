@@ -58,22 +58,12 @@ void setup()
 
       Serial.println("connect wifi " + String(config.wifiName) + " error");
       Serial.println("try to clear config and make user reset config");
-      configManager.Clear();
+      // configManager.Clear();
       //尝试重启
       ESP.restart();
       return;
     }
     // 尝试连接wifi
-
-    // bool connectResult = connectWifi(wifiInfo);
-    // if (connectResult)
-    // {
-    //   //连接成功
-    // }
-    // else
-    // {
-    //   //如果连接不上去。。todo 后面应该怎么办?
-    // }
   }
 }
 
@@ -83,7 +73,7 @@ void loop()
   // 开启http服务监听
   httpnContent.HttpServerHandleClient();
   //开始健康检查
-  bool checkRes = wifiConnector.HealthCheck(1000);
+  bool checkRes = wifiConnector.HealthCheck(5000);
   if (checkRes)
   {
     Serial.println("health check ok!!!");

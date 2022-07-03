@@ -10,7 +10,7 @@ class ConfigManager
 private:
     const char *configFile = "/config.json";
     // 唯一的编号
-    const char *guid = "B5A97CB8-59C6-2F14-C2B4-C60E49E82E4A";
+    String guid = "B5A97CB8-59C6-2F14-C2B4-C60E49E82E4A";
 
 public:
     ConfigManager();
@@ -27,7 +27,7 @@ public:
     /*
     获得guid
     */
-    const char *GetGuid() const;
+    String GetGuid() const;
 
     // 保存配置信息
     bool SaveConfig(const Config &config);

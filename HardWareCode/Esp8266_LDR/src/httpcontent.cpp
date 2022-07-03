@@ -77,7 +77,7 @@ bool HttpContent::validateFormAndSave()
 
     // 验证结束
 
-    Config info{wifiName.c_str(), wifiPwd.c_str(), serviceHost.c_str(), port.c_str(), myName.c_str()};
+    Config info{wifiName, wifiPwd, serviceHost, port, myName};
     bool saveRes = configManager.SaveConfig(info);
     return saveRes;
 }
