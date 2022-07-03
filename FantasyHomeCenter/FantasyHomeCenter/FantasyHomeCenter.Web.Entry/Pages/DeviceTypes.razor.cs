@@ -1,6 +1,8 @@
 using AntDesign;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
+using FantasyHomeCenter.Application.SensorDeviceCenter;
+using FantasyHomeCenter.Application.SensorDeviceCenter.Dto;
 using Furion.UnifyResult;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -13,6 +15,12 @@ public partial class DeviceTypes
 
     #region 属性字段
 
+
+    /// <summary>
+    /// 扫描设备弹框是否显示
+    /// </summary>
+    private bool scanDeviceDialogVisible = false;
+    
     /// <summary>
     /// 显示添加设备类型
     /// </summary>
@@ -38,6 +46,12 @@ public partial class DeviceTypes
     /// </summary>
     [Inject]
     private IConfiguration configuration { get; set; }
+    
+    /// <summary>
+    /// 传感器设备服务
+    /// </summary>
+    [Inject]
+    private ISensorDeviceService sensorDeviceService { get; set; }
 
 
     /// <summary>
@@ -98,9 +112,33 @@ public partial class DeviceTypes
     [Inject]
     private MessageService messageService { get; set; }
 
+
+    /// <summary>
+    /// 未被注册的扫描到的设备
+    /// </summary>
+    private List<ScanDeviceOutputDto> unregitScanDevices = new();
+
     #endregion
 
     #region 方法
+
+
+    /// <summary>
+    /// 获得没有扫描设备
+    /// </summary>
+    private void openScanDeviceDialogHandle()
+    {
+        this.scanDeviceDialogVisible = true;
+        var notRegistScanDevices = this.sensorDeviceService.GetNotRegistScanDevices();
+        if (notRegistScanDevices.Succeeded)
+        {
+            this.unregitScanDevices = notRegistScanDevices.Data;
+        }
+        else
+        {
+            this.messageService.Error(notRegistScanDevices.Errors.ToString());
+        }
+    }
 
     protected async override Task OnInitializedAsync()
     {

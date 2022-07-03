@@ -69,7 +69,6 @@ void setup()
 
 void loop()
 {
-
   // 开启http服务监听
   httpnContent.HttpServerHandleClient();
   //开始健康检查

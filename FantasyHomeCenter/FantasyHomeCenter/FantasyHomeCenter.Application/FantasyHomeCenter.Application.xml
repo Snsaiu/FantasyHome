@@ -118,11 +118,37 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:FantasyHomeCenter.Application.SensorDeviceCenter.Dto.ScanDeviceOutputDto">
+            <summary>
+            未被添加到数据库的设备
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.SensorDeviceCenter.Dto.ScanDeviceOutputDto.Guid">
+            <summary>
+            guid
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.SensorDeviceCenter.Dto.ScanDeviceOutputDto.DeviceName">
+            <summary>
+            设备名称
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.SensorDeviceCenter.Dto.ScanDeviceOutputDto.Ip">
+            <summary>
+            设备地址
+            </summary>
+        </member>
         <member name="M:FantasyHomeCenter.Application.SensorDeviceCenter.ISensorDeviceService.CheckHealth(FantasyHomeCenter.Application.SensorDeviceCenter.Dto.HealthInputDto)">
             <summary>
             健康检查
             </summary>
             <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.SensorDeviceCenter.ISensorDeviceService.GetNotRegistScanDevices">
+            <summary>
+            获得没有注册的被扫描到的设备
+            </summary>
             <returns></returns>
         </member>
         <member name="M:FantasyHomeCenter.Application.SensorDeviceCenter.SensorDeviceService.CheckHealth(FantasyHomeCenter.Application.SensorDeviceCenter.Dto.HealthInputDto)">

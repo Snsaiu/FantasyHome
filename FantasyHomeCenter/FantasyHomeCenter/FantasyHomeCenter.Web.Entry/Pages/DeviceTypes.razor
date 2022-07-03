@@ -1,11 +1,13 @@
 @page "/device-types"
 @using Microsoft.CodeAnalysis.CSharp.Syntax
+@using FantasyHomeCenter.Application.SensorDeviceCenter.Dto
 
 
 
 <div>
     <Row>
         <Button @onclick="() => { this.addDeviceTypeDialog = !this.addDeviceTypeDialog ;this.addDeviceTypeInputModel=new AddDeviceTypeInput();}">创建设备类型</Button>
+        <Button @onclick="() => {this.openScanDeviceDialogHandle();}">扫描设备</Button>
     </Row>
     <Row>
 
@@ -62,13 +64,13 @@
             <Input ReadOnly @bind-Value="@context.Version"/>
         </FormItem>
         <FormItem Label="描述">
-        <TextArea ReadOnly @bind-Value="@context.PluginDescription"></TextArea>
+            <TextArea ReadOnly @bind-Value="@context.PluginDescription"></TextArea>
         </FormItem>
         <FormItem Label="添加插件包">
             <Upload Action="@this.uploadPath"
                     @ref="@this.upload"
                     Drag
-                  Name="files"
+                    Name="files"
                     Method="Post"
                     OnChange="this.uploadChanged"
                     BeforeUpload="this.beforeUploadDevicePlugin"
@@ -79,11 +81,40 @@
                 </p>
                 <p class="ant-upload-text">添加插件包</p>
                 <p class="ant-upload-hint">
-                   请添加插件包，添加插件包后请在 设备 中添加具体设备
+                    请添加插件包，添加插件包后请在 设备 中添加具体设备
                 </p>
             </Upload>
         </FormItem>
-
-
     </Form>
+</Modal>
+
+<Modal Title="扫描设备"
+              Visible="this.scanDeviceDialogVisible"
+             
+              OnCancel="() => this.scanDeviceDialogVisible = false">
+    <div>
+        <div style="text-align: center">
+            <Spin size="large" />
+        </div>
+    </div>
+    <div>
+        
+        
+<Table TItem="ScanDeviceOutputDto" DataSource="@unregitScanDevices">
+    <Column @bind-Field="@context.DeviceName">
+        <a>@context.DeviceName</a>
+    </Column>
+    <Column @bind-Field="@context.Guid"></Column>
+    <Column @bind-Field="@context.Ip">    </Column>
+    <ActionColumn Title="Action">
+        <Space Size=@("middle")>
+            <SpaceItem>
+             <Button>添加</Button>
+            </SpaceItem>
+    
+        </Space>
+    </ActionColumn>
+</Table>
+    </div>
+    
 </Modal>
