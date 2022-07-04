@@ -14,6 +14,11 @@ private:
     WiFiClient client;
     HTTPClient http;
 
+    // ap 模式的热点名称
+    String ssid = "FantasyHome";
+    // ap 模式的热点密码
+    String ssid_pwd = "1234567890";
+
 public:
     WifiConnector(const Config &config);
 
@@ -33,6 +38,10 @@ public:
      健康检查,millionSecond：多少秒进行健康检查
     */
     bool HealthCheck(long millionSecond);
+
+    void StartApMode(String ssid, String pwd);
+
+    void StartApMode();
 };
 
 WifiConnector::WifiConnector(const Config &config)
@@ -122,6 +131,21 @@ bool WifiConnector::HealthCheck(long millionSecond)
         Serial.println("can not connect wifi! please check you wifi work statues!");
         return false;
     }
+}
+
+void WifiConnector::StartApMode(String ssid, String pwd)
+{
+
+    WiFi.softAP(ssid, pwd);
+    Serial.println("start ap mode");
+    Serial.println(WiFi.softAPIP());
+}
+void WifiConnector::StartApMode()
+{
+
+    WiFi.softAP(this->ssid, this->ssid_pwd);
+    Serial.println("start ap mode");
+    Serial.println(WiFi.softAPIP());
 }
 
 #endif // !WIFICONNECTOR_H

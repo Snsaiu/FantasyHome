@@ -10,9 +10,10 @@ class ConfigManager
 private:
     const char *configFile = "/config.json";
     // 唯一的编号
-    String guid = "B5A97CB8-59C6-2F14-C2B4-C60E49E82E4A";
+    String guid = "";
 
 public:
+    ConfigManager(String guid);
     ConfigManager();
     ~ConfigManager();
     /*

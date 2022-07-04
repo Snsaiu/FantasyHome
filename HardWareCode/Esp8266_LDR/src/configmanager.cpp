@@ -1,8 +1,9 @@
 #include "configmanager.h"
 #include <ArduinoJson.h>
 
-ConfigManager::ConfigManager()
+ConfigManager::ConfigManager(String guid)
 {
+    this->guid = guid;
     if (SPIFFS.begin())
     {
         Serial.println("spiffs start successfully");
@@ -11,6 +12,9 @@ ConfigManager::ConfigManager()
     {
         Serial.println("spiffs start error");
     }
+}
+ConfigManager::ConfigManager()
+{
 }
 ConfigManager::~ConfigManager()
 {
