@@ -9,5 +9,6 @@ builder.Services.AddRemoteRequest();
 builder.Services.AddScoped<AuthenticationStateProvider, MyCustomAuthenProvider>();
 builder.Services.AddAuthenticationCore();
 
+
 var app = builder.Build();
 app.Run();
