@@ -66,8 +66,7 @@ bool WifiConnector::StartConnect()
     Serial.println("wifi password:");
     Serial.println(this->config.wifiPwd);
     WiFi.mode(WIFI_STA);
-
-    WiFi.begin(this->config.wifiName, "lhw123456");
+    WiFi.begin(this->config.wifiName, this->config.wifiPwd);
     int i = 0;
     while (WiFi.status() != WL_CONNECTED)
     {
@@ -75,7 +74,7 @@ bool WifiConnector::StartConnect()
 
         i++;
         Serial.println("try to reconnecting ...");
-        if (i > 20)
+        if (i > 10)
         {
             Serial.println("tried 10 ,but connect still error!please validate your wifi name and wifi password!");
             return false;

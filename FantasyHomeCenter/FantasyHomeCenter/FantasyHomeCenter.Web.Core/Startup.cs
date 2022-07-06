@@ -34,8 +34,8 @@ namespace FantasyHomeCenter.Web.Core
                 
                 // 连接字符串，这里也可以读取配置文件
                 options.Configuration = App.Configuration["RedisConnection"];
-                // 键名前缀
-                options.InstanceName = "fh_";
+               
+               
             });
          
          
