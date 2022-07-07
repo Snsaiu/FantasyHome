@@ -1,0 +1,26 @@
+﻿<UserControl xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  x:Class="FantasyRoomDisplayDevice.Views.HomeComponent"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+
+
+
+        <dxlc:TileLayoutControl >
+            <dxlc:Tile Size="Large" />
+            <dxlc:Tile Size="ExtraLarge" HorizontalAlignment="Left" >
+                <Label>helklo</Label>
+            </dxlc:Tile>
+            <dxlc:Tile Size="Large"/>
+            <dxlc:Tile Size="Small"/>
+            <dxlc:Tile Size="ExtraSmall"/>
+            <dxlc:Tile Size="ExtraLarge"/>
+            <dxlc:Tile Size="ExtraLarge"/>
+        </dxlc:TileLayoutControl>
+
+
+
+    </Grid>
+</UserControl>

@@ -6,7 +6,7 @@ using Prism.Regions;
 namespace FantasyRoomDisplayDevice.ViewModels
 {
     [ObservableObject]
-    public partial class LoginViewModel
+    public partial class LoginViewModel:INavigationAware
     {
         private readonly IRegionManager regionManager;
 
@@ -22,6 +22,21 @@ namespace FantasyRoomDisplayDevice.ViewModels
         private void Login()
         {
             this.regionManager.RequestNavigate("ContentRegion", nameof(Home));
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+      
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+   
         }
     }
 }
