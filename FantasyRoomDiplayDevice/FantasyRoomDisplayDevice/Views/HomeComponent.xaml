@@ -8,7 +8,7 @@
 
 
 
-        <dxlc:TileLayoutControl >
+        <dxlc:TileLayoutControl  Background="Yellow"  Padding="5">
             <dxlc:Tile Size="Large" />
             <dxlc:Tile Size="ExtraLarge" HorizontalAlignment="Left" >
                 <Label>helklo</Label>
