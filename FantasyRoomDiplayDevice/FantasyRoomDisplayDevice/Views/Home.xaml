@@ -1,0 +1,28 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" x:Class="FantasyRoomDisplayDevice.Views.Home"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+
+
+        <dxwui:HamburgerMenu>
+     
+            <dxwui:HamburgerMenu.Content>
+                <Label>helllo</Label>
+            </dxwui:HamburgerMenu.Content>
+            <dxwui:HamburgerMenuNavigationButton Content="主页" GlyphHeight="16" GlyphWidth="16" IsSelected="True"/>
+            <dxwui:HamburgerMenuNavigationButton Content="客厅" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuNavigationButton Content="主卧" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuNavigationButton Content="次卧" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuNavigationButton Content="卫生间" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuNavigationButton Content="厨房" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuNavigationButton Content="阳台" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuNavigationButton Content="本地设置" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuHyperlinkButton Content="Support" NavigateUri="https://www.devexpress.com/Support/"/>
+        </dxwui:HamburgerMenu>
+
+
+    </Grid>
+</UserControl>

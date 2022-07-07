@@ -4,6 +4,7 @@ using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -11,6 +12,7 @@ namespace FantasyHomeCenter.Web.Core
 {
     public class Startup : AppStartup
     {
+       
         public void ConfigureServices(IServiceCollection services)
         {
             // JWT 和 Cookies 混合身份验证
@@ -26,6 +28,16 @@ namespace FantasyHomeCenter.Web.Core
             services.AddControllers().AddInjectWithUnifyResult();
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            
+            services.AddStackExchangeRedisCache(options =>
+            {
+                
+                // 连接字符串，这里也可以读取配置文件
+                options.Configuration = App.Configuration["RedisConnection"];
+               
+               
+            });
+         
          
         }
 

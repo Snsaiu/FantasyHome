@@ -20,7 +20,7 @@ public:
 public:
     RegistFacade();
     ~RegistFacade();
-    void Init(String guid);
+    void Init(String guid, String ssid, String ssid_pwd);
     void HttpServerHandleClient();
     bool HealthCheck(long millionSecond);
 };
@@ -32,7 +32,7 @@ RegistFacade::RegistFacade()
 RegistFacade::~RegistFacade()
 {
 }
-void RegistFacade::Init(String guid)
+void RegistFacade::Init(String guid, String ssid, String ssid_pwd)
 {
     ConfigManager cm(guid);
     this->configManager = cm;
@@ -42,7 +42,7 @@ void RegistFacade::Init(String guid)
     //如果wifi不存在，表示需要用户注册新的wifi信息
     if (wifiExist == false)
     {
-        this->wifiConnector.StartApMode();
+        this->wifiConnector.StartApMode(ssid, ssid_pwd);
     }
     else
     {
@@ -55,6 +55,7 @@ void RegistFacade::Init(String guid)
         bool connectResult = wifiConnector.StartConnect();
         if (connectResult)
         {
+            Serial.println("connect wifi successfully");
         }
         else
         {

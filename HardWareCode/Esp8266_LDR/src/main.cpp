@@ -6,7 +6,7 @@ void setup()
 {
 
   Serial.begin(9600);
-  registFacade.Init("B5A97CB8-59C6-2F14-C2B4-C60E49E82E4A");
+  registFacade.Init("B5A97CB8-59C6-2F14-C2B4-C60E49E82E4A", "fantasyhome", "1234567890");
 }
 
 void loop()

@@ -29,6 +29,27 @@ HttpContent::~HttpContent()
 }
 HttpContent::HttpContent()
 {
+    this->httpServer.begin(80);
+    Serial.println("start http server");
+
+    this->httpServer.on("/", [this]
+                        { 
+                            Serial.println("request home page start");
+                            this->httpServer.send(200, "text/html", this->getContent()); 
+                            Serial.println("request home page end;"); });
+
+    this->httpServer.on("/config", HTTP_POST, [this]
+                        { 
+                            Serial.println("request config page start");
+                           bool validateRes= this->validateFormAndSave();
+                           if(validateRes)
+                           {
+                             this->httpServer.send(200,"text/html",this->configOkContent());
+                             ESP.restart();
+                           }else{
+                            this->httpServer.send(200,"text/html",this->configErrorContent());
+                           }
+                           Serial.println("request config page end"); });
 }
 const char *HttpContent::getContent()
 {
@@ -96,7 +117,9 @@ bool HttpContent::validateFormAndSave()
 
 void HttpContent::HttpServerHandleClient()
 {
+    Serial.println("start watch http request");
     this->httpServer.handleClient();
+    Serial.println("continue watch http request");
 }
 
 void HttpContent::SetConfig(ConfigManager &configManager)

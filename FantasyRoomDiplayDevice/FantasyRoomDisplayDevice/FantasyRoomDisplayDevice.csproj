@@ -6,7 +6,10 @@
     <AssemblyName>FantasyRoomDisplayDevice</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="devexpress.wpf.controls" Version="21.1.3" />
+    <PackageReference Include="devexpress.wpf.core" Version="21.1.3" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
   </ItemGroup>
 </Project>
