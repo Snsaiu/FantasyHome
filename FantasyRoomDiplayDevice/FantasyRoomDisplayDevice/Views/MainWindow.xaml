@@ -3,8 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525" >
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        WindowStyle="ToolWindow"
+        >
     <Grid>
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
     </Grid>
+    <Behaviors:Interaction.Triggers>
+        <Behaviors:EventTrigger EventName="Loaded">
+            <Behaviors:InvokeCommandAction Command="{Binding LoadedCommand}"></Behaviors:InvokeCommandAction>
+        </Behaviors:EventTrigger>
+    </Behaviors:Interaction.Triggers>
 </Window>
