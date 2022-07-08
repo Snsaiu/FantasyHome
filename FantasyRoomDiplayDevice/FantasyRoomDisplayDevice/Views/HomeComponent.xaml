@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             
-             xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  x:Class="FantasyRoomDisplayDevice.Views.HomeComponent"             
+             xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:components="clr-namespace:FantasyRoomDisplayDevice.Views.Components"
+             x:Class="FantasyRoomDisplayDevice.Views.HomeComponent"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
 
@@ -10,13 +12,13 @@
 
         <dxlc:TileLayoutControl  Background="Yellow"  Padding="5">
             <dxlc:Tile Size="Large" />
-            <dxlc:Tile Size="ExtraLarge" HorizontalAlignment="Left" >
-                <Label>helklo</Label>
+            <dxlc:Tile Size="ExtraLarge" Width="500" AllowDrop="False"  Focusable="False">
+               <components:AirControlComponent />
             </dxlc:Tile>
             <dxlc:Tile Size="Large"/>
             <dxlc:Tile Size="Small"/>
             <dxlc:Tile Size="ExtraSmall"/>
-            <dxlc:Tile Size="ExtraLarge"/>
+            <dxlc:Tile Size="ExtraLarge"/>  
             <dxlc:Tile Size="ExtraLarge"/>
         </dxlc:TileLayoutControl>
 
