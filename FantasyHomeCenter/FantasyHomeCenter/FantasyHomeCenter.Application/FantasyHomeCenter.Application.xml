@@ -91,6 +91,194 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.client_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.ipaddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.port">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.clean_sess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.proto_ver">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.keepalive">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.connected_at">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.Result.current_page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.Result.page_size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.Result.total_num">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.Result.total_page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.Result.objects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.MqttClientListOutput.code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.MqttClientListOutput.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.ObjectsItem.client_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.ObjectsItem.topic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.ObjectsItem.qos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.Result.current_page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.Result.page_size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.Result.total_num">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.Result.total_page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.Result.objects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.MqttSubscriptionsOutput.code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription.MqttSubscriptionsOutput.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttTopicListOutput.code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttTopicListOutput.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.ObjectsItem.topic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.ObjectsItem.node">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.current_page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.page_size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.total_num">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.total_page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.objects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.MqttCenter.IMqttService.GetTopicList">
+            <summary>
+            获得所有主题
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.MqttCenter.IMqttService.GetClientList">
+            <summary>
+            获得所有客户端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.MqttCenter.IMqttService.GetSubscriptions">
+            <summary>
+            获得订阅列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FantasyHomeCenter.Application.RoomCenter.IRoomService.GetRoomListPageAsync(FantasyHomeCenter.Application.RoomCenter.Dto.RoomInput)">
             <summary>
             获得房间分页

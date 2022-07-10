@@ -1,0 +1,35 @@
+@page "/mqtt-subscriptions"
+@using FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription
+
+
+<div>
+
+    <Row>
+        <Button>更新</Button>
+    </Row>
+    <Row>
+        <Col Span="24">
+            <Table TItem="ObjectsItem"
+                   DataSource="@list.result.objects"
+                   Total="list.result.total_num"
+                   @bind-PageIndex="list.result.current_page"
+                   @bind-PageSize="list.result.page_size">
+                <Column @bind-Field="@context.client_id"/>
+                <Column @bind-Field="@context.topic"/>
+                <Column @bind-Field="@context.topic"/>
+                <Column @bind-Field="@context.qos"/>
+
+                <ActionColumn Title="选项">
+
+                    <Space>
+                        <SpaceItem>
+                            <Button Danger>删除</Button>
+                        </SpaceItem>
+                    </Space>
+
+                </ActionColumn>
+            </Table>
+        </Col>
+    </Row>
+
+</div>

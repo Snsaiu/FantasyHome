@@ -10,9 +10,9 @@
 
 
 
-        <dxlc:TileLayoutControl  Background="Yellow"  Padding="5">
-            <dxlc:Tile Size="Large" />
-            <dxlc:Tile Size="ExtraLarge" Width="500" AllowDrop="False"  Focusable="False">
+        <dxlc:TileLayoutControl  Padding="5">
+
+            <dxlc:Tile Size="ExtraLarge" Width="450" Height="250">
                <components:AirControlComponent />
             </dxlc:Tile>
             <dxlc:Tile Size="Large"/>

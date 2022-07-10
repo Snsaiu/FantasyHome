@@ -25,9 +25,9 @@
                 <ColumnDefinition></ColumnDefinition>
              
             </Grid.ColumnDefinitions>
-            <dx:SimpleButton CornerRadius="10" Height="50" FontSize="20" Content="风速:10" HorizontalAlignment="Left" VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
-            <dx:SimpleButton Content="扫风模式:全部" CornerRadius="10" Height="50" FontSize="20" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
-            <dx:SimpleButton Content="能耗:节能" CornerRadius="10" Height="50" FontSize="20" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
+            <dx:SimpleButton CornerRadius="10" Height="50" FontSize="10" Content="风速:10" HorizontalAlignment="Left" VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
+            <dx:SimpleButton Content="扫风模式:全部" CornerRadius="10" Height="50" FontSize="10" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
+            <dx:SimpleButton Content="能耗:节能" CornerRadius="10" Height="50" FontSize="10" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
             <dxe:CheckEdit Grid.Column="3" CornerRadius="10" Width="50" Height="50" HorizontalAlignment="Center">
                 <dxe:CheckEdit.Style>
                     <Style TargetType="dxe:CheckEdit">
@@ -64,7 +64,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label>温度:</Label>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">温度:15</Label>
             <dxe:TrackBarEdit Grid.Column="1"  Steps="1"   Minimum="10" Maximum="60" TickFrequency="5" TickItemDisplayMode="TickAndText">
                 <dxe:TrackBarEdit.StyleSettings>
                     <dxe:TrackBarZoomStyleSettings></dxe:TrackBarZoomStyleSettings>

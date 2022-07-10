@@ -1,0 +1,34 @@
+@page "/mqtt-topics"
+@using FantasyHomeCenter.Application.MqttCenter.Dto
+
+<div>
+    
+    <Row>
+        <ButtonGroup>
+            @* <Button>创建订阅</Button> *@
+            <Button>更新</Button>
+        </ButtonGroup>
+    </Row>
+    <Row>
+        <Col Span="24">
+              <Table TItem="ObjectsItem"
+                           DataSource="@list.result.objects"
+                           Total="list.result.total_num"
+                           @bind-PageIndex="list.result.current_page"
+                           @bind-PageSize="list.result.page_size">
+                        <Column @bind-Field="@context.topic"/>
+                        <Column @bind-Field="@context.node"/>
+                           <ActionColumn Title="选项">
+                        
+                                            <Space>
+                                                <SpaceItem>
+                                                    <Button Danger >删除</Button>
+                                                </SpaceItem>
+                                            </Space>
+                        
+                                        </ActionColumn>
+                    </Table>
+        </Col>
+      
+    </Row>
+</div>

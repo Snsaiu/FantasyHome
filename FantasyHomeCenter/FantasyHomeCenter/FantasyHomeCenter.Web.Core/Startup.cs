@@ -1,4 +1,5 @@
-﻿using FantasyHomeCenter.Core.Entities;
+﻿using FantasyHomeCenter.Application.MqttCenter.Dto;
+using FantasyHomeCenter.Core.Entities;
 using Furion;
 using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -28,7 +29,7 @@ namespace FantasyHomeCenter.Web.Core
             services.AddControllers().AddInjectWithUnifyResult();
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            
+            services.AddConfigurableOptions<MqttServiceOptions>();
             services.AddStackExchangeRedisCache(options =>
             {
                 

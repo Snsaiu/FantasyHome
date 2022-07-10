@@ -1,0 +1,37 @@
+@page "/mqtt-clients"
+@using FantasyHomeCenter.Application.MqttCenter.Dto.Client
+
+<div>
+
+    <Row>
+        <Button>更新</Button>
+    </Row>
+    <Row>
+        <Col Span="24">
+            <Table TItem="ObjectsItem"
+                   DataSource="@list.result.objects"
+                   Total="list.result.total_num"
+                   @bind-PageIndex="list.result.current_page"
+                   @bind-PageSize="list.result.page_size">
+                <Column @bind-Field="@context.client_id"/>
+                <Column @bind-Field="@context.username"/>
+                <Column @bind-Field="@context.ipaddress"/>
+                <Column @bind-Field="@context.port"/>
+                <Column @bind-Field="@context.clean_sess"/>
+                <Column @bind-Field="@context.proto_ver"/>
+                <Column @bind-Field="@context.keepalive"/>
+                <Column @bind-Field="@context.connected_at"/>
+                <ActionColumn Title="选项">
+
+                    <Space>
+                        <SpaceItem>
+                            <Button Danger>删除</Button>
+                        </SpaceItem>
+                    </Space>
+
+                </ActionColumn>
+            </Table>
+        </Col>
+    </Row>
+
+</div>

@@ -17,6 +17,12 @@ struct Config
     String myName;
 
     String guid;
+
+    String mqttServer;
+
+    String mqttPort;
+
+    String mqttTopic;
 };
 
 #endif // !CONFIG_H

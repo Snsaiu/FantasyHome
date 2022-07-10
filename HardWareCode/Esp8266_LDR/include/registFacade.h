@@ -7,6 +7,7 @@
 #include "config.h"
 #include "wifiConnector.h"
 #include <ESP8266WebServer.h>
+#include "mqttServer.h"
 class RegistFacade
 {
 private:
@@ -15,14 +16,18 @@ private:
     // http内容
     HttpContent httpContent;
     WifiConnector wifiConnector;
+    MqttServer mqttServer;
 
-public:
 public:
     RegistFacade();
     ~RegistFacade();
-    void Init(String guid, String ssid, String ssid_pwd);
+    void Init(String guid, String ssid, String ssid_pwd, String mqttServerAddress, int mqttPort);
     void HttpServerHandleClient();
     bool HealthCheck(long millionSecond);
+    //发布mqtt消息到服务器
+    bool PublishMqttMessage(String topic, String message);
+
+    void MqttLoopWatch();
 };
 
 RegistFacade::RegistFacade()
@@ -32,7 +37,12 @@ RegistFacade::RegistFacade()
 RegistFacade::~RegistFacade()
 {
 }
-void RegistFacade::Init(String guid, String ssid, String ssid_pwd)
+
+bool RegistFacade::PublishMqttMessage(String topic, String message)
+{
+    return this->mqttServer.Publish(topic, message);
+}
+void RegistFacade::Init(String guid, String ssid, String ssid_pwd, String mqttServerAddress, int mqttPort)
 {
     ConfigManager cm(guid);
     this->configManager = cm;
@@ -56,6 +66,8 @@ void RegistFacade::Init(String guid, String ssid, String ssid_pwd)
         if (connectResult)
         {
             Serial.println("connect wifi successfully");
+            Serial.println("start connect mqtt server");
+            mqttServer.Begin(mqttServerAddress, mqttPort, guid);
         }
         else
         {
@@ -80,4 +92,10 @@ bool RegistFacade::HealthCheck(long millionSecond)
 {
     return this->wifiConnector.HealthCheck(millionSecond);
 }
+
+void RegistFacade::MqttLoopWatch()
+{
+    this->mqttServer.LoopConnectCheck();
+}
+
 #endif // !REGISTFACADE_H
