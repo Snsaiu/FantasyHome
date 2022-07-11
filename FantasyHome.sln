@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FantasyRoomDiplayDevice", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyRoomDisplayDevice", "FantasyRoomDiplayDevice\FantasyRoomDisplayDevice\FantasyRoomDisplayDevice.csproj", "{FECD60F5-8F4E-4EFF-B986-9420BBA30454}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyHome.GTool", "FantasyHome.GTool\FantasyHome.GTool.csproj", "{98641155-F6DF-42EC-8278-EAE67ECA9207}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -343,6 +345,26 @@ Global
 		{FECD60F5-8F4E-4EFF-B986-9420BBA30454}.Release|x64.Build.0 = Release|Any CPU
 		{FECD60F5-8F4E-4EFF-B986-9420BBA30454}.Release|x86.ActiveCfg = Release|Any CPU
 		{FECD60F5-8F4E-4EFF-B986-9420BBA30454}.Release|x86.Build.0 = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|ARM.Build.0 = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|x64.Build.0 = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Debug|x86.Build.0 = Debug|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|ARM.ActiveCfg = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|ARM.Build.0 = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|ARM64.Build.0 = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|x64.ActiveCfg = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|x64.Build.0 = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|x86.ActiveCfg = Release|Any CPU
+		{98641155-F6DF-42EC-8278-EAE67ECA9207}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

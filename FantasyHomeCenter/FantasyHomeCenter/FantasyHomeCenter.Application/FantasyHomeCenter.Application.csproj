@@ -11,13 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\FantasyHome.GTool\FantasyHome.GTool.csproj" />
     <ProjectReference Include="..\FantasyHomeCenter.Core\FantasyHomeCenter.Core.csproj" />
     <ProjectReference Include="..\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj" />
     <ProjectReference Include="..\FantasyHomeCenter.EntityFramework.Core\FantasyHomeCenter.EntityFramework.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="FamilyCenter\Dto" />
+    <Folder Include="CommonCenter\Dto" />
   </ItemGroup>
 
   <ItemGroup>

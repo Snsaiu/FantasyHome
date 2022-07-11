@@ -54,7 +54,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
                 RoomName = x.Room.RoomName
                 
             })
-            .ToPagedListAsync();
+            .ToPagedListAsync(input.PageIndex,input.PageSize);
         return new RESTfulResult<PagedList<DeviceOutput>>() { Succeeded = true, Data = res };
     }
 

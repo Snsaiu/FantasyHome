@@ -1,7 +1,9 @@
 ﻿
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using FantasyRoomDisplayDevice.Services;
 using FantasyRoomDisplayDevice.Views;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -12,11 +14,12 @@ namespace FantasyRoomDisplayDevice.ViewModels
     public partial class MainWindowViewModel 
     {
         private readonly IRegionManager regionManager;
+        private readonly MqttService mqttService;
 
-        public MainWindowViewModel( IRegionManager regionManager )
+        public MainWindowViewModel( IRegionManager regionManager ,MqttService mqttService)
         {
             this.regionManager = regionManager;
-           
+            this.mqttService = mqttService;
         }
 
         /// <summary>

@@ -1,6 +1,9 @@
-﻿using FantasyRoomDisplayDevice.Views;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using FantasyRoomDisplayDevice.Models;
+using FantasyRoomDisplayDevice.Services;
+using FantasyRoomDisplayDevice.Views;
+using Microsoft.Extensions.Configuration;
 using Prism.Regions;
 
 namespace FantasyRoomDisplayDevice.ViewModels
@@ -9,21 +12,74 @@ namespace FantasyRoomDisplayDevice.ViewModels
     public partial class LoginViewModel:INavigationAware
     {
         private readonly IRegionManager regionManager;
+        private readonly IConfiguration configuration;
+        private readonly ICommonService commonService;
 
-        public LoginViewModel(IRegionManager regionManager)
+        public LoginViewModel(IRegionManager regionManager,IConfiguration configuration,ICommonService commonService)
         {
             this.regionManager = regionManager;
+            this.configuration = configuration;
+            this.commonService = commonService;
+            this.tryConnectApiServer();
         }
 
+        private void tryConnectApiServer()
+        {
+            var config= this.configuration.Get<Config>();
+           if (string.IsNullOrEmpty(config.ApiServer.Host) == false && string.IsNullOrEmpty(config.ApiServer.Port)==false)
+           {
+               // try to connect server;
+              bool connectResult= this.commonService.TryConnectTest(new HttpOptionInput()
+                   { Host = config.ApiServer.Host, Port = config.ApiServer.Port });
+              if (connectResult)
+              {
+                  //send curren machine guid code
+              }
+              
+                  
+               
+           }
+        }
+
+        private bool tryConnectServer(string host, string port)
+        {
+            
+        }
+
+
+        /// <summary>
+        /// host
+        /// </summary>
+        [ObservableProperty]
+        [AlsoNotifyCanExecuteFor((nameof(LoginCommand)))]
+        private string host;
+
+        /// <summary>
+        /// port
+        /// </summary>
+        [ObservableProperty]
+      [AlsoNotifyCanExecuteFor(nameof(LoginCommand))]
+        private string port;
+        
         /// <summary>
         /// 登录
         /// </summary>
-        [ICommand]
+        [ICommand(CanExecute = nameof(canLogin))]
         private void Login()
         {
+          
             this.regionManager.RequestNavigate("ContentRegion", nameof(Home));
         }
 
+        private bool canLogin()
+        {
+            if (string.IsNullOrEmpty(this.Host)||string.IsNullOrEmpty(this.Port))
+            {
+                return false;
+            }
+
+            return true;
+        }
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
       

@@ -11,4 +11,6 @@ public interface IUserService
     /// <param name="input"></param>
     /// <returns></returns>
     public LoginUserOutput Author(LoginUserInput input);
+    
+    
 }

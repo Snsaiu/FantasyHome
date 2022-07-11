@@ -1,11 +1,12 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using FantasyRoomDisplayDevice.Views;
-using Microsoft.Toolkit.Mvvm.Input;
 using Prism.Regions;
 
 namespace FantasyRoomDisplayDevice.ViewModels

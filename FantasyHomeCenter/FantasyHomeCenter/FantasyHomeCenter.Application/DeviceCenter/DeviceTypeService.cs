@@ -57,7 +57,7 @@ public class DeviceTypeService:IDynamicApiController,ITransient,IDeviceTypeServi
             Version=x.Version,
             Author=x.Author,
             PluginDescription=x.PluginDescription
-        }).ToPagedListAsync();
+        }).ToPagedListAsync(input.PageIndex,input.PageSize);
        return new RESTfulResult<PagedList<DeviceTypeOutput>>() { Succeeded = true, Data = res };
     }
 
