@@ -43,6 +43,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
 
         private bool tryConnectServer(string host, string port)
         {
+            return false;
             
         }
 

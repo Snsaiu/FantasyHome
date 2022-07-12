@@ -4,6 +4,43 @@
         <name>FantasyHomeCenter.Application</name>
     </assembly>
     <members>
+        <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.ControlDeviceOutput.DeviceType">
+            <summary>
+            设备类型
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.RegistMachineInput.MachineName">
+            <summary>
+            设备名称
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.RegistMachineInput.Ip">
+            <summary>
+            设备地址
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.RegistMachineInput.MachineCode">
+            <summary>
+            设备唯一编码
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.RegistMachineInput.ValidateUserName">
+            <summary>
+            验证用户名
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.RegistMachineInput.ValidateUsePassword">
+            <summary>
+            验证用户名密码
+            </summary>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.ControlDeviceCenter.IControlDeviceService.Regist(FantasyHomeCenter.Application.ControlDeviceCenter.Dto.RegistMachineInput)">
+            <summary>
+            登录或者注册当前设备
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="P:FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceTypeInput.PluginPath">
             <summary>
             插件路径
@@ -89,6 +126,25 @@
             根据主键获得插件目录
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.FamilyCenter.Dto.ControlDeviceOutput.DeviceType">
+            <summary>
+            设备类型
+            </summary>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.FamilyCenter.IFamilyService.CreateNewFamily(FantasyHomeCenter.Application.FamilyCenter.Dto.CreateFamilyInput)">
+            <summary>
+            创建新家庭成员
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.FamilyCenter.IFamilyService.GetFamilys(FantasyHomeCenter.Application.FamilyCenter.Dto.FamilyPageInput)">
+            <summary>
+            获得分页
+            </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Client.ObjectsItem.client_id">

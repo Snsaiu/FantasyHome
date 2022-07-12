@@ -33,7 +33,8 @@ namespace FantasyRoomDisplayDevice
             containerRegistry.RegisterForNavigation<Login, LoginViewModel>();
             containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
             containerRegistry.RegisterForNavigation<HomeComponent, HomeComponentViewModel>();
-            
+            containerRegistry.Register<ICommonService, CommonService>();
+
 
 
         }

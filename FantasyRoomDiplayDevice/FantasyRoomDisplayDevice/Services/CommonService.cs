@@ -1,31 +1,31 @@
-using FantasyHome.Application;
-using FantasyHome.Application.Dto;
-using FantasyHome.Application.Impls;
+
 using FantasyRoomDisplayDevice.Models;
 
-namespace FantasyRoomDisplayDevice.Services;
-
-public class CommonService:ICommonService
+namespace FantasyRoomDisplayDevice.Services
 {
-    private ICommonApplication commonApplication = null;
 
-    public CommonService()
+    public class CommonService : ICommonService
     {
-        this.commonApplication = new CommonApplication();
-    }
-    
-    public bool TryConnectTest(HttpOptionInput input)
-    {
-        ResultBase<string> resultBase = this.commonApplication.TestConnect(new TryConnectParamInput() { Host = input.Host, Port = input.Port });
-        if (resultBase.Succeeded)
+        // private ICommonApplication commonApplication = null;
+
+        public CommonService()
+        {
+            // this.commonApplication = new CommonApplication();
+        }
+
+        public bool TryConnectTest(HttpOptionInput input)
+        {
+            // ResultBase<string> resultBase = this.commonApplication.TestConnect(new TryConnectParamInput() { Host = input.Host, Port = input.Port });
+            //if (resultBase.Succeeded)
+            //{
+            //    return true;
+            //}
+            return false;
+        }
+
+        public bool SendMachineCode()
         {
             return true;
         }
-        return false;
-    }
-
-    public bool SendMachineCode()
-    {
-        
     }
 }

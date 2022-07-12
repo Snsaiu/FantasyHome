@@ -1,6 +1,75 @@
-@page "/Familys"
-<h3>Familys</h3>
+@page "/familys"
+@using FantasyHomeCenter.Application.FamilyCenter.Dto
 
-@code {
+<div>
+
+    <Row>
+        <ButtonGroup>
+            <Button @onclick="() => { this.openCreateNewFamilyDialog();}">添加家人</Button>
+        </ButtonGroup>
+    </Row>
     
-}
+    <Row>
+        <Col Span="24">
+            
+            <Table DataSource="list.Items" TItem="FamilyWithDeivesOuput"
+                   Total="list.TotalCount"
+                   @bind-PageIndex="pageinput.PageIndex"
+                   @bind-PageSize="pageinput.PageSize"
+            >
+                <RowTemplate>
+                    <Selection CheckStrictly/>
+                    <Column @bind-Field="@context.UserName"/>
+                    <Column @bind-Field="@context.PhoneNumber"/>
+                    <ActionColumn Title="选项">
+                        <ButtonGroup>
+                            <Button @onclick="() => this.editFamilyHanle(context)">编辑</Button>
+                            <Button>删除</Button>
+                        </ButtonGroup>
+                    </ActionColumn>
+                </RowTemplate>
+                
+                <ExpandTemplate Context="rowData">
+                    <Table DataSource="rowData.Data.Devices" Loading="rowData.Data.Devices==null" HidePagination>
+                        <Column TData="string" DataIndex="Name" />
+                        <Column TData="string" DataIndex="DeviceCode" />
+                        <Column TData="string" DataIndex="DeviceType" />
+                        <Column TData="string" DataIndex="Room" />
+                        <Column TData="string" DataIndex="Ip" >
+                        </Column>
+                       
+                        <ActionColumn Title="选项">
+                            <ButtonGroup>
+                                <Button>查看</Button>
+                                <Button>编辑</Button>
+                                <Button>删除</Button>
+                            </ButtonGroup>
+                        </ActionColumn>
+                    </Table>
+                </ExpandTemplate>
+            </Table>
+        </Col>
+    </Row>
+
+</div>
+
+<Modal Title="添加家人" Visible="this.createFamilyDialogVisible" 
+       OnOk="()=>this.createFamilyInputForm.Submit()"
+       OnCancel="()=>this.createFamilyDialogVisible=false">
+    <Form Model="this.createFamilyInput" 
+          LabelColSpan="8"
+          OnFinish="()=>this.submitCreateFamilyHandle()"
+          @ref="@this.createFamilyInputForm"
+                    WrapperColSpan="16"
+          TModel="CreateFamilyInput" Loading="this.creatingFamilyLoading">
+        <FormItem Label="家人称呼">
+            <Input @bind-Value="@context.Name"></Input>
+        </FormItem>
+        <FormItem Label="家人联系号码">
+            <Input @bind-Value="@context.Phone"></Input>
+        </FormItem>
+        <FormItem Label="家人密码">
+            <InputPassword @bind-Value="@context.Pwd"></InputPassword>
+        </FormItem>
+    </Form>
+</Modal>

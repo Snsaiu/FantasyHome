@@ -20,6 +20,13 @@ public class UiDevice:Entity
     public string Name { get; set; }
 
     [Required]
+    [Description("设备唯一编码")]
+    public string DeviceCode { get; set; }
+
+    [Description("设备ip地址")]
+    public string Ip { get; set; }
+
+    [Required]
     [Description("交互设备类型")]
     public UiDeviceType UiDeviceType { get; set; }
 }

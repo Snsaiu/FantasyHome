@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FantasyHome.Application.Dto;
-
-public class RoomOutput
+namespace FantasyHome.Application.Dto
 {
-    [Display(Name="房间名")]
-    public string RoomName { get; set; }
-    public int Id { get; set; }
+
+    public class RoomOutput
+    {
+        [Display(Name = "房间名")] public string RoomName { get; set; }
+        public int Id { get; set; }
+    }
 }

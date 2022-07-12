@@ -6,6 +6,7 @@ using FantasyHomeCenter.Application.FamilyCenter.Dto;
 using FantasyHomeCenter.Core.Entities;
 using Furion.DatabaseAccessor;
 using Mapster;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace FantasyHomeCenter.Application.FamilyCenter;
@@ -37,7 +38,7 @@ public class FamilyService:IFamilyService,IDynamicApiController,ITransient
        return new RESTfulResult<CreateFamilyOutput>() { Succeeded = true, Data = output };
     }
 
-    public RESTfulResult<PagedList<CreateFamilyOutput>> GeFamilys(FamilyPageInput input)
+    public RESTfulResult<PagedList<CreateFamilyOutput>> GetFamilys(FamilyPageInput input)
     {
       var query=  this.familyRepository.AsQueryable();
       var list= query.Select(x => new CreateFamilyOutput()
@@ -47,5 +48,19 @@ public class FamilyService:IFamilyService,IDynamicApiController,ITransient
           Id = x.Id
       }).ToPagedList(input.PageIndex, input.PageSize);
       return new RESTfulResult<PagedList<CreateFamilyOutput>>() { Succeeded = true, Data = list };
+    }
+
+    public RESTfulResult<PagedList<FamilyWithDeivesOuput>> GetFamilysWithDevices(FamilyPageInput input)
+    {
+        var query=  this.familyRepository.AsQueryable();
+       var list=  query.Include(x => x.UiDevices).Select(x => new FamilyWithDeivesOuput()
+        {
+            UserName = x.UserName,
+            PhoneNumber = x.PhoneNumber,
+            Devices = x.UiDevices.Adapt<List<ControlDeviceOutput>>(),
+            Id = x.Id
+
+        }).ToPagedList(input.PageIndex, input.PageSize);
+       return new RESTfulResult<PagedList<FamilyWithDeivesOuput>>() { Succeeded = true, Data = list };
     }
 }

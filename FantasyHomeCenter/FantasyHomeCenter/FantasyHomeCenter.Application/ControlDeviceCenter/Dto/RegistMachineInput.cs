@@ -13,7 +13,7 @@ public class RegistMachineInput
     public string Ip { get; set; }
 
     /// <summary>
-    /// 设备名称
+    /// 设备唯一编码
     /// </summary>
     public string MachineCode { get; set; }
 

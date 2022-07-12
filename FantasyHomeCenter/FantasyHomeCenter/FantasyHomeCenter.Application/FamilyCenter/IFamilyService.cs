@@ -17,5 +17,7 @@ public interface IFamilyService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    RESTfulResult<PagedList<CreateFamilyOutput>> GeFamilys(FamilyPageInput input);
+    RESTfulResult<PagedList<CreateFamilyOutput>> GetFamilys(FamilyPageInput input);
+
+    RESTfulResult<PagedList<FamilyWithDeivesOuput>> GetFamilysWithDevices(FamilyPageInput input);
 }
