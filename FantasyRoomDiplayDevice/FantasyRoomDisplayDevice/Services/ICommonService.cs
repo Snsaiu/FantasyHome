@@ -1,3 +1,5 @@
+using FantasyHome.Application;
+using FantasyHome.Application.Dto;
 using FantasyRoomDisplayDevice.Models;
 
 namespace FantasyRoomDisplayDevice.Services
@@ -7,10 +9,9 @@ namespace FantasyRoomDisplayDevice.Services
     {
         bool TryConnectTest(HttpOptionInput input);
 
-        /// <summary>
-        /// 发送机器码
-        /// </summary>
-        /// <returns></returns>
-        bool SendMachineCode();
+     
+
+        ResultBase<bool> Regist(RegistMachineInput input);
+
     }
 }

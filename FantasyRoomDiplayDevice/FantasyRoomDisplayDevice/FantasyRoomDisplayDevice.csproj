@@ -30,4 +30,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FantasyHome.Application\FantasyHome.Application.csproj" />
+  </ItemGroup>
 </Project>

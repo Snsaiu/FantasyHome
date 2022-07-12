@@ -12,4 +12,11 @@
   <ItemGroup>
     <Folder Include="Impls\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="106.12.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FantasyHome.GTool\FantasyHome.GTool.csproj" />
+  </ItemGroup>
 </Project>

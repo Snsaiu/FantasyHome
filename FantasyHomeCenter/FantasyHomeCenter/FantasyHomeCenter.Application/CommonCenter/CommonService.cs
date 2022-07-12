@@ -8,6 +8,6 @@ public class CommonService:ICommonService,IDynamicApiController,ITransient
     [AllowAnonymous]
     public RESTfulResult<string> GetTryTest()
     {
-        return new RESTfulResult<string>() { Data = "连接成功!" };
+        return new RESTfulResult<string>() { Data = "连接成功!" ,Succeeded = true};
     }
 }

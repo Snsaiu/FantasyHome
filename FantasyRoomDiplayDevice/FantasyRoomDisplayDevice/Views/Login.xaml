@@ -9,11 +9,15 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Label FontSize="30" Margin="10" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center">Fantasy Home 中央控制器</Label>
         <dxe:TextEdit Text="{Binding Host,UpdateSourceTrigger=PropertyChanged}" NullText="服务器地址" Grid.Row="1"  Margin="0 5"/>
         <dxe:TextEdit Text="{Binding Port,UpdateSourceTrigger=PropertyChanged}" NullText="服务器端口" Grid.Row="2" Margin="0 5"/>
-        <dx:SimpleButton Content="连接" Grid.Row="3"  Margin="0 5" Command="{Binding LoginCommand}"/>
+        <dxe:TextEdit Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}" NullText="用户名" Grid.Row="3" Margin="0 5"/>
+        <dxe:PasswordBoxEdit Text="{Binding Pwd,UpdateSourceTrigger=PropertyChanged}" NullText="用户密码" Grid.Row="4" Margin="0 5"/>
+        <dx:SimpleButton Content="连接" Grid.Row="5"  Margin="0 5" Command="{Binding LoginCommand}"/>
 
     </Grid>
 </UserControl>

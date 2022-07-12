@@ -272,47 +272,47 @@
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttTopicListOutput.code">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.MqttTopicListOutput.code">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.MqttTopicListOutput.result">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.MqttTopicListOutput.result">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.ObjectsItem.topic">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.ObjectsItem.topic">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.ObjectsItem.node">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.ObjectsItem.node">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.current_page">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.Result.current_page">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.page_size">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.Result.page_size">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.total_num">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.Result.total_num">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.total_page">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.Result.total_page">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Result.objects">
+        <member name="P:FantasyHomeCenter.Application.MqttCenter.Dto.Topic.Result.objects">
             <summary>
             
             </summary>

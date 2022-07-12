@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FantasyHomeCenter.Application.MqttCenter.Dto;
+namespace FantasyHomeCenter.Application.MqttCenter.Dto.Topic;
 
 public class MqttTopicListOutput
 {

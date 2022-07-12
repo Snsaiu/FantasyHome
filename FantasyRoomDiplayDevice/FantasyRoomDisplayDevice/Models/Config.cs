@@ -31,6 +31,14 @@ namespace FantasyRoomDisplayDevice.Models
         public Logging Logging { get; set; }
         public MqttServer MqttServer { get; set; }
         public ApiServer ApiServer { get; set; }
+
+        public UserInfo UserInfo { get; set; }
+    }
+
+    public class UserInfo
+    {
+        public string UserName { get; set; }
+        public string Pwd { get; set; }
     }
 
 

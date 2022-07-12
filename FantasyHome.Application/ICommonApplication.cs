@@ -18,7 +18,7 @@ namespace FantasyHome.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        ResultBase<string> Regist(RegistMachineInput input);
+        ResultBase<RegistResultOutput> Regist(RegistMachineInput input);
 
     }
 }

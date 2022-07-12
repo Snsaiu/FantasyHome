@@ -1,4 +1,7 @@
-﻿using FantasyHomeCenter.Application.MqttCenter.Dto;
+﻿using System;
+using System.Linq;
+using FantasyHomeCenter.Application.MqttCenter.Dto;
+using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
 using FantasyHomeCenter.Core.Entities;
 using Furion;
 using Furion.DatabaseAccessor;
@@ -13,7 +16,17 @@ namespace FantasyHomeCenter.Web.Core
 {
     public class Startup : AppStartup
     {
-       
+     private   string CustomSchemaIdSelector(Type modelType)
+        {
+            if (!modelType.IsConstructedGenericType) return modelType.FullName.Replace("[]", "Array");
+
+            var prefix = modelType.GetGenericArguments()
+                .Select(genericArg => CustomSchemaIdSelector(genericArg))
+                .Aggregate((previous, current) => previous + current);
+
+            return prefix + modelType.FullName.Split('`').First();
+        }
+     
         public void ConfigureServices(IServiceCollection services)
         {
             // JWT 和 Cookies 混合身份验证
@@ -26,7 +39,16 @@ namespace FantasyHomeCenter.Web.Core
                 {
                     options.LoginPath = "/Login";
                 });
-            services.AddControllers().AddInjectWithUnifyResult();
+            services.AddControllers().AddInjectWithUnifyResult(options =>
+            {
+                options.SpecificationDocumentConfigure = spt =>
+                {
+                    spt.SwaggerGenConfigure = gen =>
+                    {
+                        gen.CustomSchemaIds(CustomSchemaIdSelector);
+                    };
+                };
+            });
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddConfigurableOptions<MqttServiceOptions>();

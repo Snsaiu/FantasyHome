@@ -17,11 +17,11 @@ public class UserService:IDynamicApiController,IUserService,ITransient
         // 到数据库中查询
         
         var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>()
-        {
-            { ClaimTypes.PrimarySid, 1 },
-            { ClaimTypes.Name, "saiu" },
-            {ClaimTypes.Role,"admin"}
-        }, 100); // 过期时间 1分钟,用于测试
+                                         {
+                                             { ClaimTypes.PrimarySid, 1 },
+                                             { ClaimTypes.Name, "saiu" },
+                                             {ClaimTypes.Role,"admin"}
+                                         }, 100); // 过期时间 1分钟,用于测试
 
         return new LoginUserOutput() { Token = accessToken };
         // 下面设置 headers["access-token"] 即可登录. 这里无需重复设置

@@ -11,6 +11,7 @@ public interface IFamilyService
     /// <param name="input"></param>
     /// <returns></returns>
     RESTfulResult<CreateFamilyOutput> CreateNewFamily(CreateFamilyInput input);
+    
 
     /// <summary>
     /// 获得分页

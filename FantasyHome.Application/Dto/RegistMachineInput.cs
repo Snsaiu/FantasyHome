@@ -1,7 +1,7 @@
 namespace FantasyHome.Application.Dto
 {
 
-    public class RegistMachineInput
+    public class RegistMachineInput:RequsetBase
     {
         /// <summary>
         /// 设备名称

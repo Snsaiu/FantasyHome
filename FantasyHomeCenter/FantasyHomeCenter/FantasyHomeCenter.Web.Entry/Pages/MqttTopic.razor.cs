@@ -1,6 +1,7 @@
 using AntDesign;
 using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
+using FantasyHomeCenter.Application.MqttCenter.Dto.Topic;
 using Microsoft.AspNetCore.Components;
 
 namespace FantasyHomeCenter.Web.Entry.Pages;

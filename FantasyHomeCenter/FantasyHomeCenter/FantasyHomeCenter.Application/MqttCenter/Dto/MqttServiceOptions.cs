@@ -1,6 +1,6 @@
 using Furion.ConfigurableOptions;
 
-namespace FantasyHomeCenter.Application.MqttCenter.Dto;
+namespace FantasyHomeCenter.Application.MqttCenter.Dto.Service;
 
 public class MqttServiceOptions:IConfigurableOptions
 {

@@ -1,6 +1,7 @@
-using FantasyHomeCenter.Application.MqttCenter.Dto;
+using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Client;
 using FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription;
+using FantasyHomeCenter.Application.MqttCenter.Dto.Topic;
 
 namespace FantasyHomeCenter.Application.MqttCenter;
 
