@@ -22,7 +22,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
             this.regionManager = regionManager;
             this.configuration = configuration;
             this.commonService = commonService;
-            this.tryConnectApiServer();
+           
         }
 
         private void tryConnectApiServer()
@@ -42,6 +42,8 @@ namespace FantasyRoomDisplayDevice.ViewModels
                   if (res.Succeeded)
                   {
                       this.regionManager.RequestNavigate("ContentRegion", nameof(Home));
+                      return;
+                      
                   }
                   else
                   {
@@ -55,11 +57,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
            }
         }
 
-        private bool tryConnectServer(string host, string port)
-        {
-            return false;
-            
-        }
+
 
 
         /// <summary>
@@ -83,6 +81,14 @@ namespace FantasyRoomDisplayDevice.ViewModels
         [ObservableProperty]
         [AlsoNotifyCanExecuteFor(nameof(LoginCommand))]
         private string pwd;
+
+
+        [ICommand]
+        private void Loaded()
+        {
+            this.tryConnectApiServer();
+        }
+        
         
         /// <summary>
         /// 登录

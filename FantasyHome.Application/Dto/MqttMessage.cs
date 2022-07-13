@@ -1,4 +1,4 @@
-namespace FantasyRoomDisplayDevice.Models
+namespace FantasyHome.Application.Dto
 {
     public class MqttMessage
     {

@@ -4,8 +4,11 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FantasyRoomDisplayDevice.Services;
 using FantasyRoomDisplayDevice.Views;
 using Prism.Regions;
 
@@ -15,15 +18,25 @@ namespace FantasyRoomDisplayDevice.ViewModels
     public partial class HomeViewModel 
     {
         private readonly IRegionManager regionManager;
+        private readonly MqttService mqttService;
 
-        public HomeViewModel(IRegionManager regionManager)
+        public HomeViewModel(IRegionManager regionManager,MqttService mqttService)
         {
             this.regionManager = regionManager;
+            this.mqttService = mqttService;
+          
+
         }
 
         [ICommand]
-        private void Loaded()
+        private async Task  Loaded()
         {
+           var connectResult=await this.mqttService.StartAsync();
+
+           if (connectResult.Succeeded == false)
+           {
+               MessageBox.Show(connectResult.Errors.ToString());
+           }
             this.regionManager.RequestNavigate("ItemRegion", nameof(HomeComponent));
         }
 

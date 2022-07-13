@@ -1,5 +1,9 @@
 using System;
 using System.Text;
+using System.Threading.Tasks;
+using FantasyHome.Application;
+using FantasyHome.Application.Dto;
+using FantasyHome.Application.Impls;
 using FantasyRoomDisplayDevice.Models;
 using Microsoft.Extensions.Configuration;
 using MQTTnet;
@@ -9,7 +13,7 @@ namespace FantasyRoomDisplayDevice.Services
 {
     public class MqttService
     {
-        private readonly IConfiguration configuration;
+        private readonly TempConfigService tempConfigService;
 
         /// <summary>
         /// 是否已经链接
@@ -31,27 +35,35 @@ namespace FantasyRoomDisplayDevice.Services
         public delegate void ConnectErrorDelegate(string error);
 
         public event ConnectErrorDelegate ConnectErrorEvent;
-            
-        
-        private IMqttClient client = null;
-        public MqttService(IConfiguration configuration)
+        public async Task<ResultBase<bool>> StartAsync()
         {
-            this.configuration = configuration;
+            if (string.IsNullOrEmpty(this.tempConfigService.MqttHost) ||
+                string.IsNullOrEmpty(this.tempConfigService.MqttPort))
+            {
 
-             if (!this.configuration.GetSection("MqttServer").Exists())
-             {
-                 if (this.ConnectErrorEvent != null)
-                 {
-                     this.ConnectErrorEvent("未发现可用的配置信息");
-                 }
-                 return;
-                 
-             }
+                return new ResultBase<bool>() { Succeeded = false, Errors = "未发现配置信息" };
+            }
+
+            MqttConnectOption opt = new MqttConnectOption()
+            {
+                Host = this.tempConfigService.MqttHost,
+                Port = this.tempConfigService.MqttPort
+            };
+           return await this.mqttApplication.ConnectAsync(opt);
+        }
+
+        private IMqttApplication mqttApplication;
+
+        public ResultBase<bool> SendInfo(string content)
+        {
+           return this.mqttApplication.Send(content);
+        }
+        public MqttService(TempConfigService tempConfigService)
+        {
+            this.tempConfigService = tempConfigService;
+            this.mqttApplication = new MqttApplication();
             
-            var factory = new MqttFactory();
-            this.client= factory.CreateMqttClient();
-            this.client.ConnectAsync(this.initOptions());
-            this.client.ConnectedAsync += async (s) =>
+            this.mqttApplication.ConnectedSuccessEvent += async () =>
             {
                 if (this.ConnectedSuccessEvent != null)
                 {
@@ -59,37 +71,24 @@ namespace FantasyRoomDisplayDevice.Services
                 }
             };
 
-            this.client.DisconnectedAsync += async (s) =>
+            this.mqttApplication.DisConnectEvent += async () =>
             {
                 if (this.DisConnectEvent != null)
                 {
                     this.DisConnectEvent();
                 }
             };
-            this.client.ApplicationMessageReceivedAsync += async (s) =>
+            this.mqttApplication.MessageReceivedEvent += async (s) =>
             {
-                string content = Encoding.UTF8.GetString(s.ApplicationMessage.Payload);
-
+               
                 if (this.MessageReceivedEvent!=null)
                 {
-                    this.MessageReceivedEvent(new MqttMessage());
+                    this.MessageReceivedEvent(s);
                 }
                 
             };
 
         }
-
-        private MqttClientOptions initOptions()
-        {
-            MqttClientOptions opt = new MqttClientOptions();
-            opt.ChannelOptions = new MqttClientTcpOptions()
-            {
-                Server = this.configuration.GetSection("MqttServer:Host").Value,
-                Port = Convert.ToInt32(this.configuration.GetSection("MqttServer:Port").Value)
-            };
-            //opt.Timeout = -1;
-            opt.CleanSession = true;
-            return opt;
-        }
+        
     }
 }
