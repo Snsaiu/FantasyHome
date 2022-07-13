@@ -1,4 +1,8 @@
 
+using System;
+using System.Management;
+using System.Net;
+using System.Net.Sockets;
 using FantasyHome.Application;
 using FantasyHome.Application.Dto;
 using FantasyHome.Application.Impls;
@@ -36,7 +40,19 @@ namespace FantasyRoomDisplayDevice.Services
             return false;
         }
 
- 
+
+        private string getGuid()
+        {
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia");
+            String strHardDiskID = null;//存储磁盘序列号
+            //调用ManagementObjectSearcher类的Get方法取得硬盘序列号
+            foreach (ManagementObject mo in searcher.Get())
+            {
+                strHardDiskID = mo["SerialNumber"].ToString().Trim();//记录获得的磁盘序列号
+                break;
+            }
+           return strHardDiskID;//显示硬盘序列号
+        }
 
         public ResultBase<bool> Regist(RegistMachineInput input)
         {
@@ -46,10 +62,16 @@ namespace FantasyRoomDisplayDevice.Services
             
             }
 
+            input.DeviceType = "控制面板";
+
             if (string.IsNullOrEmpty(input.Port))
             {
                 input.Port = this.tempConfigService.Port;
             }
+
+            input.MachineCode = this.getGuid();
+            input.Ip = this.getIp();
+            
 
             string pwd = input.ValidateUsePassword;
             var res=  this.commonApplication.Regist(input);
@@ -86,5 +108,19 @@ namespace FantasyRoomDisplayDevice.Services
             }
 
         }
+
+        private string getIp()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                  return  ip.MapToIPv4().ToString();
+                }
+            }
+            return "";
+        }
+
     }
 }

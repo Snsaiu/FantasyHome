@@ -10,4 +10,6 @@ public interface IControlDeviceService
     /// <param name="input"></param>
     /// <returns></returns>
     RESTfulResult<RegistResultOutput> Regist(RegistMachineInput input);
+
+
 }

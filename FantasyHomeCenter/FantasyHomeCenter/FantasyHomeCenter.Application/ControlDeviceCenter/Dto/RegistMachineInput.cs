@@ -26,4 +26,6 @@ public class RegistMachineInput
     /// 验证用户名密码
     /// </summary>
     public string ValidateUsePassword { get; set; }
+    
+    public string DeviceType { get; set; }
 }

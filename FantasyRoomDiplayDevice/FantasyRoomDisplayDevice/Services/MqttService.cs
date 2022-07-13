@@ -8,6 +8,7 @@ using FantasyRoomDisplayDevice.Models;
 using Microsoft.Extensions.Configuration;
 using MQTTnet;
 using MQTTnet.Client;
+using MQTTnet.Packets;
 
 namespace FantasyRoomDisplayDevice.Services
 {
@@ -28,13 +29,18 @@ namespace FantasyRoomDisplayDevice.Services
 
         public event DisConnectedDelegate DisConnectEvent;
 
-        public delegate void MessageReceivedDelegate(MqttMessage data);
+        public delegate void MessageReceivedDelegate(MqttApplicationMessage data);
 
         public event MessageReceivedDelegate MessageReceivedEvent;
 
         public delegate void ConnectErrorDelegate(string error);
 
         public event ConnectErrorDelegate ConnectErrorEvent;
+
+        public async Task SubscriptionAsync(MqttTopicFilter filter)
+        {
+           await this.mqttApplication.SubscribeAsync(filter);
+        }
         public async Task<ResultBase<bool>> StartAsync()
         {
             if (string.IsNullOrEmpty(this.tempConfigService.MqttHost) ||
@@ -54,9 +60,9 @@ namespace FantasyRoomDisplayDevice.Services
 
         private IMqttApplication mqttApplication;
 
-        public ResultBase<bool> SendInfo(string content)
+        public async Task<ResultBase<bool>> SendInfo(MqttApplicationMessage content)
         {
-           return this.mqttApplication.Send(content);
+           return await this.mqttApplication.SendAsync(content);
         }
         public MqttService(TempConfigService tempConfigService)
         {

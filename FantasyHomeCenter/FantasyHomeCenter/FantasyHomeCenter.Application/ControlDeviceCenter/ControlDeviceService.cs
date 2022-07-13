@@ -15,12 +15,19 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
 {
     private readonly IRepository<Family> familyRepository;
     private readonly IConfiguration configuration;
+    private readonly IRepository<UiDevice> uiDeviceRepository;
+    private readonly IRepository<UiDeviceType> uiDeviceTypeRepository;
 
 
-    public ControlDeviceService(IRepository<Family> familyRepository, IConfiguration configuration)
+    public ControlDeviceService(IRepository<Family> familyRepository,
+        IConfiguration configuration,
+        IRepository<UiDevice> uiDeviceRepository,
+        IRepository<UiDeviceType> uiDeviceTypeRepository)
     {
         this.familyRepository = familyRepository;
         this.configuration = configuration;
+        this.uiDeviceRepository = uiDeviceRepository;
+        this.uiDeviceTypeRepository = uiDeviceTypeRepository;
     }
 
     [AllowAnonymous]
@@ -36,6 +43,13 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
                 { ClaimTypes.Role, "family" }
             }, 20000); // 过期时间 1分钟,用于测试
 
+           
+            RESTfulResult<bool> updateMatchingRes = this.RegistControlDevice(input,user);
+            if (updateMatchingRes.Succeeded==false)
+            {
+                return new RESTfulResult<RegistResultOutput>() { Succeeded = false, Errors = "注册设备服务器出现错误!" };
+            }
+
             RegistResultOutput output = new RegistResultOutput();
             output.Token = accessToken;
             output.MqttService = this.configuration.GetSection("MqttService:Host").Value;
@@ -45,6 +59,42 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
         else
         {
             return new RESTfulResult<RegistResultOutput>() { Succeeded = false, Errors = "账号或者密码错误" };
+        }
+    }
+
+    private RESTfulResult<bool> RegistControlDevice(RegistMachineInput input,Family user)
+    {
+        // 判断当前用户是否存在该设备
+        if (!this.uiDeviceRepository.Include(x=>x.Family).Where(x=>x.Family.Id==user.Id&&input.MachineCode==input.MachineCode).Any())
+        {
+            // 判断是否存在该设备类型
+            if (!this.uiDeviceTypeRepository.Any(x=>x.TypeName==input.DeviceType))
+            {
+                UiDeviceType type = new UiDeviceType();
+                type.TypeName = input.DeviceType;
+                this.uiDeviceTypeRepository.InsertNow(type);
+            }
+
+            var uitype = this.uiDeviceTypeRepository.First(x => x.TypeName == input.DeviceType);
+
+            UiDevice uiDevice = new();
+            uiDevice.Family = user;
+            uiDevice.Ip = input.Ip;
+            uiDevice.Name = input.MachineCode;
+            uiDevice.Room = null;
+            uiDevice.DeviceCode = input.MachineCode;
+            uiDevice.UiDeviceType = uitype;
+
+            this.uiDeviceRepository.InsertNow(uiDevice);
+            return new RESTfulResult<bool>() { Succeeded = true };
+
+        }
+        else
+        {
+            var cur_device= this.uiDeviceRepository.Include(x => x.Family).First(x => x.Family.Id == user.Id&&input.MachineCode==x.DeviceCode);
+            cur_device.Ip = input.Ip;
+            this.uiDeviceRepository.UpdateNow(cur_device);
+            return new RESTfulResult<bool>() { Succeeded = true };
         }
     }
 }

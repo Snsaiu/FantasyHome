@@ -27,5 +27,10 @@ namespace FantasyHome.Application.Dto
         /// 验证用户名密码
         /// </summary>
         public string ValidateUsePassword { get; set; }
+
+        /// <summary>
+        /// 设备类型
+        /// </summary>
+        public string DeviceType { get; set; }
     }
 }

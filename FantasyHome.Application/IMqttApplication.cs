@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using FantasyHome.Application.Dto;
+using MQTTnet;
+using MQTTnet.Packets;
 
 namespace FantasyHome.Application
 {
     
-    public delegate void MessageReceivedDelegate(MqttMessage data);
+    public delegate void MessageReceivedDelegate(MqttApplicationMessage data);
 
     public delegate void ConnectedSuccessDelegate();
 
@@ -22,6 +25,8 @@ namespace FantasyHome.Application
 
         Task<ResultBase<bool>> ConnectAsync(MqttConnectOption connectOption);
 
-        ResultBase<bool> Send(string content);
+        Task<ResultBase<bool>> SendAsync(MqttApplicationMessage content);
+
+        Task SubscribeAsync(MqttTopicFilter filter);
     }
 }

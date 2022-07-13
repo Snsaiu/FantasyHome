@@ -4,12 +4,15 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FantasyRoomDisplayDevice.Services;
 using FantasyRoomDisplayDevice.Views;
+using MQTTnet;
+using MQTTnet.Packets;
 using Prism.Regions;
 
 namespace FantasyRoomDisplayDevice.ViewModels
@@ -37,6 +40,14 @@ namespace FantasyRoomDisplayDevice.ViewModels
            {
                MessageBox.Show(connectResult.Errors.ToString());
            }
+
+          await this.mqttService.SubscriptionAsync(new MqttTopicFilter()
+           {
+               Topic = "air"
+
+           });
+         await  this.mqttService.SendInfo(new MqttApplicationMessage()
+               { Topic = "air", Payload = Encoding.UTF8.GetBytes("消息内容"), });
             this.regionManager.RequestNavigate("ItemRegion", nameof(HomeComponent));
         }
 

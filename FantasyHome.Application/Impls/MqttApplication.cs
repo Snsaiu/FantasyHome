@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using FantasyHome.Application.Dto;
 using MQTTnet;
 using MQTTnet.Client;
+using MQTTnet.Packets;
 
 namespace FantasyHome.Application.Impls
 {
@@ -34,6 +36,7 @@ namespace FantasyHome.Application.Impls
         {
             var factory = new MqttFactory();
             this.client= factory.CreateMqttClient();
+       
           
             this.client.ConnectedAsync += async (s) =>
             {
@@ -42,6 +45,7 @@ namespace FantasyHome.Application.Impls
                     this.ConnectedSuccessEvent();
                 }
             };
+            
 
             this.client.DisconnectedAsync += async (s) =>
             {
@@ -52,11 +56,12 @@ namespace FantasyHome.Application.Impls
             };
             this.client.ApplicationMessageReceivedAsync += async (s) =>
             {
-                string content = Encoding.UTF8.GetString(s.ApplicationMessage.Payload);
+
+                var ss = s.ApplicationMessage;
 
                 if (this.MessageReceivedEvent!=null)
                 {
-                    this.MessageReceivedEvent(new MqttMessage());
+                    this.MessageReceivedEvent(s.ApplicationMessage);
                 }
                 
             };
@@ -78,9 +83,20 @@ namespace FantasyHome.Application.Impls
             }
         }
 
-        public ResultBase<bool> Send(string content)
+        public async Task<ResultBase<bool>> SendAsync(MqttApplicationMessage content)
         {
-            throw new System.NotImplementedException();
+            var res= await this.client.PublishAsync(content);
+            if (res.ReasonCode == MqttClientPublishReasonCode.Success)
+            {
+                return new ResultBase<bool>() { Succeeded = true };
+            }
+
+            return new ResultBase<bool>() { Succeeded = false };
+        }
+
+        public async Task SubscribeAsync(MqttTopicFilter filter)
+        {
+          await  this.client.SubscribeAsync(filter);
         }
     }
 }
