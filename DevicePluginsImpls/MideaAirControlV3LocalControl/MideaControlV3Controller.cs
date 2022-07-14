@@ -81,6 +81,13 @@ namespace MideaAirControlV3LocalControl
             return p;
         }
 
+        public SyncResult SyncDevices(string content)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Topic { get=>"aircontrolv3"; }
+
         public List<DeviceInputParameter> CreateSetDeviceParameters()
         {
             List<DeviceInputParameter> p = new List<DeviceInputParameter>();

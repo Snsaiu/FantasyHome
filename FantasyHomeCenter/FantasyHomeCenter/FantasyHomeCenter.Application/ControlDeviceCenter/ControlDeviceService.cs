@@ -4,9 +4,11 @@ using System.Security.Claims;
 using FantasyHomeCenter.Application.ControlDeviceCenter.Dto;
 using FantasyHomeCenter.Application.FamilyCenter;
 using FantasyHomeCenter.Core.Entities;
+using Furion;
 using Furion.DatabaseAccessor;
 using Furion.DataEncryption;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
 namespace FantasyHomeCenter.Application.ControlDeviceCenter;
@@ -17,22 +19,26 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
     private readonly IConfiguration configuration;
     private readonly IRepository<UiDevice> uiDeviceRepository;
     private readonly IRepository<UiDeviceType> uiDeviceTypeRepository;
+    private readonly IHttpContextAccessor httpContextAccessor;
 
 
     public ControlDeviceService(IRepository<Family> familyRepository,
         IConfiguration configuration,
         IRepository<UiDevice> uiDeviceRepository,
-        IRepository<UiDeviceType> uiDeviceTypeRepository)
+        IRepository<UiDeviceType> uiDeviceTypeRepository,
+        IHttpContextAccessor httpContextAccessor)
     {
         this.familyRepository = familyRepository;
         this.configuration = configuration;
         this.uiDeviceRepository = uiDeviceRepository;
         this.uiDeviceTypeRepository = uiDeviceTypeRepository;
+        this.httpContextAccessor = httpContextAccessor;
     }
 
     [AllowAnonymous]
     public RESTfulResult<RegistResultOutput> Regist(RegistMachineInput input)
     {
+
         if (this.familyRepository.AsEnumerable().Any(x =>
                 x.UserName == input.ValidateUserName && x.Password == input.ValidateUsePassword))
         {
@@ -52,8 +58,9 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
 
             RegistResultOutput output = new RegistResultOutput();
             output.Token = accessToken;
-            output.MqttService = this.configuration.GetSection("MqttService:Host").Value;
-            output.Port = this.configuration.GetSection("MqttService:NotifyPort").Value;
+        
+            output.MqttService = this.httpContextAccessor.HttpContext.Request.Host.Value;
+            output.Port = "1883";
             return new RESTfulResult<RegistResultOutput>() { Succeeded = true, Data = output };
         }
         else

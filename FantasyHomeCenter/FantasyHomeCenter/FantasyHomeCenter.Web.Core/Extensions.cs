@@ -1,7 +1,10 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
+using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Core.Entities;
 using FantasyHomeCenter.EntityFramework.Core.PluginContext;
 using Furion.DatabaseAccessor;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FantasyHomeCenter.Web.Core;
@@ -22,5 +25,14 @@ public static class Extensions
                 pluginService.AddPluginAsync(item.PluginPath, item.PluginName);
             }
         }
+    }
+
+    public  static async Task AddMqttServiceAsync(this IServiceCollection services)
+    {
+        
+        services.AddSingleton<MqttServerInstance>();
+        var provider= services.BuildServiceProvider();
+       var mqtt=  provider.GetService<MqttServerInstance>();
+       await mqtt.StartAsync();
     }
 }

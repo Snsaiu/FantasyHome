@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
 using FantasyHomeCenter.Core.Entities;
@@ -8,6 +9,7 @@ using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -60,8 +62,10 @@ namespace FantasyHomeCenter.Web.Core
                
                
             });
-         
-         
+            services.AddMqttServiceAsync();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
