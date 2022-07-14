@@ -1,8 +1,10 @@
-namespace FantasyHomeCenter.DevicePluginInterface;
-
-public class SyncResult
+namespace FantasyHomeCenter.DevicePluginInterface
 {
-    public string Content { get; set; }
 
-    public bool Success { get; set; }
+    public class SyncResult
+    {
+        public string Content { get; set; }
+
+        public bool Success { get; set; }
+    }
 }

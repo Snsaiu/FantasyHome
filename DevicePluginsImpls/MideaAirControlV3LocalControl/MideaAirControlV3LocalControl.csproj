@@ -1,21 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj" >
-      <Private>false</Private>
-      <ExcludeAssets>runtime</ExcludeAssets>
-    </ProjectReference>
+    <ProjectReference Include="..\..\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,7 @@ using MQTTnet;
 using MQTTnet.Client.Receiving;
 using MQTTnet.Server;
 using Newtonsoft.Json;
+using StackExchange.Profiling.Internal;
 
 namespace FantasyHomeCenter.Application.MqttCenter;
 
@@ -50,8 +51,7 @@ public class MqttServerInstance
             {
                 List<MqttClientOuput> list = new();
                 list.Add(new MqttClientOuput(clientid,endpoint));
-                string ser= JsonConvert.SerializeObject(list);
-                 this.distributedCache.SetString(this.mqttClientKey, ser);
+                this.distributedCache.SetString(this.mqttClientKey,  list.ToJson());
             }
             else
             {
@@ -59,8 +59,9 @@ public class MqttServerInstance
                 if (!list.Any(x=>x.ClientId==clientid))
                 {
                     list.Add(new MqttClientOuput(clientid,endpoint));
-                    string ser= JsonConvert.SerializeObject(list);
-                     this.distributedCache.SetString(this.mqttClientKey, ser);
+                   
+                 
+                     this.distributedCache.SetString(this.mqttClientKey,  list.ToJson());
                 }
             }
 

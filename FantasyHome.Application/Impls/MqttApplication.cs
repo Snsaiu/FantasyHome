@@ -25,10 +25,13 @@ namespace FantasyHome.Application.Impls
             opt.ChannelOptions = new MqttClientTcpOptions()
             {
                 Server =options.Host,
-                Port = Convert.ToInt32(options.Port)
+                Port = Convert.ToInt32(options.Port),
+               
+                
             };
             //opt.Timeout = -1;
             opt.CleanSession = true;
+           opt.ClientId = options.ClientId;
             return opt;
         }
         

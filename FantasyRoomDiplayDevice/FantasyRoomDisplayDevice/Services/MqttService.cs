@@ -1,4 +1,5 @@
 using System;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using FantasyHome.Application;
@@ -41,6 +42,20 @@ namespace FantasyRoomDisplayDevice.Services
         {
            await this.mqttApplication.SubscribeAsync(filter);
         }
+
+        private string getGuid()
+        {
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia");
+            String strHardDiskID = null;//存储磁盘序列号
+            //调用ManagementObjectSearcher类的Get方法取得硬盘序列号
+            foreach (ManagementObject mo in searcher.Get())
+            {
+                strHardDiskID = mo["SerialNumber"].ToString().Trim();//记录获得的磁盘序列号
+                break;
+            }
+            return strHardDiskID;//显示硬盘序列号
+        }
+
         public async Task<ResultBase<bool>> StartAsync()
         {
             if (string.IsNullOrEmpty(this.tempConfigService.MqttHost) ||
@@ -53,7 +68,8 @@ namespace FantasyRoomDisplayDevice.Services
             MqttConnectOption opt = new MqttConnectOption()
             {
                 Host = this.tempConfigService.MqttHost,
-                Port = this.tempConfigService.MqttPort
+                Port = this.tempConfigService.MqttPort,
+                ClientId=this.getGuid()
             };
            return await this.mqttApplication.ConnectAsync(opt);
         }

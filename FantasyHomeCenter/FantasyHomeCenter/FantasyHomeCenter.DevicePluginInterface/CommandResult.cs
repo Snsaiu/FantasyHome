@@ -1,10 +1,14 @@
-﻿namespace FantasyHomeCenter.DevicePluginInterface;
+﻿using System.Collections.Generic;
 
-public sealed class CommandResult
+namespace FantasyHomeCenter.DevicePluginInterface
 {
 
-    public Dictionary<string,string> Data { get; set; }
-    public string SuccessMessage { get; set; }
-    public string ErrorMessage { get; set; }
-    public bool Success { get; set; }
+    public sealed class CommandResult
+    {
+
+        public Dictionary<string, string> Data { get; set; }
+        public string SuccessMessage { get; set; }
+        public string ErrorMessage { get; set; }
+        public bool Success { get; set; }
+    }
 }
