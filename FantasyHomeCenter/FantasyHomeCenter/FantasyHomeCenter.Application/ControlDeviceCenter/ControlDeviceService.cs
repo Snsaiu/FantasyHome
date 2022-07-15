@@ -1,14 +1,19 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using FantasyHome.GTool;
 using FantasyHomeCenter.Application.ControlDeviceCenter.Dto;
 using FantasyHomeCenter.Application.FamilyCenter;
 using FantasyHomeCenter.Core.Entities;
 using Furion;
 using Furion.DatabaseAccessor;
 using Furion.DataEncryption;
+using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace FantasyHomeCenter.Application.ControlDeviceCenter;
@@ -20,19 +25,28 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
     private readonly IRepository<UiDevice> uiDeviceRepository;
     private readonly IRepository<UiDeviceType> uiDeviceTypeRepository;
     private readonly IHttpContextAccessor httpContextAccessor;
+    private readonly IRepository<DeviceType> deviceTypeRepository;
+    private readonly IRepository<Device> deviceRepository;
+    private readonly IRepository<CommandConstParams> commandConstParamsRepository;
 
 
     public ControlDeviceService(IRepository<Family> familyRepository,
         IConfiguration configuration,
         IRepository<UiDevice> uiDeviceRepository,
         IRepository<UiDeviceType> uiDeviceTypeRepository,
-        IHttpContextAccessor httpContextAccessor)
+        IHttpContextAccessor httpContextAccessor,
+        IRepository<DeviceType> deviceTypeRepository,
+        IRepository<Device> deviceRepository,
+        IRepository<CommandConstParams> commandConstParamsRepository)
     {
         this.familyRepository = familyRepository;
         this.configuration = configuration;
         this.uiDeviceRepository = uiDeviceRepository;
         this.uiDeviceTypeRepository = uiDeviceTypeRepository;
         this.httpContextAccessor = httpContextAccessor;
+        this.deviceTypeRepository = deviceTypeRepository;
+        this.deviceRepository = deviceRepository;
+        this.commandConstParamsRepository = commandConstParamsRepository;
     }
 
     [AllowAnonymous]
@@ -68,11 +82,36 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
             return new RESTfulResult<RegistResultOutput>() { Succeeded = false, Errors = "账号或者密码错误" };
         }
     }
+    
+    [HttpGet, NonUnify]
+    public IActionResult PluginDownload(string key)
+    {
+        var plugin= this.deviceTypeRepository.AsQueryable().First(x => x.Key == key);
+
+        string zipName = Path.GetFileNameWithoutExtension(plugin.PluginPath) + ".zip";
+        string zipFile = Path.Combine( Directory.GetParent(plugin.PluginPath).FullName,zipName);
+        if (File.Exists(zipFile)==false)
+        {
+            Tools.ZipFileDictory(plugin.PluginPath,zipFile);
+        }
+       
+        
+        return new FileStreamResult(new FileStream(zipFile, FileMode.Open), "application/octet-stream") { FileDownloadName =zipName   };
+    }
+
+    public RESTfulResult<List<DevicePluginMetaOutput>> GetPluginsMeta()
+    {
+        //获得所有的插件
+        var devicetypes = this.deviceTypeRepository.Include(x => x.Devices).ThenInclude(x => x.ConstCommandParams)
+            .Include(x => x.Devices).ThenInclude(x => x.Room)
+            .Adapt<List<DevicePluginMetaOutput>>();
+       return new RESTfulResult<List<DevicePluginMetaOutput>>() { Succeeded = true, Data = devicetypes };
+    }
 
     private RESTfulResult<bool> RegistControlDevice(RegistMachineInput input,Family user)
     {
         // 判断当前用户是否存在该设备
-        if (!this.uiDeviceRepository.Include(x=>x.Family).Where(x=>x.Family.Id==user.Id&&input.MachineCode==input.MachineCode).Any())
+        if (!this.uiDeviceRepository.Include(x=>x.Family).Where(x=>x.Family.Id==user.Id&&x.DeviceCode==input.MachineCode).Any())
         {
             // 判断是否存在该设备类型
             if (!this.uiDeviceTypeRepository.Any(x=>x.TypeName==input.DeviceType))

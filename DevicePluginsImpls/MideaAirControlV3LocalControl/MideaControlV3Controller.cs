@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,7 @@ using Newtonsoft.Json;
 
 namespace MideaAirControlV3LocalControl
 {
+    [Export(typeof(IDeviceController))]
     public class MideaControlV3Controller: IDeviceController
     {
      
@@ -86,6 +88,11 @@ namespace MideaAirControlV3LocalControl
             return p;
         }
 
+        public object GetDeskTopControlUi(MessageProcesser messageProcesser)
+        {
+            return new AirControlComponent(messageProcesser);
+        }
+
         public SyncResult SyncDevices(string content)
         {
             throw new NotImplementedException();
@@ -145,7 +152,7 @@ namespace MideaAirControlV3LocalControl
             startinfo.RedirectStandardOutput = true;
             startinfo.RedirectStandardError = true;
             var pp= Process.Start(startinfo);
-           await  pp.WaitForExitAsync();
+           await  pp?.WaitForExitAsync();
            string content= await pp.StandardOutput.ReadToEndAsync();
            string error=await pp.StandardError.ReadToEndAsync();
            if (string.IsNullOrEmpty(error))

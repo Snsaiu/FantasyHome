@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+
 namespace FantasyRoomDisplayDevice.Services
 {
     public class TempConfigService
@@ -11,5 +14,7 @@ namespace FantasyRoomDisplayDevice.Services
 
         public string MqttHost { get; set; }
         public string MqttPort { get; set; }
+
+        public string PluginFolder { get=> Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plugins");  }
     }
 }

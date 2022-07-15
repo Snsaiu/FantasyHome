@@ -31,13 +31,16 @@ namespace FantasyRoomDisplayDevice
             containerRegistry.RegisterSingleton<IConfiguration>(() => this.Configuration);
             containerRegistry.Register<IConfigWriter, ConfigWriter>();
             containerRegistry.RegisterSingleton<TempConfigService>(() => new TempConfigService());
+            
+            containerRegistry.RegisterSingleton<PluginService>(() => new PluginService());
             containerRegistry.Register<ICommonService, CommonService>();
             containerRegistry.RegisterSingleton<MqttService>();
             containerRegistry.RegisterForNavigation<Login, LoginViewModel>();
             containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
             containerRegistry.RegisterForNavigation<HomeComponent, HomeComponentViewModel>();
-            
-         
+            containerRegistry.Register<IDeviceService, DeviceService>();
+
+
 
 
 

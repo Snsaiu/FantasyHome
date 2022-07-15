@@ -22,13 +22,13 @@ namespace FantasyRoomDisplayDevice.ViewModels
     {
         private readonly IRegionManager regionManager;
         private readonly MqttService mqttService;
+        private readonly PluginService pluginService;
 
-        public HomeViewModel(IRegionManager regionManager,MqttService mqttService)
+        public HomeViewModel(IRegionManager regionManager,MqttService mqttService,PluginService pluginService)
         {
             this.regionManager = regionManager;
             this.mqttService = mqttService;
-          
-
+            this.pluginService = pluginService;
         }
 
         [ICommand]

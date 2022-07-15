@@ -8,7 +8,7 @@
     <Grid>
 
 
-        <dxwui:HamburgerMenu>
+        <dxwui:HamburgerMenu >
      
             <dxwui:HamburgerMenu.Content>
                 <ContentControl prism:RegionManager.RegionName="ItemRegion"></ContentControl>

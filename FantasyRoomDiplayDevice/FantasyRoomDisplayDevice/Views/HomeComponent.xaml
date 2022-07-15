@@ -10,16 +10,11 @@
 
 
 
-        <dxlc:TileLayoutControl  Padding="5">
+        <dxlc:TileLayoutControl  Padding="5" ItemsSource="{Binding Tiles}">
 
-            <dxlc:Tile Size="ExtraLarge" Width="450" Height="250">
-               <components:AirControlComponent />
-            </dxlc:Tile>
-            <dxlc:Tile Size="Large"/>
-            <dxlc:Tile Size="Small"/>
-            <dxlc:Tile Size="ExtraSmall"/>
-            <dxlc:Tile Size="ExtraLarge"/>  
-            <dxlc:Tile Size="ExtraLarge"/>
+            <!-- <dxlc:Tile Size="ExtraLarge" Width="450" Height="250"> -->
+            <!--    <components:AirControlComponent /> -->
+            <!-- </dxlc:Tile> -->
         </dxlc:TileLayoutControl>
 
 

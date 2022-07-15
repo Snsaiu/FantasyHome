@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using FantasyHomeCenter.Application.ControlDeviceCenter.Dto;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FantasyHomeCenter.Application.ControlDeviceCenter;
 
@@ -12,4 +14,13 @@ public interface IControlDeviceService
     RESTfulResult<RegistResultOutput> Regist(RegistMachineInput input);
 
 
+    /// <summary>
+    /// 获得插件以及插件下的设备集合
+    /// </summary>
+    /// <returns></returns>
+    RESTfulResult<List<DevicePluginMetaOutput>> GetPluginsMeta();
+/// <summary>
+/// 下载插件
+/// </summary>
+IActionResult PluginDownload(string key );
 }

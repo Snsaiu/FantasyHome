@@ -1,6 +1,7 @@
-﻿using System.Security.Cryptography;
+﻿using System.IO;
+using System.IO.Compression;
+using System.Security.Cryptography;
 using System.Text;
-
 namespace FantasyHome.GTool
 {
 
@@ -26,6 +27,20 @@ namespace FantasyHome.GTool
             }
 
             return pwd;
+        }
+        
+        /// <summary>
+        ///  压缩目录
+        /// </summary>
+
+        public static void ZipFileDictory(string FolderToZip, string ZipedFile)
+        {
+            ZipFile.CreateFromDirectory(FolderToZip,ZipedFile);
+        }
+
+        public static void Unzip(string zipfile, string folder)
+        {
+            ZipFile.ExtractToDirectory(zipfile,folder,true);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FantasyHome.Application;
 using FantasyHome.Application.Dto;
 using FantasyHome.Application.Impls;
+using FantasyHomeCenter.DevicePluginInterface;
 using FantasyRoomDisplayDevice.Models;
 using Microsoft.Extensions.Configuration;
 using MQTTnet;
@@ -80,8 +81,18 @@ namespace FantasyRoomDisplayDevice.Services
         {
            return await this.mqttApplication.SendAsync(content);
         }
+       public MessageProcesser MessageProcesser { get; }
         public MqttService(TempConfigService tempConfigService)
         {
+
+            this.MessageProcesser = new MessageProcesser();
+            this.MessageProcesser.MqttMessageSendEvent += (content) =>
+            {
+
+                //todo;
+                
+            };
+            
             this.tempConfigService = tempConfigService;
             this.mqttApplication = new MqttApplication();
             

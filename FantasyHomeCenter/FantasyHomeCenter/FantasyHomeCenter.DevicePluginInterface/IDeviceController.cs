@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FantasyHomeCenter.DevicePluginInterface
@@ -24,6 +25,12 @@ namespace FantasyHomeCenter.DevicePluginInterface
             get => "fantasyhome";
         }
 
+        /// <summary>
+        /// 控制面板的ui
+        /// </summary>
+        /// <param name="messageProcesser"></param>
+        /// <returns></returns>
+        Object GetDeskTopControlUi(MessageProcesser messageProcesser);
 
         /// <summary>
         /// 设备同步，可以在这个方法里面判断设备的状态是否真的被修改，如果被修改那么应该同步，否则应该返回实际的状态

@@ -1,0 +1,55 @@
+<Window x:Class="MideaAirControlV3LocalControl.ShowWindSpeedDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:MideaAirControlV3LocalControl"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        mc:Ignorable="d"
+        WindowState="Normal"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        SizeToContent="WidthAndHeight"
+         >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <dxe:ListBoxEdit Name="listview">
+            <dxe:ListBoxEdit.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center" Width="400"></WrapPanel>
+                </ItemsPanelTemplate>
+            </dxe:ListBoxEdit.ItemsPanel>
+            <dxe:ListBoxEdit.ItemTemplate>
+                <DataTemplate>
+                   <RadioButton IsChecked="{Binding IsChecked}"  Command="{Binding DataContext.SelectedChangeCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=dxe:ListBoxEdit}}" CommandParameter="{Binding Content}" Width="80" Height="80" GroupName="windSpeed" Content="{Binding Content}">
+                       <RadioButton.Style>
+                           <Style TargetType="RadioButton">
+                               <Setter Property="Template">
+                                   <Setter.Value>
+                                     <ControlTemplate TargetType="RadioButton">
+                                     <Border x:Name="border" Padding="5" BorderThickness="2" Background="White" BorderBrush="LightGray" CornerRadius="10">
+                                         <Label x:Name="lab" FontSize="20" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                                     </Border>
+                                         <ControlTemplate.Triggers>
+                                             <Trigger Property="IsChecked" Value="True">
+                                                 <Setter TargetName="border" Property="BorderBrush" Value="DarkOrange"></Setter>
+                                                 <Setter TargetName="border" Property="Background" Value="Orange"></Setter>
+                                             </Trigger>
+                                         </ControlTemplate.Triggers>
+                                     </ControlTemplate>
+                                   </Setter.Value>
+                               </Setter>
+                           </Style>
+                       </RadioButton.Style>
+                   </RadioButton>
+                </DataTemplate>
+            </dxe:ListBoxEdit.ItemTemplate>
+        </dxe:ListBoxEdit>
+        <Button Grid.Row="1" Command="{Binding CloseDialogCommand}" Height="40" HorizontalAlignment="Stretch" Content="取消" Background="Gold">
+            
+        </Button>
+    </Grid>
+</Window>

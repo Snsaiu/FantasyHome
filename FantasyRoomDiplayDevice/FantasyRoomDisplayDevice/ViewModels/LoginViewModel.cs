@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FantasyHome.Application.Dto;
@@ -16,13 +17,19 @@ namespace FantasyRoomDisplayDevice.ViewModels
         private readonly IRegionManager regionManager;
         private readonly IConfiguration configuration;
         private readonly ICommonService commonService;
+        private readonly PluginService pluginService;
+        private readonly IDeviceService deviceService;
 
-        public LoginViewModel(IRegionManager regionManager,IConfiguration configuration,ICommonService commonService)
+        public LoginViewModel(IRegionManager regionManager,IConfiguration configuration,ICommonService commonService,
+            PluginService pluginService,
+            IDeviceService deviceService
+            )
         {
             this.regionManager = regionManager;
             this.configuration = configuration;
             this.commonService = commonService;
-           
+            this.pluginService = pluginService;
+            this.deviceService = deviceService;
         }
 
         private void tryConnectApiServer()
@@ -41,6 +48,16 @@ namespace FantasyRoomDisplayDevice.ViewModels
                   var res= this.commonService.Regist(input);
                   if (res.Succeeded)
                   {
+                      var downloadRes= this.deviceService.DownloadPlugins();
+
+                      if (downloadRes.Succeeded==false)
+                      {
+                        
+                          MessageBox.Show(downloadRes.Errors.ToString());
+                          return;
+
+                      }
+                      this.pluginService.LoadPlugins();
                       this.regionManager.RequestNavigate("ContentRegion", nameof(Home));
                       return;
                       
@@ -86,6 +103,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
         [ICommand]
         private void Loaded()
         {
+            
             this.tryConnectApiServer();
         }
         
@@ -104,6 +122,8 @@ namespace FantasyRoomDisplayDevice.ViewModels
                 return;
             }
             
+          
+
             RegistMachineInput input = new RegistMachineInput();
             input.ValidateUserName = this.UserName;
             input.ValidateUsePassword = this.Pwd;
@@ -112,6 +132,18 @@ namespace FantasyRoomDisplayDevice.ViewModels
             var res= this.commonService.Regist(input);
             if (res.Succeeded)
             {
+                var downloadRes= this.deviceService.DownloadPlugins();
+
+                if (downloadRes.Succeeded==false)
+                {
+                        
+                    MessageBox.Show(downloadRes.Errors.ToString());
+                    return;
+
+                }
+                this.pluginService.LoadPlugins();
+                
+                
                 this.regionManager.RequestNavigate("ContentRegion", nameof(Home));
             }
             else

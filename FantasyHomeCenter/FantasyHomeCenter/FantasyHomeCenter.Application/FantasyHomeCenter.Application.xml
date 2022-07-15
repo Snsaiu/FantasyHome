@@ -41,6 +41,17 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:FantasyHomeCenter.Application.ControlDeviceCenter.IControlDeviceService.GetPluginsMeta">
+            <summary>
+            获得插件以及插件下的设备集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.ControlDeviceCenter.IControlDeviceService.PluginDownload(System.String)">
+            <summary>
+            下载插件
+            </summary>
+        </member>
         <member name="P:FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceTypeInput.PluginPath">
             <summary>
             插件路径

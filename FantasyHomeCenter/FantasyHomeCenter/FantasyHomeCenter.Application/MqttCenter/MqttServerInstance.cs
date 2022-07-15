@@ -44,6 +44,7 @@ public class MqttServerInstance
         //客户端连接
         this.server.ClientConnectedHandler = new MqttServerClientConnectedHandlerDelegate(s =>
         {
+            return;
             string clientid = s.ClientId;
             string endpoint = s.Endpoint;
             string content= this.distributedCache.GetString(this.mqttClientKey);

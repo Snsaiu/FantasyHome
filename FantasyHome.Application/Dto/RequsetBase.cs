@@ -1,6 +1,6 @@
 namespace FantasyHome.Application.Dto
 {
-    public class RequsetBase
+    public class RequestBase
     {
         public string Host { get; set; }
         public string Port { get; set; }
