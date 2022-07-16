@@ -20,5 +20,7 @@ namespace FantasyHome.Application
 
         /// <summary>时间戳</summary>
         public long Timestamp { get; set; }
+
+
     }
 }

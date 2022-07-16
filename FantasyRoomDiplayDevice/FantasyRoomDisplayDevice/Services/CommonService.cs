@@ -81,6 +81,7 @@ namespace FantasyRoomDisplayDevice.Services
                 this.tempConfigService.MqttHost = res.Data.MqttService;
                 this.tempConfigService.MqttPort = res.Data.Port;
                 this.tempConfigService.UserName = input.ValidateUserName;
+                this.tempConfigService.MqttServiceTopic = res.Data.MqttServiceTopic;
                 this.tempConfigService.Pwd = pwd;
                 
                 //保存到配置文件中

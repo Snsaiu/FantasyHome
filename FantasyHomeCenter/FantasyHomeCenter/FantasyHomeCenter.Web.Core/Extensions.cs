@@ -29,10 +29,8 @@ public static class Extensions
 
     public  static async Task AddMqttServiceAsync(this IServiceCollection services)
     {
-        
-        services.AddSingleton<MqttServerInstance>();
         var provider= services.BuildServiceProvider();
        var mqtt=  provider.GetService<MqttServerInstance>();
-       await mqtt.StartAsync();
+      await mqtt.StartAsync();
     }
 }

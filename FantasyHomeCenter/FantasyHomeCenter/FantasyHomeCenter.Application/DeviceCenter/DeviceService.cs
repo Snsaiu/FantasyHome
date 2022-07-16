@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
+using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.RoomCenter.Dto;
 using FantasyHomeCenter.Core.Entities;
 using FantasyHomeCenter.Core.Enums;
+using FantasyHomeCenter.DevicePluginInterface;
 using FantasyHomeCenter.EntityFramework.Core.PluginContext;
 using Furion.DatabaseAccessor;
 using Mapster;
@@ -139,5 +141,91 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             Succeeded = true,
             Data = res
         });
+    }
+
+    
+    public RESTfulResult<Dictionary<string, string>> GetDeviceState(MqttSendInfo info)
+    {
+      // 找到插件
+
+      var pluginType = this.deviceTypeRepository.AsEnumerable().FirstOrDefault(x => x.Key == info.PluginKey);
+      if (pluginType==null)
+      {
+          return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到实体插件路径" };
+      }
+      
+      var plugin = this.pluginService.GetPluginByKeyAsync(info.PluginKey).GetAwaiter().GetResult();
+      
+      if (plugin.Succeeded)
+      {
+          List<DeviceInputParameter> param = new();
+
+          foreach (var item in info.Data)
+          {
+              DeviceInputParameter p = new(item.Key,item.Value);
+              param.Add(p);
+          }
+
+         var commandRes= plugin.Data.GetDeviceStateAsync(param, pluginType.PluginPath).GetAwaiter().GetResult();
+         if (commandRes.Success)
+         {
+             return new RESTfulResult<Dictionary<string, string>>()
+             {
+                 Succeeded = true, Data = commandRes.Data
+
+             };
+         }
+         else
+         {
+             return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "获得插件数据失败" };
+         }
+      }
+      else
+      {
+          return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到插件" };
+      }
+
+
+
+    }
+
+    public RESTfulResult<Dictionary<string, string>> SetThenGetDeviceState(MqttSendInfo info)
+    {
+        var pluginType = this.deviceTypeRepository.AsEnumerable().FirstOrDefault(x => x.Key == info.PluginKey);
+        if (pluginType==null)
+        {
+            return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到实体插件路径" };
+        }
+      
+        var plugin = this.pluginService.GetPluginByKeyAsync(info.PluginKey).GetAwaiter().GetResult();
+
+        if (plugin.Succeeded)
+        {
+            List<DeviceInputParameter> param = new();
+
+            foreach (var item in info.Data)
+            {
+                DeviceInputParameter p = new(item.Key,item.Value);
+                param.Add(p);
+            }
+
+            var commandRes= plugin.Data.SetDeviceStateAsync(param, pluginType.PluginPath).GetAwaiter().GetResult();
+            if (commandRes.Success)
+            {
+                return new RESTfulResult<Dictionary<string, string>>()
+                {
+                    Succeeded = true, Data = commandRes.Data
+
+                };
+            }
+            else
+            {
+                return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "获得插件数据失败" };
+            }
+        }
+        else
+        {
+            return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到插件" };
+        }
     }
 }

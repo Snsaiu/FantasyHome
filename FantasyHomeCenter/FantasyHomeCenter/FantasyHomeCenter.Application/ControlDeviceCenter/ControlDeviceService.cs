@@ -72,7 +72,7 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
 
             RegistResultOutput output = new RegistResultOutput();
             output.Token = accessToken;
-        
+            output.MqttServiceTopic = this.configuration["MqttService:Topic"];
             output.MqttService = this.httpContextAccessor.HttpContext.Request.Host.Host;
             output.Port = "1883";
             return new RESTfulResult<RegistResultOutput>() { Succeeded = true, Data = output };

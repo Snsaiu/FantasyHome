@@ -81,18 +81,11 @@ namespace FantasyRoomDisplayDevice.Services
         {
            return await this.mqttApplication.SendAsync(content);
         }
-       public MessageProcesser MessageProcesser { get; }
+     
         public MqttService(TempConfigService tempConfigService)
         {
 
-            this.MessageProcesser = new MessageProcesser();
-            this.MessageProcesser.MqttMessageSendEvent += (content) =>
-            {
-
-                //todo;
-                
-            };
-            
+           
             this.tempConfigService = tempConfigService;
             this.mqttApplication = new MqttApplication();
             

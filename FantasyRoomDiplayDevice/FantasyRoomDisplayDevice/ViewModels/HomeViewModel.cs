@@ -18,17 +18,19 @@ using Prism.Regions;
 namespace FantasyRoomDisplayDevice.ViewModels
 {
     [ObservableObject]
-    public partial class HomeViewModel 
+    public partial class HomeViewModel:INavigationAware
     {
         private readonly IRegionManager regionManager;
         private readonly MqttService mqttService;
         private readonly PluginService pluginService;
+        private readonly TempConfigService tempConfigService;
 
-        public HomeViewModel(IRegionManager regionManager,MqttService mqttService,PluginService pluginService)
+        public HomeViewModel(IRegionManager regionManager,MqttService mqttService,PluginService pluginService,TempConfigService tempConfigService)
         {
             this.regionManager = regionManager;
             this.mqttService = mqttService;
             this.pluginService = pluginService;
+            this.tempConfigService = tempConfigService;
         }
 
         [ICommand]
@@ -43,12 +45,10 @@ namespace FantasyRoomDisplayDevice.ViewModels
 
           await this.mqttService.SubscriptionAsync(new MqttTopicFilter()
            {
-               Topic = "air"
+               Topic = this.tempConfigService.MqttServiceTopic
 
            });
-         await  this.mqttService.SendInfo(new MqttApplicationMessage()
-               { Topic = "air", Payload = Encoding.UTF8.GetBytes("消息内容"), });
-            this.regionManager.RequestNavigate("ItemRegion", nameof(HomeComponent));
+          this.regionManager.RequestNavigate("ItemRegion",nameof(HomeComponent));
         }
 
         [ICommand]
@@ -58,12 +58,29 @@ namespace FantasyRoomDisplayDevice.ViewModels
             switch (pageName)
             {
                 case "主页":
-                    this.regionManager.RequestNavigate("ItemRegion",nameof(HomeComponentViewModel));
+                  //  this.regionManager.RequestNavigate("ItemRegion",nameof(HomeComponentViewModel));
                     break;
                 default:
                     break;
             }
         }
 
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            if (navigationContext.Parameters.ContainsKey("data"))
+            {
+                
+            }
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+           
+        }
     }
 }

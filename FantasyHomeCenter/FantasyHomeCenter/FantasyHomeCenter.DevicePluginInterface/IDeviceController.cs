@@ -30,14 +30,14 @@ namespace FantasyHomeCenter.DevicePluginInterface
         /// </summary>
         /// <param name="messageProcesser"></param>
         /// <returns></returns>
-        Object GetDeskTopControlUi(MessageProcesser messageProcesser);
+        ControlUI GetDeskTopControlUi(Object initData);
 
-        /// <summary>
-        /// 设备同步，可以在这个方法里面判断设备的状态是否真的被修改，如果被修改那么应该同步，否则应该返回实际的状态
-        /// </summary>
-        /// <param name="content">某一个客户端发送的数据</param>
-        /// <returns>返回的字符串将会被同一个主题的设备接受并更新</returns>
-        SyncResult SyncDevices(string content);
+        // /// <summary>
+        // /// 设备同步，可以在这个方法里面判断设备的状态是否真的被修改，如果被修改那么应该同步，否则应该返回实际的状态
+        // /// </summary>
+        // /// <param name="content">某一个客户端发送的数据</param>
+        // /// <returns>返回的字符串将会被同一个主题的设备接受并更新</returns>
+        // SyncResult SyncDevices(string content);
 
         /// <summary>
         /// mqtt同步的主题

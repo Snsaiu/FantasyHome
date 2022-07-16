@@ -93,7 +93,6 @@ namespace FantasyHome.Application.Impls
             {
                 return new ResultBase<bool>() { Succeeded = true };
             }
-
             return new ResultBase<bool>() { Succeeded = false };
         }
 

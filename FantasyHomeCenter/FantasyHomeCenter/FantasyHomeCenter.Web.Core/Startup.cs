@@ -62,10 +62,11 @@ namespace FantasyHomeCenter.Web.Core
                
                
             });
-            services.AddMqttServiceAsync();
+           
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-
+            services.AddMqttServiceAsync();
+         //   services.AddInitPluginService();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

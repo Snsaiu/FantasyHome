@@ -7,4 +7,5 @@ public class RegistResultOutput
     public string Port { get; set; }
 
     public string Token { get; set; }
+    public string MqttServiceTopic { get; set; }
 }

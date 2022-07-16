@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
+using FantasyHomeCenter.Core.Entities;
+using FantasyHomeCenter.EntityFramework.Core.PluginContext;
+using Furion;
+using Furion.DatabaseAccessor;
+using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -15,9 +22,10 @@ using StackExchange.Profiling.Internal;
 
 namespace FantasyHomeCenter.Application.MqttCenter;
 
-public class MqttServerInstance
+public class MqttServerInstance:IMqttServerInstance,ISingleton
 {
     private readonly IDistributedCache distributedCache;
+    private readonly IDeviceService deviceService;
 
     private readonly string mqttClientKey = "mqtt_clients";
 
@@ -25,6 +33,18 @@ public class MqttServerInstance
 
     public async Task StartAsync()
     {
+
+        // var devicetypes = this.deviceTypeRepository.AsEnumerable().ToList();
+        //
+        // foreach (var item in devicetypes)
+        // {
+        //     if (string.IsNullOrEmpty(item.Key)==false)
+        //     {
+        //        await this.pluginService.AddPluginAsync(item.PluginPath, item.PluginName);
+        //     }
+        // }
+        
+        
          server = new MqttFactory().CreateMqttServer();
         MqttServerOptionsBuilder serverOptions = new MqttServerOptionsBuilder();
         serverOptions.WithDefaultEndpointPort(1883);
@@ -44,7 +64,7 @@ public class MqttServerInstance
         //客户端连接
         this.server.ClientConnectedHandler = new MqttServerClientConnectedHandlerDelegate(s =>
         {
-            return;
+          
             string clientid = s.ClientId;
             string endpoint = s.Endpoint;
             string content= this.distributedCache.GetString(this.mqttClientKey);
@@ -66,10 +86,8 @@ public class MqttServerInstance
                 }
             }
 
-        });  // += async s =>
-        {
-           
-        };
+        }); 
+
 
         server.ClientDisconnectedHandler = new MqttServerClientDisconnectedHandlerDelegate(s =>
         {
@@ -92,17 +110,54 @@ public class MqttServerInstance
         
         server.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(s =>
         {
+          string content=   Encoding.UTF8.GetString(s.ApplicationMessage.Payload);
 
+          MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
+          RESTfulResult<Dictionary<string, string>> res = new RESTfulResult<Dictionary<string, string>>();
+          if (info.CommandType==CommandType.Get)
+          {
+              res = this.deviceService.GetDeviceState(info);
+          }
+          else
+          {
+             res = this.deviceService.SetThenGetDeviceState(info);
+          }
+          
+          MqttSendInfo sendinfo = new MqttSendInfo();
+          if (res.Succeeded)
+          {
+              sendinfo.Success = true;
+              sendinfo.Data = res.Data;
+          }
+          else
+          {
+              sendinfo.Success = false;
+              sendinfo.ErrorMsg = res.Errors.ToString();
+          }
 
+          string sendcontent= JsonConvert.SerializeObject(sendinfo);
+          //发送
+          this.server.PublishAsync(new MqttApplicationMessage()
+          {
+              Topic = info.Topic,
+              Payload = Encoding.UTF8.GetBytes(sendcontent)
+          });
+          
         }); 
    
         await server.StartAsync(serverOptions.Build());
 
     }
 
+    private IRepository<DeviceType> deviceTypeRepository;
+    private IPluginService pluginService;
     public MqttServerInstance(IDistributedCache distributedCache)
     {
         this.distributedCache = distributedCache;
+
+        this.deviceTypeRepository = null; //App.GetService<IRepository<DeviceType>>();
+        this.deviceService = null;//App.GetService<IDeviceService>();
+        this.pluginService = null; //App.GetService<IPluginService>();
     }
 
     

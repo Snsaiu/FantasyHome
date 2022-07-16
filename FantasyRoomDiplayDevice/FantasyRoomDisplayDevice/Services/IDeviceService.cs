@@ -7,5 +7,7 @@ namespace FantasyRoomDisplayDevice.Services
     public interface IDeviceService
     {
         ResultBase<List<DevicePluginMetaOutput>> DownloadPlugins();
+        
+        
     }
 }

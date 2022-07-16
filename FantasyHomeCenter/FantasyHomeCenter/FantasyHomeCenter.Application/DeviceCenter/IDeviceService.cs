@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
+using FantasyHomeCenter.Application.MqttCenter.Dto;
 using Furion.UnifyResult;
 
 namespace FantasyHomeCenter.Application.DeviceCenter;
@@ -43,4 +44,6 @@ public interface IDeviceService
     Task<RESTfulResult<Dictionary<string, string>>> GetSetDeviceCommandParamsByDeviceId(int id);
 
 
+    RESTfulResult<Dictionary<string,string>> GetDeviceState(MqttSendInfo info);
+    RESTfulResult<Dictionary<string,string>> SetThenGetDeviceState(MqttSendInfo info);
 }

@@ -7,5 +7,7 @@ namespace FantasyHome.Application.Dto
         public string Port { get; set; }
 
         public string Token { get; set; }
+        
+        public string MqttServiceTopic { get; set; }
     }
 }

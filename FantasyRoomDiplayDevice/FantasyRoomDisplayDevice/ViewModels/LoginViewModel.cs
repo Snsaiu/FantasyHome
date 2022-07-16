@@ -19,10 +19,12 @@ namespace FantasyRoomDisplayDevice.ViewModels
         private readonly ICommonService commonService;
         private readonly PluginService pluginService;
         private readonly IDeviceService deviceService;
+        private readonly TempConfigService tempConfigService;
 
         public LoginViewModel(IRegionManager regionManager,IConfiguration configuration,ICommonService commonService,
             PluginService pluginService,
-            IDeviceService deviceService
+            IDeviceService deviceService,
+            TempConfigService tempConfigService
             )
         {
             this.regionManager = regionManager;
@@ -30,6 +32,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
             this.commonService = commonService;
             this.pluginService = pluginService;
             this.deviceService = deviceService;
+            this.tempConfigService = tempConfigService;
         }
 
         private void tryConnectApiServer()
@@ -46,6 +49,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
                   input.ValidateUserName = config.UserInfo.UserName;
                   input.ValidateUsePassword = config.UserInfo.Pwd;
                   var res= this.commonService.Regist(input);
+                 
                   if (res.Succeeded)
                   {
                       var downloadRes= this.deviceService.DownloadPlugins();
@@ -57,8 +61,13 @@ namespace FantasyRoomDisplayDevice.ViewModels
                           return;
 
                       }
+                      
                       this.pluginService.LoadPlugins();
-                      this.regionManager.RequestNavigate("ContentRegion", nameof(Home));
+                    
+                      NavigationParameters param = new();
+                      param.Add("data",downloadRes.Data);
+                      this.tempConfigService.DevicePluginMetaOutputs = downloadRes.Data;
+                      this.regionManager.RequestNavigate("ContentRegion", nameof(Home),param);
                       return;
                       
                   }

@@ -81,31 +81,39 @@ public class PluginService : IPluginService, ISingleton
             });
         }
 
-     
-            
-        PluginModel pm = new PluginModel();
-  
-        var loader = PluginLoader.CreateFromAssemblyFile(
-            assemblyFile: Path.Combine(path, name+".dll"),
-            sharedTypes: new[] { typeof(IDeviceController),typeof(IServiceCollection) },
-            isUnloadable: true);
-        pm.Loader = loader;
-
-
-        var type= loader.LoadDefaultAssembly().GetTypes().First(t => typeof(IDeviceController).IsAssignableFrom(t) && !t.IsAbstract);
-        IDeviceController controller = Activator.CreateInstance(type) as IDeviceController;
-        if (controller != null)
+        try
         {
-            pm.Controller = controller;
-            pm.Key = controller.Key;
-            pm.PluginPath = path;
-            this.pluginModels.Add(pm);
-            return Task.FromResult(new RESTfulResult<IDeviceController>
-                { Succeeded = true, Data = controller });
+            PluginModel pm = new PluginModel();
+
+            var loader = PluginLoader.CreateFromAssemblyFile(
+                assemblyFile: Path.Combine(path, name + ".dll"),
+                sharedTypes: new[] { typeof(IDeviceController), typeof(IServiceCollection) },
+                isUnloadable: true);
+            pm.Loader = loader;
+
+
+            var type = loader.LoadDefaultAssembly().GetTypes().First(t => typeof(IDeviceController).IsAssignableFrom(t) && !t.IsAbstract);
+            IDeviceController controller = Activator.CreateInstance(type) as IDeviceController;
+            if (controller != null)
+            {
+                pm.Controller = controller;
+                pm.Key = controller.Key;
+                pm.PluginPath = path;
+                this.pluginModels.Add(pm);
+                return Task.FromResult(new RESTfulResult<IDeviceController>
+                    { Succeeded = true, Data = controller });
+            }
+            return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false, Errors = $"插件{name}读取出错" });
+
+
         }
-        return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false, Errors = $"插件{name}读取出错" });
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
             
-        
+     
        
     }
 }

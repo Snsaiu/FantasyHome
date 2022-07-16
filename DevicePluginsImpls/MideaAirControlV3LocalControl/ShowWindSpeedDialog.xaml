@@ -9,6 +9,7 @@
         WindowState="Normal"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        
         SizeToContent="WidthAndHeight"
          >
     <Grid>

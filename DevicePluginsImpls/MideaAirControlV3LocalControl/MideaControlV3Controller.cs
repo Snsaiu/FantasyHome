@@ -88,15 +88,15 @@ namespace MideaAirControlV3LocalControl
             return p;
         }
 
-        public object GetDeskTopControlUi(MessageProcesser messageProcesser)
+        public ControlUI GetDeskTopControlUi(Object initData)
         {
-            return new AirControlComponent(messageProcesser);
+            string content= JsonConvert.SerializeObject(initData);
+            var data= JsonConvert.DeserializeObject<DeviceMetaOutput>(content);
+           
+            return new AirControlComponent(data);
         }
 
-        public SyncResult SyncDevices(string content)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public string Topic { get=>"aircontrolv3"; }
 
