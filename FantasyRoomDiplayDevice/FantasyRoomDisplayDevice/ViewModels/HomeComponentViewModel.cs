@@ -13,6 +13,7 @@ using FantasyHomeCenter.DevicePluginInterface;
 using FantasyRoomDisplayDevice.Models;
 using FantasyRoomDisplayDevice.Services;
 using MQTTnet;
+using MQTTnet.Packets;
 using Newtonsoft.Json;
 using CommandType = FantasyHomeCenter.DevicePluginInterface.CommandType;
 
@@ -45,16 +46,33 @@ namespace FantasyRoomDisplayDevice.ViewModels
              ControlUI device=  this.tempConfigService.Components.Where(x => x.DeviceTypeKey == info.PluginKey&&x.DeviceKey==info.DeviceName).FirstOrDefault();
              if (device!=null)
              {
-                 device.UpdateState(info.Data);
+
+                 App.Current.Dispatcher.Invoke(() =>
+                 {
+                     device.UpdateState(info.Data);
+
+                 });
+                 
+               
              }
 
 
 
             };
+            var plist= this.pluginService.DevicesControllers.ToList();
+            List<MqttTopicFilter> filters = new();
+            foreach (var item in plist)
+            {
+                filters.Add(new MqttTopicFilter(){Topic = item.Value.Key});
+            }
 
+            this.mqttService.SubscriptionAsync(filters);
+            
             foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
             {
 
+                               
+                
                var device=  this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
 
                if (device!=null)
@@ -66,6 +84,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
                       var control = item.Value.GetDeskTopControlUi(deviceMeta);
                       if (control!=null&&control is ControlUI uc)
                       {
+                          uc.Topic = item.Value.Key;
                           uc.DeviceTypeKey = device.Key;
                           uc.DeviceKey = deviceMeta.Name;
                           var initdata=   uc.BuildInitRequest();
@@ -86,7 +105,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
                                 info.CommandType = Models.CommandType.Set;
                             }
                             info.DeviceName = deviceMeta.Name;
-                            
+                            info.Topic=uc.Topic;
                             string d= JsonConvert.SerializeObject(info);
 
                             var bytes= Encoding.UTF8.GetBytes(d);

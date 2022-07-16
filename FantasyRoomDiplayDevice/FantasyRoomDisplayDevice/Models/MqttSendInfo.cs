@@ -15,6 +15,7 @@ namespace FantasyRoomDisplayDevice.Models
 
 
         public CommandType CommandType { get; set; }
+        public string Topic { get; set; }
 
         public Dictionary<string,string> Data { get; set; }
     }

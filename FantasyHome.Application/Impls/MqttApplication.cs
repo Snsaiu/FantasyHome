@@ -96,9 +96,13 @@ namespace FantasyHome.Application.Impls
             return new ResultBase<bool>() { Succeeded = false };
         }
 
-        public async Task SubscribeAsync(MqttTopicFilter filter)
+        public async Task SubscribeAsync(List< MqttTopicFilter> filters)
         {
-          await  this.client.SubscribeAsync(filter);
+          
+            await  this.client.SubscribeAsync(new MqttClientSubscribeOptions()
+          {
+            TopicFilters = filters
+          });
         }
     }
 }

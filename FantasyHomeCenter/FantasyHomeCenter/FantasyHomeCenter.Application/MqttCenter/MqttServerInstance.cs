@@ -13,6 +13,7 @@ using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client.Receiving;
@@ -34,15 +35,15 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
     public async Task StartAsync()
     {
 
-        // var devicetypes = this.deviceTypeRepository.AsEnumerable().ToList();
-        //
-        // foreach (var item in devicetypes)
-        // {
-        //     if (string.IsNullOrEmpty(item.Key)==false)
-        //     {
-        //        await this.pluginService.AddPluginAsync(item.PluginPath, item.PluginName);
-        //     }
-        // }
+        var devicetypes = this.deviceTypeRepository.AsEnumerable().ToList();
+        
+        foreach (var item in devicetypes)
+        {
+            if (string.IsNullOrEmpty(item.Key)==false)
+            {
+               await this.pluginService.AddPluginAsync(item.PluginPath, item.PluginName);
+            }
+        }
         
         
          server = new MqttFactory().CreateMqttServer();
@@ -110,9 +111,20 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
         
         server.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(s =>
         {
+
+            if (s.ApplicationMessage.Topic!="fantasyhome")
+            {
+                return;
+            }
+
           string content=   Encoding.UTF8.GetString(s.ApplicationMessage.Payload);
 
           MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
+          if (string.IsNullOrEmpty(info.Topic) || string.IsNullOrEmpty(info.PluginKey) ||
+              string.IsNullOrEmpty(info.DeviceName))
+          {
+                return;
+          }
           RESTfulResult<Dictionary<string, string>> res = new RESTfulResult<Dictionary<string, string>>();
           if (info.CommandType==CommandType.Get)
           {
@@ -128,6 +140,9 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
           {
               sendinfo.Success = true;
               sendinfo.Data = res.Data;
+              sendinfo.DeviceName = info.DeviceName;
+              sendinfo.PluginKey = info.PluginKey;
+              sendinfo.Topic = info.Topic;
           }
           else
           {
@@ -155,9 +170,9 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
     {
         this.distributedCache = distributedCache;
 
-        this.deviceTypeRepository = null; //App.GetService<IRepository<DeviceType>>();
-        this.deviceService = null;//App.GetService<IDeviceService>();
-        this.pluginService = null; //App.GetService<IPluginService>();
+        this.deviceTypeRepository = App.GetService<IRepository<DeviceType>>();
+        this.deviceService = App.GetRequiredService<IDeviceService>();
+        this.pluginService = App.GetRequiredService<IPluginService>();;
     }
 
     

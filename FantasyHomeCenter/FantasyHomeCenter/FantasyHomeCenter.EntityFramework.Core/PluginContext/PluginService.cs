@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using FantasyHomeCenter.Application.PluginCenter;
 using FantasyHomeCenter.Core.Entities;
 using FantasyHomeCenter.DevicePluginInterface;
+using Furion;
 using Furion.DatabaseAccessor;
 using Furion.DependencyInjection;
 using Furion.FriendlyException;
@@ -25,13 +26,15 @@ namespace FantasyHomeCenter.EntityFramework.Core.PluginContext;
 /// </summary>
 public class PluginService : IPluginService, ISingleton
 {
-  
+    private readonly IRepository<DeviceType> deviceRepository;
+
     private List<PluginModel> pluginModels = null;
 
    
 
     public PluginService()
     {
+        this.deviceRepository = App.GetService<IRepository<DeviceType>>();
         this.pluginModels = new List<PluginModel>();
     }
 
@@ -60,14 +63,31 @@ public class PluginService : IPluginService, ISingleton
         return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = true, Data = dc });
     }
 
-    public Task<RESTfulResult<IDeviceController>> GetPluginByKeyAsync(string key)
+    public async Task<RESTfulResult<IDeviceController>> GetPluginByKeyAsync(string key)
     {
         PluginModel? item = this.pluginModels.Find(x => x.Key == key);
+        
+        
         if (item == null)
         {
-            return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false });
+
+            var deviceType = this.deviceRepository.AsQueryable().FirstOrDefault(x => x.Key == key);
+            if (deviceType==null)
+            {
+                return await Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false }); 
+            }
+          
+                if (string.IsNullOrEmpty(deviceType.Key)==false)
+                {
+                   return await  this.AddPluginAsync(deviceType.PluginPath, deviceType.PluginName);
+                }
+            
+            
+            
+            
+          
         }
-        return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = true, Data = item.Controller });
+        return await Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = true, Data = item.Controller });
     }
 
     public Task<RESTfulResult<IDeviceController>> AddPluginAsync(string path,string name)

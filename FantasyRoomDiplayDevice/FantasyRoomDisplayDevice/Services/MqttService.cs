@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Management;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,9 +40,9 @@ namespace FantasyRoomDisplayDevice.Services
 
         public event ConnectErrorDelegate ConnectErrorEvent;
 
-        public async Task SubscriptionAsync(MqttTopicFilter filter)
+        public async Task SubscriptionAsync(List< MqttTopicFilter> filters)
         {
-           await this.mqttApplication.SubscribeAsync(filter);
+           await this.mqttApplication.SubscribeAsync(filters);
         }
 
         private string getGuid()

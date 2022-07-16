@@ -27,6 +27,6 @@ namespace FantasyHome.Application
 
         Task<ResultBase<bool>> SendAsync(MqttApplicationMessage content);
 
-        Task SubscribeAsync(MqttTopicFilter filter);
+        Task SubscribeAsync(List< MqttTopicFilter> filters);
     }
 }

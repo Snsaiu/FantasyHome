@@ -28,5 +28,7 @@ namespace MideaAirControlV3LocalControl
         public bool State { get; set; }
         public string Icon { get; set; }
         public string IconPath { get; set; }
+
+        public string Key { get; set; }
     }
 }

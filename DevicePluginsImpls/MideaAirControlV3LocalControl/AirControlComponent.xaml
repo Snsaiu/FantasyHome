@@ -24,39 +24,13 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+             
              
             </Grid.ColumnDefinitions>
             <dx:SimpleButton Name="windSpeedBtn" CornerRadius="10" Height="50" FontSize="10" Content="风速:10" HorizontalAlignment="Left" VerticalAlignment="Center" Click="WindSpeedHandle"></dx:SimpleButton>
-            <dx:SimpleButton Content="扫风模式:全部" CornerRadius="10" Height="50" FontSize="10" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
+            <dx:SimpleButton Content="扫风模式:全部" Name="swingBtn"  CornerRadius="10" Height="50" FontSize="10" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
             <dx:SimpleButton Content="能耗:节能" CornerRadius="10" Height="50" FontSize="10" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
-            <dxe:CheckEdit Grid.Column="3" Name="switchBtn" CornerRadius="10" Width="50" Height="50" HorizontalAlignment="Center">
-                <dxe:CheckEdit.Style>
-                    <Style TargetType="dxe:CheckEdit">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="dxe:CheckEdit">
-                                    <Border Background="#E9E9E9" x:Name="swborder" CornerRadius="10" BorderThickness="2" Padding="5" BorderBrush="LightGray">
-                                        <TextBlock Text="&#xe87a;" 
-                                                   x:Name="sw"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   FontFamily="pack://application:,,,/Resources/Fonts/#aircontrol"
-                                                   FontSize="20"
-                                                   ></TextBlock>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter TargetName="sw" Property="Foreground" Value="Orange"></Setter>
-                                            <Setter TargetName="swborder" Property="BorderBrush" Value="Orange"></Setter>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </dxe:CheckEdit.Style>
-            </dxe:CheckEdit>
+        
         </Grid>
         <!-- 空调所属房间 -->
         <Label Grid.Row="1" Name="roomNameLabel" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
@@ -66,15 +40,15 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">温度:15</Label>
-            <dxe:TrackBarEdit Grid.Column="1"  Steps="1"   Minimum="10" Maximum="60" TickFrequency="5" TickItemDisplayMode="TickAndText">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" >温度:</Label>
+            <dxe:TrackBarEdit Grid.Column="1"  Steps="1"  Name="tempreBar"  Minimum="10" Maximum="60" TickFrequency="5" TickItemDisplayMode="TickAndText">
                 <dxe:TrackBarEdit.StyleSettings>
                     <dxe:TrackBarZoomStyleSettings></dxe:TrackBarZoomStyleSettings>
                 </dxe:TrackBarEdit.StyleSettings>
             </dxe:TrackBarEdit>
         </Grid>
         <!-- 运行模式设置 -->
-        <dxe:ListBoxEdit Grid.Row="3" Name="runModelsList">
+        <dxe:ListBoxEdit Grid.Row="3" Name="runModelsList" >
             
          
             <dxe:ListBoxEdit.ItemsPanel>
@@ -88,7 +62,7 @@
                        <Grid.RowDefinitions>
                          
                        </Grid.RowDefinitions>
-                      <RadioButton GroupName="runmodel" IsChecked="{Binding State}">
+                      <RadioButton GroupName="runmodel" IsChecked="{Binding State}" Click="ModeChangedHandle">
                           <RadioButton.Style>
                               <Style TargetType="RadioButton">
                                   <Setter Property="Template">

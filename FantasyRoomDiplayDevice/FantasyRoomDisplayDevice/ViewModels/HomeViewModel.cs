@@ -43,11 +43,11 @@ namespace FantasyRoomDisplayDevice.ViewModels
                MessageBox.Show(connectResult.Errors.ToString());
            }
 
-          await this.mqttService.SubscriptionAsync(new MqttTopicFilter()
-           {
-               Topic = this.tempConfigService.MqttServiceTopic
-
-           });
+          // await this.mqttService.SubscriptionAsync(new MqttTopicFilter()
+          //  {
+          //      Topic = this.tempConfigService.MqttServiceTopic
+          //
+          //  });
           this.regionManager.RequestNavigate("ItemRegion",nameof(HomeComponent));
         }
 

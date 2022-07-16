@@ -11,6 +11,8 @@ namespace FantasyHomeCenter.DevicePluginInterface
         public delegate void MessageSendDelegte(MessageModel model);
         public event MessageSendDelegte MqttMessageSendEvent;
 
+        public string Topic { get; set; }
+
         public string DeviceTypeKey{ get; set; }
 
         public string DeviceKey { get; set; }
