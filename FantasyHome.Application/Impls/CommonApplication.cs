@@ -15,6 +15,10 @@ namespace FantasyHome.Application.Impls
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
+            if (response.Content=="")
+            {
+                return new ResultBase<string>() { Succeeded = false };
+            }
             return JsonConvert.DeserializeObject<ResultBase<string>>( response.Content);
         }
 

@@ -152,8 +152,10 @@ namespace FantasyRoomDisplayDevice.ViewModels
                 }
                 this.pluginService.LoadPlugins();
                 
-                
-                this.regionManager.RequestNavigate("ContentRegion", nameof(Home));
+                NavigationParameters param = new();
+                param.Add("data",downloadRes.Data);
+                this.tempConfigService.DevicePluginMetaOutputs = downloadRes.Data;
+                this.regionManager.RequestNavigate("ContentRegion", nameof(Home),param);
             }
             else
             {

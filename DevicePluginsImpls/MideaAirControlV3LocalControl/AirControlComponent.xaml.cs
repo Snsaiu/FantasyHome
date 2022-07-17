@@ -38,11 +38,41 @@ namespace MideaAirControlV3LocalControl
 
 
 
-
-            this.tempreBar.EditValueChanged += (s, e) =>
+            this.openTemplateBtn.Click += (s, e) =>
             {
-                change();
+                ShowWindSpeedDialog spd = new ShowWindSpeedDialog("10");
+                spd.SelectedChangedEvent += (wind) =>
+                {
+                    this.currentwind = wind;
+                    this.openTemplateBtn.Content = "温度:" + this.currentwind + "℃";
+                    Task.Run(() =>
+                    {
+                    
+                      Thread.Sleep(500);
+
+                    }).GetAwaiter().OnCompleted(() =>
+                    {
+                        spd.Close();
+                        if (  this.AirControlModel.RunModes.First(x=>x.Name=="关闭").State==true)
+                        {
+                            foreach (var item in this.AirControlModel.RunModes)
+                            {
+                                item.State = false;
+                            }
+
+                            this.AirControlModel.RunModes.First(x => x.Name == "自动").State = true;
+
+                        }
+                        change();
+                    });
+               
+                };
+                spd.ShowDialog();
+
+
             };
+
+         
 
         }
 
@@ -50,7 +80,7 @@ namespace MideaAirControlV3LocalControl
         private void change()
         {
             var param = this.deviceMetaOutput.ConstCommandParams.Where(x => x.Type == CommandParameterTypeOutput.Set).ToList();
-            this.tempLabel.Content = "温度:" + this.tempreBar.Value + "℃";
+        
             Dictionary<string, string> data = new();
             if (this.AirControlModel.RunModes.First(x=>x.Name=="关闭").State)
             {
@@ -69,7 +99,7 @@ namespace MideaAirControlV3LocalControl
             data.Add("ack1", param.First(x => x.Name == "ack1").Value);
             data.Add("actoken", param.First(x => x.Name == "actoken").Value);
             data.Add("提示音", "1");
-            data.Add("温度", this.tempreBar.Value.ToString());
+            data.Add("温度", this.currentwind);
 
             MessageModel mm = new MessageModel();
             mm.CommandType = CommandType.Set;
@@ -122,8 +152,9 @@ namespace MideaAirControlV3LocalControl
 
             if (data.ContainsKey("温度"))
             {
-                this.tempreBar.Value = double.Parse(data["温度"]);
-                this.tempLabel.Content = "温度:" + this.tempreBar.Value + "℃";
+              
+                this.openTemplateBtn.Content = "温度:" + data["温度"] + "℃";
+                this.currentwind = data["温度"];
             }
 
  
@@ -147,27 +178,7 @@ namespace MideaAirControlV3LocalControl
 
         private string currentwind = "";
 
-        private void WindSpeedHandle(object sender, object e)
-        {
-            ShowWindSpeedDialog spd = new ShowWindSpeedDialog("10");
-            spd.SelectedChangedEvent += (wind) =>
-            {
-                this.currentwind = wind;
-                this.windSpeedBtn.Content = "风速:" + this.currentwind;
-                Task.Run(() =>
-                {
-                    
-                    change();
-
-                }).GetAwaiter().OnCompleted(() =>
-                {
-                    spd.Close();
-                });
-               
-            };
-            spd.ShowDialog();
-        }
-
+    
         private void ModeChangedHandle(object sender, RoutedEventArgs e)
         {
            change();

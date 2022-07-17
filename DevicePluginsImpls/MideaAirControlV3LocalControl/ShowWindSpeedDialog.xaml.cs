@@ -47,12 +47,11 @@ namespace MideaAirControlV3LocalControl
         public ShowWindSpeedDialog(string content)
         {
             List<WindSpeedItem> list = new();
-            list.Add(new WindSpeedItem("自动",content=="自动"?true:false));
-
+           
             
             InitializeComponent();
             this.DataContext = this;
-            for (int i = 0; i <= 100; i+=10)
+            for (int i = 10; i <= 40; i+=1)
             {
                 bool c = content == i.ToString() ? true : false;
                 WindSpeedItem item = new WindSpeedItem(i.ToString(), c);

@@ -7,7 +7,7 @@
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns:devicePluginInterface="clr-namespace:FantasyHomeCenter.DevicePluginInterface;assembly=FantasyHomeCenter.DevicePluginInterface"
              Width="500"
-             Height="300"
+             Height="250"
              mc:Ignorable="d"
              >
   
@@ -34,17 +34,9 @@
         <Label Grid.Row="1" Name="roomNameLabel" HorizontalAlignment="Center" FontSize="12" VerticalAlignment="Center"></Label>
         <!-- 设置温度 -->
         <Grid Grid.Row="2" Margin="0 5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                 <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-   
-            <dxe:TrackBarEdit  Steps="1"  Name="tempreBar"  TrackHeight="10" Minimum="10" Maximum="60" TickFrequency="5" TickItemDisplayMode="TickAndText"> 
-                 <dxe:TrackBarEdit.StyleSettings> 
-                     <dxe:TrackBarZoomStyleSettings></dxe:TrackBarZoomStyleSettings> 
-                 </dxe:TrackBarEdit.StyleSettings> 
-             </dxe:TrackBarEdit>
-            <Label HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="15"  Name="tempLabel"></Label>
+           
+            <dx:SimpleButton HorizontalAlignment="Stretch"  Padding="5" FontSize="15"  Name="openTemplateBtn" ></dx:SimpleButton>
+
         </Grid>
         <!-- 运行模式设置 -->
         <dxe:ListBoxEdit Grid.Row="3" Name="runModelsList" >
