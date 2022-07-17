@@ -1,23 +1,27 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace MideaAirControlV3LocalControl
 {
-    public class AirControlModel
+    [ObservableObject]
+    public partial class AirControlModel
     {
         public AirControlModel()
         {
-            this.RunModes = new();
+            this.RunModes = new ();
             
         }
 
-        public List<RunMode> RunModes { get; set; }
-        
+        [ObservableProperty] public ObservableCollection<RunMode> runModes;
+
     }
 
     /// <summary>
     /// 运行模式
     /// </summary>
-    public class RunMode
+    [ObservableObject]
+    public partial class RunMode
     {
         public RunMode()
         {
@@ -25,9 +29,12 @@ namespace MideaAirControlV3LocalControl
             this.IconPath = "pack://application:,,,/Resources/Fonts/#aircontrol";
         }
         public string Name { get; set; }
-        public bool State { get; set; }
+        [ObservableProperty] 
+        private bool state;
         public string Icon { get; set; }
         public string IconPath { get; set; }
+
+        public string GrpName { get; set; }
 
         public string Key { get; set; }
     }

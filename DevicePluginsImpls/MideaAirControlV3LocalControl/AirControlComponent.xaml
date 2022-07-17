@@ -6,10 +6,11 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns:devicePluginInterface="clr-namespace:FantasyHomeCenter.DevicePluginInterface;assembly=FantasyHomeCenter.DevicePluginInterface"
-             Width="450"
-             Height="250"
+             Width="500"
+             Height="300"
              mc:Ignorable="d"
              >
+  
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -23,29 +24,27 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-             
              
             </Grid.ColumnDefinitions>
-            <dx:SimpleButton Name="windSpeedBtn" CornerRadius="10" Height="50" FontSize="10" Content="风速:10" HorizontalAlignment="Left" VerticalAlignment="Center" Click="WindSpeedHandle"></dx:SimpleButton>
-            <dx:SimpleButton Content="扫风模式:全部" Name="swingBtn"  CornerRadius="10" Height="50" FontSize="10" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
-            <dx:SimpleButton Content="能耗:节能" CornerRadius="10" Height="50" FontSize="10" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" TouchDown="WindSpeedHandle"></dx:SimpleButton>
-        
+            <dx:SimpleButton Name="windSpeedBtn" CornerRadius="10" Height="50" FontSize="10" Content="风速:10" HorizontalAlignment="Left" VerticalAlignment="Center" ></dx:SimpleButton>
+            <dx:SimpleButton Content="扫风模式:全部" Name="swingBtn"  CornerRadius="10" Height="50" FontSize="10" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" ></dx:SimpleButton>
+            
         </Grid>
         <!-- 空调所属房间 -->
-        <Label Grid.Row="1" Name="roomNameLabel" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label Grid.Row="1" Name="roomNameLabel" HorizontalAlignment="Center" FontSize="12" VerticalAlignment="Center"></Label>
         <!-- 设置温度 -->
         <Grid Grid.Row="2" Margin="0 5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" >温度:</Label>
-            <dxe:TrackBarEdit Grid.Column="1"  Steps="1"  Name="tempreBar"  Minimum="10" Maximum="60" TickFrequency="5" TickItemDisplayMode="TickAndText">
-                <dxe:TrackBarEdit.StyleSettings>
-                    <dxe:TrackBarZoomStyleSettings></dxe:TrackBarZoomStyleSettings>
-                </dxe:TrackBarEdit.StyleSettings>
-            </dxe:TrackBarEdit>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                 <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+   
+            <dxe:TrackBarEdit  Steps="1"  Name="tempreBar"  TrackHeight="10" Minimum="10" Maximum="60" TickFrequency="5" TickItemDisplayMode="TickAndText"> 
+                 <dxe:TrackBarEdit.StyleSettings> 
+                     <dxe:TrackBarZoomStyleSettings></dxe:TrackBarZoomStyleSettings> 
+                 </dxe:TrackBarEdit.StyleSettings> 
+             </dxe:TrackBarEdit>
+            <Label HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" FontSize="15"  Name="tempLabel"></Label>
         </Grid>
         <!-- 运行模式设置 -->
         <dxe:ListBoxEdit Grid.Row="3" Name="runModelsList" >
@@ -62,7 +61,7 @@
                        <Grid.RowDefinitions>
                          
                        </Grid.RowDefinitions>
-                      <RadioButton GroupName="runmodel" IsChecked="{Binding State}" Click="ModeChangedHandle">
+                      <RadioButton   Name="modeGrp" GroupName="{Binding GrpName}" IsChecked="{Binding State,UpdateSourceTrigger=PropertyChanged}" Click="ModeChangedHandle">
                           <RadioButton.Style>
                               <Style TargetType="RadioButton">
                                   <Setter Property="Template">
