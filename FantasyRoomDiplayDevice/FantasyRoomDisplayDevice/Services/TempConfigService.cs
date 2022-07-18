@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using FantasyHome.Application.Dto;
 using FantasyHomeCenter.DevicePluginInterface;
+using MQTTnet.Packets;
 
 namespace FantasyRoomDisplayDevice.Services
 {
@@ -24,6 +25,8 @@ namespace FantasyRoomDisplayDevice.Services
         public string MqttPort { get; set; }
 
         public string MqttServiceTopic { get; set; }
+        
+        public List<MqttTopicFilter> MqttTopicFilters { get; set; }
 
 
         public List<ControlUI> Components { get; }

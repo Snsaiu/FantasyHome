@@ -67,28 +67,17 @@ namespace FantasyRoomDisplayDevice.Services
                 return new ResultBase<bool>() { Succeeded = false, Errors = "未发现配置信息" };
             }
 
+            if (this.mqttApplication!=null)
+            {
+                return new ResultBase<bool>() { Succeeded = true };
+            }
             MqttConnectOption opt = new MqttConnectOption()
             {
                 Host = this.tempConfigService.MqttHost,
                 Port = this.tempConfigService.MqttPort,
                 ClientId=this.getGuid()
             };
-           return await this.mqttApplication.ConnectAsync(opt);
-        }
-
-        private IMqttApplication mqttApplication;
-
-        public async Task<ResultBase<bool>> SendInfo(MqttApplicationMessage content)
-        {
-           return await this.mqttApplication.SendAsync(content);
-        }
-     
-        public MqttService(TempConfigService tempConfigService)
-        {
-
-           
-            this.tempConfigService = tempConfigService;
-            this.mqttApplication = new MqttApplication();
+            this.mqttApplication = new MqttApplication(opt);
             
             this.mqttApplication.ConnectedSuccessEvent += async () =>
             {
@@ -114,6 +103,29 @@ namespace FantasyRoomDisplayDevice.Services
                 }
                 
             };
+            this.mqttApplication.ReconnectEvent += () =>
+            {
+
+                return this.tempConfigService.MqttTopicFilters;
+        
+            };
+          
+           return await this.mqttApplication.ConnectAsync();
+        }
+
+        private IMqttApplication mqttApplication;
+
+        public async Task<ResultBase<bool>> SendInfo(MqttApplicationMessage content)
+        {
+           return await this.mqttApplication.SendAsync(content);
+        }
+     
+        public MqttService(TempConfigService tempConfigService)
+        {
+
+           
+            this.tempConfigService = tempConfigService;
+            
 
         }
         

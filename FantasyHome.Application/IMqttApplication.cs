@@ -11,7 +11,7 @@ namespace FantasyHome.Application
 
     public delegate void ConnectedSuccessDelegate();
 
-   
+    public delegate List<MqttTopicFilter> ReconnectDelegate();
 
     public delegate void DisConnectedDelegate();
 
@@ -23,7 +23,11 @@ namespace FantasyHome.Application
         public event ConnectedSuccessDelegate ConnectedSuccessEvent;
         public event DisConnectedDelegate DisConnectEvent;
 
-        Task<ResultBase<bool>> ConnectAsync(MqttConnectOption connectOption);
+        public event ReconnectDelegate ReconnectEvent;
+
+      
+
+        Task<ResultBase<bool>> ConnectAsync();
 
         Task<ResultBase<bool>> SendAsync(MqttApplicationMessage content);
 

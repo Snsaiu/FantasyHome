@@ -66,6 +66,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
                 filters.Add(new MqttTopicFilter(){Topic = item.Value.Key});
             }
 
+            this.tempConfigService.MqttTopicFilters = filters;
             this.mqttService.SubscriptionAsync(filters);
             
             foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
