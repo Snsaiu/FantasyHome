@@ -12,7 +12,7 @@ using RestSharp;
 
 namespace FantasyHomeCenter.Application.MqttCenter;
 
-public class MqttService:IMqttService,IDynamicApiController,ITransient
+public class MqttService:IMqttService
 {
     private readonly IOptions<MqttServiceOptions> options;
 

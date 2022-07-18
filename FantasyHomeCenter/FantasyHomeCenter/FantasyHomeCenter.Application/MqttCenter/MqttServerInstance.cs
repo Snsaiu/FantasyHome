@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
+using FantasyHomeCenter.Application.MqttCenter.Dto.Topic;
 using FantasyHomeCenter.Core.Entities;
 using FantasyHomeCenter.EntityFramework.Core.PluginContext;
 using Furion;
@@ -32,9 +33,14 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
 
     private IMqttServer server;
 
+
+    private readonly string mqttTopicKey = "mqtt_topic";
+    
     public async Task StartAsync()
     {
 
+     
+        
         var devicetypes = this.deviceTypeRepository.AsEnumerable().ToList();
         
         foreach (var item in devicetypes)
@@ -55,6 +61,48 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
             Console.WriteLine("mqtt 服务已经启动！");
         });
 
+        this.server.ClientUnsubscribedTopicHandler = new MqttServerClientUnsubscribedTopicHandlerDelegate((s) =>
+        {
+            string content= this.distributedCache.GetString(this.mqttTopicKey);
+            if (string.IsNullOrEmpty(content))
+            {
+                return;
+            }
+            var list=  JsonConvert.DeserializeObject<List<MqttTopicOutput>>(content);
+            if (list.Any(x=>x.ClientId==s.ClientId&&x.Topic==s.TopicFilter))
+            {
+                var x = list.First(x => x.ClientId == s.ClientId && x.Topic == s.TopicFilter);
+                list.Remove(x);
+
+                this.distributedCache.SetString(this.mqttTopicKey,  list.ToJson());
+            }
+        });
+
+        this.server.ClientSubscribedTopicHandler = new MqttServerClientSubscribedTopicHandlerDelegate(s =>
+        {
+            string clientid = s.ClientId;
+            string topic = s.TopicFilter.Topic;
+            string content= this.distributedCache.GetString(this.mqttTopicKey);
+            if (string.IsNullOrEmpty(content))
+            {
+                List<MqttTopicOutput> list = new();
+                list.Add(new MqttTopicOutput(topic,clientid));
+                this.distributedCache.SetString(this.mqttTopicKey,  list.ToJson());
+            }
+            else
+            {
+                var list=  JsonConvert.DeserializeObject<List<MqttTopicOutput>>(content);
+                if (!list.Any(x=>x.ClientId==clientid&&x.Topic==topic))
+                {
+                    list.Add(new MqttTopicOutput(topic,clientid));
+                   
+                 
+                    this.distributedCache.SetString(this.mqttTopicKey,  list.ToJson());
+                }
+            }
+
+        });
+        
 
         this.server.StoppedHandler = new MqttServerStoppedHandlerDelegate(s =>
         {
