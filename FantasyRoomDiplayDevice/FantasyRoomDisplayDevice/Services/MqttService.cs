@@ -91,6 +91,7 @@ namespace FantasyRoomDisplayDevice.Services
 
             this.mqttApplication.DisConnectEvent += async () =>
             {
+                this.logger.Info("mqtt断线，尝试重连...");
                 if (this.DisConnectEvent != null)
                 {
                     this.DisConnectEvent();
@@ -108,6 +109,7 @@ namespace FantasyRoomDisplayDevice.Services
             this.mqttApplication.ReconnectEvent += () =>
             {
 
+                this.logger.Info("mqtt自动重连成功!");
                 return this.tempConfigService.MqttTopicFilters;
         
             };

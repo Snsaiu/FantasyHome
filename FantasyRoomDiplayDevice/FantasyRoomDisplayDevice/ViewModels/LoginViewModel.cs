@@ -83,19 +83,21 @@ namespace FantasyRoomDisplayDevice.ViewModels
                   }
                   else
                   {
+                      this.logger.Info($"注册设备发生错误:{res.Errors.ToString()}");
                       MessageBox.Show(res.Errors.ToString());
                   }
+                
                   //send curren machine guid code
+              }
+              else
+              {
+                  this.logger.Info("服务器连接失败！无法自动连接。尝试重新输入连接信息");
               }
               
                   
                
            }
         }
-
-
-
-
         /// <summary>
         /// host
         /// </summary>
