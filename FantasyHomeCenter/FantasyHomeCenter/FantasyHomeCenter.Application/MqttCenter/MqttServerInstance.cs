@@ -13,6 +13,7 @@ using Furion;
 using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -26,7 +27,7 @@ namespace FantasyHomeCenter.Application.MqttCenter;
 
 public class MqttServerInstance:IMqttServerInstance,ISingleton
 {
-    private readonly IDistributedCache distributedCache;
+    private readonly IMemoryCache distributedCache;
     private readonly IDeviceService deviceService;
 
     private readonly string mqttClientKey = "mqtt_clients";
@@ -63,18 +64,14 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
 
         this.server.ClientUnsubscribedTopicHandler = new MqttServerClientUnsubscribedTopicHandlerDelegate((s) =>
         {
-            string content= this.distributedCache.GetString(this.mqttTopicKey);
-            if (string.IsNullOrEmpty(content))
-            {
-                return;
-            }
-            var list=  JsonConvert.DeserializeObject<List<MqttTopicOutput>>(content);
+      
+            var list=  this.distributedCache.Get<List<MqttTopicOutput>>(this.mqttTopicKey);
             if (list.Any(x=>x.ClientId==s.ClientId&&x.Topic==s.TopicFilter))
             {
                 var x = list.First(x => x.ClientId == s.ClientId && x.Topic == s.TopicFilter);
                 list.Remove(x);
 
-                this.distributedCache.SetString(this.mqttTopicKey,  list.ToJson());
+                this.distributedCache.Set(this.mqttTopicKey,  list);
             }
         });
 
@@ -82,22 +79,22 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
         {
             string clientid = s.ClientId;
             string topic = s.TopicFilter.Topic;
-            string content= this.distributedCache.GetString(this.mqttTopicKey);
-            if (string.IsNullOrEmpty(content))
+            var content= this.distributedCache.Get<List<MqttTopicOutput>>(this.mqttTopicKey);
+            if (content==null||content.Count==0)
             {
                 List<MqttTopicOutput> list = new();
                 list.Add(new MqttTopicOutput(topic,clientid));
-                this.distributedCache.SetString(this.mqttTopicKey,  list.ToJson());
+                this.distributedCache.Set(this.mqttTopicKey,  list);
             }
             else
             {
-                var list=  JsonConvert.DeserializeObject<List<MqttTopicOutput>>(content);
+                var list=  this.distributedCache.Get<List<MqttTopicOutput>>(this.mqttTopicKey);
                 if (!list.Any(x=>x.ClientId==clientid&&x.Topic==topic))
                 {
                     list.Add(new MqttTopicOutput(topic,clientid));
                    
                  
-                    this.distributedCache.SetString(this.mqttTopicKey,  list.ToJson());
+                    this.distributedCache.Set(this.mqttTopicKey,  list);
                 }
             }
 
@@ -116,22 +113,22 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
           
             string clientid = s.ClientId;
             string endpoint = s.Endpoint;
-            string content= this.distributedCache.GetString(this.mqttClientKey);
-            if (string.IsNullOrEmpty(content))
+            var content= this.distributedCache.Get<  List<MqttClientOuput>>(this.mqttClientKey);
+            if (content==null||content.Count==0)
             {
                 List<MqttClientOuput> list = new();
                 list.Add(new MqttClientOuput(clientid,endpoint));
-                this.distributedCache.SetString(this.mqttClientKey,  list.ToJson());
+                this.distributedCache.Set(this.mqttClientKey,  list);
             }
             else
             {
-                var list=  JsonConvert.DeserializeObject<List<MqttClientOuput>>(content);
+                var list=  this.distributedCache.Get<  List<MqttClientOuput>>(this.mqttClientKey);
                 if (!list.Any(x=>x.ClientId==clientid))
                 {
                     list.Add(new MqttClientOuput(clientid,endpoint));
                    
                  
-                     this.distributedCache.SetString(this.mqttClientKey,  list.ToJson());
+                     this.distributedCache.Set(this.mqttClientKey,  list.ToJson());
                 }
             }
 
@@ -143,15 +140,15 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
 
             string clientid = s.ClientId;
             string endpoint = s.Endpoint;
-            string content= this.distributedCache.GetString(this.mqttClientKey);
-            if (!string.IsNullOrEmpty(content))
+            var content= this.distributedCache.Get<List<MqttClientOuput>>(this.mqttClientKey);
+            if (content!=null&&content.Count!=0)
             {
-                var list=  JsonConvert.DeserializeObject<List<MqttClientOuput>>(content);
-                if (list.Any(x=>x.ClientId==clientid))
+              
+                if (content.Any(x=>x.ClientId==clientid))
                 {
-                    list.Remove(list.First(y => y.ClientId == clientid));
-                    string ser= JsonConvert.SerializeObject(list);
-                     this.distributedCache.SetString(this.mqttClientKey, ser);
+                    content.Remove(content.First(y => y.ClientId == clientid));
+                    string ser= JsonConvert.SerializeObject(content);
+                     this.distributedCache.Set(this.mqttClientKey, content);
                 }
             }
 
@@ -214,7 +211,7 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
 
     private IRepository<DeviceType> deviceTypeRepository;
     private IPluginService pluginService;
-    public MqttServerInstance(IDistributedCache distributedCache)
+    public MqttServerInstance(IMemoryCache distributedCache)
     {
         this.distributedCache = distributedCache;
 

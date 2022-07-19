@@ -4,6 +4,7 @@ using FantasyHomeCenter.Application.MqttCenter.Dto.Client;
 using FantasyHomeCenter.Application.MqttCenter.Dto.MqttSubscription;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Topic;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using MQTTnet.Server;
 using Newtonsoft.Json;
 using ObjectsItem = FantasyHomeCenter.Application.MqttCenter.Dto.Topic.ObjectsItem;
@@ -12,28 +13,28 @@ namespace FantasyHomeCenter.Application.MqttCenter;
 
 public class LocalMqttService:IMqttService,IDynamicApiController,ITransient
 {
-    private readonly IDistributedCache distributedCache;
+    private readonly IMemoryCache distributedCache;
 
 
-    public LocalMqttService(IDistributedCache distributedCache )
+    public LocalMqttService(IMemoryCache distributedCache )
     {
         this.distributedCache = distributedCache;
     }
     public MqttTopicListOutput GetTopicList()
     {
 
-       string content=  this.distributedCache.GetString("mqtt_topic");
-       if (string.IsNullOrEmpty(content))
+       var content=  this.distributedCache.Get<List<MqttTopicOutput>>("mqtt_topic");
+       if (content==null||content.Count==0)
        {
            return new MqttTopicListOutput() { code = -1 };
        }
 
-       var data = JsonConvert.DeserializeObject<List<MqttTopicOutput>>(content);
+     
        MqttTopicListOutput output = new MqttTopicListOutput();
 
        output.code = 1;
        output.result.objects = new List<ObjectsItem>();
-       foreach (var item in data)
+       foreach (var item in content)
        {
            output.result.objects.Add(new ObjectsItem() { topic = item.Topic, node = item.ClientId });
        }
@@ -43,18 +44,18 @@ public class LocalMqttService:IMqttService,IDynamicApiController,ITransient
 
     public MqttClientListOutput GetClientList()
     {
-        string content=  this.distributedCache.GetString("mqtt_clients");
-        if (string.IsNullOrEmpty(content))
+        var content=  this.distributedCache.Get<List<MqttClientOuput>>("mqtt_clients");
+        if (content==null||content.Count==0)
         {
             return new MqttClientListOutput() { code = -1 };
         }
 
-        var data = JsonConvert.DeserializeObject<List<MqttClientOuput>>(content);
+     
         MqttClientListOutput output = new MqttClientListOutput();
 
         output.code = 1;
         output.result.objects = new List<Dto.Client.ObjectsItem>();
-        foreach (var item in data)
+        foreach (var item in content)
         {
           
             output.result.objects.Add(new Dto.Client.ObjectsItem()

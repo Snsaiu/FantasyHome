@@ -10,7 +10,7 @@ namespace FantasyHomeCenter.EntityFramework.Core
         {
             services.AddDatabaseAccessor(options =>
             {
-                options.AddDbPool<DefaultDbContext>(DbProvider.SqlServer);
+                options.AddDbPool<DefaultDbContext>(DbProvider.Sqlite);
             }, "FantasyHomeCenter.Database.Migrations");
             
         }

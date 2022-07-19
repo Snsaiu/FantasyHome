@@ -21,8 +21,7 @@ public class Device:Entity
     [Description("设备名称")]
     public string Name { get; set; }
     
-    [Description( "id")]
-    public int Id { get; set; }
+
 
     [Description("IP地址")]
     public string Address { get; set; }

@@ -19,6 +19,12 @@
 		<ProjectReference Include="..\FantasyHomeCenter.Web.Core\FantasyHomeCenter.Web.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="FantasyHome.db">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 	<ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -54,14 +54,14 @@ namespace FantasyHomeCenter.Web.Core
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddConfigurableOptions<MqttServiceOptions>();
-            services.AddStackExchangeRedisCache(options =>
-            {
-                
-                // 连接字符串，这里也可以读取配置文件
-                options.Configuration = App.Configuration["RedisConnection"];
-               
-               
-            });
+            // services.AddStackExchangeRedisCache(options =>
+            // {
+            //     
+            //     // 连接字符串，这里也可以读取配置文件
+            //     options.Configuration = App.Configuration["RedisConnection"];
+            //    
+            //    
+            // });
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         
