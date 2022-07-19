@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Configuration;
 using System.IO;
+using System.Threading.Tasks;
 using FantasyRoomDisplayDevice.Views;
 using Prism.Ioc;
 using System.Windows;
@@ -15,10 +17,32 @@ namespace FantasyRoomDisplayDevice
     /// </summary>
     public partial class App
     {
+
+        public App()
+        {
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                if (e.ExceptionObject is Exception ex)
+                {
+                    Logger logger = new Logger();
+                    logger.Error("严重异常:"+ex.Message);
+                }
+            };
+            TaskScheduler.UnobservedTaskException += (s, e) =>
+            {
+                if (e.Exception is Exception ex)
+                {
+                    Logger logger = new Logger();
+                    logger.Error("严重异常:"+ex.Message);
+                }
+                e.SetObserved();
+            };
+        }
         protected override Window CreateShell()
         {
             return Container.Resolve<MainWindow>();
         }
+        
         public IConfiguration Configuration { get; private set; }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
