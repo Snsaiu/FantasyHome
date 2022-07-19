@@ -24,24 +24,29 @@ namespace FantasyRoomDisplayDevice.ViewModels
         private readonly MqttService mqttService;
         private readonly PluginService pluginService;
         private readonly TempConfigService tempConfigService;
+        private readonly ILogger logger;
 
-        public HomeViewModel(IRegionManager regionManager,MqttService mqttService,PluginService pluginService,TempConfigService tempConfigService)
+        public HomeViewModel(IRegionManager regionManager,MqttService mqttService,PluginService pluginService,TempConfigService tempConfigService,ILogger logger)
         {
             this.regionManager = regionManager;
             this.mqttService = mqttService;
             this.pluginService = pluginService;
             this.tempConfigService = tempConfigService;
+            this.logger = logger;
         }
 
         [ICommand]
         private async Task  Loaded()
         {
+            this.logger.Info("准备启动mqtt服务");
            var connectResult=await this.mqttService.StartAsync();
 
            if (connectResult.Succeeded == false)
            {
+               this.logger.Error("mqtt服务启动失败");
                MessageBox.Show(connectResult.Errors.ToString());
            }
+           this.logger.Info("mqtt服务启动成功");
 
           // await this.mqttService.SubscriptionAsync(new MqttTopicFilter()
           //  {

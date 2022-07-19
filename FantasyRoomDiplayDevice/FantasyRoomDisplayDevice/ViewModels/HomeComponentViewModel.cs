@@ -26,16 +26,18 @@ namespace FantasyRoomDisplayDevice.ViewModels
         private readonly PluginService pluginService;
         private readonly MqttService mqttService;
         private readonly TempConfigService tempConfigService;
+        private readonly ILogger logger;
 
         [ObservableProperty]
         private ObservableCollection<Tile> tiles;
 
-        public HomeComponentViewModel(PluginService pluginService,MqttService mqttService,TempConfigService tempConfigService)
+        public HomeComponentViewModel(PluginService pluginService,MqttService mqttService,TempConfigService tempConfigService,ILogger logger)
         {
             this.Tiles = new ObservableCollection<Tile>();
             this.pluginService = pluginService;
             this.mqttService = mqttService;
             this.tempConfigService = tempConfigService;
+            this.logger = logger;
 
             this.mqttService.MessageReceivedEvent += (data) =>
             {
@@ -43,14 +45,16 @@ namespace FantasyRoomDisplayDevice.ViewModels
               string content=  Encoding.UTF8.GetString(data.Payload);
 
               MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
+              this.logger.Info($"来自mqtt的消息通知:{content}");
              ControlUI device=  this.tempConfigService.Components.Where(x => x.DeviceTypeKey == info.PluginKey&&x.DeviceKey==info.DeviceName).FirstOrDefault();
              if (device!=null)
              {
 
                  App.Current.Dispatcher.Invoke(() =>
                  {
+                     this.logger.Info($"开始更新设备组件{info.DeviceName}的数据");
                      device.UpdateState(info.Data);
-
+                     this.logger.Info($"更新设备组件{info.DeviceName}的数据已完成");
                  });
                  
                
@@ -64,27 +68,27 @@ namespace FantasyRoomDisplayDevice.ViewModels
             foreach (var item in plist)
             {
                 filters.Add(new MqttTopicFilter(){Topic = item.Value.Key});
+                this.logger.Info($"添加订阅主题:{item.Value.Key}");
             }
 
             this.tempConfigService.MqttTopicFilters = filters;
             this.mqttService.SubscriptionAsync(filters);
             
+            
             foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
             {
-
-                               
-                
-               var device=  this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
-
+                var device=  this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
+                    
                if (device!=null)
                {
-                   
+                   this.logger.Info($"开始添加{device.Key}的组件");
                    foreach ( var deviceMeta in device.Devices)
                    {
-
+                        
                       var control = item.Value.GetDeskTopControlUi(deviceMeta);
                       if (control!=null&&control is ControlUI uc)
                       {
+                          this.logger.Info($"添加设备组件:{deviceMeta.Name}");
                           uc.Topic = item.Value.Key;
                           uc.DeviceTypeKey = device.Key;
                           uc.DeviceKey = deviceMeta.Name;
@@ -92,6 +96,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
                         uc.MqttMessageSendEvent += (con =>
                         {
                             
+                           
                             
                             MqttSendInfo info = new MqttSendInfo();
                             info.PluginKey = item.Value.Key;
@@ -110,6 +115,9 @@ namespace FantasyRoomDisplayDevice.ViewModels
                             string d= JsonConvert.SerializeObject(info);
 
                             var bytes= Encoding.UTF8.GetBytes(d);
+                            
+                            this.logger.Info($"{info.DeviceName}发送消息:{d}");
+                            
                             this.mqttService.SendInfo(new MqttApplicationMessage()
                             {
                                 Topic = this.tempConfigService.MqttServiceTopic,

@@ -28,6 +28,7 @@ namespace FantasyRoomDisplayDevice
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             Configuration = builder.Build();
+            containerRegistry.Register<ILogger, Logger>();
             containerRegistry.RegisterSingleton<IConfiguration>(() => this.Configuration);
             containerRegistry.Register<IConfigWriter, ConfigWriter>();
             containerRegistry.RegisterSingleton<TempConfigService>(() => new TempConfigService());

@@ -18,6 +18,7 @@ namespace FantasyRoomDisplayDevice.Services
     public class MqttService
     {
         private readonly TempConfigService tempConfigService;
+        private readonly ILogger logger;
 
         /// <summary>
         /// 是否已经链接
@@ -81,6 +82,7 @@ namespace FantasyRoomDisplayDevice.Services
             
             this.mqttApplication.ConnectedSuccessEvent += async () =>
             {
+                this.logger.Info("mqtt连接成功回调成功");
                 if (this.ConnectedSuccessEvent != null)
                 {
                     this.ConnectedSuccessEvent();
@@ -120,13 +122,10 @@ namespace FantasyRoomDisplayDevice.Services
            return await this.mqttApplication.SendAsync(content);
         }
      
-        public MqttService(TempConfigService tempConfigService)
+        public MqttService(TempConfigService tempConfigService,ILogger logger)
         {
-
-           
             this.tempConfigService = tempConfigService;
-            
-
+            this.logger = logger;
         }
         
     }
