@@ -13,22 +13,22 @@ namespace Weather
     [ObservableObject]
     public partial class WindowUI : ControlUI
     {
-        [ObservableProperty]
-        private WeatherModel weatherModel;
+
+        private WindowUiViewModel windowUiViewModel;
        
         public WindowUI(DeviceMetaOutput initData) : base(initData)
         {
             InitializeComponent();
+
+            this.DataContext = new WindowUiViewModel();
            
-            this.DataContext = this;
-            this.WeatherModel = new WeatherModel();
         }
 
         public override Dictionary<string, string> BuildInitRequest()
         {
             var param = this.deviceMetaOutput.ConstCommandParams.Where(x => x.Type == CommandParameterTypeOutput.Get).ToList();
 
-            var res = new Dictionary<string, string>();
+            var res = new Dictionary<string,string>();
             res.Add("当天天气url", param.First(x => x.Name == "当天天气url").Value);
             res.Add("3天天气url", param.First(x => x.Name == "3天天气url").Value);
             res.Add("经度", param.First(x => x.Name == "经度").Value);
@@ -39,21 +39,21 @@ namespace Weather
 
         public override void UpdateState(Dictionary<string, string> data)
         {
-            this.WeatherModel.State = data["今日天气"];
-            this.WeatherModel.Temperature = data["今日温度"];
-            this.WeatherModel.WindSpeed = data["风速"];
-            this.WeatherModel.Icon = data["图标"];
+            this.windowUiViewModel.WeatherModel.State = data["今日天气"];
+            this.windowUiViewModel.WeatherModel.Temperature ="温度:"+ data["今日温度"]+"℃";
+            this.windowUiViewModel.WeatherModel.WindSpeed = "风速:"+data["风速"]+"级";
+            this.windowUiViewModel.WeatherModel.Icon ="./Icons/" +data["图标"]+".svg";
            
             
-            this.WeatherModel.FeatureWeatherModels.Add(new FeatureWeatherModel() {
-                Icon = data["明天天气图标"],
+            this.windowUiViewModel.WeatherModel.FeatureWeatherModels.Add(new FeatureWeatherModel() {
+                Icon = "./Icons/" + data["今天天气图标"] + ".svg",
                 Date = DateTime.Now.AddDays(1).Month + "-" + DateTime.Now.AddDays(1).Day
             });
 
-            this.WeatherModel.FeatureWeatherModels.Add(new FeatureWeatherModel()
+            this.windowUiViewModel.WeatherModel.FeatureWeatherModels.Add(new FeatureWeatherModel()
             {
-                Icon = data["后天天气图标"],
-                Date = DateTime.Now.AddDays(2).Month + "-" + DateTime.Now.AddDays(2).Day
+                Icon = "./Icons/" + data["后天天气图标"] + ".svg",
+            Date = DateTime.Now.AddDays(2).Month + "-" + DateTime.Now.AddDays(2).Day
             });
         }
     }
