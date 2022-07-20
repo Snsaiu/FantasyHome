@@ -74,12 +74,39 @@ namespace Weather
             }
 
             var w = JsonConvert.DeserializeObject<CurrentWeatherModel>(currentWeatherRes);
+            if (w.code!="200")
+            {
+                return Task.FromResult(new CommandResult() { Success = false, ErrorMessage = "获得天气发生错误" });
+            }
             CommandResult cr = new CommandResult();
             cr.Success = true;
             cr.Data = new Dictionary<string, string>();
             cr.Data.Add("今日天气",w.now.text);
             cr.Data.Add("今日温度",w.now.temp);
-            cr.Data.Add("紫外线",w.now.humidity);
+            cr.Data.Add("湿度",w.now.humidity);
+            cr.Data.Add("风速", w.now.windSpeed);
+            cr.Data.Add("图标", w.now.icon);
+
+            // 获得未来三天天气
+
+            string threeurl = $"{input.First(x => x.Name == "3天天气url").Value}location={input.First(x => x.Name == "经度").Value},{input.First(x => x.Name == "纬度").Value}&key={input.First(x => x.Name == "Key").Value}";
+            string theeday = HttpRequest.GET(url);
+            if (string.IsNullOrEmpty(theeday))
+            {
+                return Task.FromResult(new CommandResult() { Success = false, ErrorMessage = "获得未来天气发生错误" });
+            }
+            var models = JsonConvert.DeserializeObject<MulitWeatherModel>(theeday);
+            if (models.code=="200")
+            {
+                cr.Data.Add("明天天气图标", models.daily[1].iconNight);
+                cr.Data.Add("后天天气图标", models.daily[2].iconNight);
+
+            }
+            else
+            {
+                return Task.FromResult(new CommandResult() { Success = false, ErrorMessage = "获得未来天气发生错误" });
+            }
+
 
             return Task.FromResult(cr);
         }
