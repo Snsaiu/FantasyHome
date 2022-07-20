@@ -4,10 +4,55 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Weather"
+                                   xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:devicePluginInterface="clr-namespace:FantasyHomeCenter.DevicePluginInterface;assembly=FantasyHomeCenter.DevicePluginInterface"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition  Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Stretch" >
+            <StackPanel Orientation="Horizontal" >
+                <svgc:SvgViewbox Source="/Weather;component/Icons/100.svg"/>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>·çËÙ:</Label>
+                        <Label Content="{Binding Source={x:Reference weather},Path=CurrentRay}"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>ÎÂ¶È:</Label>
+                        <Label Content="{Binding Source={x:Reference weather},Path=CurrentTemperature}"></Label>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <Label HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,2" Content="{Binding Source={x:Reference weather},Path=CurrentState}"></Label>
+        </StackPanel>
+        <ListView Margin="10,5,0,0" HorizontalAlignment="Stretch" Grid.Column="1" ItemsSource="{Binding Source={x:Reference weather},Path=WeeksWeatherList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image  Width="40" Height="40"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                            <!--<Image.Source>
+                                <FontImageSource
+                                       FontFamily="weather"
+                                       Size="30"
+                                      
+                                       Glyph="{Binding Icon,Converter={StaticResource WeatherIconConverter}}"
+                                   ></FontImageSource>
+                            </Image.Source>-->
+                        </Image>
+                        <Label Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Date}"></Label>
+                    </Grid>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
+
 </devicePluginInterface:ControlUI>
