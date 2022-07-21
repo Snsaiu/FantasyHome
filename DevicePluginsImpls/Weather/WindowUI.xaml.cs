@@ -19,8 +19,8 @@ namespace Weather
         public WindowUI(DeviceMetaOutput initData) : base(initData)
         {
             InitializeComponent();
-
-            this.DataContext = new WindowUiViewModel();
+            windowUiViewModel= new WindowUiViewModel();
+            this.DataContext = this.windowUiViewModel;
            
         }
 
@@ -46,7 +46,7 @@ namespace Weather
            
             
             this.windowUiViewModel.WeatherModel.FeatureWeatherModels.Add(new FeatureWeatherModel() {
-                Icon = "./Icons/" + data["今天天气图标"] + ".svg",
+                Icon = "./Icons/" + data["明天天气图标"] + ".svg",
                 Date = DateTime.Now.AddDays(1).Month + "-" + DateTime.Now.AddDays(1).Day
             });
 

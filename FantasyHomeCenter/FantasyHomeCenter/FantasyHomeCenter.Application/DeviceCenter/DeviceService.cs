@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
+using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.RoomCenter.Dto;
 using FantasyHomeCenter.Core.Entities;
@@ -10,6 +11,8 @@ using FantasyHomeCenter.Core.Enums;
 using FantasyHomeCenter.DevicePluginInterface;
 using FantasyHomeCenter.EntityFramework.Core.PluginContext;
 using Furion.DatabaseAccessor;
+using Furion.TaskScheduler;
+
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,19 +26,24 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
     private readonly IRepository<Room> roomRepository;
     private readonly IPluginService pluginService;
     private readonly IRepository<CommandConstParams> commandConstParamsRepository;
-
+    private readonly IDeviceTypeService deviceTypeService;
+    private readonly IMqttServerInstance mqttServerInstance;
 
     public DeviceService(IRepository<Device> repository,
         IRepository<DeviceType> deviceTypeRepository,
         IRepository<Room> roomRepository,
         IPluginService pluginService,
-        IRepository<CommandConstParams> commandConstParamsRepository)
+        IRepository<CommandConstParams> commandConstParamsRepository,
+        IDeviceTypeService deviceTypeService,
+        IMqttServerInstance mqttServerInstance)
     {
         this.repository = repository;
         this.deviceTypeRepository = deviceTypeRepository;
         this.roomRepository = roomRepository;
         this.pluginService = pluginService;
         this.commandConstParamsRepository = commandConstParamsRepository;
+        this.deviceTypeService = deviceTypeService;
+        this.mqttServerInstance = mqttServerInstance;
     }
     public async Task<RESTfulResult< PagedList<DeviceOutput>>> GetDevices(DeviceInput input)
     {
@@ -74,7 +82,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
     public async Task<RESTfulResult<int>> AddDeviceAsync(AddDeviceInput input)
     {
         Room room =await this.roomRepository.Where(x => x.Id == input.RoomId).FirstOrDefaultAsync();
-        DeviceType type = await this.deviceTypeRepository.Where(x => x.Id == input.DeviceTypeId).FirstOrDefaultAsync();
+        DeviceType type = await this.deviceTypeRepository.Where(predicate: x => x.Id == input.DeviceTypeId).FirstOrDefaultAsync();
 
         Device entity= input.Adapt<Device>();
         entity.Room = room;
@@ -88,7 +96,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             cp.Type = CommandParameterType.Init;
             entity.ConstCommandParams.Add(cp);
         }
-        foreach (var item in input.SetCommandParams)
+        foreach (KeyValue<string, string> item in input.SetCommandParams)
         {
             CommandConstParams cp = new CommandConstParams();
             cp.Device = entity;
@@ -106,7 +114,54 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             cp.Type = CommandParameterType.Get;
             entity.ConstCommandParams.Add(cp);
         }
+
+        var deviceControllRes= await this.deviceTypeService.GetDeviceControllerById(input.DeviceTypeId);
+
+       
+
+        if (!deviceControllRes.Succeeded)
+        {
+            return new RESTfulResult<int> { Succeeded = false, Errors = deviceControllRes.Errors };
+        }
+        
+        var deviceType =  deviceTypeRepository.AsQueryable().First(x => x.Id == input.DeviceTypeId);
+
+
+        var controller = deviceControllRes.Data;
+        if( controller.BackgroundParam!=null)
+        {
+            SpareTime.Do(controller.BackgroundParam.Time, async (time, count) =>
+            {
+                System.Console.WriteLine(input.Name + "___" + controller.BackgroundParam.TaskName+"::任务执行"+count+"次");
+                var getlist= entity.ConstCommandParams.Where(x => x.Type == CommandParameterType.Get).ToList();
+                List<DeviceInputParameter> inputs = new List<DeviceInputParameter>();
+
+                if(getlist!=null)
+                {
+                    foreach (var item in getlist)
+                    {
+                        inputs.Add(new DeviceInputParameter(item.Name, item.Value));
+                    }
+                }
+
+               var getRes= await controller.GetDeviceStateAsync(inputs, deviceType.PluginPath);
+                if(getRes.Success)
+                {
+                    //mqtt 发送
+                    await this.mqttServerInstance.PublishAsync();
+                }
+                else
+                {
+                    System.Console.WriteLine(input.Name + "___" + controller.BackgroundParam.TaskName + "::任务执行发生错误"+getRes.ErrorMessage);
+                }
+
+            }, input.Name + "___" + controller.BackgroundParam.TaskName, controller.BackgroundParam.Description);
+        }
+
+
          var entityRes= await  this.repository.InsertNowAsync(entity);
+
+
          return new RESTfulResult<int>() { Succeeded = true };
       
     }

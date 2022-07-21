@@ -3,9 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using FantasyHomeCenter.DevicePluginInterface;
 using Newtonsoft.Json;
-
+using System.ComponentModel.Composition;
 namespace Weather
 {
+    [Export(typeof(IDeviceController))]
     public class WeatherExport:IDeviceController
     {
         public List<DeviceInputParameter> CreateInitInputParameters()
@@ -22,7 +23,8 @@ namespace Weather
 
         public ControlUI GetDeskTopControlUi(object initData)
         {
-            var data = JsonConvert.DeserializeObject<DeviceMetaOutput>(initData.ToString());
+            string content = JsonConvert.SerializeObject(initData);
+            var data = JsonConvert.DeserializeObject<DeviceMetaOutput>(content);
             return new WindowUI(data);
         }
 
@@ -54,6 +56,9 @@ namespace Weather
         public string Key { get=>"0F30C03D-45B2-D764-0632-592B78FBC9A1"; }
         public string Author { get=>"saiu"; }
         public string Description { get=>"天气预报"; }
+
+        public BackgroundParam? BackgroundParam => new BackgroundParam("天气预报定时请求", "天气预报定时请求天气状况", "0 0 0/1 * * ?");
+
         public Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath)
         {
 
@@ -90,7 +95,7 @@ namespace Weather
             // 获得未来三天天气
 
             string threeurl = $"{input.First(x => x.Name == "3天天气url").Value}location={input.First(x => x.Name == "经度").Value},{input.First(x => x.Name == "纬度").Value}&key={input.First(x => x.Name == "Key").Value}";
-            string theeday = HttpRequest.GET(url);
+            string theeday = HttpRequest.GET(threeurl);
             if (string.IsNullOrEmpty(theeday))
             {
                 return Task.FromResult(new CommandResult() { Success = false, ErrorMessage = "获得未来天气发生错误" });

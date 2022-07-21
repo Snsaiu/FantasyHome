@@ -39,9 +39,6 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
     
     public async Task StartAsync()
     {
-
-     
-        
         var devicetypes = this.deviceTypeRepository.AsEnumerable().ToList();
         
         foreach (var item in devicetypes)
@@ -207,6 +204,16 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
    
         await server.StartAsync(serverOptions.Build());
 
+    }
+
+    public async Task PublishAsync(string topic, MqttSendInfo data)
+    {
+        string sendcontent = JsonConvert.SerializeObject(data);
+       await this.server.PublishAsync(new MqttApplicationMessage
+        {
+            Topic=topic,
+            Payload= Encoding.UTF8.GetBytes(sendcontent)
+        });
     }
 
     private IRepository<DeviceType> deviceTypeRepository;

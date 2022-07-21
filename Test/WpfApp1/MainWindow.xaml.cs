@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,22 +20,21 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-   
+
     public partial class MainWindow : Window
     {
-      
-      
+
+        public ObservableCollection<Vm> Vms { get; set; }
 
         public MainWindow()
         {
          
           
             InitializeComponent();
-
-            this.DataContext = new Vm
-            {
-                Icon = "./100.svg"
-            };
+            this.Vms = new ObservableCollection<Vm>();
+            this.Vms.Add(new Vm { Icon = "./100.svg" ,Date="6-7"});
+            this.Vms.Add(new Vm { Icon = "./100.svg", Date = "6-7" });
+            this.DataContext = this.Vms;
 
 
             //  this.box.Source=new BitmapImage(new Uri("))
@@ -46,7 +46,12 @@ namespace WpfApp1
     [ObservableObject]
     public partial class Vm
     {
+
+      
+
         [ObservableProperty]
         private string icon;
+        [ObservableProperty]
+        private string date;
     }
 }

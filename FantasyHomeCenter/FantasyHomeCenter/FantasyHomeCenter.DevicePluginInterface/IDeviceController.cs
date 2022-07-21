@@ -26,6 +26,13 @@ namespace FantasyHomeCenter.DevicePluginInterface
         }
 
         /// <summary>
+        /// 设置是否开启定时任务和配置定时任务参数
+        /// </summary>
+        public BackgroundParam? BackgroundParam { get;  }
+
+
+
+        /// <summary>
         /// 控制面板的ui
         /// </summary>
         /// <param name="messageProcesser"></param>

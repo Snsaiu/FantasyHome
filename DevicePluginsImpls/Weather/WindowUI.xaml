@@ -7,33 +7,48 @@
                xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:devicePluginInterface="clr-namespace:FantasyHomeCenter.DevicePluginInterface;assembly=FantasyHomeCenter.DevicePluginInterface"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+         Height="180" Width="400"
+                                 Background="White"
+                                >
     <Grid >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFB1FEFD"/>
+                <GradientStop Color="#FF00E7FF" Offset="1"/>
+                <GradientStop Color="#FF8BFF7E" Offset="0.59"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition  />
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel HorizontalAlignment="Stretch" >
+        <StackPanel  Margin="5" HorizontalAlignment="Stretch" >
             <StackPanel Orientation="Horizontal" >
-                <svgc:SvgViewbox Source="{Binding Icon}"/>
-                <StackPanel VerticalAlignment="Center">
+                <svgc:SvgViewbox Width="60" Height="60" Source="{Binding WeatherModel.Icon}"/>
+                <StackPanel VerticalAlignment="Top" Margin="5 0">
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding WindSpeed}"></Label>
+                        <Label Content="{Binding WeatherModel.WindSpeed}" FontSize="20"></Label>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                     
-                        <Label Content="{Binding Temperature}"></Label>
+
+                        <Label Content="{Binding WeatherModel.Temperature}" FontSize="20"></Label>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Label HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,2" Content="{Binding State}"></Label>
+            <Label HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10 0" FontWeight="Bold" FontSize="30" Content="{Binding WeatherModel.State}"></Label>
         </StackPanel>
-        <ListView Margin="10,5,0,0"  Grid.Column="1" ItemsSource="{Binding FeatureWeatherModels}">
-            <ListView.ItemTemplate>
+        <ListBox Margin="10 0" VerticalAlignment="Bottom" Grid.Column="1" ItemsSource="{Binding WeatherModel.FeatureWeatherModels}">
+
+            <ListBox.Template>
+                <ControlTemplate>
+                    <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <svgc:SvgViewbox Width="40" Height="40" Source="{Binding Icon}"/>
@@ -41,8 +56,8 @@
                     </Grid>
 
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 
 </devicePluginInterface:ControlUI>
