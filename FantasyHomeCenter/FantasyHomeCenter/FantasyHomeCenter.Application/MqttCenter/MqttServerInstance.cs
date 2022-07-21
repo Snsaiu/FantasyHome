@@ -25,7 +25,7 @@ using StackExchange.Profiling.Internal;
 
 namespace FantasyHomeCenter.Application.MqttCenter;
 
-public class MqttServerInstance:IMqttServerInstance,ISingleton
+public class MqttServerInstance
 {
     private readonly IMemoryCache distributedCache;
     private readonly IDeviceService deviceService;
@@ -34,6 +34,7 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
 
     private IMqttServer server;
 
+    private int demoindex = 1;
 
     private readonly string mqttTopicKey = "mqtt_topic";
     
@@ -200,8 +201,9 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
               Payload = Encoding.UTF8.GetBytes(sendcontent)
           });
           
-        }); 
-   
+        });
+
+        demoindex++;
         await server.StartAsync(serverOptions.Build());
 
     }
@@ -209,22 +211,23 @@ public class MqttServerInstance:IMqttServerInstance,ISingleton
     public async Task PublishAsync(string topic, MqttSendInfo data)
     {
         string sendcontent = JsonConvert.SerializeObject(data);
-       await this.server.PublishAsync(new MqttApplicationMessage
+       var res=  await this.server.PublishAsync(new MqttApplicationMessage
         {
             Topic=topic,
             Payload= Encoding.UTF8.GetBytes(sendcontent)
         });
+        var resdata = res;
     }
 
     private IRepository<DeviceType> deviceTypeRepository;
     private IPluginService pluginService;
-    public MqttServerInstance(IMemoryCache distributedCache)
+    public MqttServerInstance()
     {
-        this.distributedCache = distributedCache;
+        this.distributedCache =App.GetService<IMemoryCache>();
 
         this.deviceTypeRepository = App.GetService<IRepository<DeviceType>>();
-        this.deviceService = App.GetRequiredService<IDeviceService>();
-        this.pluginService = App.GetRequiredService<IPluginService>();;
+        this.deviceService = App.GetService<IDeviceService>();
+        this.pluginService = App.GetService<IPluginService>();
     }
 
     

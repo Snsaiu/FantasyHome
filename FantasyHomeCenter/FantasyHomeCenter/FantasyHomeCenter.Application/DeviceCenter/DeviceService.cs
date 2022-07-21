@@ -10,6 +10,8 @@ using FantasyHomeCenter.Core.Entities;
 using FantasyHomeCenter.Core.Enums;
 using FantasyHomeCenter.DevicePluginInterface;
 using FantasyHomeCenter.EntityFramework.Core.PluginContext;
+
+using Furion;
 using Furion.DatabaseAccessor;
 using Furion.TaskScheduler;
 
@@ -27,15 +29,15 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
     private readonly IPluginService pluginService;
     private readonly IRepository<CommandConstParams> commandConstParamsRepository;
     private readonly IDeviceTypeService deviceTypeService;
-    private readonly IMqttServerInstance mqttServerInstance;
+   
 
     public DeviceService(IRepository<Device> repository,
         IRepository<DeviceType> deviceTypeRepository,
         IRepository<Room> roomRepository,
         IPluginService pluginService,
         IRepository<CommandConstParams> commandConstParamsRepository,
-        IDeviceTypeService deviceTypeService,
-        IMqttServerInstance mqttServerInstance)
+        IDeviceTypeService deviceTypeService
+       )
     {
         this.repository = repository;
         this.deviceTypeRepository = deviceTypeRepository;
@@ -43,7 +45,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
         this.pluginService = pluginService;
         this.commandConstParamsRepository = commandConstParamsRepository;
         this.deviceTypeService = deviceTypeService;
-        this.mqttServerInstance = mqttServerInstance;
+    
     }
     public async Task<RESTfulResult< PagedList<DeviceOutput>>> GetDevices(DeviceInput input)
     {
@@ -147,8 +149,15 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
                var getRes= await controller.GetDeviceStateAsync(inputs, deviceType.PluginPath);
                 if(getRes.Success)
                 {
+                    MqttSendInfo info = new MqttSendInfo();
+                    info.Data = getRes.Data;
+                    
+                    info.DeviceName=input.Name;
+                    info.Success = true;
+                    info.PluginKey = deviceType.Key;
+                    //info.Topic=deviceType.Key;
                     //mqtt 发送
-                    await this.mqttServerInstance.PublishAsync();
+                   await App.GetService<MqttServerInstance>().PublishAsync(deviceType.Key,info);
                 }
                 else
                 {

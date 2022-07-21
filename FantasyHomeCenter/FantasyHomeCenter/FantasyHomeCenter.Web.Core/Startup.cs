@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+
+using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
@@ -64,10 +66,14 @@ namespace FantasyHomeCenter.Web.Core
             // });
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        
+
+            services.AddSingleton(new MqttServerInstance());
+
            // services.AddInitPluginService();
             services.AddMqttServiceAsync();
-          
+            services.AddBackgroundTaskService();
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
