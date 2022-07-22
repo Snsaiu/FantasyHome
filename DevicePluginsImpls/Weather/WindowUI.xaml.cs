@@ -39,6 +39,7 @@ namespace Weather
 
         public override void UpdateState(Dictionary<string, string> data)
         {
+            this.windowUiViewModel.WeatherModel.FeatureWeatherModels.Clear();
             this.windowUiViewModel.WeatherModel.State = data["今日天气"];
             this.windowUiViewModel.WeatherModel.Temperature ="温度:"+ data["今日温度"]+"℃";
             this.windowUiViewModel.WeatherModel.WindSpeed = "风速:"+data["风速"]+"级";
