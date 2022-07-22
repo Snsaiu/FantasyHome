@@ -4,6 +4,20 @@
         <name>FantasyHomeCenter.Application</name>
     </assembly>
     <members>
+        <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.StopTaskByName(System.String)">
+            <summary>
+            暂停一个任务
+            </summary>
+            <param name="taskName">任务名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.RestartTaskByName(System.String)">
+            <summary>
+            重新启动任务
+            </summary>
+            <param name="taskName"></param>
+            <returns></returns>
+        </member>
         <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.ControlDeviceOutput.DeviceType">
             <summary>
             设备类型

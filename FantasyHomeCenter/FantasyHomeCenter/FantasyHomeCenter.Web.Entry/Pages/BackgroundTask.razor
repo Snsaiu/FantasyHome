@@ -1,0 +1,45 @@
+﻿@page "/backgroundtask"
+@using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto
+@using Microsoft.AspNetCore.Components
+
+
+<div>
+    <Row>
+        <Col Span="1">
+            <ButtonGroup>
+                <Button>添加新任务</Button>
+            </ButtonGroup>
+        </Col>
+        
+    </Row>
+    <Row>
+        <Col Span="24">
+            <Table TItem="BackgroundTaskOutput"
+                   DataSource="list.Items"
+                   Total="list.TotalCount"
+                   @bind-PageIndex="list.PageIndex"
+                   @bind-PageSize="list.PageSize" >
+                <Column @bind-Field="context.TaskName"/>
+                <Column @bind-Field="context.TaskState"/>
+                <Column @bind-Field="context.Description"/>
+                <ActionColumn Title="选项">
+                        
+                    <Space>
+                        <SpaceItem>
+                            @if (context.TaskState == "正在运行")
+                            {
+                                <Button Danger OnClick="()=>this.stopTask(context.TaskName)" >暂停</Button>
+                            }
+                            else
+                            {
+                                <Button Danger OnClick="()=>this.startTask(context.TaskName)">启动</Button>
+                            }
+                           
+                        </SpaceItem>
+                    </Space>
+                        
+                </ActionColumn>
+            </Table>
+        </Col>
+    </Row>
+</div>

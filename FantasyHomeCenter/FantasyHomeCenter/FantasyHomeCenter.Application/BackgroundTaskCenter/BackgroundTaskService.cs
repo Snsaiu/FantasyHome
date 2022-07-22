@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Documents;
@@ -20,10 +21,43 @@ public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,
             {
                 TaskName = x.WorkerName,
                 Description = x.Description,
-                TaskState = x.Status.ToString()
+                 TaskState= x.Enabled==true?"正在运行":"暂停"
             }).ToPagedList();
         
         return new RESTfulResult<PagedList<BackgroundTaskOutput>>() { Succeeded = true, Data = list };
 
+    }
+
+    public RESTfulResult<bool> StopTaskByName(string taskName)
+    {
+        //查询是否存在任务
+        try
+        {
+            SpareTime.GetWorker(taskName).Stop();
+        
+               return new RESTfulResult<bool> { Succeeded = true };
+         
+        }
+        catch (Exception e)
+        {
+            return new RESTfulResult<bool> { Succeeded = false };
+        }
+        
+    }
+
+    public RESTfulResult<bool> RestartTaskByName(string taskName)
+    {
+        //查询是否存在任务
+        try
+        {
+            SpareTime.GetWorker(taskName).Start();
+
+            return new RESTfulResult<bool> { Succeeded = true };
+
+        }
+        catch (Exception e)
+        {
+            return new RESTfulResult<bool> { Succeeded = false };
+        };
     }
 }

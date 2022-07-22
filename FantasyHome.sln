@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather", "DevicePluginsImp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyRoomDisplayDeviceUpdate", "FantasyRoomDiplayDevice\FantasyRoomDisplayDeviceUpdate\FantasyRoomDisplayDeviceUpdate.csproj", "{2DD0AEA2-A510-4EB7-9BDA-198312DAD691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "Test\WpfApp1\WpfApp1.csproj", "{0261ED46-EF18-4EB4-94DA-CE3D6BDD7888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "Test\WpfApp1\WpfApp1.csproj", "{0261ED46-EF18-4EB4-94DA-CE3D6BDD7888}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
