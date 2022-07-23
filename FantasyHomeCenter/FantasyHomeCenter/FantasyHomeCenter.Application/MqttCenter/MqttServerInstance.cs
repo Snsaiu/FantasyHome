@@ -7,6 +7,8 @@ using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Topic;
+using FantasyHomeCenter.Application.MqttCenter.MessageProcess;
+using FantasyHomeCenter.Application.RoomCenter;
 using FantasyHomeCenter.Core.Entities;
 using FantasyHomeCenter.EntityFramework.Core.PluginContext;
 using Furion;
@@ -50,6 +52,7 @@ public class MqttServerInstance
             }
         }
         
+ 
         
          server = new MqttFactory().CreateMqttServer();
         MqttServerOptionsBuilder serverOptions = new MqttServerOptionsBuilder();
@@ -155,52 +158,40 @@ public class MqttServerInstance
         server.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(s =>
         {
 
-            if (s.ApplicationMessage.Topic!="fantasyhome")
+
+            if (s.ApplicationMessage.Payload == null)
             {
-                return;
+               
+
+                ControlUiMessageParser controlUiMessageParser =
+                    new ControlUiMessageParser(s.ApplicationMessage.Topic, new MqttSendInfo(), this.deviceService, this.server);
+
+                RoomListParser roomListParser = new RoomListParser(s.ApplicationMessage.Topic, new MqttSendInfo(), App.GetService<IRoomService>(), this);
+                controlUiMessageParser.Next = roomListParser;
+
+                controlUiMessageParser.Process();
+
+
+            }
+            else
+            {
+                string content = Encoding.UTF8.GetString(s.ApplicationMessage.Payload);
+
+                MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
+
+                ControlUiMessageParser controlUiMessageParser =
+                    new ControlUiMessageParser(s.ApplicationMessage.Topic, info, this.deviceService, this.server);
+
+                RoomListParser roomListParser = new RoomListParser(s.ApplicationMessage.Topic, info, App.GetService<IRoomService>(), this);
+                controlUiMessageParser.Next = roomListParser;
+
+                controlUiMessageParser.Process();
+
             }
 
-          string content=   Encoding.UTF8.GetString(s.ApplicationMessage.Payload);
 
-          MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
-          if (string.IsNullOrEmpty(info.Topic) || string.IsNullOrEmpty(info.PluginKey) ||
-              string.IsNullOrEmpty(info.DeviceName))
-          {
-                return;
-          }
-          RESTfulResult<Dictionary<string, string>> res = new RESTfulResult<Dictionary<string, string>>();
-          if (info.CommandType==CommandType.Get)
-          {
-              res = this.deviceService.GetDeviceState(info);
-          }
-          else
-          {
-             res = this.deviceService.SetThenGetDeviceState(info);
-          }
-          
-          MqttSendInfo sendinfo = new MqttSendInfo();
-          if (res.Succeeded)
-          {
-              sendinfo.Success = true;
-              sendinfo.Data = res.Data;
-              sendinfo.DeviceName = info.DeviceName;
-              sendinfo.PluginKey = info.PluginKey;
-              sendinfo.Topic = info.Topic;
-          }
-          else
-          {
-              sendinfo.Success = false;
-              sendinfo.ErrorMsg = res.Errors.ToString();
-          }
 
-          string sendcontent= JsonConvert.SerializeObject(sendinfo);
-          //发送
-          this.server.PublishAsync(new MqttApplicationMessage()
-          {
-              Topic = info.Topic,
-              Payload = Encoding.UTF8.GetBytes(sendcontent)
-          });
-          
+
         });
 
         demoindex++;

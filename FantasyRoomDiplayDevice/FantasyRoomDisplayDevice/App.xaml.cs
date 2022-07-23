@@ -61,6 +61,8 @@ namespace FantasyRoomDisplayDevice
             containerRegistry.Register<ICommonService, CommonService>();
             containerRegistry.Register<IDeviceService, DeviceService>();
             containerRegistry.RegisterSingleton<MqttService>();
+            containerRegistry.Register<IComponentService, ComponentService>();
+
             containerRegistry.RegisterForNavigation<Login, LoginViewModel>();
             containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
             containerRegistry.RegisterForNavigation<HomeComponent, HomeComponentViewModel>();

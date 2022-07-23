@@ -13,7 +13,15 @@ namespace FantasyHomeCenter.DevicePluginInterface
 
         public string Topic { get; set; }
 
+        /// <summary>
+        /// 插件类型的guid 
+        /// </summary>
         public string DeviceTypeKey{ get; set; }
+
+        /// <summary>
+        /// 所属房间 比如 卧室
+        /// </summary>
+        public string RoomName { get; set; }
 
         public string DeviceKey { get; set; }
         public abstract Dictionary<string,string> BuildInitRequest();

@@ -12,7 +12,7 @@ public partial class MqttTopic
     /// <summary>
     /// 数据源
     /// </summary>
-    private MqttTopicListOutput list = new();
+    private MqttTopicListOutput list = new MqttTopicListOutput();
 
     /// <summary>
     /// mqtt服务

@@ -39,101 +39,103 @@ namespace FantasyRoomDisplayDevice.ViewModels
             this.tempConfigService = tempConfigService;
             this.logger = logger;
 
-            this.mqttService.MessageReceivedEvent += (data) =>
-            {
+            //this.mqttService.MessageReceivedEvent += (data) =>
+            //{
 
-              string content=  Encoding.UTF8.GetString(data.Payload);
+            //  string content=  Encoding.UTF8.GetString(data.Payload);
 
-              MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
-              this.logger.Info($"来自mqtt的消息通知:{content}");
-             ControlUI device=  this.tempConfigService.Components.Where(x => x.DeviceTypeKey == info.PluginKey&&x.DeviceKey==info.DeviceName).FirstOrDefault();
-             if (device!=null)
-             {
+            //  MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
+            //  this.logger.Info($"来自mqtt的消息通知:{content}");
+            // ControlUI device=  this.tempConfigService.Components.Where(x => x.DeviceTypeKey == info.PluginKey&&x.DeviceKey==info.DeviceName).FirstOrDefault();
+            // if (device!=null)
+            // {
 
-                 App.Current.Dispatcher.Invoke(() =>
-                 {
-                     this.logger.Info($"开始更新设备组件{info.DeviceName}的数据");
-                     device.UpdateState(info.Data);
-                     this.logger.Info($"更新设备组件{info.DeviceName}的数据已完成");
-                 });
+            //     App.Current.Dispatcher.Invoke(() =>
+            //     {
+            //         this.logger.Info($"开始更新设备组件{info.DeviceName}的数据");
+            //         device.UpdateState(info.Data);
+            //         this.logger.Info($"更新设备组件{info.DeviceName}的数据已完成");
+            //     });
                  
                
-             }
+            // }
 
 
 
-            };
-            var plist= this.pluginService.DevicesControllers.ToList();
-            List<MqttTopicFilter> filters = new();
-            foreach (var item in plist)
-            {
-                filters.Add(new MqttTopicFilter(){Topic = item.Value.Key});
-                this.logger.Info($"添加订阅主题:{item.Value.Key}");
-            }
+            //};
 
-            this.tempConfigService.MqttTopicFilters = filters;
-            this.mqttService.SubscriptionAsync(filters);
+
+            //var plist= this.pluginService.DevicesControllers.ToList();
+            //List<MqttTopicFilter> filters = new List<MqttTopicFilter>();
+            //foreach (Lazy<IDeviceController> item in plist)
+            //{
+            //    filters.Add(new MqttTopicFilter(){Topic = item.Value.Key});
+            //    this.logger.Info($"添加订阅主题:{item.Value.Key}");
+            //}
+
+            //this.tempConfigService.MqttTopicFilters = filters;
+            //this.mqttService.SubscriptionAsync(filters);
             
             
-            foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
-            {
-                var device=  this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
+            //foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
+            //{
+            //    var device=  this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
                     
-               if (device!=null)
-               {
-                   this.logger.Info($"开始添加{device.Key}的组件");
-                   foreach ( var deviceMeta in device.Devices)
-                   {
+            //   if (device!=null)
+            //   {
+            //       this.logger.Info($"开始添加{device.Key}的组件");
+            //       foreach ( var deviceMeta in device.Devices)
+            //       {
                         
-                      var control = item.Value.GetDeskTopControlUi(deviceMeta);
-                      if (control!=null&&control is ControlUI uc)
-                      {
-                          this.logger.Info($"添加设备组件:{deviceMeta.Name}");
-                          uc.Topic = item.Value.Key;
-                          uc.DeviceTypeKey = device.Key;
-                          uc.DeviceKey = deviceMeta.Name;
-                          var initdata=   uc.BuildInitRequest();
-                        uc.MqttMessageSendEvent += (con =>
-                        {
+            //          var control = item.Value.GetDeskTopControlUi(deviceMeta);
+            //          if (control!=null&&control is ControlUI uc)
+            //          {
+            //              this.logger.Info($"添加设备组件:{deviceMeta.Name}");
+            //              uc.Topic = item.Value.Key;
+            //              uc.DeviceTypeKey = device.Key;
+            //              uc.DeviceKey = deviceMeta.Name;
+            //              var initdata=   uc.BuildInitRequest();
+            //            uc.MqttMessageSendEvent += (con =>
+            //            {
                             
                            
                             
-                            MqttSendInfo info = new MqttSendInfo();
-                            info.PluginKey = item.Value.Key;
-                            info.Data = con.Data;
+            //                MqttSendInfo info = new MqttSendInfo();
+            //                info.PluginKey = item.Value.Key;
+            //                info.Data = con.Data;
 
-                            if (con.CommandType==CommandType.Get)
-                            {
-                                info.CommandType = Models.CommandType.Get;
-                            }
-                            else
-                            {
-                                info.CommandType = Models.CommandType.Set;
-                            }
-                            info.DeviceName = deviceMeta.Name;
-                            info.Topic=uc.Topic;
-                            string d= JsonConvert.SerializeObject(info);
+            //                if (con.CommandType==CommandType.Get)
+            //                {
+            //                    info.CommandType = Models.CommandType.Get;
+            //                }
+            //                else
+            //                {
+            //                    info.CommandType = Models.CommandType.Set;
+            //                }
+            //                info.DeviceName = deviceMeta.Name;
+            //                info.Topic=uc.Topic;
+            //                string d= JsonConvert.SerializeObject(info);
 
-                            var bytes= Encoding.UTF8.GetBytes(d);
+            //                var bytes= Encoding.UTF8.GetBytes(d);
                             
-                            this.logger.Info($"{info.DeviceName}发送消息:{d}");
+            //                this.logger.Info($"{info.DeviceName}发送消息:{d}");
                             
-                            this.mqttService.SendInfo(new MqttApplicationMessage()
-                            {
-                                Topic = this.tempConfigService.MqttServiceTopic,
-                                Payload = bytes
-                            });
-                        });
-                        uc.SendMessage(new MessageModel(){Data = initdata,CommandType = CommandType.Get});
-                          Tile t = new Tile();
-                          t.Width = uc.Width;
-                          t.Height = uc.Height;
-                          t.Content = uc;
-                          this.Tiles.Add(t);
-                          this.tempConfigService.Components.Add(uc);
-                      }
-                   }
-               }
+            //                this.mqttService.SendInfo(new MqttApplicationMessage()
+            //                {
+            //                    Topic = this.tempConfigService.MqttServiceTopic,
+            //                    Payload = bytes
+            //                });
+            //            });
+            //            uc.SendMessage(new MessageModel(){Data = initdata,CommandType = CommandType.Get});
+            //              Tile t = new Tile();
+            //              t.Width = uc.Width;
+            //              t.Height = uc.Height;
+            //              t.Content = uc;
+            //              this.Tiles.Add(t);
+            //              this.tempConfigService.Components.Add(uc);
+            //          }
+            //       }
+            //   }
 
                 // var control= item.Value.GetDeskTopControlUi();
                 // if (control!=null&&control is ControlUI uc)
@@ -148,4 +150,4 @@ namespace FantasyRoomDisplayDevice.ViewModels
            
         }
     }
-}
+

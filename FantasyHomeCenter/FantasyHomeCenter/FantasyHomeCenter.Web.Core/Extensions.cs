@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
+using FantasyHomeCenter.Application.RoomCenter;
 using FantasyHomeCenter.Core.Entities;
 using FantasyHomeCenter.Core.Enums;
 using FantasyHomeCenter.DevicePluginInterface;
@@ -22,6 +23,8 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 
 using Newtonsoft.Json;
+
+using StackExchange.Profiling.Internal;
 
 namespace FantasyHomeCenter.Web.Core;
 
@@ -104,7 +107,7 @@ public static class Extensions
                                 //mqtt 发送
                                 MqttServerInstance mqttServerInstance = ser.GetService<MqttServerInstance>();
                                 Console.WriteLine($"定时信息:{device.Name}::{JsonConvert.SerializeObject(getRes.Data)}");
-                                await mqttServerInstance.PublishAsync(deviceType.Key, info);
+                                await mqttServerInstance.PublishAsync("fantasyhome-ui-update", info);
 
                             }
                             else
@@ -138,5 +141,31 @@ public static class Extensions
         var provider= services.BuildServiceProvider();
        var mqtt=  provider.GetService<MqttServerInstance>();
        mqtt.StartAsync();
+    }
+
+
+    public static async void AddSendRoomToControlDevice(this IServiceCollection services)
+    {
+        var provider = services.BuildServiceProvider();
+        IRoomService roomService=provider.GetService<IRoomService>();
+        MqttServerInstance mqttServerInstance=provider.GetService<MqttServerInstance> ();
+
+       var roomListRes=  await roomService.GetListAsync ();
+       if (roomListRes.Succeeded)
+       {
+          List<string> rooms=roomListRes.Data.Select(x=>x.RoomName).ToList();
+           Dictionary<string, string> data = new Dictionary<string, string>();
+           data["rooms"] = rooms.ToJson();
+          await mqttServerInstance.PublishAsync("fantasyhome-room-list", new MqttSendInfo
+           {
+               Topic="fantasyhome-room-list",
+               Data= data
+           });
+
+       }
+       else
+       {
+
+       }
     }
 }

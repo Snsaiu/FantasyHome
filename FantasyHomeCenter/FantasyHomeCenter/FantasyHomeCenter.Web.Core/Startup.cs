@@ -71,7 +71,8 @@ namespace FantasyHomeCenter.Web.Core
 
            // services.AddInitPluginService();
             services.AddMqttServiceAsync();
-            services.AddBackgroundTaskService();
+           // services.AddSendRoomToControlDevice();
+          //  services.AddBackgroundTaskService();
 
 
         }

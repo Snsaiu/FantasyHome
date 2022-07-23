@@ -8,19 +8,19 @@
     <Grid>
 
 
-        <dxwui:HamburgerMenu >
+        <dxwui:HamburgerMenu  ItemsSource="{Binding Rooms}">
      
             <dxwui:HamburgerMenu.Content>
                 <ContentControl prism:RegionManager.RegionName="ItemRegion"></ContentControl>
             </dxwui:HamburgerMenu.Content>
-            <dxwui:HamburgerMenuNavigationButton Content="主页" GlyphHeight="16" GlyphWidth="16" Command="{Binding OpenComponentPageCommand}" CommandParameter="主页" IsSelected="True"/>
+            <!--<dxwui:HamburgerMenuNavigationButton Content="主页" GlyphHeight="16" GlyphWidth="16" Command="{Binding OpenComponentPageCommand}" CommandParameter="主页" IsSelected="True"/>
             <dxwui:HamburgerMenuNavigationButton Content="客厅" GlyphHeight="16" GlyphWidth="16"/>
             <dxwui:HamburgerMenuNavigationButton Content="主卧" GlyphHeight="16" GlyphWidth="16"/>
             <dxwui:HamburgerMenuNavigationButton Content="次卧" GlyphHeight="16" GlyphWidth="16"/>
             <dxwui:HamburgerMenuNavigationButton Content="卫生间" GlyphHeight="16" GlyphWidth="16"/>
             <dxwui:HamburgerMenuNavigationButton Content="厨房" GlyphHeight="16" GlyphWidth="16"/>
             <dxwui:HamburgerMenuNavigationButton Content="阳台" GlyphHeight="16" GlyphWidth="16"/>
-            <dxwui:HamburgerMenuNavigationButton Content="本地设置" GlyphHeight="16" GlyphWidth="16"/>
+            <dxwui:HamburgerMenuNavigationButton Content="本地设置" GlyphHeight="16" GlyphWidth="16"/>-->
             <!--<dxwui:HamburgerMenuHyperlinkButton Content="Support" NavigateUri="https://www.devexpress.com/Support/"/>-->
         </dxwui:HamburgerMenu>
 

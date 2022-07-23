@@ -40,4 +40,7 @@
     <ProjectReference Include="..\..\FantasyHome.Application\FantasyHome.Application.csproj" />
     <ProjectReference Include="..\..\FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.DevicePluginInterface\FantasyHomeCenter.DevicePluginInterface.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MqttMessageParse\" />
+  </ItemGroup>
 </Project>

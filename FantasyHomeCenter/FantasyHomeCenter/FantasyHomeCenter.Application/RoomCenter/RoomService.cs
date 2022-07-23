@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.RoomCenter.Dto;
 using FantasyHomeCenter.Core.Entities;
+
+using Furion;
 using Furion.DatabaseAccessor;
 using Furion.FriendlyException;
 using Mapster;
@@ -13,10 +17,12 @@ namespace FantasyHomeCenter.Application.RoomCenter;
 public class RoomService : IDynamicApiController, ITransient, IRoomService
 {
     private readonly IRepository<Room> repository;
+   
 
     public RoomService(IRepository<Room> repository)
     {
         this.repository = repository;
+      
     }
 
     public async Task<RESTfulResult<PagedList<RoomOutput>>> GetRoomListPageAsync(RoomInput input)
@@ -38,7 +44,20 @@ public class RoomService : IDynamicApiController, ITransient, IRoomService
         var entity = input.Adapt<Room>();
         var insertRes = await this.repository.InsertNowAsync(entity);
         if (insertRes.State == EntityState.Added)
+        {
+            Dictionary<string, string> map = new Dictionary<string, string>();
+            map["RoomName"]=entity.RoomName;
+            map["Id"] = entity.Id.ToString();
+            //发送mqtt
+          await App.GetService<MqttServerInstance>().PublishAsync("fantasyhome-room-add",new MqttCenter.Dto.MqttSendInfo()
+            {
+                PluginKey="-1",
+                Topic= "fantasyhome-room-add",
+                Data=map
+            });
             return new RESTfulResult<RoomOutput>() { Succeeded = true, Data = insertRes.Entity.Adapt<RoomOutput>() };
+        }
+          
         throw Oops.Bah($"插入{input.RoomName}失败!");
     }
 

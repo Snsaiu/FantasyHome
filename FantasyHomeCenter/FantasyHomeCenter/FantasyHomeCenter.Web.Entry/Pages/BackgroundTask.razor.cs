@@ -9,8 +9,6 @@ namespace FantasyHomeCenter.Web.Entry.Pages
 {
     public partial class BackgroundTask
     {
-
-
         /// <summary>
         /// 后台任务服务
         /// </summary>
@@ -80,7 +78,7 @@ namespace FantasyHomeCenter.Web.Entry.Pages
             var res = this.backgroundTaskService.RestartTaskByName(taskName);
             if (res.Succeeded)
             {
-                this.list.Items.First(x => x.TaskName == taskName).TaskState = "正在运行";
+                this.list.Items.First(predicate: x => x.TaskName == taskName).TaskState = "正在运行";
             }
             else
             {
