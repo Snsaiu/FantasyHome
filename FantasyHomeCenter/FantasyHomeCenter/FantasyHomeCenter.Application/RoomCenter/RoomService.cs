@@ -43,8 +43,7 @@ public class RoomService : IDynamicApiController, ITransient, IRoomService
             return new RESTfulResult<RoomOutput>() { Succeeded = false, Errors = $"房间名{input.RoomName}已经存在" };
         var entity = input.Adapt<Room>();
         var insertRes = await this.repository.InsertNowAsync(entity);
-        if (insertRes.State == EntityState.Added)
-        {
+       
             Dictionary<string, string> map = new Dictionary<string, string>();
             map["RoomName"]=entity.RoomName;
             map["Id"] = entity.Id.ToString();
@@ -56,15 +55,31 @@ public class RoomService : IDynamicApiController, ITransient, IRoomService
                 Data=map
             });
             return new RESTfulResult<RoomOutput>() { Succeeded = true, Data = insertRes.Entity.Adapt<RoomOutput>() };
-        }
-          
-        throw Oops.Bah($"插入{input.RoomName}失败!");
+       
     }
 
     public async Task<RESTfulResult<int>> DeleteRoomListAsync(List<int> ids)
     {
         var list= await this.repository.AsQueryable().Where(x => ids.Any(y => y == x.Id)).ToListAsync();
         await this.repository.DeleteNowAsync(list);
+
+        foreach (Room room in list)
+        {
+            Dictionary<string, string> map = new Dictionary<string, string>();
+            map["RoomName"] = room.RoomName;
+            map["Id"] = room.Id.ToString();
+            //发送mqtt
+            await App.GetService<MqttServerInstance>().PublishAsync("fantasyhome-room-remove", new MqttCenter.Dto.MqttSendInfo()
+            {
+                PluginKey = "-1",
+                Topic = "fantasyhome-room-remove",
+                Data = map
+            });
+
+        }
+      
+
+
         return new RESTfulResult<int>() { Succeeded = true };
     }
 

@@ -77,7 +77,7 @@ public static class Extensions
             {
                 if (controller.BackgroundParam != null)
                 {
-                    SpareTime.Do("*/5 * * * * *", async (time, count)  =>
+                    SpareTime.Do(controller.BackgroundParam.Time, async (time, count)  =>
                     {
                        await Scoped.Create(async (_, scope) =>
                         {

@@ -5,9 +5,14 @@ using CommunityToolkit.Mvvm.Input;
 
 using DevExpress.Utils.About;
 using DevExpress.Xpf.WindowsUI;
+
+using FantasyRoomDisplayDevice.EventAggregates;
 using FantasyRoomDisplayDevice.Models;
+using FantasyRoomDisplayDevice.Services;
 
 using Newtonsoft.Json;
+
+using Prism.Events;
 
 namespace FantasyRoomDisplayDevice.MqttMessageParse
 {
@@ -17,10 +22,13 @@ namespace FantasyRoomDisplayDevice.MqttMessageParse
     public class RoomListParser: MqttMessageParseBase
     {
         private readonly ObservableCollection<HamburgerMenuNavigationButton> rooms;
+        private readonly IEventAggregator eventAggregator;
 
-        public RoomListParser(string flag, MqttSendInfo data, ObservableCollection<HamburgerMenuNavigationButton> rooms) : base(flag, data)
+
+        public RoomListParser(string flag, MqttSendInfo data, ObservableCollection<HamburgerMenuNavigationButton> rooms,IEventAggregator eventAggregator) : base(flag, data)
         {
             this.rooms = rooms;
+            this.eventAggregator = eventAggregator;
         }
 
         protected override string GetParserFlag()
@@ -30,14 +38,7 @@ namespace FantasyRoomDisplayDevice.MqttMessageParse
         private void openComponentPage(string name)
         {
 
-            switch (name)
-            {
-                case "主页":
-                    //  this.regionManager.RequestNavigate("ItemRegion",nameof(HomeComponentViewModel));
-                    break;
-                default:
-                    break;
-            }
+            this.eventAggregator.GetEvent<PageChageEventAggregater>().Publish(name);
         }
 
 
@@ -51,6 +52,7 @@ namespace FantasyRoomDisplayDevice.MqttMessageParse
                 this.rooms.Add(new HamburgerMenuNavigationButton()
                     {
                         Content = "主页",
+                        IsSelected=true,
                         Command = new RelayCommand(() =>
                         {
                             this.openComponentPage("主页");
@@ -75,7 +77,9 @@ namespace FantasyRoomDisplayDevice.MqttMessageParse
                         }
                     );
                 }
+                //将控件全部放到主页中
 
+                this.eventAggregator.GetEvent<PageChageEventAggregater>().Publish("主页");
 
 
             });

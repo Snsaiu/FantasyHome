@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\Fonts\iconfont.ttf" />
+    <None Remove="ViewModels\HomeComponentViewModel.cs~RF16332a.TMP" />
     <Resource Include="Resources\Fonts\iconfont.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -42,5 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MqttMessageParse\" />
+    <Folder Include="EventAggregates\" />
   </ItemGroup>
 </Project>

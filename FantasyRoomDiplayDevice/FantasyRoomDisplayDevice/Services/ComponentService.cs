@@ -47,7 +47,9 @@ namespace FantasyRoomDisplayDevice.Services
 
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-list" });
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-add" });
+            filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-remove" });
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-ui-update" });
+
             this.tempConfigService.MqttTopicFilters = filters;
             this.mqttService.SubscriptionAsync(filters);
 
@@ -103,10 +105,10 @@ namespace FantasyRoomDisplayDevice.Services
                                 });
                             });
                             uc.SendMessage(new MessageModel() { Data = initdata, CommandType = CommandType.Get });
-                            Tile t = new Tile();
-                            t.Width = uc.Width;
-                            t.Height = uc.Height;
-                            t.Content = uc;
+                            //Tile t = new Tile();
+                            //t.Width = uc.Width;
+                            //t.Height = uc.Height;
+                            //t.Content = uc;
                             this.tempConfigService.Components.Add(uc);
                             result.Add(uc);
                         }

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+
 using CommunityToolkit.Mvvm.Input;
 
 using DevExpress.Xpf.WindowsUI;
-
 using FantasyRoomDisplayDevice.EventAggregates;
 using FantasyRoomDisplayDevice.Models;
 
@@ -11,13 +11,12 @@ using Prism.Events;
 
 namespace FantasyRoomDisplayDevice.MqttMessageParse
 {
-    public class RoomAddParser:MqttMessageParseBase
+    public class RoomRemoveParser: MqttMessageParseBase
     {
         private readonly ObservableCollection<HamburgerMenuNavigationButton> rooms;
         private readonly IEventAggregator eventAggregator;
 
-        public RoomAddParser(string flag, MqttSendInfo data,
-            ObservableCollection<HamburgerMenuNavigationButton> rooms,IEventAggregator eventAggregator) : base(flag, data)
+        public RoomRemoveParser(string flag, MqttSendInfo data, ObservableCollection<HamburgerMenuNavigationButton> rooms, IEventAggregator eventAggregator) : base(flag, data)
         {
             this.rooms = rooms;
             this.eventAggregator = eventAggregator;
@@ -25,7 +24,7 @@ namespace FantasyRoomDisplayDevice.MqttMessageParse
 
         protected override string GetParserFlag()
         {
-            return "fantasyhome-room-add";
+            return "fantasyhome-room-remove";
         }
 
         protected override void Parse(MqttSendInfo data)
@@ -34,18 +33,15 @@ namespace FantasyRoomDisplayDevice.MqttMessageParse
             App.Current.Dispatcher.Invoke(() =>
             {
 
-                this.rooms.Add(new HamburgerMenuNavigationButton()
-                {
-                    Content = roomName,
-                    Command = new RelayCommand(() =>
-                    {
-                        this.eventAggregator.GetEvent<PageChageEventAggregater>().Publish(roomName);
-
-                    })
-                });
+               var room=this.rooms.FirstOrDefault(x=>x.Content.ToString()==roomName);
+               if (room!=null)
+               {
+                   this.rooms.Remove(room);
+               }
 
             });
-    
+
+
         }
     }
 }
