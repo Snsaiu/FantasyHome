@@ -13,6 +13,7 @@ namespace FantasyRoomDisplayDevice.Services
         public TempConfigService()
         {
             this.Components = new List<ControlUI>();
+            this.DeviceMqttTopicFilters = new List<MqttTopicFilter>();
         }
         public string Host { get; set; }
         public string Port { get; set; }
@@ -25,7 +26,15 @@ namespace FantasyRoomDisplayDevice.Services
         public string MqttPort { get; set; }
 
         public string MqttServiceTopic { get; set; }
-        
+
+        /// <summary>
+        /// 设备的主题，每个插件的主题
+        /// </summary>
+        public List<MqttTopicFilter> DeviceMqttTopicFilters { get;  }
+
+        /// <summary>
+        /// 所有的主题，包括插件和系统自带
+        /// </summary>
         public List<MqttTopicFilter> MqttTopicFilters { get; set; }
 
 

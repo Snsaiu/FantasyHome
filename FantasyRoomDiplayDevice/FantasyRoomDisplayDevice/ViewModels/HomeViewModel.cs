@@ -73,13 +73,16 @@ namespace FantasyRoomDisplayDevice.ViewModels
                 roomListParser.Next = roomAddParser;
 
                 ControlUIUpdateParser controlUIUpdateParser =
-                    new ControlUIUpdateParser(data.Topic, info, this.tempConfigService);
+                    new ControlUIUpdateParser(info.Topic, info, this.tempConfigService);
                 roomAddParser.Next=controlUIUpdateParser;
 
                 RoomRemoveParser roomRemoveParser =
                     new RoomRemoveParser(data.Topic, info, this.Rooms, this.eventAggregator);
 
                 controlUIUpdateParser.Next=roomRemoveParser;
+
+                RestartAppParser restartAppParser = new RestartAppParser(data.Topic, info);
+                roomRemoveParser.Next=restartAppParser;
 
                 roomListParser.Process();
 

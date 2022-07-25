@@ -107,7 +107,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             cp.Type = CommandParameterType.Set;
             entity.ConstCommandParams.Add(cp);
         }
-        foreach (var item in input.GetCommandParams)
+        foreach (KeyValue<string, string> item in input.GetCommandParams)
         {
             CommandConstParams cp = new CommandConstParams();
             cp.Device = entity;
@@ -167,8 +167,12 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             }, input.Name + "___" + controller.BackgroundParam.TaskName, controller.BackgroundParam.Description);
         }
 
+        //通知设备重启
+        await App.GetService<MqttServerInstance>().PublishAsync("fantasyhome-restart", new MqttSendInfo());
 
-         var entityRes= await  this.repository.InsertNowAsync(entity);
+
+
+        var entityRes= await  this.repository.InsertNowAsync(entity);
 
 
          return new RESTfulResult<int>() { Succeeded = true };

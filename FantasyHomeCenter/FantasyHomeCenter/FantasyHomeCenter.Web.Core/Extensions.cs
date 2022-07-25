@@ -103,11 +103,11 @@ public static class Extensions
                                 info.DeviceName = device.Name;
                                 info.Success = true;
                                 info.PluginKey = deviceType.Key;
-                                //info.Topic=deviceType.Key;
+                                info.Topic=deviceType.Key;
                                 //mqtt 发送
                                 MqttServerInstance mqttServerInstance = ser.GetService<MqttServerInstance>();
                                 Console.WriteLine($"定时信息:{device.Name}::{JsonConvert.SerializeObject(getRes.Data)}");
-                                await mqttServerInstance.PublishAsync("fantasyhome-ui-update", info);
+                                await mqttServerInstance.PublishAsync(info.Topic, info);
 
                             }
                             else

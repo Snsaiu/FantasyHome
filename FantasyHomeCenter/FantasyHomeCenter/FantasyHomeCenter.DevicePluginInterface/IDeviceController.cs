@@ -64,7 +64,7 @@ namespace FantasyHomeCenter.DevicePluginInterface
         List<DeviceInputParameter> CreateGetDeviceParameters();
 
         /// <summary>
-        /// 获得设备类型
+        /// 获得设备类型 ,必须设置为项目的名称
         /// </summary>
         string DeviceType { get; }
 

@@ -40,7 +40,9 @@ namespace FantasyRoomDisplayDevice.Services
             List<MqttTopicFilter> filters = new List<MqttTopicFilter>();
             foreach (Lazy<IDeviceController> item in plist)
             {
-                filters.Add(new MqttTopicFilter() { Topic = item.Value.Key });
+                var topic = new MqttTopicFilter() { Topic = item.Value.Key };
+                filters.Add(topic);
+                this.tempConfigService.DeviceMqttTopicFilters.Add(topic);
                 this.logger.Info($"添加订阅主题:{item.Value.Key}");
             }
             //添加全局的订阅
@@ -48,7 +50,8 @@ namespace FantasyRoomDisplayDevice.Services
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-list" });
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-add" });
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-remove" });
-            filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-ui-update" });
+            //filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-ui-update" });
+            filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-restart" });
 
             this.tempConfigService.MqttTopicFilters = filters;
             this.mqttService.SubscriptionAsync(filters);

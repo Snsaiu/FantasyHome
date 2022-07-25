@@ -15,7 +15,7 @@ namespace MideaAirControlV3LocalControl
     {
      
 
-        public string DeviceType { get=> "MideaControlV3Controller"; }
+        public string DeviceType { get=> "MideaAirControlV3LocalControl"; }
         public string DeviceTypeVersion { get=>"v3"; }
         public string Key { get=> "8E3BB04A-A0AF-454C-805A-E05AC067F9EA"; }
         public string Author { get=>"Saiu";  }
@@ -87,6 +87,8 @@ namespace MideaAirControlV3LocalControl
 
             return p;
         }
+
+        public BackgroundParam? BackgroundParam { get=>new BackgroundParam("空调状态检测","空调状态检测任务", "*/30 * * * * *"); }
 
         public ControlUI GetDeskTopControlUi(Object initData)
         {
