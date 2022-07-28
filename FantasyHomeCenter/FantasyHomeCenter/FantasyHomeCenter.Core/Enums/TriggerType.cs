@@ -10,5 +10,10 @@ namespace FantasyHomeCenter.Core.Enums
     {
         数字状态触发器,
         状态触发器,
+        时间触发器,
+        时间规律触发器,
+        区域触发器,
+        坐标触发器,
+        模板触发器
     }
 }

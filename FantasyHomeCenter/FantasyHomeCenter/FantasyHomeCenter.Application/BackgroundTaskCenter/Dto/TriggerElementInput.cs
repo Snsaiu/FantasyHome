@@ -11,6 +11,11 @@ namespace FantasyHomeCenter.Application.BackgroundTaskCenter.Dto
 {
     public class TriggerElementInput
     {
+
+
+        [Display(Name ="触发器类型")]
+        public TriggerType TriggerType { get; set; }
+
         [Display(Name ="条件类型")]
         public ConditionType ConditionType { get; set; }
 

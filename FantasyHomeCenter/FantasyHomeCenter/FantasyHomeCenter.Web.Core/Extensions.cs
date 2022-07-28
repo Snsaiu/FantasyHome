@@ -93,7 +93,6 @@ public static class Extensions
                                     inputs.Add(new DeviceInputParameter(item.Name, item.Value));
                                 }
                             }
-
                             var getRes = await controller.GetDeviceStateAsync(inputs, deviceType.PluginPath);
                             if (getRes.Success)
                             {
