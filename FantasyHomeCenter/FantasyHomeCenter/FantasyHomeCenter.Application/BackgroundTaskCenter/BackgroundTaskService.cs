@@ -60,4 +60,11 @@ public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,
             return new RESTfulResult<bool> { Succeeded = false };
         };
     }
+
+    public RESTfulResult<bool> CreateNewAutomation(AutomationInput input)
+    {
+        var triggers = input.Triggers;
+        var actions = input.Actions;
+
+    }
 }

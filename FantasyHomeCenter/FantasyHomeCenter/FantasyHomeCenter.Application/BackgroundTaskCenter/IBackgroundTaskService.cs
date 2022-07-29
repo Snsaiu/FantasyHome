@@ -21,5 +21,11 @@ public interface IBackgroundTaskService
     /// <param name="taskName"></param>
     /// <returns></returns>
     RESTfulResult<bool> RestartTaskByName(string taskName);
+
+    /// <summary>
+    /// 创建一个自动化
+    /// </summary>
+    /// <returns></returns>
+    RESTfulResult<bool> CreateNewAutomation(AutomationInput input);
     
 }
