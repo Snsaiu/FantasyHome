@@ -6,10 +6,10 @@ using Newtonsoft.Json;
 using System.ComponentModel.Composition;
 namespace Weather
 {
-    [Export(typeof(IDeviceController))]
-    public class WeatherExport:IDeviceController
+    [Export(typeof(DeviceControllerBase))]
+    public class WeatherExport:DeviceControllerBase
     {
-        public List<DeviceInputParameter> CreateInitInputParameters()
+        public override List<DeviceInputParameter> CreateInitInputParameters()
         {
 
             List<DeviceInputParameter> parameters = new List<DeviceInputParameter>();
@@ -21,26 +21,15 @@ namespace Weather
             return parameters;
         }
 
-        public ControlUI GetDeskTopControlUi(object initData)
+      
+
+        protected override ControlUI GetDeskTopControlUi(DeviceMetaOutput initData)
         {
-            string content = JsonConvert.SerializeObject(initData);
-            var data = JsonConvert.DeserializeObject<DeviceMetaOutput>(content);
-            return new WindowUI(data);
+            return new WindowUI(initData);
         }
 
-        public string Topic { get=>"0F30C03D-45B2-D764-0632-592B78FBC9A1"; }
-        public List<DeviceInputParameter> CreateSetDeviceParameters()
-        {
-            List<DeviceInputParameter> parameters = new List<DeviceInputParameter>();
-            parameters.Add(new DeviceInputParameter("当天天气url",true,"请求今天天气的地址,形如http://demo或者http://192.179.2.3:9090"));
-            parameters.Add(new DeviceInputParameter("3天天气url",true,"请求未来天气的地址,形如http://demo或者http://192.179.2.3:9090"));
-            parameters.Add(new DeviceInputParameter("经度",true,"经度"));
-            parameters.Add(new DeviceInputParameter("纬度",true,"纬度"));
-            parameters.Add(new DeviceInputParameter("Key",true,"key"));
-            return parameters;
-        }
-
-        public List<DeviceInputParameter> CreateGetDeviceParameters()
+        public override string Topic { get=>"0F30C03D-45B2-D764-0632-592B78FBC9A1"; }
+        public override List<DeviceInputParameter> CreateSetDeviceParameters()
         {
             List<DeviceInputParameter> parameters = new List<DeviceInputParameter>();
             parameters.Add(new DeviceInputParameter("当天天气url",true,"请求今天天气的地址,形如http://demo或者http://192.179.2.3:9090"));
@@ -51,15 +40,26 @@ namespace Weather
             return parameters;
         }
 
-        public string DeviceType { get=>"Weather"; }
-        public string DeviceTypeVersion { get=>"v1"; }
-        public string Key { get=>"0F30C03D-45B2-D764-0632-592B78FBC9A1"; }
-        public string Author { get=>"saiu"; }
-        public string Description { get=>"天气预报"; }
+        public override List<DeviceInputParameter> CreateGetDeviceParameters()
+        {
+            List<DeviceInputParameter> parameters = new List<DeviceInputParameter>();
+            parameters.Add(new DeviceInputParameter("当天天气url",true,"请求今天天气的地址,形如http://demo或者http://192.179.2.3:9090"));
+            parameters.Add(new DeviceInputParameter("3天天气url",true,"请求未来天气的地址,形如http://demo或者http://192.179.2.3:9090"));
+            parameters.Add(new DeviceInputParameter("经度",true,"经度"));
+            parameters.Add(new DeviceInputParameter("纬度",true,"纬度"));
+            parameters.Add(new DeviceInputParameter("Key",true,"key"));
+            return parameters;
+        }
 
-        public BackgroundParam? BackgroundParam => new BackgroundParam("天气预报定时请求", "天气预报定时请求天气状况", "0 0 0/1 * * ?");
+        public override string DeviceType { get=>"Weather"; }
+        public override string DeviceTypeVersion { get=>"v1"; }
+        public override string Key { get=>"0F30C03D-45B2-D764-0632-592B78FBC9A1"; }
+        public override string Author { get=>"saiu"; }
+        public override string Description { get=>"天气预报"; }
 
-        public Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath)
+        public override BackgroundParam? BackgroundParam => new BackgroundParam("天气预报定时请求", "天气预报定时请求天气状况", "0 0 0/1 * * ?");
+
+        public override Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath)
         {
 
 
@@ -68,7 +68,7 @@ namespace Weather
 
         }
 
-        private Task<CommandResult> getWeather(List<DeviceInputParameter> input, string pluginPath)
+        private  Task<CommandResult> getWeather(List<DeviceInputParameter> input, string pluginPath)
         {
             string url =
                 $"{input.First(x => x.Name=="当天天气url").Value}location={input.First(x => x.Name=="经度").Value},{input.First(x => x.Name=="纬度").Value}&key={input.First(x=>x.Name=="Key").Value}"; 
@@ -116,12 +116,12 @@ namespace Weather
             return Task.FromResult(cr);
         }
 
-        public Task<CommandResult> SetDeviceStateAsync(List<DeviceInputParameter> input, string pluginPath)
+        protected override Task<CommandResult> SetDeviceStateAsync(List<DeviceInputParameter> input, string pluginPath)
         {
             return this.getWeather(input, pluginPath);
         }
 
-        public Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input, string pluginPath)
+        public override Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input, string pluginPath)
         {
             return this.getWeather(input, pluginPath);
         }

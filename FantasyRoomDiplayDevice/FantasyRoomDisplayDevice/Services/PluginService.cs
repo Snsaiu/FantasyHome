@@ -15,7 +15,7 @@ namespace FantasyRoomDisplayDevice.Services
         private CompositionContainer container = null;
         
         [ImportMany(AllowRecomposition = true)]
-        public IEnumerable<Lazy<IDeviceController>> DevicesControllers { get; set; }
+        public IEnumerable<Lazy<DeviceControllerBase>> DevicesControllers { get; set; }
 
         public void LoadPlugins()
         {

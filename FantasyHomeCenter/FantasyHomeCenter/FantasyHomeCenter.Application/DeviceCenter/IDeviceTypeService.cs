@@ -44,14 +44,14 @@ public interface IDeviceTypeService
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<RESTfulResult<IDeviceController>> GetDeviceControllerById(int id);
+    Task<RESTfulResult<DeviceControllerBase>> GetDeviceControllerById(int id);
 
     /// <summary>
     /// 根据key获得插件控制器
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
-    Task<RESTfulResult<IDeviceController>> GetDeviceControllerByKey(string key);
+    Task<RESTfulResult<DeviceControllerBase>> GetDeviceControllerByKey(string key);
 
     /// <summary>
     /// 根据主键获得插件目录

@@ -16,7 +16,7 @@ namespace WebApplication1
         private CompositionContainer container = null;
         
         [ImportMany(AllowRecomposition = true)]
-        public IEnumerable<Lazy<IDeviceController>> DevicesControllers { get; set; }
+        public IEnumerable<Lazy<DeviceControllerBase>> DevicesControllers { get; set; }
 
         public void LoadPlugins()
         {
@@ -25,10 +25,10 @@ namespace WebApplication1
                 "G:\\PROJECT\\VS\\FantasyHome\\DevicePluginsImpls\\MideaAirControlV3LocalControl\\bin\\Debug\\net5.0-windows";
             var loader = PluginLoader.CreateFromAssemblyFile(
                 assemblyFile: Path.Combine(path, "MideaAirControlV3LocalControl" + ".dll"),
-                sharedTypes: new[] { typeof(IDeviceController), typeof(IServiceCollection) },
+                sharedTypes: new[] { typeof(DeviceControllerBase), typeof(IServiceCollection) },
                 isUnloadable: true);
-            var type = loader.LoadDefaultAssembly().GetTypes().First(t => typeof(IDeviceController).IsAssignableFrom(t) && !t.IsAbstract);
-            IDeviceController controller = Activator.CreateInstance(type) as IDeviceController;
+            var type = loader.LoadDefaultAssembly().GetTypes().First(t => typeof(DeviceControllerBase).IsAssignableFrom(t) && !t.IsAbstract);
+            DeviceControllerBase controller = Activator.CreateInstance(type) as DeviceControllerBase;
 
         }
         

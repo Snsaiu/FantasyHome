@@ -29,14 +29,16 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
     private readonly IPluginService pluginService;
     private readonly IRepository<CommandConstParams> commandConstParamsRepository;
     private readonly IDeviceTypeService deviceTypeService;
-   
+    private readonly PluginStateChangeNotification pluginStateChangeNotification;
+
 
     public DeviceService(IRepository<Device> repository,
         IRepository<DeviceType> deviceTypeRepository,
         IRepository<Room> roomRepository,
         IPluginService pluginService,
         IRepository<CommandConstParams> commandConstParamsRepository,
-        IDeviceTypeService deviceTypeService
+        IDeviceTypeService deviceTypeService,
+        PluginStateChangeNotification pluginStateChangeNotification
        )
     {
         this.repository = repository;
@@ -45,7 +47,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
         this.pluginService = pluginService;
         this.commandConstParamsRepository = commandConstParamsRepository;
         this.deviceTypeService = deviceTypeService;
-    
+        this.pluginStateChangeNotification = pluginStateChangeNotification;
     }
     public async Task<RESTfulResult< PagedList<DeviceOutput>>> GetDevices(DeviceInput input)
     {
@@ -265,9 +267,11 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到实体插件路径" };
         }
       
-        var plugin = this.pluginService.GetPluginByKeyAsync(info.PluginKey).GetAwaiter().GetResult();
+        //var plugin = this.pluginService.GetPluginByKeyAsync(info.PluginKey).GetAwaiter().GetResult();
 
-        if (plugin.Succeeded)
+        var plugin = this.pluginStateChangeNotification.GetDevices().First(x => x.Key == info.PluginKey);
+
+        if (plugin!=null)
         {
             List<DeviceInputParameter> param = new();
 
@@ -277,7 +281,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
                 param.Add(p);
             }
 
-            var commandRes= plugin.Data.SetDeviceStateAsync(param, pluginType.PluginPath).GetAwaiter().GetResult();
+            var commandRes= plugin.SetDeviceStateWithNotifyAsync(info.DeviceName,param, pluginType.PluginPath).GetAwaiter().GetResult();
             if (commandRes.Success)
             {
                 return new RESTfulResult<Dictionary<string, string>>()

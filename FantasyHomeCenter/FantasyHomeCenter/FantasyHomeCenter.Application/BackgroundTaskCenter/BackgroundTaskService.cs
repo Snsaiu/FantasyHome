@@ -65,6 +65,7 @@ public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,
     {
         var triggers = input.Triggers;
         var actions = input.Actions;
+        return null;
 
     }
 }

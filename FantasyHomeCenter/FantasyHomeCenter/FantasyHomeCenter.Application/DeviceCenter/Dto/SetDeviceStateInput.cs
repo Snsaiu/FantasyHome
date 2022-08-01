@@ -18,7 +18,7 @@ public class SetDeviceStateInput
     public string Room { get; set; }
 
     [Display(Name = "控制器")]
-    public IDeviceController Controller { get; set; }
+    public DeviceControllerBase Controller { get; set; }
     
     [Display(Name = "插件路径")]
     public string  PluginPath { get; set; }

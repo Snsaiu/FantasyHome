@@ -9,7 +9,7 @@ public class PluginModel
 {
     public PluginLoader Loader { get; set; }
 
-    public IDeviceController Controller { get; set; }
+    public DeviceControllerBase Controller { get; set; }
 
     public string Key { get; set; }
 

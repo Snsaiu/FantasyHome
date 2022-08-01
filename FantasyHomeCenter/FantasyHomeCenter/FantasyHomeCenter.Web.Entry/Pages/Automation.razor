@@ -1,0 +1,20 @@
+﻿@page "/automation"
+
+<div>
+    <Row>
+        <Col Span="24">
+            <ButtonGroup>
+                <Button OnClick="() => {this.openAddNewDialog();}">添加自动化</Button>
+            </ButtonGroup>
+        </Col>
+    </Row>
+</div>
+
+<Modal Visible="this.addNewVisiable" Title="添加自动化" OnCancel="() => { this.addNewVisiable = false; }">
+
+    <Form @ref="this.addNewForm" Loading="this.addNewLoading" LabelColSpan="8" WrapperColSpan="16" Model="this.automationInput">
+        <FormItem Label="触发器类型">
+           
+        </FormItem>
+    </Form>
+</Modal>

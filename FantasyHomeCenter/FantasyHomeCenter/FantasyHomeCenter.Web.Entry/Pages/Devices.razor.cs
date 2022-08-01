@@ -264,7 +264,7 @@ public partial class Devices
             parameters.Add(new DeviceInputParameter(item.Name,item.Value));
         }
         
-        var res= await  this.setDeviceStateInputModel.Controller.SetDeviceStateAsync(parameters,
+        var res= await  this.setDeviceStateInputModel.Controller.SetDeviceStateWithNotifyAsync(this.setDeviceStateInputModel.DeviceName,parameters,
             this.setDeviceStateInputModel.PluginPath);
         if (res.Success)
         {

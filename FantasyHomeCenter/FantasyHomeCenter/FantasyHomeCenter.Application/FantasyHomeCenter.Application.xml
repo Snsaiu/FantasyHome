@@ -4,6 +4,26 @@
         <name>FantasyHomeCenter.Application</name>
     </assembly>
     <members>
+        <member name="T:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.ActionInput">
+            <summary>
+            动作
+            </summary>
+        </member>
+        <member name="T:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput">
+            <summary>
+            自动化
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput.Triggers">
+            <summary>
+            触发器
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput.Actions">
+            <summary>
+            动作
+            </summary>
+        </member>
         <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.StopTaskByName(System.String)">
             <summary>
             暂停一个任务
@@ -16,6 +36,12 @@
             重新启动任务
             </summary>
             <param name="taskName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.CreateNewAutomation(FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput)">
+            <summary>
+            创建一个自动化
+            </summary>
             <returns></returns>
         </member>
         <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.ControlDeviceOutput.DeviceType">

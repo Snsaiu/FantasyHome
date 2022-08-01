@@ -51,6 +51,8 @@ public static class Extensions
         var provider = services.BuildServiceProvider();
         IRepository<Device> deviceRepository = provider.GetService<IRepository<Device>>();
         IRepository <DeviceType> deviceTypeRepository=provider.GetService<IRepository<DeviceType>>();
+
+        PluginStateChangeNotification notify=provider.GetService<PluginStateChangeNotification>();
      
         var deviceTypeService = provider.GetService<IDeviceTypeService>();
       
@@ -72,6 +74,9 @@ public static class Extensions
            
             var controller = deviceControllRes.Data;
 
+            notify.AddPlugins(controller);
+            controller.Regist(notify);
+            
 
             foreach (Device device in deviceType.Devices)
             {

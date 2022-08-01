@@ -34,12 +34,21 @@
         </MenuItem>
 
     </SubMenu>
+    
+    <SubMenu Key="任务管理" Title="任务管理">
+        <MenuItem key="后台任务" >
+        
+            <NavLink href="/backgroundtask">后台任务</NavLink>
+      
+        </MenuItem>
+        <MenuItem Key="自动化">
+            <NavLink href="/automation">自动化</NavLink>
+        </MenuItem>
+       
+    </SubMenu>
+    
 
-    <MenuItem key="后台任务">
-        <NavLink href="/backgroundtask">后台任务</NavLink>
-    </MenuItem>
-
-    <SubMenu Key="MQTT" Title="MQTT">
+   @* <SubMenu Key="MQTT" Title="MQTT">
         <MenuItem key="mqtt-topics">
             <NavLink href="/mqtt-topics">主题</NavLink>
         </MenuItem>
@@ -49,7 +58,7 @@
         <MenuItem key="mqtt-subscriptions">
             <NavLink href="/mqtt-subscriptions">订阅</NavLink>
         </MenuItem>
-    </SubMenu>
+    </SubMenu>*@
 
     <MenuItem Key="设置">
         <NavLink href="/setting">设置</NavLink>

@@ -6,6 +6,8 @@ using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
 using FantasyHomeCenter.Application.MqttCenter.Dto.Service;
 using FantasyHomeCenter.Core.Entities;
+using FantasyHomeCenter.DevicePluginInterface;
+
 using Furion;
 using Furion.DatabaseAccessor;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -66,6 +68,8 @@ namespace FantasyHomeCenter.Web.Core
             // });
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddSingleton(new PluginStateChangeNotification());
 
             services.AddSingleton(new MqttServerInstance());
 

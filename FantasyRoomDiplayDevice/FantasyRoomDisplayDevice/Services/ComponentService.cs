@@ -38,7 +38,7 @@ namespace FantasyRoomDisplayDevice.Services
 
             var plist = this.pluginService.DevicesControllers.ToList();
             List<MqttTopicFilter> filters = new List<MqttTopicFilter>();
-            foreach (Lazy<IDeviceController> item in plist)
+            foreach (Lazy<DeviceControllerBase> item in plist)
             {
                 var topic = new MqttTopicFilter() { Topic = item.Value.Key };
                 filters.Add(topic);
@@ -57,7 +57,7 @@ namespace FantasyRoomDisplayDevice.Services
             this.mqttService.SubscriptionAsync(filters);
 
 
-            foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
+            foreach (Lazy<DeviceControllerBase> item in this.pluginService.DevicesControllers.ToList())
             {
                 var device = this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
 
@@ -67,7 +67,7 @@ namespace FantasyRoomDisplayDevice.Services
                     foreach (var deviceMeta in device.Devices)
                     {
 
-                        var control = item.Value.GetDeskTopControlUi(deviceMeta);
+                        var control = item.Value.GetControlUi(deviceMeta);
                         if (control != null && control is ControlUI uc)
                         {
                             this.logger.Info($"添加设备组件:{deviceMeta.Name}");
