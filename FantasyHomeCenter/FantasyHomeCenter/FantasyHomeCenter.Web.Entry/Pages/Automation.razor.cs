@@ -1,5 +1,8 @@
-﻿using AntDesign;
+﻿using System.Windows;
 
+using AntDesign;
+
+using FantasyHomeCenter.Application.BackgroundTaskCenter;
 using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
@@ -8,7 +11,7 @@ using FantasyHomeCenter.DevicePluginInterface;
 using Furion.UnifyResult;
 
 using Microsoft.AspNetCore.Components;
-
+using Microsoft.AspNetCore.Components.Forms;
 using StackExchange.Profiling.Internal;
 
 namespace FantasyHomeCenter.Web.Entry.Pages;
@@ -17,17 +20,29 @@ public partial class Automation
 {
 
     #region 字段
-    private int count = 1;
 
     /// <summary>
     /// 所有设备
     /// </summary>
     private List<DeviceOutput> devices = new List<DeviceOutput>();
 
+
+    /// <summary>
+    /// 后台任务
+    /// </summary>
+    [Inject]
+    private IBackgroundTaskService backgroundTaskService{ get; set; }
+
     /// <summary>
     /// 所选设备的属性
     /// </summary>
     private List<PropertyModel> propertyModels = new List<PropertyModel>();
+
+    /// <summary>
+    /// 目标设备属性
+    /// </summary>
+
+    private List<PropertyModel> targetPropertyModels = new List<PropertyModel>();
 
     /// <summary>
     /// 设备服务
@@ -108,7 +123,7 @@ public partial class Automation
     /// 设备选择改变
     /// </summary>
     /// <param name="input"></param>
-    private void deviceSelectChangedHanld(DeviceOutput input)
+    private void deviceSelectChangedHandle(DeviceOutput input)
     {
         RESTfulResult<List<PropertyModel>> res= this.deviceService.GetDeviceControllPropertiesByDeviceTypeId(input.DeviceTypeId);
 
@@ -117,19 +132,77 @@ public partial class Automation
     }
 
     /// <summary>
+    /// 目标选择设备改变
+    /// </summary>
+    /// <param name="input"></param>
+    private void targetDeviceSelectChangedHanle(DeviceOutput input)
+    {
+        RESTfulResult<List<PropertyModel>> res = this.deviceService.GetDeviceControllPropertiesByDeviceTypeId(input.DeviceTypeId);
+
+        this.targetPropertyModels = res.Data;
+    }
+
+    /// <summary>
     /// 设备属性改变
     /// </summary>
     /// <param name="x"></param>
-    private void propertyChangedHanle(PropertyModel x)
+    private void propertyChangedHanle(TriggerElementInput x)
     {
-        this.automationInput.From = "";
-        this.automationInput.To = "";
+        x.BeforeValue = "";
+        x.AfterValue = "";
+        //this.automationInput.From = "";
+        //this.automationInput.To = "";
 
     }
 
+    private void targetDevicePropertyChangedHandle(ActionInput input)
+    {
+        input.Value = "";
+    }
+
+
+    private void addNewTriggerCondition()
+    {
+        this.automationInput.Triggers.Add(new TriggerElementInput());
+       
+    }
+
+    private void removeTriggerCondition(TriggerElementInput input)
+    {
+        var entity= this.automationInput.Triggers.Where(x => x == input).FirstOrDefault();
+        if (entity != null)
+        {
+            this.automationInput.Triggers.Remove(entity);
+        }
+       
+    }
+
+    private void addAction()
+    {
+        this.automationInput.Actions.Add(new ActionInput());
+    }
+
+    private void removeAction(ActionInput input)
+    {
+        var entity = this.automationInput.Actions.Where(x => x == input).FirstOrDefault();
+        if (entity != null)
+        {
+            this.automationInput.Actions.Remove(entity);
+        }
+    }
 
     #endregion
 
 
+    private async Task submitAddAutomationHandle(EditContext editContext)
+    {
+        this.addNewLoading = true;
 
+
+        this.backgroundTaskService.CreateNewAutomation(this.automationInput);
+
+        this.automationInput = new AutomationInput();
+        this.addNewLoading = false;
+        this.addNewVisiable = false;
+    }
 }

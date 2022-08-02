@@ -14,16 +14,6 @@
             自动化
             </summary>
         </member>
-        <member name="P:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput.From">
-            <summary>
-            属性原始值
-            </summary>
-        </member>
-        <member name="P:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput.To">
-            <summary>
-            属性变换后的值
-            </summary>
-        </member>
         <member name="P:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput.Triggers">
             <summary>
             触发器

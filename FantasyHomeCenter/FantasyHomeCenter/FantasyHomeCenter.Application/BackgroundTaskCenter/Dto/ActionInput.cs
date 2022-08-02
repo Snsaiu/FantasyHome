@@ -20,6 +20,6 @@ namespace FantasyHomeCenter.Application.BackgroundTaskCenter.Dto
         public string Value { get; set; }
 
         [Display(Name ="目标设备")]
-        public string TargetDevice { get; set; }
+        public int TargetDeviceId { get; set; }
     }
 }

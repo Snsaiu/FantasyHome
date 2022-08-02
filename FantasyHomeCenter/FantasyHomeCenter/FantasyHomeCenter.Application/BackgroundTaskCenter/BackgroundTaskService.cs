@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Documents;
 using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto;
+using FantasyHomeCenter.Core.Entities;
+
 using Furion.DatabaseAccessor;
 using Furion.TaskScheduler;
+
+using Mapster;
 
 namespace FantasyHomeCenter.Application.BackgroundTaskCenter;
 
 public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,ITransient
 {
+    private readonly IRepository<Automation> _automationRepository;
+
+    public BackgroundTaskService(IRepository<Automation> automationRepository)
+    {
+        _automationRepository = automationRepository;
+    }
+
     public RESTfulResult<PagedList<BackgroundTaskOutput>> GetBackgroundTaskPage(BackgroundTaskPageInput input)
     {
        
@@ -63,9 +74,17 @@ public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,
 
     public RESTfulResult<bool> CreateNewAutomation(AutomationInput input)
     {
-        var triggers = input.Triggers;
-        var actions = input.Actions;
+
+
+        var entity= input.Adapt<Automation>();
+
+        this._automationRepository.InsertNow(entity);
+
+        //todo 添加自动化
         return null;
+
+        
+        
 
     }
 }
