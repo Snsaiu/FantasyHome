@@ -125,5 +125,18 @@ namespace Weather
         {
             return this.getWeather(input, pluginPath);
         }
+
+        public override List<PropertyModel> GetDeviceProperties()
+        {
+           List<PropertyModel> result = new List<PropertyModel>();
+            result.Add(new PropertyModel("今日天气"));
+            result.Add(new PropertyModel("今日温度"));
+            result.Add(new PropertyModel("湿度"));
+            result.Add(new PropertyModel("风速"));
+            result.Add(new PropertyModel("图标"));
+            result.Add(new PropertyModel("明天天气图标"));
+            result.Add(new PropertyModel("后天天气图标"));
+            return result;
+        }
     }
 }

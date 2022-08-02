@@ -1,4 +1,5 @@
 ﻿@page "/automation"
+@using FantasyHomeCenter.DevicePluginInterface
 
 <div>
     <Row>
@@ -12,9 +13,94 @@
 
 <Modal Visible="this.addNewVisiable" Title="添加自动化" OnCancel="() => { this.addNewVisiable = false; }">
 
-    <Form @ref="this.addNewForm" Loading="this.addNewLoading" LabelColSpan="8" WrapperColSpan="16" Model="this.automationInput">
+    <Form @ref="this.addNewForm"  Loading="this.addNewLoading" LabelColSpan="8" WrapperColSpan="16" Model="this.automationInput">
         <FormItem Label="触发器类型">
-           
+            <EnumSelect TEnum="FantasyHomeCenter.Core.Enums.TriggerType" @bind-Value="@context.TriggerType" />
         </FormItem>
+        @if(context.TriggerType==FantasyHomeCenter.Core.Enums.TriggerType.状态触发器)
+        {
+            <Card Title="触发条件">
+                <Body>
+
+                    
+                
+                    @{
+
+                      
+                        for (int i = 0; i < count; i++)
+                    {
+
+                            <FormItem Label="原设备">
+
+                                <Select DataSource="this.devices"
+                                @bind-Value="context.DeviceId"
+                            LabelName="@nameof(DeviceOutput.Name)"
+                            ValueName="@nameof(DeviceOutput.Id)"
+                            TItem="DeviceOutput"
+                            OnSelectedItemChanged="x=>{this.deviceSelectChangedHanld(x);}"
+                            DefaultValue="this.devices.First().Id"
+                            TItemValue="int">
+                                </Select>
+
+                            </FormItem>
+                            <FormItem Label="属性">
+
+                                <Select TItem="PropertyModel" OnSelectedItemChanged="x=>{this.propertyChangedHanle(x);}" TItemValue="string" DataSource="this.propertyModels" @bind-Value="context.Property" LabelName="@nameof(PropertyModel.PropertyName)" ValueName="@nameof(PropertyModel.PropertyName)">
+                                </Select>
+
+                            </FormItem>
+                            <FormItem Label="状态从">
+                                @{
+                                    if (string.IsNullOrEmpty(context.Property) == false)
+                                    {
+                                        var currentProperty = this.propertyModels.Where(x => x.PropertyName == context.Property).FirstOrDefault();
+                                        if (currentProperty == null) return;
+                                        if (currentProperty.PropertyType == PropertyType.变量)
+                                        {
+                                            <Input @bind-Value="context.From"></Input>
+                                        }
+                                        else
+                                        {
+                                            <Select TItem="string" TItemValue="string" DataSource="currentProperty.Enums" @bind-Value="context.From"></Select>
+                                        }
+                                    }
+                                }
+                            </FormItem>
+                            <FormItem Label="到">
+                                @{
+                                    if (string.IsNullOrEmpty(context.Property) == false)
+                                    {
+                                        var currentProperty = this.propertyModels.Where(x => x.PropertyName == context.Property).FirstOrDefault();
+                                        if (currentProperty == null) return;
+                                        if (currentProperty.PropertyType == PropertyType.变量)
+                                        {
+                                            <Input @bind-Value="context.To"></Input>
+                                        }
+                                        else
+                                        {
+                                            <Select TItem="string" TItemValue="string" DataSource="currentProperty.Enums" @bind-Value="context.To"></Select>
+                                        }
+                                    }
+                                }
+
+                            </FormItem>
+                           
+                           <Button OnClick="()=>{count--;}">移除</Button>
+                        }
+                         <Button OnClick="()=>{count--;}">添加</Button>
+
+                      
+
+                    }
+
+                   
+               
+                
+                </Body>
+              
+            </Card>
+           
+        }
+
     </Form>
 </Modal>

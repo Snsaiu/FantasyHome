@@ -164,6 +164,12 @@ namespace FantasyHomeCenter.DevicePluginInterface
         /// <returns></returns>
         public abstract Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input, string pluginPath);
 
+        /// <summary>
+        /// 获得设备状态的属性值
+        /// </summary>
+        /// <returns></returns>
+        public abstract List<PropertyModel> GetDeviceProperties();
+
 
     }
 }

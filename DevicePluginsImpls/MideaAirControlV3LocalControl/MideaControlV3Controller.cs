@@ -277,5 +277,17 @@ namespace MideaAirControlV3LocalControl
             return await Task.FromResult(new CommandResult { Success = false, ErrorMessage = error });
 
         }
+
+        public override List<PropertyModel> GetDeviceProperties()
+        {
+            List<PropertyModel> res = new List<PropertyModel>();
+            res.Add(new PropertyModel("空调状态", new List<string>() { "True", "False" }));
+            res.Add(new PropertyModel("提示音", new List<string>() { "True", "False" }));
+            res.Add(new PropertyModel("温度"));
+            res.Add(new PropertyModel("模式",new List<string>() { "自动","制冷","干燥","制热","仅吹风"}));
+            res.Add(new PropertyModel("风速"));
+            res.Add(new PropertyModel("室内温度"));
+            return res;
+        }
     }
 }

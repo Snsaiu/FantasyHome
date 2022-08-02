@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FantasyHomeCenter.Application.DeviceCenter.Dto;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
+using FantasyHomeCenter.DevicePluginInterface;
+
 using Furion.UnifyResult;
 
 namespace FantasyHomeCenter.Application.DeviceCenter;
@@ -21,6 +23,13 @@ public interface IDeviceService
     /// </summary>
     /// <returns></returns>
     Task<RESTfulResult<DeviceTypesAndRoomsOutput>> GetDeviceTypesAndRoomsAsync();
+
+
+    /// <summary>
+    /// 获得所有设备
+    /// </summary>
+    /// <returns></returns>
+    RESTfulResult<List<DeviceOutput>> GetAllDevices();
 
     /// <summary>
     /// 添加新设备
@@ -46,4 +55,5 @@ public interface IDeviceService
 
     RESTfulResult<Dictionary<string,string>> GetDeviceState(MqttSendInfo info);
     RESTfulResult<Dictionary<string,string>> SetThenGetDeviceState(MqttSendInfo info);
+    RESTfulResult<List<PropertyModel>> GetDeviceControllPropertiesByDeviceTypeId(int deviceTypeId);
 }

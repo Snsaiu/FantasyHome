@@ -1,6 +1,15 @@
 ﻿using AntDesign;
 
 using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto;
+using FantasyHomeCenter.Application.DeviceCenter;
+using FantasyHomeCenter.Application.DeviceCenter.Dto;
+using FantasyHomeCenter.DevicePluginInterface;
+
+using Furion.UnifyResult;
+
+using Microsoft.AspNetCore.Components;
+
+using StackExchange.Profiling.Internal;
 
 namespace FantasyHomeCenter.Web.Entry.Pages;
 
@@ -8,7 +17,29 @@ public partial class Automation
 {
 
     #region 字段
+    private int count = 1;
 
+    /// <summary>
+    /// 所有设备
+    /// </summary>
+    private List<DeviceOutput> devices = new List<DeviceOutput>();
+
+    /// <summary>
+    /// 所选设备的属性
+    /// </summary>
+    private List<PropertyModel> propertyModels = new List<PropertyModel>();
+
+    /// <summary>
+    /// 设备服务
+    /// </summary>
+    [Inject]
+    private IDeviceService deviceService { get; set; }
+
+    /// <summary>
+    /// 消息服务
+    /// </summary>
+    [Inject]
+    private MessageService messageService { get; set; }
 
     /// <summary>
     /// 显示添加新触发器弹框
@@ -49,9 +80,53 @@ public partial class Automation
     /// </summary>
     private void openAddNewDialog()
     {
+        
         this.addNewVisiable = true;
+        //获得所有列表
+        this.getDevices();
 
     }
+
+    /// <summary>
+    /// 获得所有设备列表
+    /// </summary>
+    /// <returns></returns>
+    private void getDevices()
+    {
+       
+        var res= this.deviceService.GetAllDevices();
+
+        if (res.Succeeded)
+            this.devices= res.Data;
+        else
+            this.messageService.Error(res.Errors.ToString());
+       
+
+    }
+
+    /// <summary>
+    /// 设备选择改变
+    /// </summary>
+    /// <param name="input"></param>
+    private void deviceSelectChangedHanld(DeviceOutput input)
+    {
+        RESTfulResult<List<PropertyModel>> res= this.deviceService.GetDeviceControllPropertiesByDeviceTypeId(input.DeviceTypeId);
+
+        this.propertyModels = res.Data;
+    
+    }
+
+    /// <summary>
+    /// 设备属性改变
+    /// </summary>
+    /// <param name="x"></param>
+    private void propertyChangedHanle(PropertyModel x)
+    {
+        this.automationInput.From = "";
+        this.automationInput.To = "";
+
+    }
+
 
     #endregion
 

@@ -300,4 +300,33 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到插件" };
         }
     }
+
+    public  RESTfulResult<List<DeviceOutput>> GetAllDevices()
+    {
+        var where = this.repository.AsQueryable();
+
+        var res =  where.Select(x => new DeviceOutput()
+        {
+            Address = x.Address,
+            Id = x.Id,
+            Name = x.Name,
+            Type = x.Type.DeviceTypeName,
+            Description = x.Description,
+            DeviceTypeId = x.Type.Id,
+            State = x.State,
+            RoomName = x.Room.RoomName
+
+        }).ToList();
+            
+        return new RESTfulResult<List<DeviceOutput>>() { Succeeded = true, Data = res };
+    }
+
+    public RESTfulResult<List<PropertyModel>> GetDeviceControllPropertiesByDeviceTypeId(int deviceTypeId)
+    {
+        var plugin= this.deviceTypeRepository.AsEnumerable().First(x => x.Id == deviceTypeId);
+
+       var controller=  this.pluginStateChangeNotification.GetDevices().Where(x => x.Key == plugin.Key).First();
+
+        return new RESTfulResult<List<PropertyModel>> { Data = controller.GetDeviceProperties(), Succeeded = true };
+    }
 }
