@@ -44,6 +44,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.RigAutomatioinTask">
+            <summary>
+            初始化自动化服务
+            </summary>
+        </member>
         <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.ControlDeviceOutput.DeviceType">
             <summary>
             设备类型

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FantasyHomeCenter.Database.Migrations.Migrations
 {
-    public partial class v2010 : Migration
+    public partial class v2022 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,6 +15,7 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Summary = table.Column<string>(type: "TEXT", nullable: false),
                     TriggerType = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
                     UpdatedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: true)
@@ -131,8 +132,6 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AutomationId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Property = table.Column<string>(type: "TEXT", nullable: true),
-                    Value = table.Column<string>(type: "TEXT", nullable: true),
                     TargetDeviceId = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
                     UpdatedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: true)
@@ -264,6 +263,29 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AutomationActionInputParam",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AutomationActionId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Value = table.Column<string>(type: "TEXT", nullable: true),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AutomationActionInputParam", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AutomationActionInputParam_AutomationAction_AutomationActionId",
+                        column: x => x.AutomationActionId,
+                        principalTable: "AutomationAction",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CommandConstParams",
                 columns: table => new
                 {
@@ -290,6 +312,11 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                 name: "IX_AutomationAction_AutomationId",
                 table: "AutomationAction",
                 column: "AutomationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AutomationActionInputParam_AutomationActionId",
+                table: "AutomationActionInputParam",
+                column: "AutomationActionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AutomationTriggerElement_AutomationId",
@@ -335,7 +362,7 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AutomationAction");
+                name: "AutomationActionInputParam");
 
             migrationBuilder.DropTable(
                 name: "AutomationTriggerElement");
@@ -350,7 +377,7 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                 name: "UiDevice");
 
             migrationBuilder.DropTable(
-                name: "Automation");
+                name: "AutomationAction");
 
             migrationBuilder.DropTable(
                 name: "Device");
@@ -366,6 +393,9 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
 
             migrationBuilder.DropTable(
                 name: "UiDeviceType");
+
+            migrationBuilder.DropTable(
+                name: "Automation");
 
             migrationBuilder.DropTable(
                 name: "DeviceType");

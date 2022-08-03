@@ -13,6 +13,9 @@ namespace FantasyHomeCenter.DevicePluginInterface
         private List<DeviceControllerBase> _devices;
 
 
+        /// <summary>
+        /// 自动化设备
+        /// </summary>
         public List<AutomationTemp> AutomationTemps { get; set; }
 
 
@@ -80,9 +83,11 @@ namespace FantasyHomeCenter.DevicePluginInterface
                            // 获得插件
                            var controller= this._devices.First(x => x.Key == action.PluginTypeKey);
 
+                           
                            //todo 需要修改模型，
-                           controller.SetDeviceStateWithNotifyAsync()
-                               
+                           controller.SetDeviceStateWithNotifyAsync(action.TargetDeviceName, action.SetParameters,
+                               action.GetParameters, action.pluginPath);
+
                         }
                     }
                     

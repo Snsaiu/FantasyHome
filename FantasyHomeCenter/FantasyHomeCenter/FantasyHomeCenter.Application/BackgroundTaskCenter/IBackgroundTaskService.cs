@@ -27,5 +27,10 @@ public interface IBackgroundTaskService
     /// </summary>
     /// <returns></returns>
     RESTfulResult<bool> CreateNewAutomation(AutomationInput input);
-    
+
+    /// <summary>
+    /// 初始化自动化服务
+    /// </summary>
+    void RigAutomatioinTask();
+
 }

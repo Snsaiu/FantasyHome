@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FantasyHomeCenter.Database.Migrations.Migrations
 {
     [DbContext(typeof(DefaultDbContext))]
-    [Migration("20220802145241_v2.0.1.1")]
-    partial class v2011
+    [Migration("20220803145129_v2.0.2.2")]
+    partial class v2022
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,10 +55,35 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Property")
+                    b.Property<int>("TargetDeviceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("UpdatedTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TargetDeviceId")
+                    b.HasKey("Id");
+
+                    b.HasIndex("AutomationId");
+
+                    b.ToTable("AutomationAction");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationActionInputParam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AutomationActionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Type")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTimeOffset?>("UpdatedTime")
@@ -69,9 +94,9 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AutomationId");
+                    b.HasIndex("AutomationActionId");
 
-                    b.ToTable("AutomationAction");
+                    b.ToTable("AutomationActionInputParam");
                 });
 
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationTriggerElement", b =>
@@ -413,6 +438,15 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                     b.Navigation("Automation");
                 });
 
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationActionInputParam", b =>
+                {
+                    b.HasOne("FantasyHomeCenter.Core.Entities.AutomationAction", "AutomationAction")
+                        .WithMany("Parameters")
+                        .HasForeignKey("AutomationActionId");
+
+                    b.Navigation("AutomationAction");
+                });
+
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationTriggerElement", b =>
                 {
                     b.HasOne("FantasyHomeCenter.Core.Entities.Automation", "Automation")
@@ -491,6 +525,11 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                     b.Navigation("Actions");
 
                     b.Navigation("Triggers");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationAction", b =>
+                {
+                    b.Navigation("Parameters");
                 });
 
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Device", b =>

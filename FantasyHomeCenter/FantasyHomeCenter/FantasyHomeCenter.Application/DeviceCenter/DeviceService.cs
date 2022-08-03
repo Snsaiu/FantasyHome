@@ -285,7 +285,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             List<DeviceInputParameter> getParams= this.GetGetDeviceCommandParamsbyDeviceName(info.DeviceName);
           
 
-            var commandRes= plugin.SetDeviceStateWithNotifyAsync(deviceName: info.DeviceName,param,getParams, pluginPath: pluginType.PluginPath).GetAwaiter().GetResult();
+            var commandRes= plugin.SetDeviceStateWithNotifyAsync(deviceName: info.DeviceName,param,getParams,pluginType.PluginPath).GetAwaiter().GetResult();
             if (commandRes.Success)
             {
                 return new RESTfulResult<Dictionary<string, string>>()

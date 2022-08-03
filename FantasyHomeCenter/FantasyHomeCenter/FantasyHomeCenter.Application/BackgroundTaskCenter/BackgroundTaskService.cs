@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Documents;
 using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto;
 using FantasyHomeCenter.Core.Entities;
+using FantasyHomeCenter.DevicePluginInterface;
 
 using Furion.DatabaseAccessor;
 using Furion.TaskScheduler;
@@ -15,10 +16,12 @@ namespace FantasyHomeCenter.Application.BackgroundTaskCenter;
 public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,ITransient
 {
     private readonly IRepository<Automation> _automationRepository;
+    private readonly PluginStateChangeNotification pluginStateChangeNotification;
 
-    public BackgroundTaskService(IRepository<Automation> automationRepository)
+    public BackgroundTaskService(IRepository<Automation> automationRepository,PluginStateChangeNotification pluginStateChangeNotification)
     {
         _automationRepository = automationRepository;
+        this.pluginStateChangeNotification = pluginStateChangeNotification;
     }
 
     public RESTfulResult<PagedList<BackgroundTaskOutput>> GetBackgroundTaskPage(BackgroundTaskPageInput input)
@@ -85,6 +88,14 @@ public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,
 
         
         
+
+    }
+
+    public void RigAutomatioinTask()
+    {
+        //获得所有的自动化
+
+        var entities= this._automationRepository.AsQueryable().ToList();
 
     }
 }

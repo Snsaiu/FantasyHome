@@ -1,5 +1,6 @@
 ﻿@page "/automation"
 @using FantasyHomeCenter.DevicePluginInterface
+@using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto
 
 <div>
     <Row>
@@ -127,35 +128,59 @@
                                 LabelName="@nameof(DeviceOutput.Name)"
                                 ValueName="@nameof(DeviceOutput.Id)"
                                 TItem="DeviceOutput"
-                                OnSelectedItemChanged="x => { this.targetDeviceSelectChangedHanle(x); }"
+                                OnSelectedItemChanged="x => { this.targetDeviceSelectChangedHanle(x,item); }"
                                 DefaultValue="this.devices.First().Id"
                                 TItemValue="int">
                         </Select>
 
                     </FormItem>
-                    <FormItem Label="属性">
 
-                        <Select TItem="PropertyModel" OnSelectedItemChanged="x => { this.targetDevicePropertyChangedHandle(item); }" TItemValue="string" DataSource="this.targetPropertyModels" @bind-Value="item.Property" LabelName="@nameof(PropertyModel.PropertyName)" ValueName="@nameof(PropertyModel.PropertyName)">
-                        </Select>
 
-                    </FormItem>
-                    <FormItem Label="值">
-                        @{
-                            if (string.IsNullOrEmpty(item.Property) == false)
-                            {
-                                var currentProperty = this.targetPropertyModels.Where(x => x.PropertyName == item.Property).FirstOrDefault();
-                                if (currentProperty == null) return;
-                                if (currentProperty.PropertyType == PropertyType.变量)
-                                {
-                                    <Input @bind-Value="item.Value"></Input>
-                                }
-                                else
-                                {
-                                    <Select TItem="string" TItemValue="string" DataSource="currentProperty.Enums" @bind-Value="item.Value"></Select>
-                                }
-                            }
+                    foreach (ActionParams actionParams in item.SetParameters)
+                    {
+                            if (actionParams.IsEnum == false)
+                        {
+                                <FormItem Label="@actionParams.Name">
+                                    <Input @bind-Value="actionParams.Value"></Input>
+                            </FormItem>
                         }
-                    </FormItem>
+                        else
+                        {
+                            <FormItem Label="@actionParams.Name">
+                                <Select DataSource="actionParams.Items"
+                                        TItemValue="string"
+                                        TItem="KeyValue<string, string>"
+                                @bind-Value="actionParams.Value"
+                                        ValueName="@nameof(KeyValue<string, string>.Value)"
+                                        LabelName="@nameof(KeyValue<string, string>.Key)">
+                                </Select>
+                            </FormItem>
+                        }
+                    }
+
+                    //<FormItem Label="属性">
+
+                    //    <Select TItem="PropertyModel" OnSelectedItemChanged="x => { this.targetDevicePropertyChangedHandle(item); }" TItemValue="string" DataSource="this.targetPropertyModels" @bind-Value="item.Property" LabelName="@nameof(PropertyModel.PropertyName)" ValueName="@nameof(PropertyModel.PropertyName)">
+                    //    </Select>
+
+                    //</FormItem>
+                    //<FormItem Label="值">
+                    //    @{
+                    //        if (string.IsNullOrEmpty(item.Property) == false)
+                    //        {
+                    //            var currentProperty = this.targetPropertyModels.Where(x => x.PropertyName == item.Property).FirstOrDefault();
+                    //            if (currentProperty == null) return;
+                    //            if (currentProperty.PropertyType == PropertyType.变量)
+                    //            {
+                    //                <Input @bind-Value="item.Value"></Input>
+                    //            }
+                    //            else
+                    //            {
+                    //                <Select TItem="string" TItemValue="string" DataSource="currentProperty.Enums" @bind-Value="item.Value"></Select>
+                    //            }
+                    //        }
+                    //    }
+                    //</FormItem>
 
 
                     <Button OnClick="() => { this.removeAction(item); }">移除</Button>

@@ -47,8 +47,20 @@ namespace FantasyHomeCenter.DevicePluginInterface
     public class AutomationActionTemp
     {
 
+        /// <summary>
+        /// 目标设备
+        /// </summary>
+        public string TargetDeviceName { get; set; }
 
-        public Dictionary<string,string> Data { get; set; }
+
+        /// <summary>
+        /// 插件路径
+        /// </summary>
+        public string pluginPath { get; set; }
+
+        public  List<DeviceInputParameter> GetParameters { get; set; }
+
+        public List<DeviceInputParameter> SetParameters { get; set; }
 
      
         public string PluginTypeKey { get; set; }

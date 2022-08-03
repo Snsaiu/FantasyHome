@@ -21,6 +21,13 @@ public partial class Automation
 
     #region 字段
 
+
+    [Inject]
+    private IDeviceTypeService deviceTypeService{ get; set; }
+
+    [Inject]
+    private PluginStateChangeNotification pluginStateChangeNotification { get; set; }
+
     /// <summary>
     /// 所有设备
     /// </summary>
@@ -135,11 +142,66 @@ public partial class Automation
     /// 目标选择设备改变
     /// </summary>
     /// <param name="input"></param>
-    private void targetDeviceSelectChangedHanle(DeviceOutput input)
+    private async void targetDeviceSelectChangedHanle(DeviceOutput input,ActionInput action)
     {
-        RESTfulResult<List<PropertyModel>> res = this.deviceService.GetDeviceControllPropertiesByDeviceTypeId(input.DeviceTypeId);
+        //RESTfulResult<List<PropertyModel>> res = this.deviceService.GetDeviceControllPropertiesByDeviceTypeId(input.DeviceTypeId);
 
-        this.targetPropertyModels = res.Data;
+        //this.targetPropertyModels = res.Data;
+        var res= await this.deviceService.GetSetDeviceCommandParamsByDeviceId(input.DeviceTypeId);
+        if (res.Succeeded)
+        {
+            var data = res.Data;
+
+            action.SetParameters = new List<ActionParams>();
+            foreach (var item in data)
+            {
+                action.SetParameters.Add(new ActionParams() { Name = item.Key, Value = item.Value,ReadOnly=false,IsEnum=false });
+            }
+         
+             var controller=await  this.deviceTypeService.GetDeviceControllerById(input.DeviceTypeId);
+
+             if (controller.Succeeded)
+             {
+                 var control = controller.Data;
+                var setparams=  control.CreateSetDeviceParameters();
+                foreach (DeviceInputParameter deviceInputParameter in setparams)
+                {
+                    if (action.SetParameters.Any(x => x.Name == deviceInputParameter.Name))
+                        continue;
+                    ActionParams ap = new ActionParams();
+                    ap.Name = deviceInputParameter.Name;
+                    ap.ReadOnly = false;
+                    if (deviceInputParameter.ValueHasEnums)
+                    {
+                        ap.IsEnum = true;
+
+                        deviceInputParameter.ValueEnums.ForEach(x =>
+                        {
+                            ap.Items.Add(new KeyValue<string, string>() { Key = x.Key, Value = x.Value });
+
+                        });
+                      
+                    }
+                    else
+                    {
+                        ap.IsEnum = false;
+                    }
+                    action.SetParameters.Add(ap);
+                }
+
+             }
+             else
+             {
+               await  this.messageService.Error(controller.Errors.ToString());
+             }
+            
+        }
+        else
+        {
+           await this.messageService.Error(res.Errors.ToString());
+        }
+
+
     }
 
     /// <summary>
@@ -157,7 +219,7 @@ public partial class Automation
 
     private void targetDevicePropertyChangedHandle(ActionInput input)
     {
-        input.Value = "";
+      //  input.Value = "";
     }
 
 

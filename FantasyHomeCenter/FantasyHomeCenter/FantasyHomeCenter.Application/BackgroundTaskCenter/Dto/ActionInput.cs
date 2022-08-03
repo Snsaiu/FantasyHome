@@ -12,12 +12,12 @@ namespace FantasyHomeCenter.Application.BackgroundTaskCenter.Dto
     /// </summary>
     public class ActionInput
     {
-        [Display(Name ="属性")]
-        public string Property { get; set; }
+        public ActionInput()
+        {
+            this.SetParameters = new List<ActionParams>();
+        }
 
-
-        [Display(Name ="值")]
-        public string Value { get; set; }
+        public List<ActionParams> SetParameters { get; set; }
 
         [Display(Name ="目标设备")]
         public int TargetDeviceId { get; set; }

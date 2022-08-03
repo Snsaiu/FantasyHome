@@ -4,5 +4,11 @@
         <name>FantasyHomeCenter.Web.Core</name>
     </assembly>
     <members>
+        <member name="M:FantasyHomeCenter.Web.Core.Extensions.AddAutomationTaskService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加自动化服务
+            </summary>
+            <param name="services"></param>
+        </member>
     </members>
 </doc>

@@ -132,7 +132,17 @@ public static class Extensions
 
 
         }
+    }
 
+    /// <summary>
+    /// 添加自动化服务
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddAutomationTaskService(this IServiceCollection services)
+    {
+        var provider = services.BuildServiceProvider();
+        PluginStateChangeNotification notify = provider.GetService<PluginStateChangeNotification>();
+        var automationRepository = provider.GetService<IRepository<Automation>>();
 
 
 
