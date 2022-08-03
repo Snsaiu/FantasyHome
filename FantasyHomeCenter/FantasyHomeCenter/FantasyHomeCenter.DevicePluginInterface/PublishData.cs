@@ -4,6 +4,13 @@ namespace FantasyHomeCenter.DevicePluginInterface
 {
     public class PublishData
     {
+
+        public PublishData()
+        {
+            this.BeforeData = new Dictionary<string, string>();
+            this.AfterData = new Dictionary<string, string>();
+        }
+
         /// <summary>
         /// 插件key
         /// </summary>
@@ -13,11 +20,17 @@ namespace FantasyHomeCenter.DevicePluginInterface
         /// 设备名称
         /// </summary>
         public string  DeviceName { get; set; }
-        
+
+
         /// <summary>
-        /// 数据
+        /// 变换前的状态
         /// </summary>
-        public Dictionary<string, string> Data { get; set; }
+        public Dictionary<string,string> BeforeData { get; set; }
+
+        /// <summary>
+        /// 变换后的状态
+        /// </summary>
+        public Dictionary<string, string> AfterData { get; set; }
 
     }
 }

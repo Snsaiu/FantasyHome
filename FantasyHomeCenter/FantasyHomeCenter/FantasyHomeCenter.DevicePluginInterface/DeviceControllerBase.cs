@@ -135,15 +135,28 @@ namespace FantasyHomeCenter.DevicePluginInterface
         /// <returns></returns>
         public abstract Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath);
 
-        public async Task<CommandResult> SetDeviceStateWithNotifyAsync(string deviceName, List<DeviceInputParameter> input, string pluginPath)
+        public async Task<CommandResult> SetDeviceStateWithNotifyAsync(string deviceName, List<DeviceInputParameter> setparam, List<DeviceInputParameter> getparam, string pluginPath)
         {
-            var command= await this.SetDeviceStateAsync(input,pluginPath);
+            PublishData pd = new PublishData();
+            //获得状态
+           var getRes= await  this.GetDeviceStateAsync(getparam, pluginPath);
+         
+            if(getRes.Success)
+            {
+                pd.BeforeData = getRes.Data;
+            }
+            else
+            {
+                return getRes;
+            }
+
+            var command= await this.SetDeviceStateAsync(setparam, pluginPath);
             if (command.Success)
             {
                 if (this.pluginStateChangeNotification != null)
                 {
-                    PublishData pd = new PublishData();
-                    pd.Data = command.Data;
+                   
+                    pd.AfterData = command.Data;
                     pd.DeviceName = deviceName;
                     pd.DevicePluginKey = this.Key;
                     this.pluginStateChangeNotification.Notify(pd);

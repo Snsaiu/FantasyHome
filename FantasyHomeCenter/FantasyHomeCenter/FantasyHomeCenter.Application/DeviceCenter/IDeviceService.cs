@@ -52,7 +52,12 @@ public interface IDeviceService
     /// <returns></returns>
     Task<RESTfulResult<Dictionary<string, string>>> GetSetDeviceCommandParamsByDeviceId(int id);
 
-
+    /// <summary>
+    /// 根据设备名称获得get属性以及值
+    /// </summary>
+    /// <param name="deviceName"></param>
+    /// <returns></returns>
+    List<DeviceInputParameter> GetGetDeviceCommandParamsbyDeviceName(string deviceName);
     RESTfulResult<Dictionary<string,string>> GetDeviceState(MqttSendInfo info);
     RESTfulResult<Dictionary<string,string>> SetThenGetDeviceState(MqttSendInfo info);
     RESTfulResult<List<PropertyModel>> GetDeviceControllPropertiesByDeviceTypeId(int deviceTypeId);

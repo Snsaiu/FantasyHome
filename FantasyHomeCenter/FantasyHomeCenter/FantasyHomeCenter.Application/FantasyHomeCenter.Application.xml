@@ -137,6 +137,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.GetGetDeviceCommandParamsbyDeviceName(System.String)">
+            <summary>
+            根据设备名称获得get属性以及值
+            </summary>
+            <param name="deviceName"></param>
+            <returns></returns>
+        </member>
         <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceTypeService.AddDeviceTypeAsync(FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceTypeInput)">
             <summary>
             添加新的设备类型

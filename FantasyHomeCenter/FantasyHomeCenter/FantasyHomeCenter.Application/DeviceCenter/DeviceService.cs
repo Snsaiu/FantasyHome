@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -281,7 +282,10 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
                 param.Add(p);
             }
 
-            var commandRes= plugin.SetDeviceStateWithNotifyAsync(info.DeviceName,param, pluginType.PluginPath).GetAwaiter().GetResult();
+            List<DeviceInputParameter> getParams= this.GetGetDeviceCommandParamsbyDeviceName(info.DeviceName);
+          
+
+            var commandRes= plugin.SetDeviceStateWithNotifyAsync(deviceName: info.DeviceName,param,getParams, pluginPath: pluginType.PluginPath).GetAwaiter().GetResult();
             if (commandRes.Success)
             {
                 return new RESTfulResult<Dictionary<string, string>>()
@@ -299,6 +303,19 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
         {
             return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到插件" };
         }
+    }
+
+    public List<DeviceInputParameter> GetGetDeviceCommandParamsbyDeviceName(string deviceName)
+    {
+        List<DeviceInputParameter> res = new List<DeviceInputParameter>();
+        var entities =  this.commandConstParamsRepository.Include(x => x.Device).Where(x => x.Device.Name == deviceName && x.Type == CommandParameterType.Get).ToList();
+
+        foreach (CommandConstParams item in entities)
+        {
+            res.Add(new DeviceInputParameter(item.Name, item.Value));
+          //  res.Add(item.Name, item.Value);
+        }
+        return res;
     }
 
     public  RESTfulResult<List<DeviceOutput>> GetAllDevices()

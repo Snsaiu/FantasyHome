@@ -263,8 +263,10 @@ public partial class Devices
         {
             parameters.Add(new DeviceInputParameter(item.Name,item.Value));
         }
+
+        var getParams= this.deviceService.GetGetDeviceCommandParamsbyDeviceName(this.setDeviceStateInputModel.DeviceName);
         
-        var res= await  this.setDeviceStateInputModel.Controller.SetDeviceStateWithNotifyAsync(this.setDeviceStateInputModel.DeviceName,parameters,
+        var res= await  this.setDeviceStateInputModel.Controller.SetDeviceStateWithNotifyAsync(this.setDeviceStateInputModel.DeviceName,parameters,getParams,
             this.setDeviceStateInputModel.PluginPath);
         if (res.Success)
         {
