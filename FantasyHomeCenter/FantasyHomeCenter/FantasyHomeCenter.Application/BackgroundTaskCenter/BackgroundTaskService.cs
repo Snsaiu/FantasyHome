@@ -10,6 +10,7 @@ using Furion.DatabaseAccessor;
 using Furion.TaskScheduler;
 
 using Mapster;
+using MapsterMapper;
 
 namespace FantasyHomeCenter.Application.BackgroundTaskCenter;
 
@@ -17,11 +18,13 @@ public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,
 {
     private readonly IRepository<Automation> _automationRepository;
     private readonly PluginStateChangeNotification pluginStateChangeNotification;
+    private readonly IMapper mapper;
 
-    public BackgroundTaskService(IRepository<Automation> automationRepository,PluginStateChangeNotification pluginStateChangeNotification)
+    public BackgroundTaskService(IRepository<Automation> automationRepository,PluginStateChangeNotification pluginStateChangeNotification,IMapper mapper)
     {
         _automationRepository = automationRepository;
         this.pluginStateChangeNotification = pluginStateChangeNotification;
+        this.mapper = mapper;
     }
 
     public RESTfulResult<PagedList<BackgroundTaskOutput>> GetBackgroundTaskPage(BackgroundTaskPageInput input)
@@ -79,7 +82,21 @@ public class BackgroundTaskService:IBackgroundTaskService,IDynamicApiController,
     {
 
 
+       
         var entity= input.Adapt<Automation>();
+       
+        input.Actions.ForEach(x =>
+        {
+           var find=  entity.Actions.FirstOrDefault(y => y.TargetDeviceId == x.TargetDeviceId);
+           if (find != null)
+           {
+               find.Parameters = new List<AutomationActionInputParam>();
+               x.SetParameters.ForEach(p =>
+               {
+                   find.Parameters.Add(new AutomationActionInputParam(){Name = p.Name,Value = p.Value});
+               });
+           }
+        });
 
         this._automationRepository.InsertNow(entity);
 
