@@ -26,27 +26,27 @@
         </member>
         <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.StopTaskByName(System.String)">
             <summary>
-            暂停一个任务
+            ��ͣһ������
             </summary>
-            <param name="taskName">任务名称</param>
+            <param name="taskName">��������</param>
             <returns></returns>
         </member>
         <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.RestartTaskByName(System.String)">
             <summary>
-            重新启动任务
+            ������������
             </summary>
             <param name="taskName"></param>
             <returns></returns>
         </member>
         <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.CreateNewAutomation(FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput)">
             <summary>
-            创建一个自动化
+            ����һ���Զ���
             </summary>
             <returns></returns>
         </member>
         <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.RigAutomatioinTask">
             <summary>
-            初始化自动化服务
+            ��ʼ���Զ�������
             </summary>
         </member>
         <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.ControlDeviceOutput.DeviceType">

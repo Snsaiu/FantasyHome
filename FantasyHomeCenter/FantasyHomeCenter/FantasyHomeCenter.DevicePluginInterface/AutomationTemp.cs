@@ -47,6 +47,13 @@ namespace FantasyHomeCenter.DevicePluginInterface
     public class AutomationActionTemp
     {
 
+
+        public AutomationActionTemp()
+        {
+            this.GetParameters = new List<DeviceInputParameter>();
+            this.SetParameters = new List<DeviceInputParameter>();
+        }
+        
         /// <summary>
         /// 目标设备
         /// </summary>

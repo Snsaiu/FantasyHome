@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto;
 
 namespace FantasyHomeCenter.Application.BackgroundTaskCenter;
@@ -8,28 +10,28 @@ public interface IBackgroundTaskService
     RESTfulResult<PagedList<BackgroundTaskOutput>> GetBackgroundTaskPage(BackgroundTaskPageInput input);
 
     /// <summary>
-    /// ÔÝÍ£Ò»¸öÈÎÎñ
+    /// ï¿½ï¿½Í£Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
-    /// <param name="taskName">ÈÎÎñÃû³Æ</param>
+    /// <param name="taskName">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
     /// <returns></returns>
     RESTfulResult<bool> StopTaskByName(string taskName);
     
 
     /// <summary>
-    /// ÖØÐÂÆô¶¯ÈÎÎñ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="taskName"></param>
     /// <returns></returns>
     RESTfulResult<bool> RestartTaskByName(string taskName);
 
     /// <summary>
-    /// ´´½¨Ò»¸ö×Ô¶¯»¯
+    /// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½
     /// </summary>
     /// <returns></returns>
-    RESTfulResult<bool> CreateNewAutomation(AutomationInput input);
+    Task<RESTfulResult<bool>> CreateNewAutomation(AutomationInput input);
 
     /// <summary>
-    /// ³õÊ¼»¯×Ô¶¯»¯·þÎñ
+    /// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     void RigAutomatioinTask();
 

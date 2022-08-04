@@ -78,7 +78,7 @@ namespace FantasyHomeCenter.Web.Core
 
             services.AddMqttServiceAsync();
             services.AddBackgroundTaskService();
-
+            services.AddAutomationTaskAsync();
 
         }
 

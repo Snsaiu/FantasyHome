@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using FantasyHomeCenter.Application.BackgroundTaskCenter;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
@@ -134,20 +134,8 @@ public static class Extensions
         }
     }
 
-    /// <summary>
-    /// 添加自动化服务
-    /// </summary>
-    /// <param name="services"></param>
-    public static void AddAutomationTaskService(this IServiceCollection services)
-    {
-        var provider = services.BuildServiceProvider();
-        PluginStateChangeNotification notify = provider.GetService<PluginStateChangeNotification>();
-        var automationRepository = provider.GetService<IRepository<Automation>>();
 
 
-
-
-    }
 
     public  static  void AddMqttServiceAsync(this IServiceCollection services)
     {
@@ -155,6 +143,19 @@ public static class Extensions
         var provider= services.BuildServiceProvider();
        var mqtt=  provider.GetService<MqttServerInstance>();
        mqtt.StartAsync();
+    }
+
+    /// <summary>
+    /// 添加自动化服务
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddAutomationTaskAsync(this IServiceCollection services)
+    {
+        var provider= services.BuildServiceProvider();
+        var automationService = provider.GetService<IBackgroundTaskService>();
+        
+        automationService.RigAutomatioinTask();
+        
     }
 
 
