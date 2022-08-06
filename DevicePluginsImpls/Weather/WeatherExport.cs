@@ -57,7 +57,7 @@ namespace Weather
         public override string Author { get=>"saiu"; }
         public override string Description { get=>"天气预报"; }
 
-        public override BackgroundParam? BackgroundParam => new BackgroundParam("天气预报定时请求", "天气预报定时请求天气状况", "0 0 0/1 * * ?");
+        public override BackgroundParam? BackgroundParam => new BackgroundParam("天气预报定时请求", "天气预报定时请求天气状况", "0 0/30 * * * ?");
 
         public override Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath)
         {

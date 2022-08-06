@@ -82,8 +82,18 @@ public static class Extensions
             {
                 if (controller.BackgroundParam != null)
                 {
+
+                    try
+                    {
+
+                  
                     SpareTime.Do(controller.BackgroundParam.Time, async (time, count)  =>
                     {
+
+                        try
+                        {
+
+                      
                        await Scoped.Create(async (_, scope) =>
                         {
                             var ser = scope.ServiceProvider;
@@ -122,9 +132,21 @@ public static class Extensions
 
 
                         });
-                    
+                        }
+                        catch (Exception e)
+                        {
+                           
+                        }
+
+
 
                     }, device.Name + "___" + controller.BackgroundParam.TaskName, controller.BackgroundParam.Description);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
                 }
 
             }

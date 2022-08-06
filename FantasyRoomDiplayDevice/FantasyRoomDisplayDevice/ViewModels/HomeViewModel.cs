@@ -119,7 +119,18 @@ namespace FantasyRoomDisplayDevice.ViewModels
                MessageBox.Show(connectResult.Errors.ToString());
            }
            this.logger.Info("mqtt服务启动成功");
-           this.componentService.ParsePluginAndGetControlUI();
+
+           try
+           {
+               this.componentService.ParsePluginAndGetControlUI();
+           }
+           catch (Exception e)
+           {
+               Console.WriteLine(e);
+               throw;
+           }
+           
+         
            mqttReceive();
             // 获得房间信息
            await this.mqttService.SendInfo(new MqttApplicationMessage()

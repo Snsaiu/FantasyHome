@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -86,17 +87,33 @@ public class ControlDeviceService : IControlDeviceService, IDynamicApiController
     [HttpGet, NonUnify]
     public IActionResult PluginDownload(string key)
     {
-        var plugin= this.deviceTypeRepository.AsQueryable().First(x => x.Key == key);
-
-        string zipName = Path.GetFileNameWithoutExtension(plugin.PluginPath) + ".zip";
-        string zipFile = Path.Combine( Directory.GetParent(plugin.PluginPath).FullName,zipName);
-        if (File.Exists(zipFile)==false)
-        {
-            Tools.ZipFileDictory(plugin.PluginPath,zipFile);
-        }
        
-        
-        return new FileStreamResult(new FileStream(zipFile, FileMode.Open), "application/octet-stream") { FileDownloadName =zipName   };
+
+        try
+        {
+            var plugin = this.deviceTypeRepository.AsQueryable().First(x => x.Key == key);
+
+            if (plugin.PluginPath.EndsWith(@"\"))
+            {
+                plugin.PluginPath= plugin.PluginPath.Substring(0, plugin.PluginPath.Length - 1);
+            }
+
+            string zipName = Path.GetFileNameWithoutExtension(plugin.PluginPath) + ".zip";
+            string zipFile = Path.Combine(Directory.GetParent(plugin.PluginPath).FullName, zipName);
+            if (File.Exists(zipFile) == false)
+            {
+                Tools.ZipFileDictory(plugin.PluginPath+@"\", zipFile);
+            }
+
+
+            return new FileStreamResult(new FileStream(zipFile, FileMode.Open), "application/octet-stream") { FileDownloadName = zipName };
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+      
     }
 
     public RESTfulResult<List<DevicePluginMetaOutput>> GetPluginsMeta()

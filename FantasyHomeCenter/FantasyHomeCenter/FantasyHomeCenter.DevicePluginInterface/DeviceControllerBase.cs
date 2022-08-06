@@ -63,7 +63,7 @@ namespace FantasyHomeCenter.DevicePluginInterface
 
         public ControlUI GetControlUi(object initData)
         {
-            string data= initData.ToString();
+            string data = JsonConvert.SerializeObject(initData);
 
            var obj=  JsonConvert.DeserializeObject<DeviceMetaOutput>(data);
 
