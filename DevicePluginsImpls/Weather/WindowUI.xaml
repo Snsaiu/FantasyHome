@@ -34,8 +34,10 @@
                         <Label Content="{Binding WeatherModel.Temperature}" FontSize="20"></Label>
                     </StackPanel>
                 </StackPanel>
+              
             </StackPanel>
             <Label HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10 0" FontWeight="Bold" FontSize="30" Content="{Binding WeatherModel.State}"></Label>
+            <Label Name="updateTimeLabel">更新...</Label>
         </StackPanel>
         <ListBox Margin="10 0" VerticalAlignment="Bottom" Grid.Column="1" ItemsSource="{Binding WeatherModel.FeatureWeatherModels}">
 

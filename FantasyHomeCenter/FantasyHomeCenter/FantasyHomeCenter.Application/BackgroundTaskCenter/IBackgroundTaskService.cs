@@ -10,28 +10,28 @@ public interface IBackgroundTaskService
     RESTfulResult<PagedList<BackgroundTaskOutput>> GetBackgroundTaskPage(BackgroundTaskPageInput input);
 
     /// <summary>
-    /// ï¿½ï¿½Í£Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ÔÝÍ£Ò»¸öÈÎÎñ
     /// </summary>
-    /// <param name="taskName">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+    /// <param name="taskName">ÈÎÎñÃû³Æ</param>
     /// <returns></returns>
     RESTfulResult<bool> StopTaskByName(string taskName);
-    
+
 
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ÖØÐÂÆô¶¯ÈÎÎñ
     /// </summary>
     /// <param name="taskName"></param>
     /// <returns></returns>
     RESTfulResult<bool> RestartTaskByName(string taskName);
 
     /// <summary>
-    /// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½
+    /// ´´½¨Ò»¸ö×Ô¶¯»¯
     /// </summary>
     /// <returns></returns>
     Task<RESTfulResult<bool>> CreateNewAutomation(AutomationInput input);
 
     /// <summary>
-    /// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    /// ³õÊ¼»¯×Ô¶¯»¯·þÎñ
     /// </summary>
     void RigAutomatioinTask();
 

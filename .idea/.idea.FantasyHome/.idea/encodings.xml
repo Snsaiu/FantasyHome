@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/DevicePluginsImpls/Weather/WindowUI.xaml.cs" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/BackgroundTaskCenter/BackgroundTaskService.cs" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.Application/BackgroundTaskCenter/IBackgroundTaskService.cs" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/FantasyHomeCenter/FantasyHomeCenter/FantasyHomeCenter.DevicePluginInterface/ControlUI.cs" charset="GBK" />
+  </component>
+</project>

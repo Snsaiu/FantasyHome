@@ -36,7 +36,7 @@ namespace FantasyRoomDisplayDevice.MqttMessageParse
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
-                  //  this.logger.Info($"开始更新设备组件{info.DeviceName}的数据");
+                    //this.logger.Info($"开始更新设备组件{info.DeviceName}的数据");
                     device.UpdateState(data: data.Data);
                    // this.logger.Info($"更新设备组件{info.DeviceName}的数据已完成");
                 });
