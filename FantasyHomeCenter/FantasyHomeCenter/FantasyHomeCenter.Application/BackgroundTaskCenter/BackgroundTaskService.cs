@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Core.Entities;

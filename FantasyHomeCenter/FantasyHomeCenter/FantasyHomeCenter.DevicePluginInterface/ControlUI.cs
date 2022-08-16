@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using System.Windows.Controls;
+ 
 
 namespace FantasyHomeCenter.DevicePluginInterface
 {
   
-    public abstract class ControlUI:UserControl
+    public abstract class ControlUI:ContentPage
     {
         protected readonly DeviceMetaOutput deviceMetaOutput;
 
