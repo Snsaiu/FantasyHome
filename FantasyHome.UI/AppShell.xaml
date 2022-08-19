@@ -12,7 +12,7 @@
         <FontImageSource FontFamily="typicons"
                          Glyph="{Static res:IconFont.ThMenu}"
                          Size="18"
-                         Color="white"/>
+                         Color="White"/>
     </Shell.FlyoutIcon>
 
     <ShellItem Route="LoginPage" FlyoutItemIsVisible="false">

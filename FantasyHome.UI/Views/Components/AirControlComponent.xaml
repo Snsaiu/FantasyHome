@@ -24,18 +24,18 @@
                             <TapGestureRecognizer Tapped="PowerLevel_OnTapped"></TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
-                    <comp:SwitchComponent Grid.Column="3" x:Name="p"  TouchCommand="{Binding SetAirStateCommand}" TouchCommandParameter="{x:Reference p}" WidthRequest="50" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" State="{Binding Source={x:Reference air},Path=AirSwitch}" OnBarColor="Orange" OffBarColor="white">
+                    <comp:SwitchComponent Grid.Column="3" x:Name="p"  TouchCommand="{Binding SetAirStateCommand}" TouchCommandParameter="{x:Reference p}" WidthRequest="50" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" State="{Binding Source={x:Reference air},Path=AirSwitch}" OnBarColor="Orange" OffBarColor="White">
                         <comp:SwitchComponent.OnIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe768;"
                                              Size="20"
-                                             Color="white"/>
+                                             Color="White"/>
                         </comp:SwitchComponent.OnIcon>
                         <comp:SwitchComponent.OffIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe768;"
                                              Size="20"
-                                             Color="black"/>
+                                             Color="Black"/>
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
@@ -60,13 +60,13 @@
                           <FontImageSource FontFamily="iconfont"
                                            Glyph="&#xe64d;"
                                            Size="20"
-                                           Color="white"/>
+                                           Color="White"/>
                       </comp:SwitchComponent.OnIcon>
                       <comp:SwitchComponent.OffIcon>
                           <FontImageSource FontFamily="iconfont"
                                            Glyph="&#xe64d;"
                                            Size="20"
-                                           Color="black"/>
+                                           Color="Black"/>
                       </comp:SwitchComponent.OffIcon>
                      
                   </comp:SwitchComponent>
@@ -76,13 +76,13 @@
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe62f;"
                                              Size="20"
-                                             Color="white"/>
+                                             Color="White"/>
                         </comp:SwitchComponent.OnIcon>
                         <comp:SwitchComponent.OffIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe62f;"
                                              Size="20"
-                                             Color="black"/>
+                                             Color="Black"/>
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
@@ -91,13 +91,13 @@
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe64b;"
                                              Size="20"
-                                             Color="white"/>
+                                             Color="White"/>
                         </comp:SwitchComponent.OnIcon>
                         <comp:SwitchComponent.OffIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe64b;"
                                              Size="20"
-                                             Color="black"/>
+                                             Color="Black"/>
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
@@ -106,13 +106,13 @@
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe63b;"
                                              Size="20"
-                                             Color="white"/>
+                                             Color="White"/>
                         </comp:SwitchComponent.OnIcon>
                         <comp:SwitchComponent.OffIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe63b;"
                                              Size="20"
-                                             Color="black"/>
+                                             Color="Black"/>
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
@@ -121,13 +121,13 @@
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe639;"
                                              Size="20"
-                                             Color="white"/>
+                                             Color="White"/>
                         </comp:SwitchComponent.OnIcon>
                         <comp:SwitchComponent.OffIcon>
                             <FontImageSource FontFamily="iconfont"
                                              Glyph="&#xe639;"
                                              Size="20"
-                                             Color="black"/>
+                                             Color="Black"/>
                         </comp:SwitchComponent.OffIcon>
                      
                     </comp:SwitchComponent>
