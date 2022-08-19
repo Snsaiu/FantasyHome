@@ -10,18 +10,18 @@ using Newtonsoft.Json;
 
 namespace MideaAirControlV3LocalControl
 {
-    [Export(typeof(IDeviceController))]
-    public class MideaControlV3Controller: IDeviceController
+    [Export(typeof(DeviceControllerBase))]
+    public class MideaControlV3Controller: DeviceControllerBase
     {
      
 
-        public string DeviceType { get=> "MideaControlV3Controller"; }
-        public string DeviceTypeVersion { get=>"v3"; }
-        public string Key { get=> "8E3BB04A-A0AF-454C-805A-E05AC067F9EA"; }
-        public string Author { get=>"Saiu";  }
-        public string Description { get=>"美的空调局域网控制器";  }
+        public override string DeviceType { get=> "MideaAirControlV3LocalControl"; }
+        public override string DeviceTypeVersion { get=>"v3"; }
+        public override string Key { get=> "8E3BB04A-A0AF-454C-805A-E05AC067F9EA"; }
+        public override string Author { get=>"Saiu";  }
+        public override string Description { get=>"美的空调局域网控制器";  }
 
-        public List<DeviceInputParameter> CreateGetDeviceParameters()
+        public override List<DeviceInputParameter> CreateGetDeviceParameters()
         {
             List<DeviceInputParameter> p = new List<DeviceInputParameter>();
 
@@ -54,7 +54,7 @@ namespace MideaAirControlV3LocalControl
             return p;
         }
 
-        public List<DeviceInputParameter> CreateInitInputParameters()
+        public override List<DeviceInputParameter> CreateInitInputParameters()
         {
             List<DeviceInputParameter> p = new List<DeviceInputParameter>();
 
@@ -88,19 +88,18 @@ namespace MideaAirControlV3LocalControl
             return p;
         }
 
-        public ControlUI GetDeskTopControlUi(Object initData)
+        public override BackgroundParam? BackgroundParam { get=>new BackgroundParam("空调状态检测","空调状态检测任务", "*/30 * * * * *"); }
+
+      
+
+        protected override ControlUI GetDeskTopControlUi(DeviceMetaOutput initData)
         {
-            string content= JsonConvert.SerializeObject(initData);
-            var data= JsonConvert.DeserializeObject<DeviceMetaOutput>(content);
-           
-            return new AirControlComponent(data);
+            return new AirControlComponent(initData);
         }
 
+        public override string Topic { get=>"aircontrolv3"; }
 
-
-        public string Topic { get=>"aircontrolv3"; }
-
-        public List<DeviceInputParameter> CreateSetDeviceParameters()
+        public override List<DeviceInputParameter> CreateSetDeviceParameters()
         {
             List<DeviceInputParameter> p = new List<DeviceInputParameter>();
 
@@ -133,7 +132,7 @@ namespace MideaAirControlV3LocalControl
             return p;
         }
 
-        public async Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input,string pluginPath)
+        public override async Task<CommandResult> GetDeviceStateAsync(List<DeviceInputParameter> input,string pluginPath)
         {
 
             foreach (DeviceInputParameter p in input)
@@ -180,7 +179,7 @@ namespace MideaAirControlV3LocalControl
 
         }
 
-        public async Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath)
+        public override async Task<CommandResult> InitAsync(List<DeviceInputParameter> input, string pluginPath)
         {
             foreach (DeviceInputParameter p in input)
             {
@@ -226,7 +225,7 @@ namespace MideaAirControlV3LocalControl
 
         }
 
-        public async Task<CommandResult> SetDeviceStateAsync(List<DeviceInputParameter> input, string pluginPath)
+        protected override async Task<CommandResult> SetDeviceStateAsync( List<DeviceInputParameter> input, string pluginPath)
         {
             foreach (DeviceInputParameter p in input)
             {
@@ -277,6 +276,18 @@ namespace MideaAirControlV3LocalControl
             }
             return await Task.FromResult(new CommandResult { Success = false, ErrorMessage = error });
 
+        }
+
+        public override List<PropertyModel> GetDeviceProperties()
+        {
+            List<PropertyModel> res = new List<PropertyModel>();
+            res.Add(new PropertyModel("空调状态", new List<string>() { "True", "False" }));
+            res.Add(new PropertyModel("提示音", new List<string>() { "True", "False" }));
+            res.Add(new PropertyModel("温度"));
+            res.Add(new PropertyModel("模式",new List<string>() { "自动","制冷","干燥","制热","仅吹风"}));
+            res.Add(new PropertyModel("风速"));
+            res.Add(new PropertyModel("室内温度"));
+            return res;
         }
     }
 }

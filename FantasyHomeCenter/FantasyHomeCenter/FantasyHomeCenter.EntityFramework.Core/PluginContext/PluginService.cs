@@ -39,14 +39,14 @@ public class PluginService : IPluginService, ISingleton
     }
 
   
-    public Task<RESTfulResult<IDeviceController>> DeletePluginByKeyAsync(string key)
+    public Task<RESTfulResult<DeviceControllerBase>> DeletePluginByKeyAsync(string key)
     {
         PluginModel? item= this.pluginModels.Find(x => x.Key == key);
         if (item == null)
         {
             throw Oops.Oh("插件key" + key + "不存在了");
         }
-        IDeviceController dc = item.Controller;
+        DeviceControllerBase dc = item.Controller;
 
         if (item.Loader.IsUnloadable)
         {
@@ -55,15 +55,15 @@ public class PluginService : IPluginService, ISingleton
         }
         else
         {
-            return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false,Errors="当前插件正在运行，无法卸载"});
+            return Task.FromResult(new RESTfulResult<DeviceControllerBase> { Succeeded = false,Errors="当前插件正在运行，无法卸载"});
         }
 
         System.IO.Directory.Delete(item.PluginPath, true);
         this.pluginModels.Remove(item);
-        return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = true, Data = dc });
+        return Task.FromResult(new RESTfulResult<DeviceControllerBase> { Succeeded = true, Data = dc });
     }
 
-    public async Task<RESTfulResult<IDeviceController>> GetPluginByKeyAsync(string key)
+    public async Task<RESTfulResult<DeviceControllerBase>> GetPluginByKeyAsync(string key)
     {
         PluginModel? item = this.pluginModels.Find(x => x.Key == key);
         
@@ -74,7 +74,7 @@ public class PluginService : IPluginService, ISingleton
             var deviceType = this.deviceRepository.AsQueryable().FirstOrDefault(x => x.Key == key);
             if (deviceType==null)
             {
-                return await Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false }); 
+                return await Task.FromResult(new RESTfulResult<DeviceControllerBase> { Succeeded = false }); 
             }
           
                 if (string.IsNullOrEmpty(deviceType.Key)==false)
@@ -87,14 +87,14 @@ public class PluginService : IPluginService, ISingleton
             
           
         }
-        return await Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = true, Data = item.Controller });
+        return await Task.FromResult(new RESTfulResult<DeviceControllerBase> { Succeeded = true, Data = item.Controller });
     }
 
-    public Task<RESTfulResult<IDeviceController>> AddPluginAsync(string path,string name)
+    public Task<RESTfulResult<DeviceControllerBase>> AddPluginAsync(string path,string name)
     {
         if (this.pluginModels.Any(x=>x.PluginPath==path))
         {
-            return Task.FromResult(new RESTfulResult<IDeviceController>()
+            return Task.FromResult(new RESTfulResult<DeviceControllerBase>()
             {
                 Succeeded = true,
                Data = this.pluginModels.First(x=>x.PluginPath==path).Controller
@@ -107,23 +107,23 @@ public class PluginService : IPluginService, ISingleton
 
             var loader = PluginLoader.CreateFromAssemblyFile(
                 assemblyFile: Path.Combine(path, name + ".dll"),
-                sharedTypes: new[] { typeof(IDeviceController), typeof(IServiceCollection) },
+                sharedTypes: new[] { typeof(DeviceControllerBase), typeof(IServiceCollection) },
                 isUnloadable: true);
             pm.Loader = loader;
 
 
-            var type = loader.LoadDefaultAssembly().GetTypes().First(t => typeof(IDeviceController).IsAssignableFrom(t) && !t.IsAbstract);
-            IDeviceController controller = Activator.CreateInstance(type) as IDeviceController;
+            var type = loader.LoadDefaultAssembly().GetTypes().First(t => typeof(DeviceControllerBase).IsAssignableFrom(t) && !t.IsAbstract);
+            DeviceControllerBase controller = Activator.CreateInstance(type) as DeviceControllerBase;
             if (controller != null)
             {
                 pm.Controller = controller;
                 pm.Key = controller.Key;
                 pm.PluginPath = path;
                 this.pluginModels.Add(pm);
-                return Task.FromResult(new RESTfulResult<IDeviceController>
+                return Task.FromResult(new RESTfulResult<DeviceControllerBase>
                     { Succeeded = true, Data = controller });
             }
-            return Task.FromResult(new RESTfulResult<IDeviceController> { Succeeded = false, Errors = $"插件{name}读取出错" });
+            return Task.FromResult(new RESTfulResult<DeviceControllerBase> { Succeeded = false, Errors = $"插件{name}读取出错" });
 
 
         }

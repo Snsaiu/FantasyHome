@@ -38,21 +38,26 @@ namespace FantasyRoomDisplayDevice.Services
 
             var plist = this.pluginService.DevicesControllers.ToList();
             List<MqttTopicFilter> filters = new List<MqttTopicFilter>();
-            foreach (Lazy<IDeviceController> item in plist)
+            foreach (Lazy<DeviceControllerBase> item in plist)
             {
-                filters.Add(new MqttTopicFilter() { Topic = item.Value.Key });
+                var topic = new MqttTopicFilter() { Topic = item.Value.Key };
+                filters.Add(topic);
+                this.tempConfigService.DeviceMqttTopicFilters.Add(topic);
                 this.logger.Info($"添加订阅主题:{item.Value.Key}");
             }
             //添加全局的订阅
 
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-list" });
             filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-add" });
-            filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-ui-update" });
+            filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-room-remove" });
+            //filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-ui-update" });
+            filters.Add(new MqttTopicFilter() { Topic = "fantasyhome-restart" });
+
             this.tempConfigService.MqttTopicFilters = filters;
             this.mqttService.SubscriptionAsync(filters);
 
 
-            foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
+            foreach (Lazy<DeviceControllerBase> item in this.pluginService.DevicesControllers.ToList())
             {
                 var device = this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
 
@@ -62,7 +67,7 @@ namespace FantasyRoomDisplayDevice.Services
                     foreach (var deviceMeta in device.Devices)
                     {
 
-                        var control = item.Value.GetDeskTopControlUi(deviceMeta);
+                        var control = item.Value.GetControlUi(deviceMeta);
                         if (control != null && control is ControlUI uc)
                         {
                             this.logger.Info($"添加设备组件:{deviceMeta.Name}");
@@ -103,10 +108,10 @@ namespace FantasyRoomDisplayDevice.Services
                                 });
                             });
                             uc.SendMessage(new MessageModel() { Data = initdata, CommandType = CommandType.Get });
-                            Tile t = new Tile();
-                            t.Width = uc.Width;
-                            t.Height = uc.Height;
-                            t.Content = uc;
+                            //Tile t = new Tile();
+                            //t.Width = uc.Width;
+                            //t.Height = uc.Height;
+                            //t.Content = uc;
                             this.tempConfigService.Components.Add(uc);
                             result.Add(uc);
                         }

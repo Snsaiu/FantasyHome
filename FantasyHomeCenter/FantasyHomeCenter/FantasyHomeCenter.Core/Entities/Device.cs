@@ -12,6 +12,7 @@ public class Device:Entity
         this.ConstCommandParams = new List<CommandConstParams>();
     }
 
+  
     [Description("设备描述")]
     public string Description { get; set; }
     

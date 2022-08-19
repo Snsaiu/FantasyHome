@@ -1,0 +1,203 @@
+﻿@page "/automation"
+@using FantasyHomeCenter.DevicePluginInterface
+@using FantasyHomeCenter.Application.BackgroundTaskCenter.Dto
+
+<div>
+    <Row>
+        <Col Span="24">
+            <ButtonGroup>
+                <Button OnClick="() => {this.openAddNewDialog();}">添加自动化</Button>
+            </ButtonGroup>
+        </Col>
+    </Row>
+</div>
+
+<Modal Visible="this.addNewVisiable" Title="添加自动化" OnCancel="() => { this.addNewVisiable = false; }" OnOk="x => this.addNewForm.Submit()">
+
+    <Form @ref="this.addNewForm" Loading="this.addNewLoading" LabelColSpan="8" WrapperColSpan="16" Model="this.automationInput"
+          OnFinish="async (x) => await this.submitAddAutomationHandle(x)">
+        
+        <FormItem Label="描述">
+        <TextArea @bind-Value="context.Summary"></TextArea>
+        </FormItem>
+
+        <FormItem Label="触发器类型">
+            <EnumSelect TEnum="FantasyHomeCenter.Core.Enums.TriggerType" @bind-Value="@context.TriggerType"/>
+        </FormItem>
+
+        @if (context.TriggerType == FantasyHomeCenter.Core.Enums.TriggerType.状态触发器)
+        {
+            <Card Title="触发条件">
+                <Body>
+                @{
+                    foreach (var item in context.Triggers)
+                    {
+
+                        <FormItem Label="原设备">
+
+                            <Select DataSource="this.devices"
+                                    @bind-Value="item.DeviceId"
+                                    LabelName="@nameof(DeviceOutput.Name)"
+                                    ValueName="@nameof(DeviceOutput.Id)"
+                                    TItem="DeviceOutput"
+                                    OnSelectedItemChanged="x => { this.deviceSelectChangedHandle(x); }"
+                                    DefaultValue="this.devices.First().Id"
+                                    TItemValue="int">
+                            </Select>
+
+                        </FormItem>
+                        <FormItem Label="属性">
+
+                            <Select TItem="PropertyModel" OnSelectedItemChanged="x => { this.propertyChangedHanle(item); }" TItemValue="string" DataSource="this.propertyModels" @bind-Value="item.Property" LabelName="@nameof(PropertyModel.PropertyName)" ValueName="@nameof(PropertyModel.PropertyName)">
+                            </Select>
+
+                        </FormItem>
+                        <FormItem Label="状态从">
+                            @{
+                                if (string.IsNullOrEmpty(item.Property) == false)
+                                {
+                                    var currentProperty = this.propertyModels.Where(x => x.PropertyName == item.Property).FirstOrDefault();
+                                    if (currentProperty == null) return;
+                                    if (currentProperty.PropertyType == PropertyType.变量)
+                                    {
+                                        <Input @bind-Value="item.BeforeValue"></Input>
+                                    }
+                                    else
+                                    {
+                                        <Select TItem="string" TItemValue="string" DataSource="currentProperty.Enums" @bind-Value="item.BeforeValue"></Select>
+                                    }
+                                }
+                            }
+                        </FormItem>
+                        <FormItem Label="到">
+                            @{
+                                if (string.IsNullOrEmpty(item.Property) == false)
+                                {
+                                    var currentProperty = this.propertyModels.Where(x => x.PropertyName == item.Property).FirstOrDefault();
+                                    if (currentProperty == null) return;
+                                    if (currentProperty.PropertyType == PropertyType.变量)
+                                    {
+                                        <Input @bind-Value="item.AfterValue"></Input>
+                                    }
+                                    else
+                                    {
+                                        <Select TItem="string" TItemValue="string" DataSource="currentProperty.Enums" @bind-Value="item.AfterValue"></Select>
+                                    }
+                                }
+                            }
+
+                        </FormItem>
+
+                        <Button OnClick="() => { this.removeTriggerCondition(item); }">移除</Button>
+                    }
+                    <Button OnClick="() => { this.addNewTriggerCondition(); }">添加</Button>
+
+
+
+                }
+
+
+
+
+                </Body>
+
+            </Card>
+
+        }
+
+
+
+
+        @*动作*@
+
+        <Card Title="执行动作">
+
+            <Body>
+
+            @{
+
+
+
+                foreach (var item in context.Actions)
+                {
+
+                    <FormItem Label="目标设备">
+
+                        <Select DataSource="this.devices"
+                                @bind-Value="item.TargetDeviceId"
+                                LabelName="@nameof(DeviceOutput.Name)"
+                                ValueName="@nameof(DeviceOutput.Id)"
+                                TItem="DeviceOutput"
+                                OnSelectedItemChanged="x => { this.targetDeviceSelectChangedHanle(x,item); }"
+                                DefaultValue="this.devices.First().Id"
+                                TItemValue="int">
+                        </Select>
+
+                    </FormItem>
+
+
+                    foreach (ActionParams actionParams in item.SetParameters)
+                    {
+                            if (actionParams.IsEnum == false)
+                        {
+                                <FormItem Label="@actionParams.Name">
+                                    <Input @bind-Value="actionParams.Value"></Input>
+                            </FormItem>
+                        }
+                        else
+                        {
+                            <FormItem Label="@actionParams.Name">
+                                <Select DataSource="actionParams.Items"
+                                        TItemValue="string"
+                                        TItem="KeyValue<string, string>"
+                                @bind-Value="actionParams.Value"
+                                        ValueName="@nameof(KeyValue<string, string>.Value)"
+                                        LabelName="@nameof(KeyValue<string, string>.Key)">
+                                </Select>
+                            </FormItem>
+                        }
+                    }
+
+                    //<FormItem Label="属性">
+
+                    //    <Select TItem="PropertyModel" OnSelectedItemChanged="x => { this.targetDevicePropertyChangedHandle(item); }" TItemValue="string" DataSource="this.targetPropertyModels" @bind-Value="item.Property" LabelName="@nameof(PropertyModel.PropertyName)" ValueName="@nameof(PropertyModel.PropertyName)">
+                    //    </Select>
+
+                    //</FormItem>
+                    //<FormItem Label="值">
+                    //    @{
+                    //        if (string.IsNullOrEmpty(item.Property) == false)
+                    //        {
+                    //            var currentProperty = this.targetPropertyModels.Where(x => x.PropertyName == item.Property).FirstOrDefault();
+                    //            if (currentProperty == null) return;
+                    //            if (currentProperty.PropertyType == PropertyType.变量)
+                    //            {
+                    //                <Input @bind-Value="item.Value"></Input>
+                    //            }
+                    //            else
+                    //            {
+                    //                <Select TItem="string" TItemValue="string" DataSource="currentProperty.Enums" @bind-Value="item.Value"></Select>
+                    //            }
+                    //        }
+                    //    }
+                    //</FormItem>
+
+
+                    <Button OnClick="() => { this.removeAction(item); }">移除</Button>
+                }
+                <Button OnClick="() => { this.addAction(); }">添加</Button>
+
+
+
+            }
+
+
+            </Body>
+
+        </Card>
+
+
+
+
+    </Form>
+</Modal>

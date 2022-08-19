@@ -4,6 +4,26 @@
         <name>FantasyHomeCenter.Application</name>
     </assembly>
     <members>
+        <member name="T:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.ActionInput">
+            <summary>
+            动作
+            </summary>
+        </member>
+        <member name="T:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput">
+            <summary>
+            自动化
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput.Triggers">
+            <summary>
+            触发器
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput.Actions">
+            <summary>
+            动作
+            </summary>
+        </member>
         <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.StopTaskByName(System.String)">
             <summary>
             暂停一个任务
@@ -17,6 +37,17 @@
             </summary>
             <param name="taskName"></param>
             <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.CreateNewAutomation(FantasyHomeCenter.Application.BackgroundTaskCenter.Dto.AutomationInput)">
+            <summary>
+            创建一个自动化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.BackgroundTaskCenter.IBackgroundTaskService.RigAutomatioinTask">
+            <summary>
+            初始化自动化服务
+            </summary>
         </member>
         <member name="P:FantasyHomeCenter.Application.ControlDeviceCenter.Dto.ControlDeviceOutput.DeviceType">
             <summary>
@@ -84,6 +115,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.GetAllDevices">
+            <summary>
+            获得所有设备
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.AddDeviceAsync(FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceInput)">
             <summary>
             添加新设备
@@ -103,6 +140,13 @@
             根据id获得设置命令参数
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceService.GetGetDeviceCommandParamsbyDeviceName(System.String)">
+            <summary>
+            根据设备名称获得get属性以及值
+            </summary>
+            <param name="deviceName"></param>
             <returns></returns>
         </member>
         <member name="M:FantasyHomeCenter.Application.DeviceCenter.IDeviceTypeService.AddDeviceTypeAsync(FantasyHomeCenter.Application.DeviceCenter.Dto.AddDeviceTypeInput)">

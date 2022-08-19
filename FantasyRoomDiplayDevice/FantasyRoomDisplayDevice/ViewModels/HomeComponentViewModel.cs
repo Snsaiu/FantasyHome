@@ -16,7 +16,8 @@ using MQTTnet;
 using MQTTnet.Packets;
 using Newtonsoft.Json;
 using CommandType = FantasyHomeCenter.DevicePluginInterface.CommandType;
-
+using Prism.Events;
+using FantasyRoomDisplayDevice.EventAggregates;
 
 namespace FantasyRoomDisplayDevice.ViewModels
 {
@@ -27,17 +28,56 @@ namespace FantasyRoomDisplayDevice.ViewModels
         private readonly MqttService mqttService;
         private readonly TempConfigService tempConfigService;
         private readonly ILogger logger;
+        private readonly IEventAggregator eventAggregator;
 
         [ObservableProperty]
         private ObservableCollection<Tile> tiles;
 
-        public HomeComponentViewModel(PluginService pluginService,MqttService mqttService,TempConfigService tempConfigService,ILogger logger)
+        public HomeComponentViewModel(PluginService pluginService,MqttService mqttService,TempConfigService tempConfigService,ILogger logger,IEventAggregator eventAggregator)
         {
             this.Tiles = new ObservableCollection<Tile>();
             this.pluginService = pluginService;
             this.mqttService = mqttService;
             this.tempConfigService = tempConfigService;
             this.logger = logger;
+            this.eventAggregator = eventAggregator;
+
+            this.eventAggregator.GetEvent<PageChageEventAggregater>().Subscribe(x =>
+            {
+                //清楚tiles
+                foreach (Tile tile in this.Tiles)
+                {
+                    tile.Content = null;
+                }
+
+                this.Tiles.Clear();
+
+                if (x == "主页")
+                {
+                    foreach (ControlUI component in this.tempConfigService.Components)
+                    {
+                        Tile t = new Tile();
+                        t.Width = component.Width;
+                        t.Height = component.Height;
+                        t.Content = component;
+                        tiles.Add(t);
+                    }
+                }
+                else
+                {
+                    var list= this.tempConfigService.Components.Where(y => y.RoomName == x).ToList();
+                    foreach (ControlUI component in list)
+                    {
+                        Tile t = new Tile();
+                        t.Width = component.Width;
+                        t.Height = component.Height;
+                        t.Content = component;
+                        tiles.Add(t);
+                    }
+                }
+
+
+            });
 
             //this.mqttService.MessageReceivedEvent += (data) =>
             //{
@@ -56,8 +96,8 @@ namespace FantasyRoomDisplayDevice.ViewModels
             //         device.UpdateState(info.Data);
             //         this.logger.Info($"更新设备组件{info.DeviceName}的数据已完成");
             //     });
-                 
-               
+
+
             // }
 
 
@@ -75,18 +115,18 @@ namespace FantasyRoomDisplayDevice.ViewModels
 
             //this.tempConfigService.MqttTopicFilters = filters;
             //this.mqttService.SubscriptionAsync(filters);
-            
-            
+
+
             //foreach (Lazy<IDeviceController> item in this.pluginService.DevicesControllers.ToList())
             //{
             //    var device=  this.tempConfigService.DevicePluginMetaOutputs.Where(x => x.Key == item.Value.Key).FirstOrDefault();
-                    
+
             //   if (device!=null)
             //   {
             //       this.logger.Info($"开始添加{device.Key}的组件");
             //       foreach ( var deviceMeta in device.Devices)
             //       {
-                        
+
             //          var control = item.Value.GetDeskTopControlUi(deviceMeta);
             //          if (control!=null&&control is ControlUI uc)
             //          {
@@ -97,9 +137,9 @@ namespace FantasyRoomDisplayDevice.ViewModels
             //              var initdata=   uc.BuildInitRequest();
             //            uc.MqttMessageSendEvent += (con =>
             //            {
-                            
-                           
-                            
+
+
+
             //                MqttSendInfo info = new MqttSendInfo();
             //                info.PluginKey = item.Value.Key;
             //                info.Data = con.Data;
@@ -117,9 +157,9 @@ namespace FantasyRoomDisplayDevice.ViewModels
             //                string d= JsonConvert.SerializeObject(info);
 
             //                var bytes= Encoding.UTF8.GetBytes(d);
-                            
+
             //                this.logger.Info($"{info.DeviceName}发送消息:{d}");
-                            
+
             //                this.mqttService.SendInfo(new MqttApplicationMessage()
             //                {
             //                    Topic = this.tempConfigService.MqttServiceTopic,
@@ -132,21 +172,21 @@ namespace FantasyRoomDisplayDevice.ViewModels
             //              t.Height = uc.Height;
             //              t.Content = uc;
             //              this.Tiles.Add(t);
-            //              this.tempConfigService.Components.Add(uc);
+                       //  this.tempConfigService.Components.Add(uc);
             //          }
             //       }
             //   }
 
-                // var control= item.Value.GetDeskTopControlUi();
-                // if (control!=null&&control is ControlUI uc)
-                // {
-                //     Tile t = new Tile();
-                //     t.Width = uc.Width;
-                //     t.Height = uc.Height;
-                //     t.Content = uc;
-                //     this.Tiles.Add(t);
-                // }
-            }
+            // var control= item.Value.GetDeskTopControlUi();
+            // if (control!=null&&control is ControlUI uc)
+            // {
+            //     Tile t = new Tile();
+            //     t.Width = uc.Width;
+            //     t.Height = uc.Height;
+            //     t.Content = uc;
+            //     this.Tiles.Add(t);
+            // }
+        }
            
         }
     }

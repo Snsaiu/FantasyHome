@@ -26,12 +26,14 @@ public class DeviceTypeService:IDynamicApiController,ITransient,IDeviceTypeServi
     private readonly IRepository<DeviceType> repository;
     private readonly IConfiguration configuration;
     private readonly IPluginService pluginService;
+    private readonly PluginStateChangeNotification pluginStateChangeNotification;
 
-    public DeviceTypeService(IRepository<DeviceType> repository,IConfiguration configuration,IPluginService pluginService)
+    public DeviceTypeService(IRepository<DeviceType> repository,IConfiguration configuration,IPluginService pluginService,PluginStateChangeNotification pluginStateChangeNotification)
     {
         this.repository = repository;
         this.configuration = configuration;
         this.pluginService = pluginService;
+        this.pluginStateChangeNotification = pluginStateChangeNotification;
     }
     public async Task<RESTfulResult<DeviceTypeOutput>> AddDeviceTypeAsync(AddDeviceTypeInput input)
     {
@@ -149,7 +151,11 @@ public class DeviceTypeService:IDynamicApiController,ITransient,IDeviceTypeServi
         var pluginModelRes= await this.pluginService.AddPluginAsync(guidFolder, configSplit[0].Trim());
         if (pluginModelRes.Succeeded)
         {
-            IDeviceController controller = pluginModelRes.Data;
+            DeviceControllerBase controller = pluginModelRes.Data;
+
+            this.pluginStateChangeNotification.AddPlugins(controller);
+            controller.Regist(this.pluginStateChangeNotification);
+
             if (controller != null)
             {
                 AddDevicePluginOutput info = new AddDevicePluginOutput();
@@ -176,25 +182,25 @@ public class DeviceTypeService:IDynamicApiController,ITransient,IDeviceTypeServi
        
     }
 
-    public async Task<RESTfulResult<IDeviceController>> GetDeviceControllerById(int id)
+    public async Task<RESTfulResult<DeviceControllerBase>> GetDeviceControllerById(int id)
     {
         var entity= this.repository.AsEnumerable().FirstOrDefault(x => x.Id == id);
         if (entity == null)
-            return await Task.FromResult(new RESTfulResult<IDeviceController>() { Errors = "未发现设备类型", Succeeded = false });
+            return await Task.FromResult(new RESTfulResult<DeviceControllerBase>() { Errors = "未发现设备类型", Succeeded = false });
 
         return await this.GetDeviceControllerByKey(entity.Key);
     }
 
-    public async Task<RESTfulResult<IDeviceController>> GetDeviceControllerByKey(string key)
+    public async Task<RESTfulResult<DeviceControllerBase>> GetDeviceControllerByKey(string key)
     {
-     
-        var getRes= await this.pluginService.GetPluginByKeyAsync(key);
-        if (getRes.Succeeded==false)
+      var getRes= this.pluginStateChangeNotification.GetDevices().FirstOrDefault(x=>x.Key == key);
+      //  var getRes= await this.pluginService.GetPluginByKeyAsync(key);
+        if (getRes==null)
         {
            var find=  this.repository.AsEnumerable().FirstOrDefault(x => x.Key == key);
            if (find == null)
            {
-               return new RESTfulResult<IDeviceController>(){Succeeded=false,Errors= $"未发现{key}对应的数据" };
+               return new RESTfulResult<DeviceControllerBase>(){Succeeded=false,Errors= $"未发现{key}对应的数据" };
               
            }
            else
@@ -205,7 +211,7 @@ public class DeviceTypeService:IDynamicApiController,ITransient,IDeviceTypeServi
         }
         else
         {
-            return getRes;
+            return new RESTfulResult<DeviceControllerBase>{Data=getRes,Succeeded=true};
         }
 
     }

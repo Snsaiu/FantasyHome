@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,14 +30,16 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
     private readonly IPluginService pluginService;
     private readonly IRepository<CommandConstParams> commandConstParamsRepository;
     private readonly IDeviceTypeService deviceTypeService;
-   
+    private readonly PluginStateChangeNotification pluginStateChangeNotification;
+
 
     public DeviceService(IRepository<Device> repository,
         IRepository<DeviceType> deviceTypeRepository,
         IRepository<Room> roomRepository,
         IPluginService pluginService,
         IRepository<CommandConstParams> commandConstParamsRepository,
-        IDeviceTypeService deviceTypeService
+        IDeviceTypeService deviceTypeService,
+        PluginStateChangeNotification pluginStateChangeNotification
        )
     {
         this.repository = repository;
@@ -45,7 +48,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
         this.pluginService = pluginService;
         this.commandConstParamsRepository = commandConstParamsRepository;
         this.deviceTypeService = deviceTypeService;
-    
+        this.pluginStateChangeNotification = pluginStateChangeNotification;
     }
     public async Task<RESTfulResult< PagedList<DeviceOutput>>> GetDevices(DeviceInput input)
     {
@@ -107,7 +110,7 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             cp.Type = CommandParameterType.Set;
             entity.ConstCommandParams.Add(cp);
         }
-        foreach (var item in input.GetCommandParams)
+        foreach (KeyValue<string, string> item in input.GetCommandParams)
         {
             CommandConstParams cp = new CommandConstParams();
             cp.Device = entity;
@@ -167,8 +170,12 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             }, input.Name + "___" + controller.BackgroundParam.TaskName, controller.BackgroundParam.Description);
         }
 
+        //通知设备重启
+        await App.GetService<MqttServerInstance>().PublishAsync("fantasyhome-restart", new MqttSendInfo());
 
-         var entityRes= await  this.repository.InsertNowAsync(entity);
+
+
+        var entityRes= await  this.repository.InsertNowAsync(entity);
 
 
          return new RESTfulResult<int>() { Succeeded = true };
@@ -261,9 +268,11 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
             return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到实体插件路径" };
         }
       
-        var plugin = this.pluginService.GetPluginByKeyAsync(info.PluginKey).GetAwaiter().GetResult();
+        //var plugin = this.pluginService.GetPluginByKeyAsync(info.PluginKey).GetAwaiter().GetResult();
 
-        if (plugin.Succeeded)
+        var plugin = this.pluginStateChangeNotification.GetDevices().First(x => x.Key == info.PluginKey);
+
+        if (plugin!=null)
         {
             List<DeviceInputParameter> param = new();
 
@@ -273,7 +282,10 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
                 param.Add(p);
             }
 
-            var commandRes= plugin.Data.SetDeviceStateAsync(param, pluginType.PluginPath).GetAwaiter().GetResult();
+            List<DeviceInputParameter> getParams= this.GetGetDeviceCommandParamsbyDeviceName(info.DeviceName);
+          
+
+            var commandRes= plugin.SetDeviceStateWithNotifyAsync(deviceName: info.DeviceName,param,getParams,pluginType.PluginPath).GetAwaiter().GetResult();
             if (commandRes.Success)
             {
                 return new RESTfulResult<Dictionary<string, string>>()
@@ -291,5 +303,47 @@ public class DeviceService:IDynamicApiController,ITransient,IDeviceService
         {
             return new RESTfulResult<Dictionary<string, string>>() { Succeeded = false, Errors = "没有找到插件" };
         }
+    }
+
+    public List<DeviceInputParameter> GetGetDeviceCommandParamsbyDeviceName(string deviceName)
+    {
+        List<DeviceInputParameter> res = new List<DeviceInputParameter>();
+        var entities =  this.commandConstParamsRepository.Include(x => x.Device).Where(x => x.Device.Name == deviceName && x.Type == CommandParameterType.Get).ToList();
+
+        foreach (CommandConstParams item in entities)
+        {
+            res.Add(new DeviceInputParameter(item.Name, item.Value));
+          //  res.Add(item.Name, item.Value);
+        }
+        return res;
+    }
+
+    public  RESTfulResult<List<DeviceOutput>> GetAllDevices()
+    {
+        var where = this.repository.AsQueryable();
+
+        var res =  where.Select(x => new DeviceOutput()
+        {
+            Address = x.Address,
+            Id = x.Id,
+            Name = x.Name,
+            Type = x.Type.DeviceTypeName,
+            Description = x.Description,
+            DeviceTypeId = x.Type.Id,
+            State = x.State,
+            RoomName = x.Room.RoomName
+
+        }).ToList();
+            
+        return new RESTfulResult<List<DeviceOutput>>() { Succeeded = true, Data = res };
+    }
+
+    public RESTfulResult<List<PropertyModel>> GetDeviceControllPropertiesByDeviceTypeId(int deviceTypeId)
+    {
+        var plugin= this.deviceTypeRepository.AsEnumerable().First(x => x.Id == deviceTypeId);
+
+       var controller=  this.pluginStateChangeNotification.GetDevices().Where(x => x.Key == plugin.Key).First();
+
+        return new RESTfulResult<List<PropertyModel>> { Data = controller.GetDeviceProperties(), Succeeded = true };
     }
 }

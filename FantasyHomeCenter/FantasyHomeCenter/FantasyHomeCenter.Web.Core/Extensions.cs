@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using FantasyHomeCenter.Application.BackgroundTaskCenter;
 using FantasyHomeCenter.Application.DeviceCenter;
 using FantasyHomeCenter.Application.MqttCenter;
 using FantasyHomeCenter.Application.MqttCenter.Dto;
@@ -51,6 +51,8 @@ public static class Extensions
         var provider = services.BuildServiceProvider();
         IRepository<Device> deviceRepository = provider.GetService<IRepository<Device>>();
         IRepository <DeviceType> deviceTypeRepository=provider.GetService<IRepository<DeviceType>>();
+
+        PluginStateChangeNotification notify=provider.GetService<PluginStateChangeNotification>();
      
         var deviceTypeService = provider.GetService<IDeviceTypeService>();
       
@@ -72,13 +74,26 @@ public static class Extensions
            
             var controller = deviceControllRes.Data;
 
+            notify.AddPlugins(controller);
+            controller.Regist(notify);
+            
 
             foreach (Device device in deviceType.Devices)
             {
                 if (controller.BackgroundParam != null)
                 {
-                    SpareTime.Do("*/5 * * * * *", async (time, count)  =>
+
+                    try
                     {
+
+                  
+                    SpareTime.Do(controller.BackgroundParam.Time, async (time, count)  =>
+                    {
+
+                        try
+                        {
+
+                      
                        await Scoped.Create(async (_, scope) =>
                         {
                             var ser = scope.ServiceProvider;
@@ -93,7 +108,6 @@ public static class Extensions
                                     inputs.Add(new DeviceInputParameter(item.Name, item.Value));
                                 }
                             }
-
                             var getRes = await controller.GetDeviceStateAsync(inputs, deviceType.PluginPath);
                             if (getRes.Success)
                             {
@@ -103,11 +117,11 @@ public static class Extensions
                                 info.DeviceName = device.Name;
                                 info.Success = true;
                                 info.PluginKey = deviceType.Key;
-                                //info.Topic=deviceType.Key;
+                                info.Topic=deviceType.Key;
                                 //mqtt 发送
                                 MqttServerInstance mqttServerInstance = ser.GetService<MqttServerInstance>();
                                 Console.WriteLine($"定时信息:{device.Name}::{JsonConvert.SerializeObject(getRes.Data)}");
-                                await mqttServerInstance.PublishAsync("fantasyhome-ui-update", info);
+                                await mqttServerInstance.PublishAsync(info.Topic, info);
 
                             }
                             else
@@ -118,9 +132,21 @@ public static class Extensions
 
 
                         });
-                    
+                        }
+                        catch (Exception e)
+                        {
+                           
+                        }
+
+
 
                     }, device.Name + "___" + controller.BackgroundParam.TaskName, controller.BackgroundParam.Description);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
                 }
 
             }
@@ -128,12 +154,10 @@ public static class Extensions
 
 
         }
-
-
-
-
-
     }
+
+
+
 
     public  static  void AddMqttServiceAsync(this IServiceCollection services)
     {
@@ -141,6 +165,19 @@ public static class Extensions
         var provider= services.BuildServiceProvider();
        var mqtt=  provider.GetService<MqttServerInstance>();
        mqtt.StartAsync();
+    }
+
+    /// <summary>
+    /// 添加自动化服务
+    /// </summary>
+    /// <param name="services"></param>
+    public static void AddAutomationTaskAsync(this IServiceCollection services)
+    {
+        var provider= services.BuildServiceProvider();
+        var automationService = provider.GetService<IBackgroundTaskService>();
+        
+        automationService.RigAutomatioinTask();
+        
     }
 
 

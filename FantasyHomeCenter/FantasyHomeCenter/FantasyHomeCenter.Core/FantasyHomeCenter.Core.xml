@@ -4,6 +4,16 @@
         <name>FantasyHomeCenter.Core</name>
     </assembly>
     <members>
+        <member name="P:FantasyHomeCenter.Core.Entities.Automation.Triggers">
+            <summary>
+            触发器
+            </summary>
+        </member>
+        <member name="P:FantasyHomeCenter.Core.Entities.Automation.Actions">
+            <summary>
+            动作
+            </summary>
+        </member>
         <member name="P:FantasyHomeCenter.Core.Entities.User.Name">
             <summary>
             姓名

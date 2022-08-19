@@ -62,7 +62,7 @@ public class ControlUiMessageParser:MessageParserBase
         //发送
        await this.mqttServerInstance.PublishAsync(new MqttApplicationMessage()
         {
-            Topic = "fantasyhome-ui-update",
+            Topic = data.PluginKey,
             Payload = Encoding.UTF8.GetBytes(sendcontent)
         });
 

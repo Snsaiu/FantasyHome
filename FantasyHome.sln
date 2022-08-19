@@ -47,6 +47,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyRoomDisplayDeviceUpd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "Test\WpfApp1\WpfApp1.csproj", "{0261ED46-EF18-4EB4-94DA-CE3D6BDD7888}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "插件包", "插件包", "{11227C40-E98A-4D5E-A9B3-A7B2CE32E1AE}"
+	ProjectSection(SolutionItems) = preProject
+		FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\plugins\天气插件.zip = FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\plugins\天气插件.zip
+		FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\plugins\空调插件.zip = FantasyHomeCenter\FantasyHomeCenter\FantasyHomeCenter.Web.Entry\plugins\空调插件.zip
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlugin", "DevicePluginsImpls\TestPlugin\TestPlugin.csproj", "{4ADAF473-03CB-4772-89BB-2F62862D60C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -431,6 +439,26 @@ Global
 		{0261ED46-EF18-4EB4-94DA-CE3D6BDD7888}.Release|x64.Build.0 = Release|Any CPU
 		{0261ED46-EF18-4EB4-94DA-CE3D6BDD7888}.Release|x86.ActiveCfg = Release|Any CPU
 		{0261ED46-EF18-4EB4-94DA-CE3D6BDD7888}.Release|x86.Build.0 = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|ARM.Build.0 = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|x64.Build.0 = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Debug|x86.Build.0 = Debug|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|ARM.Build.0 = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|ARM64.Build.0 = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|x64.ActiveCfg = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|x64.Build.0 = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -450,6 +478,8 @@ Global
 		{4BFC85FB-28F0-4E77-8DDE-2385F9BE6E77} = {A9A9F833-78C0-4E15-A59F-B981D3D49871}
 		{2DD0AEA2-A510-4EB7-9BDA-198312DAD691} = {5084DDAB-B62F-4E9C-9FDD-C754EEB6270F}
 		{0261ED46-EF18-4EB4-94DA-CE3D6BDD7888} = {F4044661-FF28-4F16-AB93-CC51E6726029}
+		{11227C40-E98A-4D5E-A9B3-A7B2CE32E1AE} = {A9A9F833-78C0-4E15-A59F-B981D3D49871}
+		{4ADAF473-03CB-4772-89BB-2F62862D60C4} = {A9A9F833-78C0-4E15-A59F-B981D3D49871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89901F63-0ACF-405A-905D-EF3EB6FEC538}

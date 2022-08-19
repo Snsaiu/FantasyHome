@@ -17,6 +17,123 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
 
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Automation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TriggerType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("UpdatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Automation");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationAction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AutomationId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TargetDeviceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("UpdatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AutomationId");
+
+                    b.ToTable("AutomationAction");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationActionInputParam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AutomationActionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("UpdatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AutomationActionId");
+
+                    b.ToTable("AutomationActionInputParam");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationTriggerElement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AfterValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("AutomationId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("BeforeValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DeviceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Property")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset?>("UpdatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AutomationId");
+
+                    b.ToTable("AutomationTriggerElement");
+                });
+
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.CommandConstParams", b =>
                 {
                     b.Property<int>("Id")
@@ -310,6 +427,33 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                     b.ToTable("RoleUser");
                 });
 
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationAction", b =>
+                {
+                    b.HasOne("FantasyHomeCenter.Core.Entities.Automation", "Automation")
+                        .WithMany("Actions")
+                        .HasForeignKey("AutomationId");
+
+                    b.Navigation("Automation");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationActionInputParam", b =>
+                {
+                    b.HasOne("FantasyHomeCenter.Core.Entities.AutomationAction", "AutomationAction")
+                        .WithMany("Parameters")
+                        .HasForeignKey("AutomationActionId");
+
+                    b.Navigation("AutomationAction");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationTriggerElement", b =>
+                {
+                    b.HasOne("FantasyHomeCenter.Core.Entities.Automation", "Automation")
+                        .WithMany("Triggers")
+                        .HasForeignKey("AutomationId");
+
+                    b.Navigation("Automation");
+                });
+
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.CommandConstParams", b =>
                 {
                     b.HasOne("FantasyHomeCenter.Core.Entities.Device", "Device")
@@ -372,6 +516,18 @@ namespace FantasyHomeCenter.Database.Migrations.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Automation", b =>
+                {
+                    b.Navigation("Actions");
+
+                    b.Navigation("Triggers");
+                });
+
+            modelBuilder.Entity("FantasyHomeCenter.Core.Entities.AutomationAction", b =>
+                {
+                    b.Navigation("Parameters");
                 });
 
             modelBuilder.Entity("FantasyHomeCenter.Core.Entities.Device", b =>

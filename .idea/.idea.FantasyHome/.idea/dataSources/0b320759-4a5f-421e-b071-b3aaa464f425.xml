@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@192.168.0.107">
-  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.41">
+  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.43">
     <root id="1">
       <Grants>2|||2|connect|G
 3|||2|connect|G
@@ -38,20 +38,19 @@
       <ServerVersion>15.0.2000</ServerVersion>
     </root>
     <database id="2" parent="1" name="FantanyHome">
-      <Collation>Chinese_PRC_CI_AS</Collation>
       <ObjectId>5</ObjectId>
+      <CollationName>Chinese_PRC_CI_AS</CollationName>
     </database>
     <database id="3" parent="1" name="FantasyHome">
-      <Collation>Chinese_PRC_CI_AS</Collation>
       <Fingerprint>1.37717/00000000-0000-0000-0000-000000000000@DESKTOP-M735IT9</Fingerprint>
       <Grants>6|database||1|connect|G
 6|database||0|view any column encryption key definition|G
 6|database||0|view any column master key definition|G</Grants>
       <ObjectId>6</ObjectId>
       <PermissionsCheckSum>3196235284</PermissionsCheckSum>
+      <CollationName>Chinese_PRC_CI_AS</CollationName>
     </database>
     <database id="4" parent="1" name="master">
-      <Collation>Chinese_PRC_CI_AS</Collation>
       <Current>1</Current>
       <Fingerprint>1.37717/00000000-0000-0000-0000-000000000000@DESKTOP-M735IT9</Fingerprint>
       <Grants>1|database||1|connect|G
@@ -63,18 +62,19 @@
 1|database||0|view any column master key definition|G</Grants>
       <ObjectId>1</ObjectId>
       <PermissionsCheckSum>7998723517</PermissionsCheckSum>
+      <CollationName>Chinese_PRC_CI_AS</CollationName>
     </database>
     <database id="5" parent="1" name="model">
-      <Collation>Chinese_PRC_CI_AS</Collation>
       <ObjectId>3</ObjectId>
+      <CollationName>Chinese_PRC_CI_AS</CollationName>
     </database>
     <database id="6" parent="1" name="msdb">
-      <Collation>Chinese_PRC_CI_AS</Collation>
       <ObjectId>4</ObjectId>
+      <CollationName>Chinese_PRC_CI_AS</CollationName>
     </database>
     <database id="7" parent="1" name="tempdb">
-      <Collation>Chinese_PRC_CI_AS</Collation>
       <ObjectId>2</ObjectId>
+      <CollationName>Chinese_PRC_CI_AS</CollationName>
     </database>
     <linked-server id="8" parent="1" name="DESKTOP-M735IT9">
       <DataSource>DESKTOP-M735IT9</DataSource>

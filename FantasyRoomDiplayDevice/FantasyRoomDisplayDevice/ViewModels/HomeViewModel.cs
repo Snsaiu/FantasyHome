@@ -21,6 +21,7 @@ using FantasyHomeCenter.DevicePluginInterface;
 using FantasyRoomDisplayDevice.Models;
 using Newtonsoft.Json;
 using FantasyRoomDisplayDevice.MqttMessageParse;
+using Prism.Events;
 
 namespace FantasyRoomDisplayDevice.ViewModels
 {
@@ -33,11 +34,12 @@ namespace FantasyRoomDisplayDevice.ViewModels
         private readonly TempConfigService tempConfigService;
         private readonly ILogger logger;
         private readonly IComponentService componentService;
+        private readonly IEventAggregator eventAggregator;
 
         [ObservableProperty]
         private ObservableCollection<HamburgerMenuNavigationButton> rooms;
 
-        public HomeViewModel(IRegionManager regionManager,MqttService mqttService,PluginService pluginService,TempConfigService tempConfigService,ILogger logger,IComponentService componentService)
+        public HomeViewModel(IRegionManager regionManager,MqttService mqttService,PluginService pluginService,TempConfigService tempConfigService,ILogger logger,IComponentService componentService,IEventAggregator eventAggregator)
         {
             this.regionManager = regionManager;
             this.mqttService = mqttService;
@@ -45,6 +47,7 @@ namespace FantasyRoomDisplayDevice.ViewModels
             this.tempConfigService = tempConfigService;
             this.logger = logger;
             this.componentService = componentService;
+            this.eventAggregator = eventAggregator;
             this.Rooms = new ObservableCollection<HamburgerMenuNavigationButton>();
 
         }
@@ -64,15 +67,22 @@ namespace FantasyRoomDisplayDevice.ViewModels
 
                 MqttSendInfo info = JsonConvert.DeserializeObject<MqttSendInfo>(content);
                 this.logger.Info($"来自mqtt的消息通知:{content}");
-                RoomListParser roomListParser = new RoomListParser(data.Topic, info,this.Rooms);
-                RoomAddParser roomAddParser = new RoomAddParser(data.Topic, info, this.Rooms);
+                RoomListParser roomListParser = new RoomListParser(data.Topic, info,this.Rooms,this.eventAggregator);
+              
+                RoomAddParser roomAddParser = new RoomAddParser(data.Topic, info, this.Rooms,this.eventAggregator);
                 roomListParser.Next = roomAddParser;
 
                 ControlUIUpdateParser controlUIUpdateParser =
-                    new ControlUIUpdateParser(data.Topic, info, this.tempConfigService);
+                    new ControlUIUpdateParser(info.Topic, info, this.tempConfigService);
                 roomAddParser.Next=controlUIUpdateParser;
 
+                RoomRemoveParser roomRemoveParser =
+                    new RoomRemoveParser(data.Topic, info, this.Rooms, this.eventAggregator);
 
+                controlUIUpdateParser.Next=roomRemoveParser;
+
+                RestartAppParser restartAppParser = new RestartAppParser(data.Topic, info);
+                roomRemoveParser.Next=restartAppParser;
 
                 roomListParser.Process();
 
@@ -109,7 +119,18 @@ namespace FantasyRoomDisplayDevice.ViewModels
                MessageBox.Show(connectResult.Errors.ToString());
            }
            this.logger.Info("mqtt服务启动成功");
-           this.componentService.ParsePluginAndGetControlUI();
+
+           try
+           {
+               this.componentService.ParsePluginAndGetControlUI();
+           }
+           catch (Exception e)
+           {
+               Console.WriteLine(e);
+               throw;
+           }
+           
+         
            mqttReceive();
             // 获得房间信息
            await this.mqttService.SendInfo(new MqttApplicationMessage()

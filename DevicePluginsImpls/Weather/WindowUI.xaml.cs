@@ -39,6 +39,11 @@ namespace Weather
 
         public override void UpdateState(Dictionary<string, string> data)
         {
+            string updatetime= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            this.updateTimeLabel.Content = "更新时间:"+ updatetime;
+
+
             this.windowUiViewModel.WeatherModel.FeatureWeatherModels.Clear();
             this.windowUiViewModel.WeatherModel.State = data["今日天气"];
             this.windowUiViewModel.WeatherModel.Temperature ="温度:"+ data["今日温度"]+"℃";
