@@ -87,51 +87,51 @@ public static class Extensions
                     {
 
                   
-                    SpareTime.Do(controller.BackgroundParam.Time, async (time, count)  =>
+                    SpareTime.Do(controller.BackgroundParam.Time,  (time, count)  =>
                     {
 
                         try
                         {
-
-                      
-                       await Scoped.Create(async (_, scope) =>
-                        {
-                            var ser = scope.ServiceProvider;
-                            System.Console.WriteLine(device.Name + "___" + controller.BackgroundParam.TaskName + "::任务执行" + count + "次");
-                            var getlist = device.ConstCommandParams.Where(x => x.Type == CommandParameterType.Get).ToList();
-                            List<DeviceInputParameter> inputs = new List<DeviceInputParameter>();
-
-                            if (getlist != null)
+                             Scoped.Create(async (_, scope) =>
                             {
-                                foreach (var item in getlist)
+                                var ser = scope.ServiceProvider;
+                                System.Console.WriteLine(device.Name + "___" + controller.BackgroundParam.TaskName + "::任务执行" + count + "次");
+                                var getlist = device.ConstCommandParams.Where(x => x.Type == CommandParameterType.Get).ToList();
+                                List<DeviceInputParameter> inputs = new List<DeviceInputParameter>();
+
+                                if (getlist != null)
                                 {
-                                    inputs.Add(new DeviceInputParameter(item.Name, item.Value));
+                                    foreach (var item in getlist)
+                                    {
+                                        inputs.Add(new DeviceInputParameter(item.Name, item.Value));
+                                    }
                                 }
-                            }
-                            var getRes = await controller.GetDeviceStateAsync(inputs, deviceType.PluginPath);
-                            if (getRes.Success)
-                            {
-                                MqttSendInfo info = new MqttSendInfo();
-                                info.Data = getRes.Data;
+                                var getRes = await controller.GetDeviceStateAsync(inputs, deviceType.PluginPath);
+                                if (getRes.Success)
+                                {
+                                    MqttSendInfo info = new MqttSendInfo();
+                                    info.Data = getRes.Data;
 
-                                info.DeviceName = device.Name;
-                                info.Success = true;
-                                info.PluginKey = deviceType.Key;
-                                info.Topic=deviceType.Key;
-                                //mqtt 发送
-                                MqttServerInstance mqttServerInstance = ser.GetService<MqttServerInstance>();
-                                Console.WriteLine($"定时信息:{device.Name}::{JsonConvert.SerializeObject(getRes.Data)}");
-                                await mqttServerInstance.PublishAsync(info.Topic, info);
+                                    info.DeviceName = device.Name;
+                                    info.Success = true;
+                                    info.PluginKey = deviceType.Key;
+                                    info.Topic = deviceType.Key;
+                                    //mqtt 发送
+                                    MqttServerInstance mqttServerInstance = ser.GetService<MqttServerInstance>();
+                                    Console.WriteLine($"定时信息:{device.Name}::{JsonConvert.SerializeObject(getRes.Data)}");
+                                    await mqttServerInstance.PublishAsync(info.Topic, info);
 
-                            }
-                            else
-                            {
-                                System.Console.WriteLine(device.Name + "___" + controller.BackgroundParam.TaskName + "::任务执行发生错误" + getRes.ErrorMessage);
-                            }
-
+                                }
+                                else
+                                {
+                                    System.Console.WriteLine(device.Name + "___" + controller.BackgroundParam.TaskName + "::任务执行发生错误" + getRes.ErrorMessage);
+                                }
 
 
-                        });
+
+                            });
+
+
                         }
                         catch (Exception e)
                         {
