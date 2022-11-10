@@ -369,8 +369,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="FantasyResultModel" Version="1.0.0" />
 	  <PackageReference Include="RestClient" Version="3.860.28084" />
 	  <PackageReference Include="RestSharp" Version="106.12.0" />

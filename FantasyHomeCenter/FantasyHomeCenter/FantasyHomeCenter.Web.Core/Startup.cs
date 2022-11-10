@@ -47,13 +47,17 @@ namespace FantasyHomeCenter.Web.Core
                 });
             services.AddControllers().AddInjectWithUnifyResult(options =>
             {
-                options.SpecificationDocumentConfigure = spt =>
+                options.ConfigureSwaggerGen(spt =>
                 {
-                    spt.SwaggerGenConfigure = gen =>
-                    {
-                        gen.CustomSchemaIds(CustomSchemaIdSelector);
-                    };
-                };
+                    spt.CustomSchemaIds(CustomSchemaIdSelector);
+                });
+                //options.SpecificationDocumentConfigure = spt =>
+                //{
+                //    spt.SwaggerGenConfigure = gen =>
+                //    {
+                //        gen.CustomSchemaIds(CustomSchemaIdSelector);
+                //    };
+                //};
             });
             services.AddRazorPages();
             services.AddServerSideBlazor();
